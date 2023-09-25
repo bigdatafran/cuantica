@@ -1,0 +1,1071 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4. La computación &#8212; Programación quántica</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Representando los estados de un qubit." href="Tema2_representing-qubit-states.html" />
+    <link rel="prev" title="2. qiskit_textbook" href="Tema0_Introducci%C3%B3n.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Programación quántica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Números complejos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numeros_complejos.html">
+   1. Introducción a los números complejos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estados quanticos y qubits
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema0_Introducci%C3%B3n.html">
+   2. qiskit_textbook
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   4. Los qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema2_representing-qubit-states.html">
+   5. Representación de los estados del qubit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema3_single-qubit-gates.html">
+   6. Puertas cuánticas para un qubit
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Qubits múltiples y Entanglement
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">
+   7. Múltiples qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema5_phase-kickback.html">
+   8. Explorando la puerta CNOT-Gate
+   <a id="exploring-cnot">
+   </a>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema6_more-circuit-identities.html">
+   10. Otros circuitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema7_proving-universality.html">
+   11. Universalidad
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Índice de términos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   12. Índice de términos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Apéndice
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="otras/anexo1_Algebralineal.html">
+   Resumen Algebra lineal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="videos_anexo.html">
+   Vídeos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otras/apendice.html">
+   Apendice.
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/jupyters/Tema1_atoms-computation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/jupyters/Tema1_atoms-computation.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dividiendo-la-informacion-en-bits-a-id-bits-a">
+   4.1. Dividiendo la información en bits.
+   <a id="bits">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejercicios">
+     4.1.1. Ejercicios
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computacion-como-un-diagrama-a-id-diagram-a">
+   4.2. 2. Computación  como un diagrama
+   <a id="diagram">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#primer-circuito-cuantico-a-id-first-circuit-a">
+   4.3. Primer circuito cuántico
+   <a id="first-circuit">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-creando-un-circuito-para-sumar-a-id-adder-a">
+   4.4. Ejemplo: Creando un circuito para sumar
+   <a id="adder">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoding-an-input-a-id-encoding-a">
+     4.4.1. 4.1 Encoding an input
+     <a id="encoding">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recordando-como-se-suma-a-id-remembering-add-a">
+     4.4.2. Recordando cómo se suma.
+     <a id="remembering-add">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sumando-con-qiskit-a-id-adding-qiskit-a">
+     4.4.3. Sumando con Qiskit
+     <a id="adding-qiskit">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>La computación</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dividiendo-la-informacion-en-bits-a-id-bits-a">
+   4.1. Dividiendo la información en bits.
+   <a id="bits">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejercicios">
+     4.1.1. Ejercicios
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computacion-como-un-diagrama-a-id-diagram-a">
+   4.2. 2. Computación  como un diagrama
+   <a id="diagram">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#primer-circuito-cuantico-a-id-first-circuit-a">
+   4.3. Primer circuito cuántico
+   <a id="first-circuit">
+   </a>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-creando-un-circuito-para-sumar-a-id-adder-a">
+   4.4. Ejemplo: Creando un circuito para sumar
+   <a id="adder">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoding-an-input-a-id-encoding-a">
+     4.4.1. 4.1 Encoding an input
+     <a id="encoding">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#recordando-como-se-suma-a-id-remembering-add-a">
+     4.4.2. Recordando cómo se suma.
+     <a id="remembering-add">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sumando-con-qiskit-a-id-adding-qiskit-a">
+     4.4.3. Sumando con Qiskit
+     <a id="adding-qiskit">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="la-computacion">
+<span id="computacion"></span><h1><span class="section-number">4. </span>La computación<a class="headerlink" href="#la-computacion" title="Permalink to this headline">#</a></h1>
+<p>Hoy en día cada vez está más extendida la idea de que la computación cuántica ofrece herramientas mucho más potentes que la computación tradicional</p>
+<p>Pero, ¿qué crear? ¿Qué es un programa cuántico? De hecho, ¿qué es un ordenador cuántico?</p>
+<p>Estas preguntas pueden responderse haciendo comparaciones con los ordenadores digitales estándar. Por desgracia, la mayoría de la gente tampoco entiende realmente cómo funcionan los ordenadores digitales. En este artículo veremos los principios básicos de estos dispositivos. Para facilitarnos la transición a la computación cuántica más adelante, lo haremos utilizando las mismas herramientas que usaremos para la cuántica.</p>
+<p>A continuación se muestra algo de código Python que tendremos que ejecutar si queremos utilizar el código de esta página y en general si queremos trabar con qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">assemble</span><span class="p">,</span> <span class="n">Aer</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="dividiendo-la-informacion-en-bits-a-id-bits-a">
+<h2><span class="section-number">4.1. </span>Dividiendo la información en bits.  <a id="bits"></a><a class="headerlink" href="#dividiendo-la-informacion-en-bits-a-id-bits-a" title="Permalink to this headline">#</a></h2>
+<p>Lo primero que debemos conocer es la idea de los bits. Son el alfabeto más sencillo del mundo. Con sólo dos caracteres, 0 y 1, podemos representar cualquier información.</p>
+<p>One example is numbers. You are probably used to representing a number through a string of the ten digits 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9. In this string of digits, each digit represents how many times the number contains a certain power of ten. For example, when we write 9213, we mean</p>
+<p>Un ejemplo son los números. Probablemente estés acostumbrado a representar un número mediante una cadena de los diez dígitos 0, 1, 2, 3, 4, 5, 6, 7, 8 y 9. En esta cadena de dígitos, cada dígito representa cuántas veces un número contiene una determinada potencia de diez. En esta cadena de dígitos, cada dígito representa cuántas veces el número contiene una determinada potencia de diez. Por ejemplo, cuando escribimos 9213, queremos decir</p>
+<div class="math notranslate nohighlight">
+\[ 9000 + 200 + 10 + 3 \]</div>
+<p>o, expresado de forma que destaque las potencias de diez</p>
+<div class="math notranslate nohighlight">
+\[ (9\times10^3) + (2\times10^2) + (1\times10^1) + (3\times10^0) \]</div>
+<p>Aunque solemos utilizar este sistema basándonos en el número 10, podemos utilizarlo con la misma facilidad basándonos en cualquier otro número. El sistema numérico binario, por ejemplo, se basa en el número dos. Esto significa utilizar los dos caracteres 0 y 1 para expresar los números como múltiplos de potencias de dos. Por ejemplo, 9213 se convierte en 10001111111101, ya que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 9213  = (1 \times 2^{13}) + (0 \times 2^{12}) + (0 \times 2^{11})+ (0 \times 2^{10}) +(1 \times 2^9) + (1 \times 2^8) + (1 \times 2^7) \\\\ \,\,\,   + (1 \times 2^6) + (1 \times 2^5) + (1 \times 2^4) + (1 \times 2^3) + (1 \times 2^2) + (0 \times 2^1) + (1 \times 2^0) \end{split}\]</div>
+<p>En este caso estamos expresando los números como múltiplos de 2, 4, 8, 16, 32, etc. en lugar de 10, 100, 1000, etc.</p>
+<p id="index-0">A continuación se muestra un ejemplo que se puede encontrar en <a class="reference internal" href="Tema0_Introducci%C3%B3n.html#qiskit-textbook"><span class="std std-ref">qiskit_textbook</span></a> podemos encontrar una aplicación que nos ayuda a entender todo esto</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_textbook.widgets</span> <span class="kn">import</span> <span class="n">binary_widget</span>
+<span class="n">binary_widget</span><span class="p">(</span><span class="n">nbits</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "3817ca8ff73f4328b73eba8f677341b8"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "cc4674709f7d4edf9f2a7448ba095d15"}
+</script></div>
+</div>
+<p>Estas cadenas de bits, conocidas como cadenas binarias, pueden utilizarse para representar algo más que números. Por ejemplo, existe una forma de representar cualquier texto utilizando bits. Para cualquier letra, número o signo de puntuación que quieras utilizar, puedes encontrar una cadena correspondiente de ocho bits como máximo utilizando
+<a href ="https://www.ibm.com/support/knowledgecenter/en/ssw_aix_72/com.ibm.aix.networkcomm/conversion_table.htm" target="_blank"> esta tabla</a>.</p>
+<p>Así es como se representa toda la información en los ordenadores. Ya sean números, letras, imágenes o sonidos, todo existe en forma de cadenas binarias.</p>
+<p>Al igual que nuestros ordenadores digitales estándar, los ordenadores cuánticos se basan en esta misma idea básica. La principal diferencia es que utilizan <em>qubits</em>, una extensión del bit a la mecánica cuántica. En el resto de este libro exploraremos qué son los qubits, qué pueden hacer y cómo lo hacen. En esta sección, sin embargo, no vamos a hablar de cuántica en absoluto. Por tanto, utilizaremos los qubits como si fueran bits de la computación tradicional.</p>
+<section id="ejercicios">
+<h3><span class="section-number">4.1.1. </span>Ejercicios<a class="headerlink" href="#ejercicios" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Piensa en un número e intenta escribirlo en binario.</p></li>
+<li><p>Si tienes <span class="math notranslate nohighlight">\(n\)</span> bits, ¿en cuántos estados diferentes pueden estar?</p></li>
+</ol>
+</section>
+</section>
+<section id="computacion-como-un-diagrama-a-id-diagram-a">
+<h2><span class="section-number">4.2. </span>2. Computación  como un diagrama <a id="diagram"></a><a class="headerlink" href="#computacion-como-un-diagrama-a-id-diagram-a" title="Permalink to this headline">#</a></h2>
+<p>Tanto si usamos qubits como bits, necesitamos manipularlos para convertir las entradas que tenemos en las salidas que necesitamos. Para los programas más simples, con muy pocos bits, es útil representar este proceso en un diagrama conocido como <em>diagrama de circuito</em>. Estos diagramas tienen las entradas a la izquierda, las salidas a la derecha y las operaciones representadas por símbolos arcanos en medio. Estas operaciones se denominan “puertas”, sobre todo por razones históricas.</p>
+<p>A continuación se muestra un ejemplo de circuito para ordenadores estándar basados en bits. No se espera que entiendas lo que hace. Simplemente debería darte una idea de cómo son estos circuitos.</p>
+<p><img alt="image1" src="../_images/circuito_clasico.PNG" /></p>
+<p>Para los ordenadores cuánticos, utilizamos la misma idea básica pero tenemos diferentes convenciones sobre cómo representar las entradas, las salidas y los símbolos utilizados para las operaciones. He aquí el circuito cuántico que representa el mismo proceso anterior.</p>
+<p><img alt="image2" src="../_images/circuito_cuantico.PNG" /></p>
+<p>En el resto de esta sección, explicaremos cómo construir circuitos. Al final de este capítulo, sabrás cómo crear el circuito anterior, qué hace y por qué es útil.</p>
+</section>
+<section id="primer-circuito-cuantico-a-id-first-circuit-a">
+<h2><span class="section-number">4.3. </span>Primer circuito cuántico <a id="first-circuit"></a><a class="headerlink" href="#primer-circuito-cuantico-a-id-first-circuit-a" title="Permalink to this headline">#</a></h2>
+<p>En un circuito, normalmente tenemos que realizar tres tareas: Primero, codificar la entrada, después realizar algún cálculo y, por último, extraer una salida. Para tu primer circuito cuántico, nos centraremos en la última de estas tareas. Empezaremos creando un circuito con ocho qubits y ocho salidas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_output</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Este circuito, que hemos llamado <code class="docutils literal notranslate"><span class="pre">qc_output</span></code>, es creado por Qiskit usando <code class="docutils literal notranslate"><span class="pre">QuantumCircuit</span></code>. El <code class="docutils literal notranslate"><span class="pre">QuantumCircuit</span></code> toma como argumento el número de qubits del circuito cuántico.</p>
+<p>La extracción de salidas en un circuito cuántico se realiza mediante una operación llamada <code class="docutils literal notranslate"><span class="pre">measure_all()</span></code>. Cada medida le dice a un qubit específico que dé una salida a un bit de salida específico. El comando <code class="docutils literal notranslate"><span class="pre">qc_output.measure_all()</span></code> añade una medida a cada qubit en el circuito <code class="docutils literal notranslate"><span class="pre">qc_output</span></code>, y también añade algunos bits clásicos para escribir la salida.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_output</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora que nuestro circuito tiene algo, echémosle un vistazo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_output</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">initial_state</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_15_0.png" src="../_images/Tema1_atoms-computation_15_0.png" />
+</div>
+</div>
+<p>Los qubits siempre se inicializan para dar la salida <code class="docutils literal notranslate"><span class="pre">0``.</span> <span class="pre">Como</span> <span class="pre">no</span> <span class="pre">hacemos</span> <span class="pre">nada</span> <span class="pre">a</span> <span class="pre">nuestros</span> <span class="pre">qubits</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">circuito</span> <span class="pre">anterior,</span> <span class="pre">éste</span> <span class="pre">es</span> <span class="pre">exactamente</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">que</span> <span class="pre">obtendremos</span> <span class="pre">cuando</span> <span class="pre">los</span> <span class="pre">midamos.</span> <span class="pre">Podemos</span> <span class="pre">comprobarlo</span> <span class="pre">ejecutando</span> <span class="pre">el</span> <span class="pre">circuito</span> <span class="pre">muchas</span> <span class="pre">veces</span> <span class="pre">y</span> <span class="pre">representando</span> <span class="pre">los</span> <span class="pre">resultados</span> <span class="pre">en</span> <span class="pre">un</span> <span class="pre">histograma.</span> <span class="pre">Veremos</span> <span class="pre">que</span> <span class="pre">el</span> <span class="pre">resultado</span> <span class="pre">es</span> <span class="pre">siempre</span> </code>00000000<code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">un</span> <span class="pre">```0</span></code> de cada qubit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span> 
+<span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc_output</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_17_0.png" src="../_images/Tema1_atoms-computation_17_0.png" />
+</div>
+</div>
+<p>La razón para ejecutar muchas veces y mostrar el resultado como un histograma es porque los ordenadores cuánticos pueden tener cierta aleatoriedad en sus resultados. En este caso, como no estamos haciendo nada cuántico, obtenemos sólo el resultado 00000000 con certeza.</p>
+<p>Tenga en cuenta que este resultado procede de un <strong>simulador cuántico</strong>, que es un ordenador estándar que calcula lo que haría un ordenador cuántico ideal. Las simulaciones sólo son posibles para números pequeños de qubits (~30 qubits), pero no dejan de ser una herramienta muy útil a la hora de diseñar tus primeros circuitos cuánticos. Para ejecutarlo en un dispositivo real sólo tienes que sustituir “Aer.get_backend(‘aer_simulator’)” por el objeto backend del dispositivo que quieras utilizar.</p>
+</section>
+<section id="ejemplo-creando-un-circuito-para-sumar-a-id-adder-a">
+<h2><span class="section-number">4.4. </span>Ejemplo: Creando un circuito para sumar <a id="adder"></a><a class="headerlink" href="#ejemplo-creando-un-circuito-para-sumar-a-id-adder-a" title="Permalink to this headline">#</a></h2>
+<section id="encoding-an-input-a-id-encoding-a">
+<h3><span class="section-number">4.4.1. </span>4.1 Encoding an input <a id="encoding"></a><a class="headerlink" href="#encoding-an-input-a-id-encoding-a" title="Permalink to this headline">#</a></h3>
+<p>Veamos ahora cómo codificar una cadena binaria diferente como entrada. Para ello, necesitamos lo que se conoce como puerta NOT (Lo que hace es cambiar el estado <span class="math notranslate nohighlight">\(|0\rangle\)</span> por <span class="math notranslate nohighlight">\(|1\rangle\)</span>). Es la operación más básica que se puede hacer en un ordenador. En el caso de los qubits, es una operación llamada “X” la que hace el trabajo del NOT.</p>
+<p>A continuación creamos un nuevo circuito dedicado al trabajo de codificación y lo llamamos <code class="docutils literal notranslate"><span class="pre">qc_encode</span></code>. Por ahora, sólo especificamos el número de qubits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_encode</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">qc_encode</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">qc_encode</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">          
+q_0: ─────
+
+q_1: ─────
+
+q_2: ─────
+
+q_3: ─────
+
+q_4: ─────
+
+q_5: ─────
+
+q_6: ─────
+     ┌───┐
+q_7: ┤ X ├
+     └───┘</pre></div></div>
+</div>
+<p>Observar que cambiando ligeramente la instrucción <em>draw()</em> la estética del diagrama mejora sustancialmente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_encode</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_22_0.png" src="../_images/Tema1_atoms-computation_22_0.png" />
+</div>
+</div>
+<p>La extracción de resultados se puede hacer utilizando el circuito que tenemos de antes: <code class="docutils literal notranslate"><span class="pre">qc_output</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_encode</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">qc_encode</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_24_0.png" src="../_images/Tema1_atoms-computation_24_0.png" />
+</div>
+</div>
+<p>Ahora podemos ejecutar el circuito combinado y observar los resultados.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span> 
+<span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qc_encode</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_26_0.png" src="../_images/Tema1_atoms-computation_26_0.png" />
+</div>
+</div>
+<p>Ahora nuestro ordenador muestra la cadena 10000000.</p>
+<p>El bit que hemos volteado, que proviene del qubit 7, se encuentra en el extremo izquierdo de la cadena. Esto se debe a que Qiskit numera los bits de una cadena de derecha a izquierda. Algunos prefieren numerar sus bits al revés, pero el sistema de Qiskit tiene sus ventajas cuando usamos los bits para representar números. En concreto, significa que el qubit 7 nos está diciendo cuántos  <span class="math notranslate nohighlight">\(2^7\)</span> s tenemos en nuestro número. Así que al invertir este bit, hemos escrito el número 128 en nuestro sencillo ordenador de 8 bits.</p>
+<p>Ahora intenta escribir otro número para ti. Por ejemplo, tu edad. Utiliza un motor de búsqueda para averiguar qué aspecto tiene el número en binario (si incluye un “0b”, ignóralo) y, a continuación, añade algunos 0 a la izquierda si tienes menos de 128 años.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_encode</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">qc_encode</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_encode</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">qc_encode</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_28_0.png" src="../_images/Tema1_atoms-computation_28_0.png" />
+</div>
+</div>
+<p>Ahora ya sabemos cómo codificar la información en un ordenador. El siguiente paso es procesarla: Tomar una entrada que hemos codificado y convertirla en una salida que necesitamos.</p>
+</section>
+<section id="recordando-como-se-suma-a-id-remembering-add-a">
+<h3><span class="section-number">4.4.2. </span>Recordando cómo se suma. <a id="remembering-add"></a><a class="headerlink" href="#recordando-como-se-suma-a-id-remembering-add-a" title="Permalink to this headline">#</a></h3>
+<p>Para ver cómo se convierten las entradas en salidas, necesitamos un problema que resolver. Hagamos un poco de matemáticas básicas. En la escuela primaria, habrás aprendido a resolver grandes problemas matemáticos y a dividirlos en partes manejables. Por ejemplo, ¿cómo resolverías lo siguiente?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   9213
++  1854
+=  ????
+</pre></div>
+</div>
+<p>Una forma es hacerlo dígito a dígito, de derecha a izquierda. Empezamos con 3+4</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   9213
++  1854
+=  ???7
+</pre></div>
+</div>
+<p>y después 1+5</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   9213
++  1854
+=  ??67
+</pre></div>
+</div>
+<p>y después tendremos 2+8=10. Como se trata de una respuesta de dos dígitos, tenemos que pasar el uno a la siguiente columna.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   9213
++  1854
+=  ?067
+   ¹ 
+</pre></div>
+</div>
+<p>Finalmente tenemos 9+1+1=11, y nuestra respuesta sería</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   9213
++  1854
+= 11067
+   ¹ 
+</pre></div>
+</div>
+<p>Puede que sólo sea una simple suma, pero demuestra los principios que subyacen a todos los algoritmos. Tanto si el algoritmo está diseñado para resolver problemas matemáticos como para procesar texto o imágenes, siempre descomponemos las grandes tareas en pasos pequeños y sencillos.</p>
+<p>Para que funcionen en un ordenador, los algoritmos deben compilarse en los pasos más pequeños y sencillos posibles. Para ver cómo son, repitamos el problema de la suma anterior, pero en binario.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   10001111111101
++  00011100111110
+                                    
+=  ??????????????
+</pre></div>
+</div>
+<p>Fíjate en que el segundo número tiene un montón de 0s extra a la izquierda. Esto sólo sirve para que las dos cadenas tengan la misma longitud.</p>
+<p>Nuestra primera tarea es hacer el 1+0 para la columna de la derecha. En binario, como en cualquier sistema numérico, la respuesta es 1. Obtenemos el mismo resultado para el 0+1 de la segunda columna.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   10001111111101
++  00011100111110
+
+=  ????????????11 
+</pre></div>
+</div>
+<p>A continuación, tenemos 1+1. Como seguramente sabrás, 1+1=2. En binario, el número 2 se escribe <code class="docutils literal notranslate"><span class="pre">10</span></code>, por lo que requiere dos bits. Esto significa que tenemos que llevar el 1, igual que haríamos con el número 10 en decimal.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   10001111111101
++  00011100111110
+=  ???????????011 
+             ¹ 
+</pre></div>
+</div>
+<p>La siguiente columna requiere que calculemos ```1+1+1``. Esto significa sumar tres números, así que las cosas se están complicando para nuestro ordenador. Pero podemos reducirlo a operaciones más sencillas y hacerlo de forma que sólo tengamos que sumar dos bits. Para ello, podemos empezar con sólo los dos primeros 1s.</p>
+<p>The next column now requires us to calculate <code class="docutils literal notranslate"><span class="pre">1+1+1</span></code>. This means adding three numbers together, so things are getting complicated for our computer. But we can still compile it down to simpler operations, and do it in a way that only ever requires us to add two bits together. For this, we can start with just the first two 1s.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="mi">1</span>
+<span class="o">+</span>  <span class="mi">1</span>
+<span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>Ahora tenemos que añadir este 10 a la 1 final, que se puede hacer utilizando nuestro método habitual de ir a través de las columnas.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="mi">10</span>
+<span class="o">+</span> <span class="mi">01</span>
+<span class="o">=</span> <span class="mi">11</span>
+</pre></div>
+</div>
+<p>La respuesta final es <code class="docutils literal notranslate"><span class="pre">11</span></code> (en decimal sería  3).</p>
+<p>Ahora podemos volver al resto del problema. Con la respuesta de 11, tenemos otro bit de acarreo.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   10001111111101
++  00011100111110
+=  ??????????1011
+            ¹¹
+</pre></div>
+</div>
+<p>Así que ahora tenemos que hacer otro 1+1+1. Pero ya sabemos cómo hacerlo, así que no es gran cosa.</p>
+<p>De hecho, todo lo que queda hasta ahora es algo que ya sabemos hacer. Esto se debe a que, si lo descomponemos todo en sumas de sólo dos bits, sólo hay cuatro cosas posibles que necesitaremos calcular. Éstas son las cuatro sumas básicas (escribiremos todas las respuestas con dos bits para ser coherentes).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="o">+</span><span class="mi">0</span> <span class="o">=</span> <span class="mi">00</span> <span class="p">(</span><span class="ow">in</span> <span class="n">decimal</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="mi">0</span><span class="o">+</span><span class="mi">0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">0</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">01</span> <span class="p">(</span><span class="ow">in</span> <span class="n">decimal</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="mi">0</span><span class="o">+</span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">1</span><span class="o">+</span><span class="mi">0</span> <span class="o">=</span> <span class="mi">01</span> <span class="p">(</span><span class="ow">in</span> <span class="n">decimal</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="mi">1</span><span class="o">+</span><span class="mi">0</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">10</span> <span class="p">(</span><span class="ow">in</span> <span class="n">decimal</span><span class="p">,</span> <span class="n">this</span> <span class="ow">is</span> <span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Este procedimiento se denomina <em>half adder</em>. Si nuestro ordenador puede implementar esto, y si puede encadenar muchos de estos números, se puede entonces sumar cualquier cosa.</p>
+</section>
+<section id="sumando-con-qiskit-a-id-adding-qiskit-a">
+<h3><span class="section-number">4.4.3. </span>Sumando con Qiskit <a id="adding-qiskit"></a><a class="headerlink" href="#sumando-con-qiskit-a-id-adding-qiskit-a" title="Permalink to this headline">#</a></h3>
+<p>Vamos a crear nuestro propio sumador utilizando Qiskit. Esto incluirá una parte del circuito que codifica la entrada, una parte que ejecuta el algoritmo, y una parte que extrae el resultado. La primera parte tendrá que cambiarse cada vez que queramos usar una nueva entrada, pero el resto permanecerá siempre igual.</p>
+<p><img alt="half adder implemented on a quantum circuit" src="../_images/half-adder.PNG" /></p>
+<p>Los dos bits que queremos sumar están codificados en los qubits 0 y 1. El ejemplo anterior codifica un 1 en estos dos qubits, por lo que busca la solución de 1+1. El resultado será una cadena de dos bits, que leeremos de los qubits 2 y 3 y almacenaremos en los bits clásicos 0 y 1, respectivamente. Sólo queda rellenar el programa real, que vive en el espacio en blanco en la zona del centro.</p>
+<p>Las líneas verticales y discontinuas de la imagen son sólo para distinguir las diferentes partes del circuito (aunque también pueden tener usos más interesantes). Se hacen utilizando el comando <em>barrier</em>.</p>
+<p>Los componentes básicos de los ordenadores son las puertas lógicas. Ya hemos utilizado la puerta NOT, pero no es suficiente para hacer nuestra <em>half adder</em>. Sólo podríamos utilizarla para escribir manualmente las respuestas. Como queremos que el ordenador haga el cálculo por nosotros, necesitaremos puertas más potentes.</p>
+<p>Para ver lo que necesitamos, echemos otro vistazo a lo que tiene que hacer nuestro <em>half adder</em> (tabla de la verdad).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="o">+</span><span class="mi">0</span> <span class="o">=</span> <span class="mi">00</span>
+<span class="mi">0</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">01</span>
+<span class="mi">1</span><span class="o">+</span><span class="mi">0</span> <span class="o">=</span> <span class="mi">01</span>
+<span class="mi">1</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>El bit de más a la derecha en estas cuatro respuestas está completamente determinado por si los dos bits que estamos sumando son iguales o diferentes. Así, para 0+0 y 1+1, donde los dos bits son iguales, el bit de la derecha de la respuesta es 0. Para 0+1 y 1+0, donde estamos sumando diferentes valores de bits, el bit más a la derecha es 1.</p>
+<p>Para que esta parte de nuestra solución sea correcta, necesitamos algo que pueda averiguar si dos bits son diferentes o no. Tradicionalmente, en el estudio de la computación digital, esto se llama una puerta XOR.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Input 1</p></th>
+<th class="text-align:center head"><p>Input 2</p></th>
+<th class="text-align:center head"><p>XOR Output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>En los ordenadores cuánticos, el trabajo de la puerta XOR lo realiza la puerta controlada-NOT. Como es un nombre bastante largo, solemos llamarla simplemente CNOT. En Qiskit su nombre es cx, que es aún más corto. En los diagramas de circuito, se dibuja como en la imagen de abajo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_cnot</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_cnot</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc_cnot</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_36_0.png" src="../_images/Tema1_atoms-computation_36_0.png" />
+</div>
+</div>
+<p>Este tipo de puertas lógicas se aplica a un par de qubits. Uno actúa como qubit de control (es el que tiene el puntito). El otro actúa como <em>qubit objetivo</em> (con el círculo grande que tiene un signo ‘’’+’’’ dentro).</p>
+<p>Hay varias maneras de explicar el efecto de la CNOT. Una es decir que mira sus dos bits de entrada para ver si son iguales o diferentes. A continuación, sobrescribe el qubit de destino con la respuesta. El objetivo se convierte en 0 si son iguales, y en 1 si son diferentes.</p>
+<img src="images/cnot_xor.PNG">
+<p>Otra forma de explicar la CNOT es decir que hace un NOT sobre el objetivo si el control es 1, y no hace nada en caso contrario. Esta explicación es tan válida como la anterior (de hecho, es la que da nombre a la puerta).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_38_0.png" src="../_images/Tema1_atoms-computation_38_0.png" />
+</div>
+</div>
+<p>Si ejecutas este circuito, verás que la salida es 11. Podemos pensar que esto ocurre por cualquiera de las siguientes razones.</p>
+<ul class="simple">
+<li><p>La puerta CNOT calcula si los valores de entrada son diferentes y encuentra que lo son, lo que significa que quiere dar como salida 1. Lo hace escribiendo sobre el estado del qubit 1 (que, recordemos, está a la izquierda de la cadena de bits), convirtiendo 01 en 11.</p></li>
+<li><p>La puerta CNOT ve que el qubit 0 está en estado 1, y aplica un NOT al qubit 1. Esto invierte el 0 del qubit 1 en un 1. Esto invierte el 0 del qubit 1 en un 1, y así convierte 01 en 11.</p></li>
+</ul>
+<p>A continuación se muestra una tabla con todas las entradas posibles y las salidas correspondientes de la puerta CNOT:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Input (q1 q0)</p></th>
+<th class="text-align:center head"><p>Output (q1 q0)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>00</p></td>
+<td class="text-align:center"><p>00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>01</p></td>
+<td class="text-align:center"><p>11</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>10</p></td>
+<td class="text-align:center"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>11</p></td>
+<td class="text-align:center"><p>01</p></td>
+</tr>
+</tbody>
+</table>
+<p>Para nuestro half adder, no queremos sobrescribir una de nuestras entradas. En su lugar, queremos escribir el resultado en un par diferente de qubits. Para ello, podemos utilizar dos CNOT.</p>
+<p>Veamos a continuación como construimos este circuito</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_ha</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># encode inputs in qubits 0 and 1</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># For a=0, remove this line. For a=1, leave it.</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># For b=0, remove this line. For b=1, leave it.</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="c1"># use cnots to write the XOR of the inputs on qubit 2</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="c1"># extract outputs</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># extract XOR value</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_40_0.png" src="../_images/Tema1_atoms-computation_40_0.png" />
+</div>
+</div>
+<p>Ahora estamos a medio camino de tener una  sumadora half addr completamente operativa. Sólo nos queda el otro bit de la salida: el que vivirá en el qubit 3.</p>
+<p>Si miras de nuevo las cuatro sumas posibles, verás que sólo hay un caso en el que es 1 en vez de 0: 1+1=10. Sólo ocurre cuando los dos bits que estamos sumando son 1.</p>
+<p>Si miras de nuevo las cuatro sumas posibles, verás que sólo hay un caso en el que es 1 en vez de 0: 1+1=10. Sólo ocurre cuando los dos bits que estamos sumando son 1.</p>
+<p>Para calcular esta parte de la salida, podemos hacer que nuestro ordenador mire si ambas entradas son 1. Si lo son, y sólo si lo son, tenemos que hacer una puerta NOT en el qubit 3. Eso lo cambiará al valor requerido de 1 para este caso. Eso le dará la vuelta al valor requerido de 1 sólo para este caso, dándonos la salida que necesitamos.</p>
+<p>Para ello, necesitamos una nueva puerta: como una CNOT, pero controlada por dos qubits en lugar de sólo uno. Ésta realizará un NOT en el qubit objetivo sólo cuando ambos controles estén en estado 1. Esta nueva puerta se llama <em>Toffoli</em>. Para los que estéis familiarizados con las puertas lógicas booleanas, se trata básicamente de una puerta AND.</p>
+<p>En qiskit la puerta de Toffoli está representada por ‘ccx’ .</p>
+<p>La implementamos en el código siguiente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_ha</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># encode inputs in qubits 0 and 1</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># For a=0, remove the this line. For a=1, leave it.</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># For b=0, remove the this line. For b=1, leave it.</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="c1"># use cnots to write the XOR of the inputs on qubit 2</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># use ccx to write the AND of the inputs on qubit 3</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">ccx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="c1"># extract outputs</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># extract XOR value</span>
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># extract AND value</span>
+
+<span class="n">qc_ha</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_42_0.png" src="../_images/Tema1_atoms-computation_42_0.png" />
+</div>
+</div>
+<p>En este ejemplo, estamos calculando 1+1, porque los dos bits de entrada son ambos 1. Veamos lo que obtenemos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc_ha</span><span class="p">)</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema1_atoms-computation_44_0.png" src="../_images/Tema1_atoms-computation_44_0.png" />
+</div>
+</div>
+<p>El resultado es 10, que es la representación binaria del número 2. Hemos construido un ordenador que puede resolver el famoso problema matemático de ¡1+1!</p>
+<p>Ahora puedes probarlo con las otras tres entradas posibles y demostrar que nuestro algoritmo también da los resultados correctos para ellas.</p>
+<p>Este half adder contiene todo lo necesario para sumar. Con las puertas NOT, CNOT y Toffoli, podemos crear programas que sumen cualquier conjunto de números de cualquier tamaño.</p>
+<p>Estas tres puertas bastan también para hacer todo lo demás en informática. De hecho, incluso podemos prescindir de la CNOT. Además, la puerta NOT sólo es realmente necesaria para crear bits con valor 1. La puerta Toffoli es esencialmente el átomo de las matemáticas. Es el elemento más simple, a partir del cual se puede compilar cualquier otra técnica de resolución de problemas.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit.tools.jupyter</span>
+<span class="o">%</span><span class="k">qiskit_version_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><h3>Version Information</h3><table><tr><th>Qiskit Software</th><th>Version</th></tr><tr><td><code>qiskit-terra</code></td><td>0.22.3</td></tr><tr><td><code>qiskit-aer</code></td><td>0.11.2</td></tr><tr><td><code>qiskit-ibmq-provider</code></td><td>0.19.2</td></tr><tr><td><code>qiskit</code></td><td>0.39.4</td></tr><tr><th>System information</th></tr><tr><td>Python version</td><td>3.9.13</td></tr><tr><td>Python compiler</td><td>MSC v.1929 64 bit (AMD64)</td></tr><tr><td>Python build</td><td>main, May 27 2022 16:51:29</td></tr><tr><td>OS</td><td>Windows</td></tr><tr><td>CPUs</td><td>4</td></tr><tr><td>Memory (Gb)</td><td>11.799663543701172</td></tr><tr><td colspan='2'>Tue Jan 17 00:36:35 2023 Hora estándar romance</td></tr></table></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"3f66dcb0ed634953a0565f66b05b039b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "063c6720d75e4b05b0e769a35ea62863": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "cc4674709f7d4edf9f2a7448ba095d15": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3f66dcb0ed634953a0565f66b05b039b", "placeholder": "\u200b", "style": "IPY_MODEL_063c6720d75e4b05b0e769a35ea62863", "value": "<pre>Binary   Decimal\n 00000 = 0</pre>"}}, "7e19b98d0fb54b6980cb2b24f5b6169b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "3em", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "3em"}}, "183d177f4e0349a3a245fac308616c99": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "241bcb81322e45429cf0bf0ba42e45a6": {"model_name": "ToggleButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ToggleButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ToggleButtonView", "button_style": "", "description": "16", "description_tooltip": null, "disabled": false, "icon": "", "layout": "IPY_MODEL_7e19b98d0fb54b6980cb2b24f5b6169b", "style": "IPY_MODEL_183d177f4e0349a3a245fac308616c99", "tooltip": "", "value": false}}, "9ebcf3589bd047e89cdf7585b5f8366c": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "3em", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "3em"}}, "d0543e158b34405eb15a3bc0021d2af1": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d5bba09dadd547dd81bd7f1ed52b03b4": {"model_name": "ToggleButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ToggleButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ToggleButtonView", "button_style": "", "description": "8", "description_tooltip": null, "disabled": false, "icon": "", "layout": "IPY_MODEL_9ebcf3589bd047e89cdf7585b5f8366c", "style": "IPY_MODEL_d0543e158b34405eb15a3bc0021d2af1", "tooltip": "", "value": false}}, "83df40ac3fc2481f978360e39d1da2bf": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "3em", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "3em"}}, "7157ae1f1fff48a28968ae547223419c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "2a96f8c2b1a3475292f5b185748ac4de": {"model_name": "ToggleButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ToggleButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ToggleButtonView", "button_style": "", "description": "4", "description_tooltip": null, "disabled": false, "icon": "", "layout": "IPY_MODEL_83df40ac3fc2481f978360e39d1da2bf", "style": "IPY_MODEL_7157ae1f1fff48a28968ae547223419c", "tooltip": "", "value": false}}, "14473fc83a054f6d825ace0ba8ed9cdf": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "3em", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "3em"}}, "4e43bd53e91c4cfd83b03a3d562c5ed4": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "73309afa79ac4542a98b52770c1d72f7": {"model_name": "ToggleButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ToggleButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ToggleButtonView", "button_style": "", "description": "2", "description_tooltip": null, "disabled": false, "icon": "", "layout": "IPY_MODEL_14473fc83a054f6d825ace0ba8ed9cdf", "style": "IPY_MODEL_4e43bd53e91c4cfd83b03a3d562c5ed4", "tooltip": "", "value": false}}, "36a5bfc2c28e499396a044017171fc4a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "3em", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "3em"}}, "30a15fdcd76e4bccbb5052b7505766ee": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a0428d02474c42ce8b949367bc754df4": {"model_name": "ToggleButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ToggleButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ToggleButtonView", "button_style": "", "description": "1", "description_tooltip": null, "disabled": false, "icon": "", "layout": "IPY_MODEL_36a5bfc2c28e499396a044017171fc4a", "style": "IPY_MODEL_30a15fdcd76e4bccbb5052b7505766ee", "tooltip": "", "value": false}}, "6f2c38be7e1e49ceb9d78acb4da37dab": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "1a226712c3654d42bf15d726940f65de": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_241bcb81322e45429cf0bf0ba42e45a6", "IPY_MODEL_d5bba09dadd547dd81bd7f1ed52b03b4", "IPY_MODEL_2a96f8c2b1a3475292f5b185748ac4de", "IPY_MODEL_73309afa79ac4542a98b52770c1d72f7", "IPY_MODEL_a0428d02474c42ce8b949367bc754df4"], "layout": "IPY_MODEL_6f2c38be7e1e49ceb9d78acb4da37dab"}}, "301f960460be4496aa6a8533593b90fd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "55753f2d0b9f4b3f874b32a7ceb5d143": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a1bb9240d2bc45c0af4639b12f8cc1ca": {"model_name": "LabelModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "LabelModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "LabelView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_301f960460be4496aa6a8533593b90fd", "placeholder": "\u200b", "style": "IPY_MODEL_55753f2d0b9f4b3f874b32a7ceb5d143", "value": "Toggle the bits below to change the binary number."}}, "318cd26eed1648c880f26d1838fb9a11": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "cab52e360a794cd9a5c5cf3b25ced7cd": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e891d19516db46dcb2631e10a84e66bf": {"model_name": "LabelModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "LabelModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "LabelView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_318cd26eed1648c880f26d1838fb9a11", "placeholder": "\u200b", "style": "IPY_MODEL_cab52e360a794cd9a5c5cf3b25ced7cd", "value": "Think of a number between 0 and 31 and try to write it down in binary."}}, "aa3882e2b4ca46f1964c34931c497a5e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3817ca8ff73f4328b73eba8f677341b8": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_a1bb9240d2bc45c0af4639b12f8cc1ca", "IPY_MODEL_e891d19516db46dcb2631e10a84e66bf", "IPY_MODEL_1a226712c3654d42bf15d726940f65de"], "layout": "IPY_MODEL_aa3882e2b4ca46f1964c34931c497a5e"}}, "dd6c24ce6b8346f3bbc95fc0761666f3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 10px 0px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6bae263bb4f246afaab3adf69802a553": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "9d9766fdb95e44f1aeb912cacf1a1b20": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_dd6c24ce6b8346f3bbc95fc0761666f3", "placeholder": "\u200b", "style": "IPY_MODEL_6bae263bb4f246afaab3adf69802a553", "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}, "8c8d6c977043491d8dcf33c6ccf56af3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": "right", "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": "0px 0px 0px 0px", "right": null, "top": null, "visibility": null, "width": "70px"}}, "e1541c9cdb7f45f1a430481db906ce51": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "b2f6819b4a31489da2450e875ac00aaa": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "primary", "description": "Clear", "disabled": false, "icon": "", "layout": "IPY_MODEL_8c8d6c977043491d8dcf33c6ccf56af3", "style": "IPY_MODEL_e1541c9cdb7f45f1a430481db906ce51", "tooltip": ""}}, "3f27e092e2f447c4a8e7d450261b43d9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": "\n                                       \". . . . right \"\n                                        ", "grid_template_columns": "20% 20% 20% 20% 20%", "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "306bcc02b48847acb3361c18115bbfea": {"model_name": "GridBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "GridBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "GridBoxView", "box_style": "", "children": ["IPY_MODEL_b2f6819b4a31489da2450e875ac00aaa"], "layout": "IPY_MODEL_3f27e092e2f447c4a8e7d450261b43d9"}}, "553a5e5373d944d59793bd8b1e2635e4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "190px"}}, "c6f09149573042a4ae044762124ae486": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6f73a300728440dd9cdf1ffd8658ec09": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_553a5e5373d944d59793bd8b1e2635e4", "placeholder": "\u200b", "style": "IPY_MODEL_c6f09149573042a4ae044762124ae486", "value": "<h5>Job ID</h5>"}}, "9fa6cfd3157e4b1f805a9a8564f03054": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "145px"}}, "1d8bf136aba644deafd5f1f8f506dc8d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "a36ef7cd99b64ded8087a4dbb70ee11a": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_9fa6cfd3157e4b1f805a9a8564f03054", "placeholder": "\u200b", "style": "IPY_MODEL_1d8bf136aba644deafd5f1f8f506dc8d", "value": "<h5>Backend</h5>"}}, "a5a8468d59604a2986214ee2ac0cb145": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "95px"}}, "9c9aae5d0f3a45239a6fcf13a94138f2": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6eb33f15649a43ff955c1b270f97d0a1": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_a5a8468d59604a2986214ee2ac0cb145", "placeholder": "\u200b", "style": "IPY_MODEL_9c9aae5d0f3a45239a6fcf13a94138f2", "value": "<h5>Status</h5>"}}, "0374f8ebd3b94178bb63d3e53ca4fea4": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "70px"}}, "ab82c0cf51704a6186f541104c7c7785": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "5daf447009494810aa4c4cc39f9c608f": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_0374f8ebd3b94178bb63d3e53ca4fea4", "placeholder": "\u200b", "style": "IPY_MODEL_ab82c0cf51704a6186f541104c7c7785", "value": "<h5>Queue</h5>"}}, "af0c0ac64bc94ed1aa80711c48593fc7": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6acc6103f7ec432c9322a6d52237601a": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "52e388f4eeaa4218a5ebb99b6ea78291": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_af0c0ac64bc94ed1aa80711c48593fc7", "placeholder": "\u200b", "style": "IPY_MODEL_6acc6103f7ec432c9322a6d52237601a", "value": "<h5>Message</h5>"}}, "5f8e81704e304d449d4217ef8c889a6b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 0px 37px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "600px"}}, "c921da9da406453c91c0d792374e40a4": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_6f73a300728440dd9cdf1ffd8658ec09", "IPY_MODEL_a36ef7cd99b64ded8087a4dbb70ee11a", "IPY_MODEL_6eb33f15649a43ff955c1b270f97d0a1", "IPY_MODEL_5daf447009494810aa4c4cc39f9c608f", "IPY_MODEL_52e388f4eeaa4218a5ebb99b6ea78291"], "layout": "IPY_MODEL_5f8e81704e304d449d4217ef8c889a6b"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Tema0_Introducci%C3%B3n.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>qiskit_textbook</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Tema2_representing-qubit-states.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Representando los estados de un qubit.</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Miguel Rodríguez<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

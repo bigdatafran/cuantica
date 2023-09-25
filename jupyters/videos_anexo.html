@@ -1,0 +1,1404 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introducción. &#8212; Programación quántica</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Apendice." href="otras/apendice.html" />
+    <link rel="prev" title="Introducción al álgebra lineal para computación cuántica." href="otras/anexo1_Algebralineal.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Programación quántica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Números complejos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numeros_complejos.html">
+   1. Introducción a los números complejos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estados quanticos y qubits
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema0_Introducci%C3%B3n.html">
+   2. qiskit_textbook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema1_atoms-computation.html">
+   4. Los qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema2_representing-qubit-states.html">
+   5. Representación de los estados del qubit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema3_single-qubit-gates.html">
+   6. Puertas cuánticas para un qubit
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Qubits múltiples y Entanglement
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">
+   7. Múltiples qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema5_phase-kickback.html">
+   8. Explorando la puerta CNOT-Gate
+   <a id="exploring-cnot">
+   </a>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema6_more-circuit-identities.html">
+   10. Otros circuitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema7_proving-universality.html">
+   11. Universalidad
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Índice de términos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   12. Índice de términos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Apéndice
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="otras/anexo1_Algebralineal.html">
+   Resumen Algebra lineal
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Vídeos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otras/apendice.html">
+   Apendice.
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/jupyters/videos_anexo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/jupyters/videos_anexo.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matriz-de-densidad-y-plot-state-city">
+   Matriz de densidad y plot State City.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizaciones-examen-2020">
+   Visualizaciones (examen 2020).
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qsphere-grafico">
+     qsphere gráfico
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grafico-city">
+     Gráfico city
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hinton-grafico">
+     Hinton gráfico
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grafico-pauli-vector">
+     Gráfico Pauli vector
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#esfera-de-bloch">
+     Esfera de Bloch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diferencia-puertas-cuanticas">
+   Diferencia puertas cuánticas.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uniendo-circuitos">
+   Uniendo circuitos.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantum-volume-circuitos">
+   Quantum Volume Circuitos.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#libreria-qiskit-circuitos">
+   Librería Qiskit circuitos.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pauli-class-y-operator">
+   Pauli class y Operator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transpiling-circuitos-lookahead">
+   Transpiling circuitos &amp; LookAhead.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apendice">
+   Apéndice.
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introducción.</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matriz-de-densidad-y-plot-state-city">
+   Matriz de densidad y plot State City.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizaciones-examen-2020">
+   Visualizaciones (examen 2020).
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qsphere-grafico">
+     qsphere gráfico
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grafico-city">
+     Gráfico city
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hinton-grafico">
+     Hinton gráfico
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grafico-pauli-vector">
+     Gráfico Pauli vector
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#esfera-de-bloch">
+     Esfera de Bloch
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diferencia-puertas-cuanticas">
+   Diferencia puertas cuánticas.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uniendo-circuitos">
+   Uniendo circuitos.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quantum-volume-circuitos">
+   Quantum Volume Circuitos.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#libreria-qiskit-circuitos">
+   Librería Qiskit circuitos.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pauli-class-y-operator">
+   Pauli class y Operator
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transpiling-circuitos-lookahead">
+   Transpiling circuitos &amp; LookAhead.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#apendice">
+   Apéndice.
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<h1>Introducción.<a class="headerlink" href="#introduccion" title="Permalink to this headline">#</a></h1>
+<p>En este apartado se van a explicar muchos vídeos existentes en la red que tienen una alta calidad didáctica y que por su interés se ha creído oportuno hacer una recopilación de los mismos.</p>
+<section id="matriz-de-densidad-y-plot-state-city">
+<h2>Matriz de densidad y plot State City.<a class="headerlink" href="#matriz-de-densidad-y-plot-state-city" title="Permalink to this headline">#</a></h2>
+<p id="index-0">Este vídeo lo podemos ver en Yutube en el siguiente enlace. Además según consta en el mismo se corresponde con una pregunta hecha en el examen de Qiskit del año 2020.</p>
+<p><a href="https://www.youtube.com/watch?v=p-aK3jHNUSQ" target="_blank"> https://www.youtube.com/watch?v=p-aK3jHNUSQ </a></p>
+<p>La pregunta dice lo siguiente: Considerar el siguiente circuito cuántico de tres qubits. ¿ Cuales son la partes reales e imaginarias del vector de estado resultante?.</p>
+<p><img alt="" src="../_images/cuestion_1_3.PNG" /></p>
+<p>Em el vídeo (minuto 0:15) se pueden ver las posibles soluciones que se proponían, que son gráficos obtenidos con <a href="https://qiskit.org/documentation/stubs/qiskit.visualization.plot_state_city.html" target="_blank"> plot_state_city </a>.</p>
+<p>Como puede verse en este esquema cuántico se tratan de dos puertas H sobre los qubits 0 y 1 seguidas de dos puertas cuánticas de tipo CNOT.</p>
+<p>La solución manual, de este circuito cuántico se obtendría de la siguiente manera:</p>
+<p><img alt="" src="../_images/cueston_1_3_sol1.PNG" /></p>
+<p><img alt="" src="../_images/cueston_1_3_sol2.PNG" /></p>
+<p>Tengamos en cuenta cómo se define la <em>matriz de densidad</em> y el plot <em>State City</em>, lo vemos en la siguiente figura:</p>
+<p><img alt="" src="../_images/densitymatrix.PNG" /></p>
+<p>En general para n qubits</p>
+<p><img alt="" src="../_images/statecity.PNG" /></p>
+<p>Vamos a ver ahora cómo montamos el circuito en qiskit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span><span class="p">,</span> <span class="n">DensityMatrix</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="n">Statevector</span><span class="o">.</span><span class="n">from_int</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[ |000\rangle\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_6_0.png" src="../_images/videos_anexo_6_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psiout</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">evolve</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">psiout</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{1}{2} |000\rangle+\frac{1}{2} |010\rangle+\frac{1}{2} |101\rangle+\frac{1}{2} |111\rangle\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.tools.visualization</span> <span class="kn">import</span> <span class="n">plot_state_city</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_state_city</span><span class="p">(</span><span class="n">psiout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_9_0.png" src="../_images/videos_anexo_9_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># También se puede sacar así</span>
+<span class="n">psiout</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_10_0.png" src="../_images/videos_anexo_10_0.png" />
+</div>
+</div>
+<p>NOTA: El gráfico anterior (<em>plot_state_city</em>) se obtiene de la matriz de densidad que se saca a continuación. Como puede verse, las barras del gráfico tienen como altura los valores de esa matriz de densidad.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhoout</span> <span class="o">=</span> <span class="n">DensityMatrix</span><span class="p">(</span><span class="n">psiout</span><span class="p">)</span>
+<span class="n">rhoout</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4}  \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ \tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4}  \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ \tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4}  \\
+ 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0  \\
+ \tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; 0 &amp; \tfrac{1}{4} &amp; 0 &amp; \tfrac{1}{4}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+</section>
+<section id="visualizaciones-examen-2020">
+<h2>Visualizaciones (examen 2020).<a class="headerlink" href="#visualizaciones-examen-2020" title="Permalink to this headline">#</a></h2>
+<p>Esta es la pregunta 1.4 de un examen de qiskit del año 2020, y se encuentra en este vídeo</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=FDudoiJ_lh8">https://www.youtube.com/watch?v=FDudoiJ_lh8</a></p>
+<p><img alt="" src="../_images/pregunta1_4.PNG" /></p>
+<p>Hay cuatro posibles respuestas que se pueden ver en el vídeo. De forma práctica, se tiene que</p>
+<p><img alt="" src="../_images/pregunta1_4_2.PNG" /></p>
+<p><img alt="" src="../_images/pregunta1_4_3.PNG" /></p>
+<p id="index-1"><img alt="" src="../_images/pregunta1_4_4.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span><span class="p">,</span> <span class="n">DensityMatrix</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\frac{\sqrt{2}}{2} |00\rangle- \frac{\sqrt{2}}{2} |11\rangle\]</div>
+</div>
+</div>
+<section id="qsphere-grafico">
+<h3>qsphere gráfico<a class="headerlink" href="#qsphere-grafico" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container" id="index-2">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;qsphere&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_18_0.png" src="../_images/videos_anexo_18_0.png" />
+</div>
+</div>
+</section>
+<section id="grafico-city">
+<h3>Gráfico city<a class="headerlink" href="#grafico-city" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container" id="index-3">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_20_0.png" src="../_images/videos_anexo_20_0.png" />
+</div>
+</div>
+</section>
+<section id="hinton-grafico">
+<h3>Hinton gráfico<a class="headerlink" href="#hinton-grafico" title="Permalink to this headline">#</a></h3>
+<p id="index-4"><img alt="" src="../_images/pregunta1_4_5.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;hinton&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_22_0.png" src="../_images/videos_anexo_22_0.png" />
+</div>
+</div>
+<p>También se puede utilizar <a href="https://qiskit.org/documentation/stubs/qiskit.visualization.plot_state_hinton.html"  target="_blank"> plot_state_hinton </a>.</p>
+<p>Los valores positivos y negativos se representan con cuadrados blancos y negros, respectivamente, y el tamaño de cada cuadrado representa la magnitud de cada valor.</p>
+</section>
+<section id="grafico-pauli-vector">
+<h3>Gráfico Pauli vector<a class="headerlink" href="#grafico-pauli-vector" title="Permalink to this headline">#</a></h3>
+<p id="index-5"><img alt="" src="../_images/pregunta1_4_6.PNG" /></p>
+<p><img alt="" src="../_images/pregunta1_4_7.PNG" /></p>
+<p><img alt="" src="jupyters/images/pregunta1_4_8.PNG" /></p>
+<p><img alt="" src="../_images/pregunta1_4_9.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;paulivec&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_24_0.png" src="../_images/videos_anexo_24_0.png" />
+</div>
+</div>
+<p>El gráfico anterior también se puede obtener con <a href="https://qiskit.org/documentation/stubs/qiskit.visualization.plot_state_paulivec.html" target="_blank"> plot_state_paulivec </a>.</p>
+</section>
+<section id="esfera-de-bloch">
+<h3>Esfera de Bloch<a class="headerlink" href="#esfera-de-bloch" title="Permalink to this headline">#</a></h3>
+<p><img alt="" src="../_images/pregunta1_4_10.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">psi</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;bloch&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_26_0.png" src="../_images/videos_anexo_26_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="diferencia-puertas-cuanticas">
+<h2>Diferencia puertas cuánticas.<a class="headerlink" href="#diferencia-puertas-cuanticas" title="Permalink to this headline">#</a></h2>
+<p>Esta sería la pregunta 1.5 del examen de qiskit 2022. Está en la siguiente dirección</p>
+<p><a href="https://www.youtube.com/watch?v=nPRDL5Dp9-g" target="_blank"> https://www.youtube.com/watch?v=nPRDL5Dp9-g </a></p>
+<p><img alt="" src="../_images/pregunta1_5_1.PNG" /></p>
+<p>La matriz <span class="math notranslate nohighlight">\(U_1(\lambda)\)</span> se define como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U_{1}(\lambda)=\left[\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; e^{i\lambda}
+\end{array}\right]\longrightarrow P(\lambda)=\left[\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; e^{i\lambda}
+\end{array}\right]\end{split}\]</div>
+<p>Entonces, se tiene lo siguiente</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U_{1}(\pi)=\left[\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; e^{i\pi}
+\end{array}\right]\longrightarrow P(\pi)=\left[\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; e^{i\pi}
+\end{array}\right]=\left[\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; ^{-1}
+\end{array}\right]\end{split}\]</div>
+<p>Por otra parte:</p>
+<div class="math notranslate nohighlight">
+\[U_{2}(\varPhi,\lambda)=R_{z}(\varPhi)R_{y}(\pi/2)R_{z}(\lambda)\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}U_{2}(\varPhi,\lambda)=\frac{1}{\sqrt{2}} \left[\begin{array}{cc}
+1 &amp; -e^{i\lambda}\\
+e^{i\varPhi} &amp; e^{i(\varPhi+\lambda)}
+\end{array}\right]\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}U_{2}(0,\pi)=\frac{1}{\sqrt{2}}\left[\begin{array}{cc}
+1 &amp; 1\\
+1 &amp; -1
+\end{array}\right]\longrightarrow Puerta\ H\end{split}\]</div>
+<p><img alt="" src="../_images/pregunta1_5_2.PNG" /></p>
+<p>Con quiskit lo hariamos así</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.visualization</span> <span class="kn">import</span> <span class="n">array_to_latex</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">=</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u1</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_23384\3798302172.py:2: DeprecationWarning: The QuantumCircuit.u1 method is deprecated as of 0.16.0. It will be removed no earlier than 3 months after the release date. You should use the QuantumCircuit.p method instead, which acts identically.
+  qc.u1(np.pi,0)
+</pre></div>
+</div>
+<img alt="../_images/videos_anexo_31_1.png" src="../_images/videos_anexo_31_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Ulop</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">Ulop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1 &amp; 0  \\
+ 0 &amp; -1  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">=</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">p</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_33_0.png" src="../_images/videos_anexo_33_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Pop</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">Pop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+1 &amp; 0  \\
+ 0 &amp; -1  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">=</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_23384\3630464.py:2: DeprecationWarning: The QuantumCircuit.u2 method is deprecated as of 0.16.0. It will be removed no earlier than 3 months after the release date. You can use the general 1-qubit gate QuantumCircuit.u instead: u2(φ,λ) = u(π/2, φ, λ). Alternatively, you can decompose it interms of QuantumCircuit.p and QuantumCircuit.sx: u2(φ,λ) = p(π/2+φ) sx p(λ-π/2) (1 pulse on hardware).
+  qc.u2(0,np.pi,0)
+</pre></div>
+</div>
+<img alt="../_images/videos_anexo_35_1.png" src="../_images/videos_anexo_35_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U2op</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">U2op</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}}  \\
+ \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{2}}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">=</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">u</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_37_0.png" src="../_images/videos_anexo_37_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Uop</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">Uop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+\tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}}  \\
+ \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{2}}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+</section>
+<section id="uniendo-circuitos">
+<h2>Uniendo circuitos.<a class="headerlink" href="#uniendo-circuitos" title="Permalink to this headline">#</a></h2>
+<p>Este vídeo contiene la pregunta 2.1 del examen de qiskit de 2020 y lo encontramos en la siguiente dirección.</p>
+<p><a href="https://www.youtube.com/watch?v=TjDGGhgRlm4" target="_blank">https://www.youtube.com/watch?v=TjDGGhgRlm4 </a></p>
+<p><img alt="" src="../_images/pregunta2_1.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lhs</span><span class="o">=</span><span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">lhs</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lhs</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">lhs</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lhs</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">lhs</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_41_0.png" src="../_images/videos_anexo_41_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhs</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">rhs</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rhs</span><span class="o">.</span><span class="n">sdg</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rhs</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_42_0.png" src="../_images/videos_anexo_42_0.png" />
+</div>
+</div>
+<p>Probamos con <em>lhs.append</em> ( <a href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.append.html" target="_blank"> Ver este enlace </a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CircuitError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">Input In [28],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\quantumcircuit.py:1309,</span> in <span class="ni">QuantumCircuit.append</span><span class="nt">(self, instruction, qargs, cargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1307</span> <span class="n">instructions</span> <span class="o">=</span> <span class="n">InstructionSet</span><span class="p">(</span><span class="n">resource_requester</span><span class="o">=</span><span class="n">requester</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1308</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">Instruction</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1309</span>     <span class="k">for</span> <span class="n">qarg</span><span class="p">,</span> <span class="n">carg</span> <span class="ow">in</span> <span class="n">operation</span><span class="o">.</span><span class="n">broadcast_arguments</span><span class="p">(</span><span class="n">expanded_qargs</span><span class="p">,</span> <span class="n">expanded_cargs</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1310</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_check_dups</span><span class="p">(</span><span class="n">qarg</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1311</span>         <span class="n">instruction</span> <span class="o">=</span> <span class="n">CircuitInstruction</span><span class="p">(</span><span class="n">operation</span><span class="p">,</span> <span class="n">qarg</span><span class="p">,</span> <span class="n">carg</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\instruction.py:479,</span> in <span class="ni">Instruction.broadcast_arguments</span><span class="nt">(self, qargs, cargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span><span class="sd"> Validation of the arguments.</span>
+<span class="g g-Whitespace">    </span><span class="mi">466</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span><span class="sd">         arguments does not match the gate expectation.</span>
+<span class="g g-Whitespace">    </span><span class="mi">477</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">478</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qargs</span><span class="p">)</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">479</span>     <span class="k">raise</span> <span class="n">CircuitError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">480</span>         <span class="sa">f</span><span class="s2">&quot;The amount of qubit arguments </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">qargs</span><span class="p">)</span><span class="si">}</span><span class="s2"> does not match&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">481</span>         <span class="sa">f</span><span class="s2">&quot; the instruction expectation (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">).&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">484</span> <span class="c1">#  [[q[0], q[1]], [c[0], c[1]]] -&gt; [q[0], c[0]], [q[1], c[1]]</span>
+<span class="g g-Whitespace">    </span><span class="mi">485</span> <span class="n">flat_qargs</span> <span class="o">=</span> <span class="p">[</span><span class="n">qarg</span> <span class="k">for</span> <span class="n">sublist</span> <span class="ow">in</span> <span class="n">qargs</span> <span class="k">for</span> <span class="n">qarg</span> <span class="ow">in</span> <span class="n">sublist</span><span class="p">]</span>
+
+<span class="ne">CircuitError</span>: &#39;The amount of qubit arguments 0 does not match the instruction expectation (2).&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">final</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rhs</span><span class="p">,[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;qiskit.circuit.instructionset.InstructionSet at 0x245a1f82070&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_46_0.png" src="../_images/videos_anexo_46_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final</span><span class="o">.</span><span class="n">decompose</span><span class="p">()</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_47_0.png" src="../_images/videos_anexo_47_0.png" />
+</div>
+</div>
+<p>La opción combine la <a herf="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.combine.html" target="_blank"> encontramos en este enlace </a> y podemos observar que está deprecated.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_13988\682186984.py:1: DeprecationWarning: The QuantumCircuit.combine() method is being deprecated. Use the compose() method which is more flexible w.r.t circuit register compatibility.
+  qc_final = lhs.combine(rhs)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CircuitError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">Input In [33],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">qc_final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\utils\deprecation.py:51,</span> in <span class="ni">deprecate_function.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\quantumcircuit.py:741,</span> in <span class="ni">QuantumCircuit.combine</span><span class="nt">(self, rhs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="sd">&quot;&quot;&quot;DEPRECATED - Returns rhs appended to self if self contains compatible registers.</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span><span class="sd"> Two circuits are compatible if they contain the same registers</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">738</span><span class="sd">     QiskitError: if the rhs circuit is not compatible</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span> <span class="c1"># Check registers in LHS are compatible with RHS</span>
+<span class="ne">--&gt; </span><span class="mi">741</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_compatible_regs</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span> <span class="c1"># Make new circuit with combined registers</span>
+<span class="g g-Whitespace">    </span><span class="mi">744</span> <span class="n">combined_qregs</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qregs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\quantumcircuit.py:1623,</span> in <span class="ni">QuantumCircuit._check_compatible_regs</span><span class="nt">(self, rhs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1621</span> <span class="k">if</span> <span class="n">element2</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">element1</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1622</span>     <span class="k">if</span> <span class="n">element1</span> <span class="o">!=</span> <span class="n">element2</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1623</span>         <span class="k">raise</span> <span class="n">CircuitError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1624</span>             <span class="s2">&quot;circuits are not compatible:&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1625</span>             <span class="sa">f</span><span class="s2">&quot; registers </span><span class="si">{</span><span class="n">element1</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">element2</span><span class="si">}</span><span class="s2"> not compatible&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1626</span>         <span class="p">)</span>
+
+<span class="ne">CircuitError</span>: &quot;circuits are not compatible: registers QuantumRegister(5, &#39;q&#39;) and QuantumRegister(2, &#39;q&#39;) not compatible&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>La opción <em>compose</em> la <a href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.compose.html" target="_blank"> tenemos en este enlace </a>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+<span class="n">final</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_51_0.png" src="../_images/videos_anexo_51_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># La última opción</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">+</span><span class="n">rhs</span>
+<span class="n">final</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_13988\798053225.py:2: DeprecationWarning: The QuantumCircuit.__add__() method is being deprecated.Use the compose() method which is more flexible w.r.t circuit register compatibility.
+  final = lhs+rhs
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">CircuitError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">Input In [35],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># La última opción</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">final</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">+</span><span class="n">rhs</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">final</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\utils\deprecation.py:51,</span> in <span class="ni">deprecate_function.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\quantumcircuit.py:1116,</span> in <span class="ni">QuantumCircuit.__add__</span><span class="nt">(self, rhs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1109</span> <span class="nd">@deprecate_function</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1110</span>     <span class="s2">&quot;The QuantumCircuit.__add__() method is being deprecated.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1111</span>     <span class="s2">&quot;Use the compose() method which is more flexible w.r.t &quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1112</span>     <span class="s2">&quot;circuit register compatibility.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1113</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1114</span> <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rhs</span><span class="p">:</span> <span class="s2">&quot;QuantumCircuit&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;QuantumCircuit&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1115</span>     <span class="sd">&quot;&quot;&quot;Overload + to implement self.combine.&quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1116</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">combine</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\utils\deprecation.py:51,</span> in <span class="ni">deprecate_function.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">51</span>     <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\quantumcircuit.py:741,</span> in <span class="ni">QuantumCircuit.combine</span><span class="nt">(self, rhs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">722</span> <span class="sd">&quot;&quot;&quot;DEPRECATED - Returns rhs appended to self if self contains compatible registers.</span>
+<span class="g g-Whitespace">    </span><span class="mi">723</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">724</span><span class="sd"> Two circuits are compatible if they contain the same registers</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">738</span><span class="sd">     QiskitError: if the rhs circuit is not compatible</span>
+<span class="g g-Whitespace">    </span><span class="mi">739</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">740</span> <span class="c1"># Check registers in LHS are compatible with RHS</span>
+<span class="ne">--&gt; </span><span class="mi">741</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_compatible_regs</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">743</span> <span class="c1"># Make new circuit with combined registers</span>
+<span class="g g-Whitespace">    </span><span class="mi">744</span> <span class="n">combined_qregs</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">qregs</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\quantumcircuit.py:1623,</span> in <span class="ni">QuantumCircuit._check_compatible_regs</span><span class="nt">(self, rhs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1621</span> <span class="k">if</span> <span class="n">element2</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">element1</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1622</span>     <span class="k">if</span> <span class="n">element1</span> <span class="o">!=</span> <span class="n">element2</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1623</span>         <span class="k">raise</span> <span class="n">CircuitError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1624</span>             <span class="s2">&quot;circuits are not compatible:&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1625</span>             <span class="sa">f</span><span class="s2">&quot; registers </span><span class="si">{</span><span class="n">element1</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">element2</span><span class="si">}</span><span class="s2"> not compatible&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1626</span>         <span class="p">)</span>
+
+<span class="ne">CircuitError</span>: &quot;circuits are not compatible: registers QuantumRegister(5, &#39;q&#39;) and QuantumRegister(2, &#39;q&#39;) not compatible&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Además vemos que está DEPRECATED</p>
+</section>
+<section id="quantum-volume-circuitos">
+<h2>Quantum Volume Circuitos.<a class="headerlink" href="#quantum-volume-circuitos" title="Permalink to this headline">#</a></h2>
+<p id="index-6">Esta es la pregunta 2.2 del examen de qiskit del 2020. el vídeo está en</p>
+<p><a href="https://www.youtube.com/watch?v=q2hoU8W6tRU" target="_blank">https://www.youtube.com/watch?v=q2hoU8W6tRU</a></p>
+<p>¡¡¡¡ Aquí lo primero que tengo que aprender es cual es quantum Volume!!! así que lo dejo pendiente</p>
+</section>
+<section id="libreria-qiskit-circuitos">
+<h2>Librería Qiskit circuitos.<a class="headerlink" href="#libreria-qiskit-circuitos" title="Permalink to this headline">#</a></h2>
+<p>Es la pregunta 2.3 del examen de qiskit de 2020, está en el siguiente vídeo.</p>
+<p><a href="https://www.youtube.com/watch?v=L3Pi7Hr_9yM" target="_blank">https://www.youtube.com/watch?v=L3Pi7Hr_9yM</a></p>
+<p><img alt="" src="../_images/pregunta2_3.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">HGate</span><span class="p">,</span> <span class="n">NAND</span><span class="p">,</span> <span class="n">OFT</span><span class="p">,</span> <span class="n">QuantumVolume</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ImportError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="nn">Input In [38],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">qiskit.circuit.library</span> <span class="kn">import</span> <span class="n">HGate</span><span class="p">,</span> <span class="n">NAND</span><span class="p">,</span> <span class="n">OFT</span><span class="p">,</span> <span class="n">QuantumVolume</span>
+
+<span class="ne">ImportError</span>: cannot import name &#39;NAND&#39; from &#39;qiskit.circuit.library&#39; (D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\library\__init__.py)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pauli-class-y-operator">
+<h2>Pauli class y Operator<a class="headerlink" href="#pauli-class-y-operator" title="Permalink to this headline">#</a></h2>
+<p>Este vídeo se puede ver en</p>
+<p><a href="https://www.youtube.com/watch?v=XvY8i3-x-Jg" target="_blank">https://www.youtube.com/watch?v=XvY8i3-x-Jg</a></p>
+<p><img alt="" src="../_images/pregunta2_4.PNG" /></p>
+<p>El método Pauli lo podemos <a href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.Pauli.html" target="_blank"> encontrar en este enlace</a>.</p>
+<p><img alt="" src="../_images/pregunta2_4_2.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Pauli</span><span class="p">,</span> <span class="n">Operator</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.visualization</span> <span class="kn">import</span> <span class="n">array_to_latex</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OP1</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;XZ&#39;</span><span class="p">))</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">OP1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_13988\389150134.py:1: DeprecationWarning: The &#39;label&#39; keyword argument of &#39;Pauli&#39; is deprecated as of Qiskit Terra 0.17 and will be removed in version 0.23 or later. Pass the label positionally instead, such as &#39;Pauli(&quot;XYZ&quot;)&#39;.
+  OP1 = Operator(Pauli(label=&#39;XZ&#39;))
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0  \\
+ 0 &amp; 0 &amp; 0 &amp; -1  \\
+ 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0 &amp; -1 &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OP2</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;X&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">Operator</span><span class="p">(</span><span class="n">Pauli</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Z&#39;</span><span class="p">)))</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">OP2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_13988\4007274395.py:1: DeprecationWarning: The &#39;label&#39; keyword argument of &#39;Pauli&#39; is deprecated as of Qiskit Terra 0.17 and will be removed in version 0.23 or later. Pass the label positionally instead, such as &#39;Pauli(&quot;XYZ&quot;)&#39;.
+  OP2 = Operator(Pauli(label=&#39;X&#39;)).tensor(Operator(Pauli(label=&#39;Z&#39;)))
+</pre></div>
+</div>
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0  \\
+ 0 &amp; 0 &amp; 0 &amp; -1  \\
+ 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0 &amp; -1 &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/videos_anexo_61_0.png" src="../_images/videos_anexo_61_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OP3</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">OP3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+0 &amp; 1 &amp; 0 &amp; 0  \\
+ 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0 &amp; 0 &amp; 0 &amp; -1  \\
+ 0 &amp; 0 &amp; -1 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OP4</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">OP4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0  \\
+ 0 &amp; 0 &amp; 0 &amp; -1  \\
+ 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0 &amp; -1 &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+</section>
+<section id="transpiling-circuitos-lookahead">
+<h2>Transpiling circuitos &amp; LookAhead.<a class="headerlink" href="#transpiling-circuitos-lookahead" title="Permalink to this headline">#</a></h2>
+<p id="index-7">Este es el ejercicio 2.5 de la prueba de qiskit del año 2020. Se encuentra el vídeo en</p>
+<p><a href="https://www.youtube.com/watch?v=zqmPp7nypGc" target="_blank">https://www.youtube.com/watch?v=zqmPp7nypGc</a></p>
+<p>NOTA: Como esta materia no tengo ni idea de momento lo dejo</p>
+</section>
+<section id="apendice">
+<h2>Apéndice.<a class="headerlink" href="#apendice" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a href="https://www.primaryobjects.com/2021/09/15/the-ultimate-guide-to-a-quantum-computing-certification-with-qiskit/" target="_blank">The Ultimate Guide to a Quantum Computing Certification with Qiskit</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="otras/anexo1_Algebralineal.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introducción al álgebra lineal para computación cuántica.</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="otras/apendice.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Apendice.</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Miguel Rodríguez<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

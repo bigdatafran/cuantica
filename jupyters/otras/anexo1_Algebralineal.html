@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introducción al álgebra lineal para computación cuántica. &#8212; Programación quántica</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introducción." href="../videos_anexo.html" />
+    <link rel="prev" title="12. Índice" href="../../genindex.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Programación quántica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Números complejos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numeros_complejos.html">
+   1. Introducción a los números complejos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estados quanticos y qubits
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema0_Introducci%C3%B3n.html">
+   2. qiskit_textbook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema1_atoms-computation.html">
+   4. Los qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema2_representing-qubit-states.html">
+   5. Representación de los estados del qubit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema3_single-qubit-gates.html">
+   6. Puertas cuánticas para un qubit
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Qubits múltiples y Entanglement
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema4_multiple-qubits-entangled-states.html">
+   7. Múltiples qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema5_phase-kickback.html">
+   8. Explorando la puerta CNOT-Gate
+   <a id="exploring-cnot">
+   </a>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema6_more-circuit-identities.html">
+   10. Otros circuitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Tema7_proving-universality.html">
+   11. Universalidad
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Índice de términos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../genindex.html">
+   12. Índice de términos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Apéndice
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Resumen Algebra lineal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../videos_anexo.html">
+   Vídeos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="apendice.html">
+   Apendice.
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/jupyters/otras/anexo1_Algebralineal.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/jupyters/otras/anexo1_Algebralineal.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectores-y-espacios-vectoriales">
+   Vectores y espacios vectoriales.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrices-y-operaciones-con-matrices">
+   Matrices y operaciones con matrices.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spanning-conjuntos-dependencia-lineal-y-bases">
+   Spanning Conjuntos, Dependencia lineal y bases.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#espacios-de-hilbert-ortonormalidad-y-producto-interno">
+   Espacios de Hilbert , Ortonormalidad, y producto interno.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outer-producto-y-producto-tensorial">
+   Outer Producto y producto tensorial.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvectores-y-eigenvalues">
+   Eigenvectores y Eigenvalues
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrices-exponenciales">
+   Matrices exponenciales.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   Referencias
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introducción al álgebra lineal para computación cuántica.</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#vectores-y-espacios-vectoriales">
+   Vectores y espacios vectoriales.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrices-y-operaciones-con-matrices">
+   Matrices y operaciones con matrices.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spanning-conjuntos-dependencia-lineal-y-bases">
+   Spanning Conjuntos, Dependencia lineal y bases.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#espacios-de-hilbert-ortonormalidad-y-producto-interno">
+   Espacios de Hilbert , Ortonormalidad, y producto interno.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outer-producto-y-producto-tensorial">
+   Outer Producto y producto tensorial.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvectores-y-eigenvalues">
+   Eigenvectores y Eigenvalues
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrices-exponenciales">
+   Matrices exponenciales.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   Referencias
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-al-algebra-lineal-para-computacion-cuantica">
+<span id="algebra"></span><h1>Introducción al álgebra lineal para computación cuántica.<a class="headerlink" href="#introduccion-al-algebra-lineal-para-computacion-cuantica" title="Permalink to this headline">#</a></h1>
+<p>El álgebra lineal es el lenguaje base de la computación cuántica. Por lo tanto, es crucial desarrollar una buena comprensión de los conceptos matemáticos básicos sobre los que se construye el álgebra lineal, para llegar a muchas de las sorprendentes e interesantes construcciones que se ven en la computación cuántica. El objetivo de esta sección es crear una base de conocimientos introductorios de álgebra lineal, sobre la que el lector pueda construir durante su estudio de la computación cuántica.</p>
+<section id="vectores-y-espacios-vectoriales">
+<h2>Vectores y espacios vectoriales.<a class="headerlink" href="#vectores-y-espacios-vectoriales" title="Permalink to this headline">#</a></h2>
+<p>Comenzaremos nuestra investigación en álgebra lineal introductoria discutiendo primero una de los elementos matemáticos más importantes en computación cuántica: el vector.</p>
+<p>Formalmente, un <strong>vector</strong> <span class="math notranslate nohighlight">\(|v\rangle\)</span> se define como los elementos de un conjunto conocido como espacio vectorial. Una definición más intuitiva y geométrica es que un vector “es una cantidad matemática con dirección y magnitud”. Por ejemplo, consideremos un vector con componentes <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span> de la forma <span class="math notranslate nohighlight">\(\begin{pmatrix} 3 \\ 5 \end{pmatrix}\)</span>.</p>
+<p>Este vector puede visualizarse como una flecha que apunta en la dirección de <span class="math notranslate nohighlight">\(3\)</span> unidades a lo largo del eje <span class="math notranslate nohighlight">\(x\)</span> y <span class="math notranslate nohighlight">\(5\)</span> unidades a lo largo del eje <span class="math notranslate nohighlight">\(y\)</span>:</p>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../_images/anexo1_Algebralineal_1_0.png" src="../../_images/anexo1_Algebralineal_1_0.png" />
+</div>
+</div>
+<p>Tenga en cuenta que la “cola” del vector no tiene por qué estar situada en el origen; sólo necesita apuntar en la dirección correcta.</p>
+<p>En computación cuántica, a menudo tratamos con vectores de estado, que son simplemente vectores que apuntan a un punto específico en el espacio que corresponde a un estado cuántico concreto. Esto puede visualizarse utilizando una esfera de Bloch. Por ejemplo, un vector que represente el estado de un sistema cuántico podría parecerse a esta flecha, encerrada dentro de la esfera de Bloch, que es el llamado <em>“espacio de estados”</em> de todos los puntos posibles a los que pueden “apuntar” nuestros vectores de estado:</p>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../_images/anexo1_Algebralineal_4_0.png" src="../../_images/anexo1_Algebralineal_4_0.png" />
+</div>
+</div>
+<p>Este estado concreto corresponde a una superposición de estados entre <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> (la flecha está a medio camino entre <span class="math notranslate nohighlight">\(|0\rangle\)</span> en la parte superior y <span class="math notranslate nohighlight">\(|1\rangle\)</span> en la parte inferior de la esfera). Nuestros vectores pueden girar en cualquier punto de la superficie de la esfera, y cada uno de estos puntos representa un estado cuántico diferente.</p>
+<p>Volvamos a nuestra definición más formal de vector, según la cual un vector es un elemento de un espacio vectorial. Ahora debemos definir un espacio vectorial. Un <strong>espacio vectorial</strong> <span class="math notranslate nohighlight">\(V\)</span> sobre un <strong>campo</strong> <span class="math notranslate nohighlight">\(F\)</span> es un conjunto de objetos (vectores), donde se cumplen dos condiciones.</p>
+<p>En primer lugar, la <strong>suma vectorial</strong> de dos vectores <span class="math notranslate nohighlight">\(|a\rangle, \ |b\rangle \ \in \ V\)</span> genera un tercer vector <span class="math notranslate nohighlight">\(|a\rangle \ + \ |b\rangle \ = \ |c\rangle\)</span> también contenido en <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<p>La segunda condición es que la <strong>multiplicación escalar</strong> entre algún <span class="math notranslate nohighlight">\(|a\rangle \ \in \ V\)</span> y algún <span class="math notranslate nohighlight">\(n \ \in \ F\)</span>, denotado por <span class="math notranslate nohighlight">\(n|a\rangle\)</span>, también está contenida en <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<p>We will now clarify this previous definition by working through a basic example. Let us demonstrate that the set <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> over the field <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> is a vector space. We assert that</p>
+<p>Vamos a aclarar la definición anterior con un ejemplo básico. Demostremos que el conjunto <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> sobre el campo <span class="math notranslate nohighlight">\(\mathbb{R}\)</span> es un espacio vectorial. Afirmamos que</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix} x_1 \\ y_1 \end{pmatrix} \ + \ \begin{pmatrix} x_2 \\ y_2 \end{pmatrix} \ = \ \begin{pmatrix} x_1 \ + \ x_2 \\ y_1 \ + \ y_2 \end{pmatrix}\end{split}\]</div>
+<p>está contenido en <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span>. Esto es evidentemente en este caso, ya que la suma de dos números reales es un número real, haciendo que ambos componentes del vector recién formado sean números reales; por lo tanto, el vector está contenido en <span class="math notranslate nohighlight">\(\mathbb{R}^2\)</span> por definición. También afirmamos que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}n |v\rangle \ = \ \begin{pmatrix} nx \\ ny \end{pmatrix} \ \in \ V \ \ \ \ \forall n \ \in \ \mathbb{R}\end{split}\]</div>
+<p>Esto también es cierto, ya que el producto de un número real por un número real es un número real, lo que hace que todo el nuevo vector sea real y, por tanto, demuestra esta afirmación.</p>
+</section>
+<section id="matrices-y-operaciones-con-matrices">
+<h2>Matrices y operaciones con matrices.<a class="headerlink" href="#matrices-y-operaciones-con-matrices" title="Permalink to this headline">#</a></h2>
+<p>Centrémonos en otro concepto fundamental: una <strong>matriz</strong>. Las matrices son objetos matemáticos que transforman vectores en otros vectores:</p>
+<div class="math notranslate nohighlight">
+\[|v\rangle \ \rightarrow \ |v'\rangle \ = \ M |v\rangle\]</div>
+<p>Por lo general, las matrices se escriben como “arrays” de números, con un aspecto similar al siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}M \ = \ \begin{pmatrix} 1 &amp; -2 &amp; 3 \\ 1 &amp; 5i &amp; 0 \\ 1 \ + \ i &amp; 7 &amp; -4 \end{pmatrix}\end{split}\]</div>
+<p>Podemos “aplicar” una matriz a un vector realizando una multiplicación matricial. En general, la multiplicación matricial entre dos matrices consiste en tomar la primera fila de la primera matriz y multiplicar cada elemento por su “pareja” en la primera columna de la segunda matriz (el primer número de la fila se multiplica por el primer número de la columna, el segundo número de la fila y el segundo número de la columna, etc.). La suma de estos nuevos números se convierte en el primer elemento de la primera fila de la nueva matriz. Para rellenar el resto de la primera fila, repetimos este proceso para la segunda, tercera, etc. columnas de la segunda matriz. A continuación, tomamos la segunda fila de la primera matriz y repetimos el proceso para cada columna de la segunda matriz, para producir la segunda fila. Realizamos este proceso hasta que hayamos utilizado todas las filas de la primera matriz. La matriz resultante es nuestra nueva matriz. He aquí un ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix} 2 &amp; 0 \\ 5 &amp; -1 \end{pmatrix} \begin{pmatrix} -3 &amp; 1 \\ 2 &amp; 1 \end{pmatrix} \ = \ \begin{pmatrix} (2)(-3) + (0)(2) &amp; (2)(1) \ + \ (0)(1) \\ (5)(-3) + (-1)(2) &amp; (5)(1) \ + \ (-1)(1) \end{pmatrix} \ = \ \begin{pmatrix} -6 &amp; 2 \\ -17 &amp; 4 \end{pmatrix}\end{split}\]</div>
+<p>Para realizar un cálculo cuántico, tenemos un vector de estado cuántico que manipulamos aplicando una matriz a ese vector. Un vector es simplemente una matriz con una columna. Para aplicar una matriz a un vector, por tanto, seguimos el mismo procedimiento de multiplicación de matrices descrito anteriormente. Manipulamos qubits en nuestro ordenador cuántico aplicando secuencias de <strong>puertas cuánticas</strong>. Cada puerta cuántica puede expresarse como una matriz que puede aplicarse a vectores de estado, cambiando así el estado. Por ejemplo, una puerta cuántica comúnmente vista es la puerta Pauli-X, que se representa mediante la siguiente matriz:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_x \ = \ \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\end{split}\]</div>
+<p>Esta puerta actúa de forma similar a la puerta lógica clásica NOT. Mapea el estado base computacional <span class="math notranslate nohighlight">\(|0\rangle\)</span> a <span class="math notranslate nohighlight">\(|1\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> a <span class="math notranslate nohighlight">\(|0\rangle\)</span> (“invierte” el estado). Escribimos los dos estados base como vectores columna:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \ = \ \begin{pmatrix} 1 \\ 0 \end{pmatrix} \ \ \ \ \ \ \ |1\rangle \ = \ \begin{pmatrix} 0 \\ 1 \end{pmatrix}\end{split}\]</div>
+<p>Cuando aplicamos esta matriz a cada uno de los vectores:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_x |0\rangle \ = \ \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} \ = \ \begin{pmatrix} (0)(1) \ + \ (1)(0) \\ (1)(1) \ + \ (0)(0) \end{pmatrix} \ = \ \begin{pmatrix} 0 \\ 1 \end{pmatrix} \ = \ |1\rangle\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_x |1\rangle \ = \ \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \ = \ \begin{pmatrix} (0)(0) \ + \ (1)(1) \\ (1)(0) \ + \ (0)(1) \end{pmatrix} \ = \ \begin{pmatrix} 1 \\ 0 \end{pmatrix} \ = \ |0\rangle\end{split}\]</div>
+<p>La matriz actúa sobre los vectores de estado como era de esperar.</p>
+<p>Dentro de la computación cuántica, a menudo nos encontramos con dos tipos importantes de matrices: <strong>Matrices hermitianas</strong> y <strong>matrices unitarias</strong>. La primera es más importante en el estudio de la mecánica cuántica, pero sigue siendo necesario discutirla en un estudio de computación cuántica. La segunda tiene una importancia sin parangón tanto en la mecánica cuántica como en la computación cuántica. Si sólo te llevas un concepto de esta sección sobre álgebra lineal, debería ser el concepto de matriz unitaria.</p>
+<p id="index-0">Una <em>matriz hermitiana</em> es simplemente una matriz que es igual a su <strong>transpuesto conjugado</strong> (denotado con un símbolo <span class="math notranslate nohighlight">\(\dagger\)</span>).  Esto significa que si se invierte el signo de las componentes imaginarias de una matriz hermitiana y, a continuación, se reflejan sus entradas a lo largo de su diagonal principal (desde las esquinas superior izquierda a inferior derecha), se obtiene una matriz igual. Por ejemplo, la matriz Pauli-Y, utilizada habitualmente en computación cuántica, es hermitiana:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_y \ = \ \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix} \ \Rightarrow \ \sigma_y^{\dagger} \ = \ \begin{pmatrix} 0 &amp; -(i) \\ -(-i) &amp; 0 \end{pmatrix} \ = \ \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix} \ = \ \sigma_y\end{split}\]</div>
+<p>Observa cómo hemos cambiado los lugares de la <span class="math notranslate nohighlight">\(i\)</span> y de la <span class="math notranslate nohighlight">\(-i\)</span> (como reflejamos a través de la diagonal principal, los ceros permanecen inalterados), y luego hemos invertido el signo.</p>
+<p id="index-1">Una matriz unitaria es muy similar. En concreto, es una matriz tal que el <strong>inverso de la matriz</strong> es igual al transpuesto conjugado de la matriz original.</p>
+<p>La inversa de alguna matriz <span class="math notranslate nohighlight">\(A\)</span>, denotada como <span class="math notranslate nohighlight">\(A^{-1}\)</span>, es una matriz tal que:</p>
+<div class="math notranslate nohighlight">
+\[A^{-1} A \ = \ A A^{-1} \ = \ \mathbb{I}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(\mathbb{I}\)</span> es la matriz identidad. La matriz identidad tiene <span class="math notranslate nohighlight">\(1\)</span>s a lo largo de la diagonal principal (de arriba a la izquierda hasta abajo a la derecha), y <span class="math notranslate nohighlight">\(0\)</span>s en todos los demás lugares. Se llama la matriz identidad porque actúa trivialmente sobre cualquier otra matriz (no tiene ningún efecto). Puedes demostrarlo por ti mismo multiplicando una matriz identidad por cualquier otra matriz.</p>
+<p>Cuando las matrices son mayores que 2 veces 2, el cálculo de la inversa se complica tanto que suele dejarse en manos de los ordenadores. Para una matriz de <span class="math notranslate nohighlight">\(2 \ \times \ 2\)</span>, la inversa se define como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}A \ = \ \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \ \Rightarrow \ A^{-1} \ = \ \frac{1}{\text{det} \ A} \begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix},\end{split}\]</div>
+<br>
+<p>donde <span class="math notranslate nohighlight">\(\text{det} \ A\)</span> es el <strong>determinante</strong> de la matriz. En el caso de <span class="math notranslate nohighlight">\(2 \ \times \ 2\)</span>, <span class="math notranslate nohighlight">\(\text{det} \ A \ = \ ad \ - \ bc\)</span>.</p>
+<p>El cálculo de matrices inversas rara vez es importante en computación cuántica. Como la mayoría de las matrices con las que nos encontramos son unitarias, podemos suponer que la inversa se obtiene simplemente tomando la transposición conjugada.</p>
+<p>Veamos un ejemplo básico. La matriz Pauli-Y, además de ser hermitiana, es unitaria (es igual a su transpuesta conjugada, que a su vez es igual a su inversa; por tanto, ¡la matriz Pauli-Y es su propia inversa!) Podemos comprobar que esta matriz es unitaria:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_y \ = \ \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix} \ \ \ \ \ \sigma_y^{\dagger} \ = \ \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix} \ \Rightarrow \ \sigma_y^{\dagger} \sigma_y \ = \ \begin{pmatrix} (0)(0) + (-i)(i) &amp; (0)(-i) \ + \ (-i)(0) \\ (i)(0) \ + \ (0)(i) &amp;  (i)(-i) \ + \ (0)(0) \end{pmatrix} \ = \ \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \ = \ \mathbb{I}\end{split}\]</div>
+<p>La razón por la que las matrices unitarias son importantes se hará más evidente en la sección sobre los espacios de Hilbert, y más aún en el subtema de mecánica cuántica de este libro de texto. La idea básica es que la evolución de un estado cuántico mediante la aplicación de una matriz unitaria “preserva” la norma (magnitud) del estado cuántico.</p>
+</section>
+<section id="spanning-conjuntos-dependencia-lineal-y-bases">
+<h2>Spanning Conjuntos, Dependencia lineal y bases.<a class="headerlink" href="#spanning-conjuntos-dependencia-lineal-y-bases" title="Permalink to this headline">#</a></h2>
+<p>Ahora estamos en condiciones de discutir la construcción de espacios vectoriales. Consideremos un espacio vectorial <span class="math notranslate nohighlight">\(V\)</span>. Decimos que un conjunto de vectores <span class="math notranslate nohighlight">\(S\)</span> abarca un subespacio <span class="math notranslate nohighlight">\(V_S \ \subset \ V\)</span> (subconjunto cerrado bajo operaciones de espacio vectorial) del espacio vectorial, si podemos escribir cualquier vector en el subespacio como una <strong>combinación lineal</strong> de vectores contenidos dentro del conjunto que abarca.</p>
+<p>Una combinación lineal de algunos vectores de colección <span class="math notranslate nohighlight">\(|v_1\\rangle, \ ..., \ |v_n\rangle\)</span> en algún espacio vectorial sobre un campo <span class="math notranslate nohighlight">\(F\)</span> se define como una suma arbitraria de estos vectores (que por supuesto será otro vector que llamaremos <span class="math notranslate nohighlight">\(|v\rangle\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[|v\rangle \ = \ f_1 |v_1\rangle \ + \ f_2 |v_2\rangle \ + \ ... \ + \ f_n |v_n\rangle \ = \ \displaystyle\sum_{i} \ f_i |v_i\rangle\]</div>
+<p>donde cada <span class="math notranslate nohighlight">\(f_i\)</span> es algún elemento de <span class="math notranslate nohighlight">\(F\)</span>. Si tenemos un conjunto de vectores que abarca un espacio, estamos diciendo que <strong>cualquier otro vector</strong> en el espacio vectorial puede escribirse como una combinación lineal de estos vectores.</p>
+<p>Un conjunto de vectores <span class="math notranslate nohighlight">\(|v_1\rangle, \ ..., \ |v_n\rangle\)</span> se dice que es <strong>linealmente dependiente</strong> si existen coeficientes correspondientes para cada vector, <span class="math notranslate nohighlight">\(b_i \ en \ F\)</span>, tales que:</p>
+<div class="math notranslate nohighlight">
+\[b_1 |v_1\rangle \ + \ b_2 |v_2\rangle \ + \ ... \ + \ b_n |v_n\rangle \ = \ \displaystyle\sum_{i} \ b_i |v_i\rangle \ = \ 0,\]</div>
+<p>donde al menos uno de los coeficientes <span class="math notranslate nohighlight">\(b_i\)</span> es distinto de cero. Esto equivale a la afirmación más intuitiva de que “el conjunto de vectores puede expresarse como combinaciones lineales entre sí”. Por ejemplo, tengamos el conjunto <span class="math notranslate nohighlight">\(\{|v_1\rangle, \ ..., \|v_n\rangle \}\)</span> junto con los coeficientes correspondientes <span class="math notranslate nohighlight">\(\{b_1, \ ..., \ b_n \}\)</span>, tal que la combinación lineal es igual a <span class="math notranslate nohighlight">\(0\)</span>. Como hay al menos un vector con coeficiente distinto de cero, elegimos un término en la combinación lineal <span class="math notranslate nohighlight">\(b_a |v_a\\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle\sum_{i} \ b_i |v_i\rangle \ = \ b_a |v_a\rangle \ + \ \displaystyle\sum_{i, \ i \ \neq \ a} \ b_i |v_i\rangle \ = \ 0 \ \Rightarrow \ |v_a\rangle \ = \ - \displaystyle\sum_{i, \ i \ \neq \ a} \ \frac{b_i}{b_a} |v_i\rangle \ = \ \displaystyle\sum_{i, \ i \ \neq \ a} \ c_i |v_i\rangle\]</div>
+<p>En el caso de que <span class="math notranslate nohighlight">\(b_a\)</span> sea el único coeficiente distinto de cero, es necesariamente cierto que <span class="math notranslate nohighlight">\(|v_a\rangle\)</span> es el vector nulo, lo que hace automáticamente que el conjunto sea linealmente dependiente. Si no es así, <span class="math notranslate nohighlight">\(|v_a\rangle\)</span> se ha escrito como una combinación lineal de vectores distintos de cero, como se ha demostrado anteriormente. Para demostrar lo contrario, suponemos que existe algún vector <span class="math notranslate nohighlight">\(|v_a\rangle\)</span> en el subespacio <span class="math notranslate nohighlight">\(|v_1\rangle, ..., |v_n\rangle\)</span> que puede escribirse como combinación lineal de otros vectores del subespacio. Esto significa que:</p>
+<div class="math notranslate nohighlight">
+\[|v_a\rangle \ = \ \displaystyle\sum_{s} b_s |v_s\rangle\]</div>
+<p>donde <span class="math notranslate nohighlight">\(s\)</span> es un índice que recorre un subconjunto del subespacio. Se deduce que:</p>
+<div class="math notranslate nohighlight">
+\[|v_a\rangle \ - \ \displaystyle\sum_{s} b_s |v_s\rangle \ = \ |v_a\rangle \ - \ (b_1|v_{s_1}\rangle \ + \ ... \ + \ b_r|v_{s_r}\rangle) \ = \ 0\]</div>
+<p>Para todos los vectores del subespacio que no están incluidos en el subconjunto indexado por <span class="math notranslate nohighlight">\(s\)</span>, establecemos sus coeficientes, indexados por <span class="math notranslate nohighlight">\(q\)</span>, iguales a <span class="math notranslate nohighlight">\(0\)</span>. Así,</p>
+<div class="math notranslate nohighlight">
+\[|v_a\rangle \ - \ (b_1|v_{s_1}\rangle \ + \ ... \ + \ b_r|v_{s_r}\rangle) \ + \ (0)(|v_{q_1}\rangle \ + \ ... \ + \ |v_{q_t}\rangle) \ = \ 0\]</div>
+<p>que es una combinación lineal de todos los elementos del subespacio <span class="math notranslate nohighlight">\(|v_1\\rangle, \ ..., |v_n\rangle\)</span>. Esto es igual a <span class="math notranslate nohighlight">\(0\)</span>, completando así la prueba de que las dos definiciones de dependencia lineal se implican mutuamente.</p>
+<p>Consideremos ahora un ejemplo básico. Consideremos el conjunto de dos vectores en <span class="math notranslate nohighlight">\(\\mathbb{R}^2\)</span>, formado por <span class="math notranslate nohighlight">\(||a\rangle \ = \ \begin{pmatrix} 1 \ 0 \end{pmatrix}\)</span> y <span class="math notranslate nohighlight">\(|b\rangle \ = \ \begin{pmatrix} 2 \ 0 \end{pmatrix}\)</span>. Si elegimos que el campo sobre nuestro espacio vectorial sea <span class="math notranslate nohighlight">\(\mathbb{R}\)</span>, entonces podemos crear una combinación lineal de estos vectores que equivalga a <span class="math notranslate nohighlight">\(0\)</span>. Por ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[2|a\rangle \ - \ |b\rangle \ = \ 0\]</div>
+<p>Se dice que un conjunto de vectores es <strong>linealmente independiente</strong> si no hay ningún vector en el conjunto que pueda expresarse como combinación lineal de todos los demás.</p>
+<p>La noción de <strong>base</strong> es simplemente un <strong>conjunto lineal independiente</strong>. En este sentido, la base de un espacio vectorial es el mínimo conjunto posible que abarca todo el espacio. Llamamos <strong>dimensión</strong> del espacio vectorial al tamaño del conjunto base.</p>
+<p>Las bases y los conjuntos de extensión son importantes porque nos permiten “reducir” los espacios vectoriales y expresarlos en términos de unos pocos vectores. Podemos llegar a ciertas conclusiones sobre nuestro conjunto de bases que podemos generalizar a todo el espacio vectorial, simplemente porque sabemos que cada vector del espacio no es más que una combinación lineal de los vectores de las bases.</p>
+<p>En computación cuántica, una de las bases que encontramos a menudo es <span class="math notranslate nohighlight">\(|0\rangle, ||1\rangle\)</span>. Podemos escribir cualquier otro estado qubit como una combinación lineal de estos vectores base. Por ejemplo, la combinación lineal</p>
+<div class="math notranslate nohighlight">
+\[\frac{|0\rangle \ + \ |1\rangle}{\sqrt{2}}\]</div>
+<p>representa una superposición entre el estado base <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>, con igual probabilidad de medir el estado para estar en cualquiera de los estados del vector base (esto es intuitivo, ya que el “peso” o la “cantidad de cada vector base” en la combinación lineal es igual, siendo ambos escalados por <span class="math notranslate nohighlight">\(1/\sqrt{2}\)</span>).</p>
+</section>
+<section id="espacios-de-hilbert-ortonormalidad-y-producto-interno">
+<h2>Espacios de Hilbert , Ortonormalidad, y producto interno.<a class="headerlink" href="#espacios-de-hilbert-ortonormalidad-y-producto-interno" title="Permalink to this headline">#</a></h2>
+<p>Los espacios de Hilbert son una de las construcciones matemáticas más importantes de la mecánica cuántica y la computación cuántica. Un espacio de Hilbert puede considerarse el espacio de estados en el que “viven” todos los vectores de estados cuánticos. La principal diferencia entre un espacio de Hilbert y cualquier espacio vectorial aleatorio es que un espacio de Hilbert está equipado con un <strong>producto interno</strong>, que es una operación que puede realizarse entre dos vectores, devolviendo un escalar.</p>
+<p>En el contexto de la mecánica cuántica y la computación cuántica, el producto interior entre dos vectores de estado devuelve una cantidad escalar que <em>representa en qué medida el primer vector se encuentra a lo largo del segundo vector</em>. A partir de ella, se pueden calcular las probabilidades de medición en diferentes estados cuánticos (entre otras cosas) (esto se trata más a fondo en el subtema de mecánica cuántica).</p>
+<p>Para dos vectores <span class="math notranslate nohighlight">\(|a\rangle\)</span> y <span class="math notranslate nohighlight">\(|b\rangle\)</span> en un espacio de Hilbert, denotamos el producto interior como <span class="math notranslate nohighlight">\(\langle a | b \rangle\)</span>, donde <span class="math notranslate nohighlight">\(\langle a |\)</span> es igual a la transposición conjugada de <span class="math notranslate nohighlight">\(|a\rangle\)</span>, denotada <span class="math notranslate nohighlight">\(|a\rangle^{dagger}\)</span>. Por lo tanto, el producto interior entre dos vectores del espacio de Hilbert se ve algo así como:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\langle a | b \rangle \ = \ \begin{pmatrix} a_1^{*} &amp; a_2^{*} &amp; ... &amp; a_n^{*} \end{pmatrix} \begin{pmatrix} b_1 \\ b_2 \\ . \\ . \\ . \\ b_n \end{pmatrix} \ = \ a_1^{*} b_1 \ + \ a_2^{*} b_2 \ + \ ... \ + \ a_n^{*} b_n\end{split}\]</div>
+<p>donde <span class="math notranslate nohighlight">\(*\)</span> denota el complejo conjugado de un vector.</p>
+<p>Una de las condiciones más importantes para que un espacio de Hilbert represente un sistema cuántico es que el producto interior de un vector consigo mismo sea igual a uno: <span class="math notranslate nohighlight">\(\langle \psi | \psi \rangle \ = \ 1\)</span>.</p>
+<p>Esta es la llamada condición de normalización, que establece que la longitud del vector elevada al cuadrado (cada componente del vector se eleva al cuadrado y se suma, por definición del producto interior) debe ser igual a uno. El significado físico de esto es que la longitud de un vector en una dirección particular es representativa de la “amplitud de probabilidad” del sistema cuántico con respecto a la medición en ese estado particular. Obviamente, la probabilidad de que el sistema cuántico se mida en el estado en que se encuentra debe ser <span class="math notranslate nohighlight">\(1\)</span> (después de todo, la suma de las probabilidades de encontrar el sistema cuántico en cualquier estado particular debe ser igual a <span class="math notranslate nohighlight">\(1\)</span>).</p>
+<p>Representemos a continuación la esfera de Bloch</p>
+<div class="cell tag_remove_input docutils container">
+<div class="cell_output docutils container">
+<img alt="../../_images/anexo1_Algebralineal_6_0.png" src="../../_images/anexo1_Algebralineal_6_0.png" />
+</div>
+</div>
+<p>La superficie de esta esfera, junto con el producto interno entre los vectores de estado de los qubits, es un espacio de Hilbert válido. Además, la condición de normalización se cumple, ya que el radio de la esfera de Bloch es <span class="math notranslate nohighlight">\(1\)</span>, y por tanto la longitud al cuadrado de cada vector también debe ser igual a <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<p>Una nota final sobre los espacios de Hilbert y el producto interior es su relación con las <strong>matrices unitarias</strong>. Las matrices unitarias son importantes en la computación cuántica porque <strong>preservan el producto interior</strong>, lo que significa que no importa cómo se transforme un vector bajo una secuencia de matrices unitarias, la condición de normalización sigue siendo cierta. Esto se puede demostrar de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\langle \psi | \psi \rangle \ = \ 1 \ \Rightarrow \ |\psi\rangle \ \rightarrow \ U |\psi\rangle \ = \ |\psi'\rangle \ \Rightarrow \ \langle \psi' | \psi' \rangle \ = \ (U |\psi\rangle)^{\dagger} U|\psi\rangle \ = \ \langle \psi | U^{\dagger} U |\psi\rangle \ = \ \langle \psi | \psi \rangle \ = \ 1\]</div>
+<p>Esto significa que la evolución unitaria envía estados cuánticos a otros estados cuánticos válidos. Para un espacio de Hilbert de un solo qubit, representado por la esfera de Bloch, las transformaciones unitarias corresponden a rotaciones de los vectores de estado a distintos puntos de la esfera, sin cambiar en absoluto la longitud del vector de estado.</p>
+</section>
+<section id="outer-producto-y-producto-tensorial">
+<h2>Outer Producto y producto tensorial.<a class="headerlink" href="#outer-producto-y-producto-tensorial" title="Permalink to this headline">#</a></h2>
+<p>Los productos internos no son la única forma de multiplicar vectores. De vez en cuando, vamos a cambiar el orden del bra y ket con el fin de tomar el <strong>producto exterior,</strong> cuyo resultado es una matriz, en lugar de un solo número. Para dos vectores <span class="math notranslate nohighlight">\(|a\rangle\)</span> y <span class="math notranslate nohighlight">\(|b\rangle\)</span> en un espacio de Hilbert, denotamos el producto exterior como <span class="math notranslate nohighlight">\(| a \rangle\)</span><span class="math notranslate nohighlight">\(\langle b |\)</span>, donde <span class="math notranslate nohighlight">\(\langle b |\)</span> es igual a la transposición conjugada de <span class="math notranslate nohighlight">\(|b\rangle\)</span>, como antes. Esto nos da:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}| a \rangle \langle b | \ = \ \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix} \begin{pmatrix} b_1^{*} &amp; b_2^{*} &amp; \cdots &amp; b_n^{*} \end{pmatrix} \ = \begin{pmatrix} a_1 b_1^{*} &amp; a_1 b_2^{*} &amp; \cdots &amp; a_1 b_n^{*} \\ a_2 b_1^{*} &amp; a_2 b_2^{*} &amp;  &amp; \vdots \\ \vdots &amp;  &amp; \ddots &amp; \vdots \\ a_n b_1^{*} &amp; \cdots &amp; \cdots &amp; a_n b_n^{*} \end{pmatrix}\end{split}\]</div>
+<p>Los productos externos nos ofrecen una forma de representar puertas cuánticas con bra y kets, en lugar de matrices. Por ejemplo, tomemos la puerta Pauli-X:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_x \ = \ \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\end{split}\]</div>
+<br>
+<p>Podemos representar esto como la suma <span class="math notranslate nohighlight">\(|0\rangle\)</span><span class="math notranslate nohighlight">\(\langle 1|\)</span> + <span class="math notranslate nohighlight">\(|1\rangle\)</span><span class="math notranslate nohighlight">\(\langle 0|\)</span>, puesto que:</p>
+<br>
+<div class="math notranslate nohighlight">
+\[\begin{split}|0\rangle \langle 1| \ + \ |1\rangle \langle 0| \ = \ \begin{pmatrix} 1 \\ 0 \end{pmatrix} \begin{pmatrix} 0 &amp; 1 \end{pmatrix} + \begin{pmatrix} 0 \\ 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \end{pmatrix} \ = \ \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} + \begin{pmatrix} 0 &amp; 0 \\ 1 &amp; 0 \end{pmatrix} \ = \ \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \ = \ \sigma_x \end{split}\]</div>
+<p>El producto exterior es, de hecho, un ejemplo específico del <strong>producto tensorial</strong> más general utilizado para multiplicar espacios vectoriales entre sí.</p>
+<p>En la mayoría de los casos, el producto tensorial se utiliza para describir el estado compartido de dos o más qubits. Fíjate en que el producto tensorial no requiere tomar una de las transposiciones conjugadas del vector, como hace el producto exterior: estamos multiplicando dos kets en lugar de un ket y un bra. El producto tensorial de los vectores <span class="math notranslate nohighlight">\(|a \rangle\)</span> and <span class="math notranslate nohighlight">\(|b\rangle\)</span>, escrito como  <span class="math notranslate nohighlight">\(|a\rangle \otimes |b\rangle\)</span> or <span class="math notranslate nohighlight">\(|ab\rangle\)</span>, es igual a:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |a\rangle \otimes |b\rangle \ = \ \begin{pmatrix} a_{1} \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix} \\ a_{2} \begin{pmatrix} b_{1} \\ b_{2} \end{pmatrix} \end{pmatrix} \ = \begin{pmatrix} a_{1} b_{1} \\ a_{1} b_{2} \\ a_{2} b_{1} \\ a_{2} b_{2} \end{pmatrix} \end{split}\]</div>
+<p>Si queremos actuar sobre el nuevo vector producido por el producto tensorial de <span class="math notranslate nohighlight">\(|a \rangle\)</span> y <span class="math notranslate nohighlight">\(|b\rangle\)</span>, tendremos que tomar también el producto tensorial de los operadores con los que esperamos actuar sobre ellos. El producto tensorial de las matrices <em>A</em> y <em>B</em> es igual a:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} A \otimes B \ = \ \begin{pmatrix} a_{11} B &amp; \cdots &amp; a_{1n} B \\ \vdots &amp; \ddots &amp; \vdots \\ a_{m1} B &amp; \cdots &amp; a_{mn} B \end{pmatrix} \end{split}\]</div>
+</section>
+<section id="eigenvectores-y-eigenvalues">
+<h2>Eigenvectores y Eigenvalues<a class="headerlink" href="#eigenvectores-y-eigenvalues" title="Permalink to this headline">#</a></h2>
+<p>Considera la relación de la forma:</p>
+<div class="math notranslate nohighlight">
+\[A |v\rangle \ = \ \lambda |v\rangle,\]</div>
+<p>donde <span class="math notranslate nohighlight">\(A\)</span> es una matriz, y <span class="math notranslate nohighlight">\(\lambda\)</span> es algún número. Si nos dan una matriz <span class="math notranslate nohighlight">\(A\)</span> y necesitamos encontrar los vectores <span class="math notranslate nohighlight">\(|v\rangle\)</span> y los números <span class="math notranslate nohighlight">\(\lambda\)</span> que satisfacen esta relación, llamamos a estos vectores <strong>vectores propios</strong>, y a sus correspondientes multiplicadores numéricos <strong>valores propios</strong>. Los vectores propios y los valores propios tienen un significado físico muy importante en el contexto de la mecánica cuántica y, por tanto, de la computación cuántica. Dado algún <span class="math notranslate nohighlight">\(A\)</span>, explotamos un truco interesante para encontrar el conjunto de eigenvectores y los correspondientes eigenvalores. Reorganicemos nuestra ecuación como:</p>
+<div class="math notranslate nohighlight">
+\[A |v\rangle \ - \ \lambda |v\rangle \ = 0 \ \Rightarrow \ (A \ - \ \lambda \mathbb{I}) |v\rangle \ = \ 0\]</div>
+<p>Si multiplicamos ambos lados de esta ecuación por la matriz inversa <span class="math notranslate nohighlight">\((A \ - \ \lambda \mathbb{I})^{-1}\)</span>, obtenemos <span class="math notranslate nohighlight">\(|v\rangle \ = \ 0\)</span>. Esta es una solución extraña (no permitimos que los vectores propios sean el vector nulo, o de lo contrario cualquier combinación eigenvalor/matriz satisfaría la relación eigenvector-eigenvalor). Por lo tanto, con el fin de encontrar los vectores propios y valores propios permitidos, tenemos que suponer que la matriz <span class="math notranslate nohighlight">\((A \ - \lambda \mathbb{I})\)</span> es <strong>no invertible</strong>. Recordemos que la inversa de una matriz es de la forma:</p>
+<div class="math notranslate nohighlight">
+\[M^{-1} \ = \ \frac{1}{\text{det} (M)} \ F(M),\]</div>
+<p>donde <span class="math notranslate nohighlight">\(F(M)\)</span> es una nueva matriz (cuyos detalles no importan en este contexto) que depende de <span class="math notranslate nohighlight">\(M\)</span>. La parte de esta ecuación que nos interesa es la inversa del determinante. Si el determinante de la matriz <span class="math notranslate nohighlight">\(M\)</span> es <span class="math notranslate nohighlight">\(0\)</span>, se deduce que la inversa es indefinida, y por tanto también lo es la inversa, lo que hace que la matriz <span class="math notranslate nohighlight">\(M\)</span> no sea invertible. Por tanto, exigimos que</p>
+<div class="math notranslate nohighlight">
+\[\text{det} (A \ - \ \lambda \mathbb{I}) \ = \ 0\]</div>
+<p>A partir de esto, podemos determinar <span class="math notranslate nohighlight">\(\lambda\)</span>, entonces enchufamos cada valor de <span class="math notranslate nohighlight">\(\lambda\)</span> de nuevo en la ecuación original para obtener los vectores propios. Vamos a hacer un ejemplo, y encontrar los vectores propios / valores propios de la matriz de Pauli-Z, <span class="math notranslate nohighlight">\( / sigma_z \)</span>. Empezamos con:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{det} (\sigma_z \ - \ \lambda \mathbb{I}) \ = \ \text{det} \begin{pmatrix} 1 \ - \ \lambda &amp; 0 \\ 0 &amp; -1 \ - \ \lambda \end{pmatrix}  \ = \ (-1 \ - \ \lambda)(1 \ - \ \lambda) \ = \lambda^2\ - \ \ 1 \ = \ 0 \ \Rightarrow \ \lambda \ = \ \pm 1\end{split}\]</div>
+<p>La ecuación, en términos de <span class="math notranslate nohighlight">\(\lambda\)</span>, que resulta al resolver el determinante se denomina <strong>polinomio característico</strong>. A continuación, podemos conectar cada uno de estos valores de nuevo en la ecuación original. Empezaremos con <span class="math notranslate nohighlight">\(\lambda \ = \ 1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} |v\rangle \ = \ |v\rangle \ \Rightarrow \ \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} \ = \ \begin{pmatrix} a \\ b \end{pmatrix} \ \Rightarrow \begin{pmatrix} a \\ -b \end{pmatrix} \ = \ \begin{pmatrix} a \\ b \end{pmatrix}\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(a\)</span> puede ser cualquier número, y <span class="math notranslate nohighlight">\(b\)</span> es <span class="math notranslate nohighlight">\(0\)</span>; así, el vector <span class="math notranslate nohighlight">\(\begin{pmatrix} 1 \ 0 \end{pmatrix}\)</span> forma una base para todos los vectores que satisfacen nuestra relación, y es por tanto el vector propio que corresponde al valor propio de <span class="math notranslate nohighlight">\(1\)</span>. Hacemos lo mismo para <span class="math notranslate nohighlight">\(\lambda \ = \ -1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} |v\rangle \ = \ -|v\rangle \ \Rightarrow \ \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} \ = \ \begin{pmatrix} -a \\ -b \end{pmatrix} \ \Rightarrow \begin{pmatrix} a \\ -b \end{pmatrix} \ = \ \begin{pmatrix} -a \\ -b \end{pmatrix}\end{split}\]</div>
+<p>Esta vez, <span class="math notranslate nohighlight">\(b\)</span> puede ser cualquier número, y <span class="math notranslate nohighlight">\(a\)</span> es <span class="math notranslate nohighlight">\(0\)</span>; así, nuestro vector base (y nuestro vector propio correspondiente a <span class="math notranslate nohighlight">\(-1\)</span>) es <span class="math notranslate nohighlight">\(\begin{pmatrix} 0 \ 1 \ end{pmatrix}\)</span>. Obsérvese cómo los vectores propios de la matriz Pauli-Z son los estados de base computacional cuántica <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Esto no es una coincidencia. Por ejemplo, cuando medimos un qubit en la base <span class="math notranslate nohighlight">\(Z\)</span>, nos referimos a una medida que colapsa el estado del qubit en uno de los vectores propios de la matriz Z, ya sea <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p>
+<p>De hecho, las siguientes propiedades son muy importantes en el modelo de puerta de la computación cuántica, donde tratamos con espacios vectoriales de dimensión finita:</p>
+<ul class="simple">
+<li><p>Una matriz hermitiana tiene vectores propios linealmente independientes. El número de estos vectores propios es igual a la dimensión del espacio vectorial. Además, cuando los valores propios correspondientes son distintos, los vectores propios son ortogonales. Cuando los valores propios son iguales, los vectores propios no son ortogonales, pero siguen siendo linealmente independientes y pueden ortogonalizarse. Por lo tanto, <strong>los vectores propios de una matriz hermitiana forman una base para el espacio vectorial</strong>.</p></li>
+<li><p>Dado que una matriz unitaria es una matriz normal, los vectores propios de una matriz unitaria forman una base ortonormal para el espacio vectorial.</p></li>
+</ul>
+<p>Como caso especial importante, esto puede verificarse para cada una de las matrices de Pauli.</p>
+</section>
+<section id="matrices-exponenciales">
+<h2>Matrices exponenciales.<a class="headerlink" href="#matrices-exponenciales" title="Permalink to this headline">#</a></h2>
+<p>La noción de matrices exponenciales es un concepto muy específico pero extremadamente importante. A menudo vemos transformaciones unitarias de la forma:</p>
+<div class="math notranslate nohighlight">
+\[U \ = \ e^{i\gamma H},\]</div>
+<p>donde <span class="math notranslate nohighlight">\(H\)</span> es una matriz hermitiana y <span class="math notranslate nohighlight">\(\gamma\)</span> es un número real. Es bastante sencillo demostrar que todas las matrices de esta forma son unitarias. Tomando la transposición conjugada de <span class="math notranslate nohighlight">\(U\)</span>, obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[U^{\dagger} \ = \ \Big( e^{i\gamma H} \Big)^{\dagger} \ = \ e^{-i \gamma H^{\dagger}}\]</div>
+<p>Pero como <span class="math notranslate nohighlight">\(H\)</span> es hermitiano, sabemos que <span class="math notranslate nohighlight">\(H^{daga} \ = \ H\)</span>, por lo tanto:</p>
+<div class="math notranslate nohighlight">
+\[e^{-i \gamma H^{\dagger}} \ = \ e^{-i \gamma H} \ \Rightarrow \ U^{\dagger} U \ = \ e^{-i \gamma H} e^{i\gamma H} \ = \ \mathbb{I}\]</div>
+<p>Puede que te preguntes por qué una matriz dentro de una exponencial puede seguir considerándose una matriz.  La respuesta se aclara cuando expandimos nuestra función exponencial como una serie de Taylor. Recordemos del cálculo que una serie de Taylor es esencialmente una forma de escribir cualquier función como un polinomio de grado infinito, y la idea principal es elegir los términos del polinomio y centrarlo en algún punto <span class="math notranslate nohighlight">\(x_0\)</span> situado en la función que estamos tratando de transformar en el polinomio, de tal manera que la derivada zeroth, primera, segunda, tercera, etc es la misma tanto para la función original y el polinomio. Así, escribimos nuestra serie de Taylor en la forma:</p>
+<div class="math notranslate nohighlight">
+\[g(x) \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ f^{(n)}(x_0) \ \frac{(x \ - \ x_0)^n}{n!},\]</div>
+<p>donde <span class="math notranslate nohighlight">\(g(x)\)</span> es el polinomio, <span class="math notranslate nohighlight">\(f(x)\)</span> es la función original, <span class="math notranslate nohighlight">\(f^{(n)}\)</span> es la derivada <span class="math notranslate nohighlight">\(n\)</span>-ésima de <span class="math notranslate nohighlight">\(f\)</span>, y <span class="math notranslate nohighlight">\(x_0\)</span> es el punto en el que centramos la función. Puesto que no estamos aproximando, <span class="math notranslate nohighlight">\(x_0\)</span> no importa, así que por simplicidad, elegimos <span class="math notranslate nohighlight">\(x_0 \ = \ 0\)</span>, y la serie de Taylor se convierte en una <strong>serie de Maclaurin</strong>:</p>
+<div class="math notranslate nohighlight">
+\[g(x) \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ f^{(n)}(0) \ \frac{x^n}{n!}\]</div>
+<p>Si elegimos <span class="math notranslate nohighlight">\(f(x) \ = \ e^x\)</span>, podemos crear un polinomio equivalente utilizando la serie de Maclaurin. Como la derivada de <span class="math notranslate nohighlight">\(e^x\)</span> es simplemente <span class="math notranslate nohighlight">\(e^x\)</span>, y evidentemente, <span class="math notranslate nohighlight">\(e^0 \ = \ 1\)</span>, obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[g(x) \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{x^n}{n!} \ = \ e^x\]</div>
+<p>Así, para alguna matriz, <span class="math notranslate nohighlight">\(i \gamma H\)</span>, obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[e^{i \gamma H} \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(i \gamma H)^n}{n!}\]</div>
+<p>Por lo tanto, la exponencial de una matriz es una matriz. Es una suma infinita de potencias de matrices, lo que parece demasiado complejo… pero la cuestión es que la exponencial de una matriz es, efectivamente, una matriz.</p>
+<p>Ahora estamos en condiciones de demostrar un hecho muy importante: si tenemos alguna matriz <span class="math notranslate nohighlight">\(B\)</span> tal que <span class="math notranslate nohighlight">\(B^2 \ = \mathbb{I}\)</span> (esto se llama una <strong>matriz involutiva</strong>), entonces:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<div class="math notranslate nohighlight">
+\[e^{i \gamma B} \ = \ \cos(\gamma) \mathbb{I} \ + \ i \sin(\gamma) B\]</div>
+</div>
+<p>Comenzamos con la serie de Maclaurin</p>
+<div class="math notranslate nohighlight">
+\[e^{i \gamma B} \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(i \gamma B)^n}{n!}\]</div>
+<p>Observa que podemos dividir la suma en una parte imaginaria y una parte real, en función de si <span class="math notranslate nohighlight">\(n\)</span> es par o impar en cada término de la suma:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(i \gamma B)^n}{n!} \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(-1)^n \gamma^{2n} B^{2n}}{(2n)!} \ + \ i \displaystyle\sum_{n \ = \ 0}^{\infty} \frac{(-1)^n \gamma^{2n + 1} B^{2n + 1}}{(2n + 1)!}\]</div>
+<p>Ahora, vamos a encontrar la serie de Maclaurin tanto para <span class="math notranslate nohighlight">\(\sin x\)</span> como para <span class="math notranslate nohighlight">\(\cos x\)</span>. Empezaremos con <span class="math notranslate nohighlight">\(f(x) \ = \ \sin x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sin x \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ f^{n}(0) \frac{x^n}{n!}\]</div>
+<p>La derivada de <span class="math notranslate nohighlight">\(\sin x\)</span> es <strong>cíclica</strong> en cierto sentido (cada flecha representa tomar la derivada de la función anterior):</p>
+<div class="math notranslate nohighlight">
+\[\sin x \ \rightarrow \ \cos x \ \rightarrow \ -\sin x \ \rightarrow \ -\cos x \ \rightarrow \ \sin x\]</div>
+<p>Puesto que <span class="math notranslate nohighlight">\(\sin (0) \ = \ 0\)</span> y <span class="math notranslate nohighlight">\(\cos (0) \ = \ 1\)</span>, todos los términos con <span class="math notranslate nohighlight">\(n\)</span> par se convierten en <span class="math notranslate nohighlight">\(0\)</span>, y obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle\sum_{n \ = \ 0}^{\infty} \ f^{n}(0) \frac{x^n}{n!} \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(-1)^n x^{2n \ + \ 1}}{(2n \ + \ 1)!}\]</div>
+<p>Esto se parece al término impar de nuestra ecuación original. De hecho, si dejamos <span class="math notranslate nohighlight">\(x \ = \ \gamma B\)</span>, son exactamente iguales. Seguimos un proceso casi idéntico para demostrar que los términos pares son los mismos que la serie de Maclaurin para <span class="math notranslate nohighlight">\(f(x) \ = \ \cos x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\cos x \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ f^{n}(0) \frac{x^n}{n!}\]</div>
+<div class="math notranslate nohighlight">
+\[\Rightarrow \ \cos x \ \rightarrow \ -\sin x \ \rightarrow \ -\cos x \ \rightarrow \ \sin x \ \rightarrow \ \cos x\]</div>
+<div class="math notranslate nohighlight">
+\[\Rightarrow \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ f^{n}(0) \frac{x^n}{n!} \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(-1)^n x^{2n}}{(2n)!}\]</div>
+<p>Volvamos a la ecuación original. Recordemos que <span class="math notranslate nohighlight">\(B^2 \ = \mathbb{I}\)</span>. Para cualquier <span class="math notranslate nohighlight">\( n \)</span>, tenemos:</p>
+<div class="math notranslate nohighlight">
+\[B^{2n} \ = \ \big( B^2 \Big)^n \ = \ \mathbb{I}^n \ = \ \mathbb{I}\]</div>
+<br>
+<div class="math notranslate nohighlight">
+\[B^{2n \ + \ 1} \ = \ B \ \big( B^2 \Big)^n \ = \ B \ \mathbb{I}^n \ = \ B \ \mathbb{I} \ = \ B\]</div>
+<p>Sustituyendo esta nueva información, obtenemos:</p>
+<div class="math notranslate nohighlight">
+\[\displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(-1)^n \gamma^{2n} B^{2n}}{(2n)!} \ + \ i \displaystyle\sum_{n \ = \ 0}^{\infty} \frac{(-1)^n \gamma^{2n + 1} B^{2n + 1}}{(2n + 1)!} \ = \ \mathbb{I} \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{(-1)^n \gamma^{2n}}{(2n)!} \ + \ i B \displaystyle\sum_{n \ = \ 0}^{\infty} \frac{(-1)^n \gamma^{2n + 1}}{(2n + 1)!} \ = \ \cos (\gamma) \mathbb{I} \ + \ i \sin (\gamma) B\]</div>
+<p>Este hecho es extremadamente útil en computación cuántica. Consideremos las matrices de Pauli:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_x \ = \ \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\end{split}\]</div>
+<br>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_y \ = \ \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\end{split}\]</div>
+<br>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sigma_z \ = \ \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\end{split}\]</div>
+<br>
+<p>Estas matrices forman parte de las “puertas cuánticas” fundamentales utilizadas para manipular qubits. Estas operaciones no sólo son unitarias, sino que también son <strong>Hermitianas</strong> e <strong>Involutorias</strong>. Esto significa que una matriz de la forma <span class="math notranslate nohighlight">\(e^{i \gamma \sigma_k} \ k \in \ {x, \ y, \ z}\)</span> no sólo es una matriz unitaria válida que puede actuar sobre un vector de estado cuántico (un qubit), sino que puede expresarse utilizando la relación seno-coseno que acabamos de demostrar. Esto es muy potente, y se ve en toda la teoría cuántica computacional, ya que las puertas de este tipo se utilizan todo el tiempo.</p>
+<p>Un último hecho importante sobre exponenciales matriciales: si tenemos alguna matriz <span class="math notranslate nohighlight">\(M\)</span>, con vectores propios <span class="math notranslate nohighlight">\(|v\rangle\)</span> y correspondientes valores propios <span class="math notranslate nohighlight">\(\lambda\)</span>, entonces:</p>
+<div class="math notranslate nohighlight">
+\[e^{M} |v\rangle \ = \ e^\lambda |v\rangle\]</div>
+<br>
+<p>Esto es mucho más sencillo de demostrar:</p>
+<br>
+<div class="math notranslate nohighlight">
+\[e^M |v\rangle \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{M^n |v\rangle}{n!} \ = \ \displaystyle\sum_{n \ = \ 0}^{\infty} \ \frac{\lambda^n |v\rangle}{n!} \ = \ e^\lambda |v\rangle\]</div>
+<p>Este hecho también es muy útil. Cuando creamos circuitos cuánticos que simulan un cierto Hamiltoniano (especialmente para circuitos variacionales), frecuentemente usamos puertas de la forma <span class="math notranslate nohighlight">\(e^{i \gamma \sigma_z}\)</span>. Dado que <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> son vectores propios de <span class="math notranslate nohighlight">\(\sigma_z\)</span>, podemos fácilmente determinar matemáticamente que <span class="math notranslate nohighlight">\(e^{i \gamma \sigma_z}\)</span> añadirá una fase de <span class="math notranslate nohighlight">\(e^{i \gamma}\)</span> a <span class="math notranslate nohighlight">\(|0\rangle\)</span>, y añadirá una fase de <span class="math notranslate nohighlight">\(e^{-i\gamma}\)</span> a <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Podemos entonces construir esta puerta en términos de <span class="math notranslate nohighlight">\(CNOT\)</span> y puertas de fase/rotación con bastante facilidad, ya que conocemos el resultado matemático de la puerta en cada uno de los estados base computacionales.</p>
+<p>Este hecho no sólo se aplica a los exponenciales de la puerta <span class="math notranslate nohighlight">\(\sigma_z\)</span>. Por ejemplo, podemos determinar el resultado de una puerta de la forma <span class="math notranslate nohighlight">\(e^{i \gamma \sigma_x}\)</span> en los vectores propios de <span class="math notranslate nohighlight">\(\sigma_x\)</span>, <span class="math notranslate nohighlight">\((|0\rangle \ + ||1\rangle)/\sqrt{2}\)</span> y <span class="math notranslate nohighlight">\((|0\rangle \ - |1\rangle)/\sqrt{2}\)</span>. Lo mismo se aplica a los exponenciales de la matriz <span class="math notranslate nohighlight">\(\sigma_y\)</span>.</p>
+</section>
+<section id="referencias">
+<h2>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<p>[1] Cayley, Arthur. “A Memoir on the Theory of Matrices.” Philosophical Transactions of the Royal Society of London, vol. 148, 1858, pp. 17–37. JSTOR.</p>
+<p>[2] A New Branch of Mathematics: The Ausdehnungslehre of 1844 and Other Works: Hermann Grassmann, Lloyd C. Kannenberg: 9780812692761</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyters\otras"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../../genindex.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">12. </span>Índice</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../videos_anexo.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introducción.</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Miguel Rodríguez<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

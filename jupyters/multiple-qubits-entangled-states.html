@@ -1,0 +1,1133 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>7. Qubits Múltiples y Entangled States &#8212; Programación quántica</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. Índice" href="../genindex.html" />
+    <link rel="prev" title="6. Puertas cuánticas simples" href="Tema3_single-qubit-gates.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Programación quántica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Números complejos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numeros_complejos.html">
+   1. Introducción a los números complejos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estados quanticos y qubits
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema0_Introducci%C3%B3n.html">
+   2. qiskit_textbook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema1_atoms-computation.html">
+   4. Los qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema2_representing-qubit-states.html">
+   5. Representación de los estados del qubit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema3_single-qubit-gates.html">
+   6. Puertas cuánticas para un qubit
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Qubits múltiples y Entanglement
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   7. Múltiples qubits
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Índice de términos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   8. Índice de términos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Apéndice
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../otras/apendice.html">
+   Apendice.
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/jupyters/multiple-qubits-entangled-states.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/jupyters/multiple-qubits-entangled-states.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#representando-el-estado-de-multi-qubit-a-id-represent-a">
+   7.1. Representando el estado de Multi-Qubit
+   <a id="represent">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-ejercicios-a-id-ex1-a">
+     7.1.1. Quick Ejercicios:
+     <a id="ex1">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-qubit-gates-on-multi-qubit-statevectors-a-id-single-qubit-gates-a">
+   7.2. Single Qubit Gates on Multi-Qubit Statevectors
+   <a id="single-qubit-gates">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-ejercicios-a-id-ex2-a">
+     7.2.1. Quick Ejercicios:
+     <a id="ex2">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multi-qubit-gates-a-id-multi-qubit-gates-a">
+   7.3. Multi-Qubit Gates
+   <a id="multi-qubit-gates">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cnot-gate-a-id-cnot-a">
+     7.3.1. CNOT-Gate
+     <a id="cnot">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#entangled-states-a-id-entangled-a">
+     7.3.2. Entangled States
+     <a id="entangled">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizacion-de-entangled-states-a-id-visual-a">
+     7.3.3. Visualización de Entangled States
+     <a id="visual">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejercicios-a-id-ex3-a">
+     7.3.4. Ejercicios:
+     <a id="ex3">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   7.4. Referencias
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Qubits Múltiples  y Entangled States</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#representando-el-estado-de-multi-qubit-a-id-represent-a">
+   7.1. Representando el estado de Multi-Qubit
+   <a id="represent">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-ejercicios-a-id-ex1-a">
+     7.1.1. Quick Ejercicios:
+     <a id="ex1">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#single-qubit-gates-on-multi-qubit-statevectors-a-id-single-qubit-gates-a">
+   7.2. Single Qubit Gates on Multi-Qubit Statevectors
+   <a id="single-qubit-gates">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#quick-ejercicios-a-id-ex2-a">
+     7.2.1. Quick Ejercicios:
+     <a id="ex2">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#multi-qubit-gates-a-id-multi-qubit-gates-a">
+   7.3. Multi-Qubit Gates
+   <a id="multi-qubit-gates">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cnot-gate-a-id-cnot-a">
+     7.3.1. CNOT-Gate
+     <a id="cnot">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#entangled-states-a-id-entangled-a">
+     7.3.2. Entangled States
+     <a id="entangled">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#visualizacion-de-entangled-states-a-id-visual-a">
+     7.3.3. Visualización de Entangled States
+     <a id="visual">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ejercicios-a-id-ex3-a">
+     7.3.4. Ejercicios:
+     <a id="ex3">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#referencias">
+   7.4. Referencias
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="qubits-multiples-y-entangled-states">
+<h1><span class="section-number">7. </span>Qubits Múltiples  y Entangled States<a class="headerlink" href="#qubits-multiples-y-entangled-states" title="Permalink to this headline">#</a></h1>
+<p>Los qubits individuales son interesantes, pero individualmente no ofrecen ninguna ventaja computacional. En este apartado veremos cómo representar varios qubits y cómo pueden interactuar entre sí. Hemos visto cómo podemos representar el estado de un qubit utilizando un vector 2D, ahora veremos cómo podemos representar el estado de múltiples qubits.</p>
+<section id="representando-el-estado-de-multi-qubit-a-id-represent-a">
+<h2><span class="section-number">7.1. </span>Representando el estado de Multi-Qubit <a id="represent"></a><a class="headerlink" href="#representando-el-estado-de-multi-qubit-a-id-represent-a" title="Permalink to this headline">#</a></h2>
+<p>Como ya hemos visto en el anterior apartado, el estado de un qubit tiene dos amplitudes representadas por numeros complejos. Si extendemos esta idea a dos qubits, podemos decir que tiene cuatros posibles estados.</p>
+<p><code class="docutils literal notranslate"><span class="pre">00</span></code> <code class="docutils literal notranslate"><span class="pre">01</span></code> <code class="docutils literal notranslate"><span class="pre">10</span></code> <code class="docutils literal notranslate"><span class="pre">11</span></code></p>
+<p>Y además para describir el estado de dos qubits se requieren cuatro amplitudes indicadas por cuatro números complejos. De acuerdo con esta idea la representación que utilizaremos será la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |a\rangle = a_{00}|00\rangle + a_{01}|01\rangle + a_{10}|10\rangle + a_{11}|11\rangle = \begin{bmatrix} a_{00} \\ a_{01} \\ a_{10} \\ a_{11} \end{bmatrix} \end{split}\]</div>
+<p>Siendo <span class="math notranslate nohighlight">\(a_{i,j}\)</span> números complejos.</p>
+<p>Las probabilidades se calculan de la misma manera que para un qubit</p>
+<div class="math notranslate nohighlight">
+\[ p(|00\rangle) = |\langle 00 | a \rangle |^2 = |a_{00}|^2\]</div>
+<p>Y también se debe cumplir la condición de normalización:</p>
+<div class="math notranslate nohighlight">
+\[ |a_{00}|^2 + |a_{01}|^2 + |a_{10}|^2 + |a_{11}|^2 = 1\]</div>
+<p>Cuando tenemos dos qubits separados, podemos describir su estado conjunto mediante el <em>producto de kronecker</em>:</p>
+<div class="math notranslate nohighlight" id="index-0">
+\[\begin{split} |a\rangle = \begin{bmatrix} a_0 \\ a_1 \end{bmatrix}, \quad |b\rangle = \begin{bmatrix} b_0 \\ b_1 \end{bmatrix} \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+|ba\rangle = |b\rangle \otimes |a\rangle = \begin{bmatrix} b_0 \times \begin{bmatrix} a_0 \\ a_1 \end{bmatrix} \\ b_1 \times \begin{bmatrix} a_0 \\ a_1 \end{bmatrix} \end{bmatrix} = \begin{bmatrix} b_0 a_0 \\ b_0 a_1 \\ b_1 a_0 \\ b_1 a_1 \end{bmatrix}
+\end{split}\]</div>
+<p>Y siguiendo las mismas reglas, podemos utilizar el <em>producto de kronecker</em> para describir el estado colectivo de cualquier número de qubits. A continuación se muestra un ejemplo con tres qubits:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+|cba\rangle = \begin{bmatrix} c_0 b_0 a_0 \\ c_0 b_0 a_1 \\ c_0 b_1 a_0 \\ c_0 b_1 a_1 \\
+                              c_1 b_0 a_0 \\ c_1 b_0 a_1 \\ c_1 b_1 a_0 \\ c_1 b_1 a_1 \\
+              \end{bmatrix}
+\end{split}\]</div>
+<p>Si tenemos <span class="math notranslate nohighlight">\(n\)</span> qubits, necesitaremos tener en cuenta un total de <span class="math notranslate nohighlight">\(2^n\)</span> amplitudes complejas. Como vemos, estos vectores crecen exponencialmente con el número de qubits. Esta es la razón por la que los ordenadores cuánticos con un gran número de qubits son tan difíciles de simular. Un portátil moderno puede simular fácilmente un estado cuántico general de unos 20 qubits, pero simular 100 qubits es demasiado difícil incluso para los mayores superordenadores.</p>
+<p>A continuación mostramos un circuito con tres qubits, y una serie de pertas lógicas</p>
+<div class="cell tag_thebelab-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">assemble</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span><span class="p">,</span> <span class="n">plot_bloch_multivector</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Aplicamos un apuerta H a cada uno de qubits:</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+<span class="c1"># Mostramos el circuito</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_2_0.png" src="../_images/multiple-qubits-entangled-states_2_0.png" />
+</div>
+</div>
+<p>Cada qubit tiene como salida el estado <span class="math notranslate nohighlight">\(|+\rangle\)</span>, ya que <span class="math notranslate nohighlight">\(H|0\rangle\)</span> da como resultado el estado <span class="math notranslate nohighlight">\(|+\rangle\)</span>. Por lo tanto el vector de salida será:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+|{+++}\rangle = \frac{1}{\sqrt{8}}\begin{bmatrix} 1 \\ 1 \\ 1 \\ 1 \\
+                              1 \\ 1 \\ 1 \\ 1 \\
+              \end{bmatrix}
+\end{split}\]</div>
+<p>Veamos que esto es cierto utilizando código de qiskit.</p>
+<div class="cell docutils container" id="index-1">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see the result</span>
+<span class="n">svsim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">final_state</span> <span class="o">=</span> <span class="n">svsim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+
+<span class="c1"># In Jupyter Notebooks we can display this nicely using Latex.</span>
+<span class="c1"># If not using Jupyter Notebooks you may need to remove the </span>
+<span class="c1"># array_to_latex function and use print(final_state) instead.</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">array_to_latex</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">final_state</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">text</span><span class="si">{Statevector}</span><span class="s2"> = &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\text{Statevector} = 
+\begin{bmatrix}
+\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>Obteniendo el resultado esperado.</p>
+<p>Podemos también obtener la representación matricial de las tres puertas de Hadamar que se han utilizado, es decir el resultado de la siguiente expresión:</p>
+<div class="math notranslate nohighlight">
+\[H\otimes H \otimes H \]</div>
+<p>Siendo el producto anterior el denominado producto tensorial o producto de kronecker, cuyo significado ya se ha comentado anteriormente.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Apply H-gate to each qubit:</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+
+<span class="n">qc</span><span class="o">.</span><span class="n">save_unitary</span><span class="p">()</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">unitary</span> <span class="o">=</span> <span class="n">svsim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_unitary</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">array_to_latex</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">unitary</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">text{Circuit = }</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+\text{Circuit = }\\\begin{split}\begin{bmatrix}
+\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}}  \\
+ \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}}  \\
+ \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}}  \\
+ \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}}  \\
+ \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}}  \\
+ \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}}  \\
+ \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}}  \\
+ \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; \tfrac{1}{\sqrt{8}} &amp; -\tfrac{1}{\sqrt{8}}  \\
+ \end{bmatrix}
+\end{split}\end{aligned}\end{align} \]</div>
+</div>
+</div>
+<section id="quick-ejercicios-a-id-ex1-a">
+<h3><span class="section-number">7.1.1. </span>Quick Ejercicios: <a id="ex1"></a><a class="headerlink" href="#quick-ejercicios-a-id-ex1-a" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Escribir el producto de kronecker de los siguintes qubits:<br />
+a)	<span class="math notranslate nohighlight">\(|0\rangle|1\rangle\)</span><br />
+b)	<span class="math notranslate nohighlight">\(|0\rangle|+\rangle\)</span><br />
+c)	<span class="math notranslate nohighlight">\(|+\rangle|1\rangle\)</span><br />
+d)	<span class="math notranslate nohighlight">\(|-\rangle|+\rangle\)</span></p></li>
+<li><p>Escribir el estado de:
+<span class="math notranslate nohighlight">\(|\psi\rangle = \tfrac{1}{\sqrt{2}}|00\rangle + \tfrac{i}{\sqrt{2}}|01\rangle \)</span>
+como dos qubits separados.</p></li>
+</ol>
+</section>
+</section>
+<section id="single-qubit-gates-on-multi-qubit-statevectors-a-id-single-qubit-gates-a">
+<h2><span class="section-number">7.2. </span>Single Qubit Gates on Multi-Qubit Statevectors <a id="single-qubit-gates"></a><a class="headerlink" href="#single-qubit-gates-on-multi-qubit-statevectors-a-id-single-qubit-gates-a" title="Permalink to this headline">#</a></h2>
+<p>Ya hemos visto que una puerta X,que actúa sobre un sólo qubit ,queda representada por una matriz 2x2 de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}
+\end{split}\]</div>
+<p>Y que por consiguiente actúa sobre un estado <span class="math notranslate nohighlight">\(|0\rangle\)</span> de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X|0\rangle = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 1\end{bmatrix}
+\end{split}\]</div>
+<p>Pero puede que no esté claro cómo actuaría una puerta X sobre un qubit en un vector multiqubit. Afortunadamente, la regla es bastante sencilla; igual que utilizamos el producto kronecker para calcular vectores de estado multiqubit, utilizamos el producto tensor para calcular matrices que actúan sobre estos vectores de estado. Por ejemplo, en el circuito de abajo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_9_0.png" src="../_images/multiple-qubits-entangled-states_9_0.png" />
+</div>
+</div>
+<p>podemos representar las operaciones simultáneas (H &amp; X) utilizando su producto de kronecker, de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[
+X|q_1\rangle \otimes H|q_0\rangle = (X\otimes H)|q_1 q_0\rangle
+\]</div>
+<p>Estas operaciones se harían de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X\otimes H = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix} \otimes \tfrac{1}{\sqrt{2}}\begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+= \frac{1}{\sqrt{2}}
+\begin{bmatrix} 0 \times \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}
+              &amp; 1 \times \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}
+                \\ 
+                1 \times \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}
+              &amp; 0 \times \begin{bmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{bmatrix}
+\end{bmatrix} 
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+= \frac{1}{\sqrt{2}}
+\begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; 1 \\
+                0 &amp; 0 &amp; 1 &amp; -1 \\
+                1 &amp; 1 &amp; 0 &amp; 0 \\
+                1 &amp; -1 &amp; 0 &amp; 0 \\
+\end{bmatrix}
+\end{split}\]</div>
+<p>Matriz que luego podemos aplicar a nuestro vector de estado (<em>statevector</em>) 4D <span class="math notranslate nohighlight">\(|q_1 q_0\rangle\)</span>. Utilizando tanto numéro quizá no veamos con claridad qué resultado se obtiene,por ese motivo a menudo se ve la notación más clara de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X\otimes H = 
+\begin{bmatrix} 0 &amp; H \\
+               H &amp; 0\\
+\end{bmatrix}
+\end{split}\]</div>
+<p>En lugar de calcular esto a mano,como se ha hecho anteriormente, podemos utilizar el <code class="docutils literal notranslate"><span class="pre">aer_simulator</span></code> de Qiskit para que lo calcule por nosotros. El simulador Aer multiplica todas las puertas de nuestro circuito para compilar una única matriz unitaria que ejecuta todo el circuito cuántico:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">usim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_unitary</span><span class="p">()</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">unitary</span> <span class="o">=</span> <span class="n">usim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_unitary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>y obteniendo como resultado el siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># In Jupyter Notebooks we can display this nicely using Latex.</span>
+<span class="c1"># If not using Jupyter Notebooks you may need to remove the </span>
+<span class="c1"># array_to_latex function and use print(unitary) instead.</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">array_to_latex</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">unitary</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">text{Circuit = }</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}
+\text{Circuit = }\\\begin{split}\begin{bmatrix}
+0 &amp; 0 &amp; \tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}}  \\
+ 0 &amp; 0 &amp; \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{2}}  \\
+ \tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}} &amp; 0 &amp; 0  \\
+ \tfrac{1}{\sqrt{2}} &amp; -\tfrac{1}{\sqrt{2}} &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\end{aligned}\end{align} \]</div>
+</div>
+</div>
+<p>Si queremos aplicar una puerta sólo a un qubit a la vez (como en el circuito que mostramos a continuación de este párrafo), lo describimos usando el producto de kronecker con la matriz identidad, y así por ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[ X \otimes I \]</div>
+<p>Esta expresión, utilizando qiskit sería de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_15_0.png" src="../_images/multiple-qubits-entangled-states_15_0.png" />
+</div>
+</div>
+<p>Y la matriz unitaria que obtenemos sería la siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulate the unitary</span>
+<span class="n">usim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_unitary</span><span class="p">()</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">unitary</span> <span class="o">=</span> <span class="n">usim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_unitary</span><span class="p">()</span>
+<span class="c1"># Display the results:</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">unitary</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">text{Circuit = } &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\text{Circuit = } 
+\begin{bmatrix}
+0 &amp; 0 &amp; 1 &amp; 0  \\
+ 0 &amp; 0 &amp; 0 &amp; 1  \\
+ 1 &amp; 0 &amp; 0 &amp; 0  \\
+ 0 &amp; 1 &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>Podemos ver que Qiskit ha realizado el producto kronecker:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+X \otimes I =
+\begin{bmatrix} 0 &amp; I \\
+               I &amp; 0\\
+\end{bmatrix} = 
+\begin{bmatrix} 0 &amp; 0 &amp; 1 &amp; 0 \\
+                0 &amp; 0 &amp; 0 &amp; 1 \\
+                1 &amp; 0 &amp; 0 &amp; 0 \\
+                0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{bmatrix}
+\end{split}\]</div>
+<section id="quick-ejercicios-a-id-ex2-a">
+<h3><span class="section-number">7.2.1. </span>Quick Ejercicios: <a id="ex2"></a><a class="headerlink" href="#quick-ejercicios-a-id-ex2-a" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Calcular la matriz unitaria (<span class="math notranslate nohighlight">\(U\)</span>) obtenida mediante la siguiente secuencia de operaciones de puertas de qubits: <span class="math notranslate nohighlight">\(U = XZH\)</span>. Utilizar el aer_simulator de qiskit para comprobar el resultado obtenido de forma manual.</p></li>
+<li><p>Prueba a cambiar las puertas del circuito anterior. Calcula su producto de Kronecker y comprueba tu respuesta con el simulador Aer.</p></li>
+</ol>
+<p><strong>Nota:</strong> Diferentes libros, softwares y sitios web ordenan los qubits de forma diferente a como se ha expuesto aquí y en el sentido con el que trabaja qiskit. Esto significaría que el producto kronecker de un mismo circuito puede parecer muy diferente. Tenlo en cuenta cuando consultes otras fuentes.</p>
+</section>
+</section>
+<section id="multi-qubit-gates-a-id-multi-qubit-gates-a">
+<h2><span class="section-number">7.3. </span>Multi-Qubit Gates <a id="multi-qubit-gates"></a><a class="headerlink" href="#multi-qubit-gates-a-id-multi-qubit-gates-a" title="Permalink to this headline">#</a></h2>
+<p>Ahora que sabemos cómo representar el estado de múltiples qubits, estamos preparados para aprender cómo interactúan los qubits entre sí. Una puerta importante de dos qubits es la puerta CNOT, que a continuación se pasa a explicar.</p>
+<section id="cnot-gate-a-id-cnot-a">
+<span id="index-2"></span><h3><span class="section-number">7.3.1. </span>CNOT-Gate <a id="cnot"></a><a class="headerlink" href="#cnot-gate-a-id-cnot-a" title="Permalink to this headline">#</a></h3>
+<p>Esta puerta es <em>una puerta condicional</em> que ejecuta una puerta-X en el segundo qubit (objetivo o target), si el estado del primer qubit (control) es <span class="math notranslate nohighlight">\(|1\rangle\)</span>. La puerta se dibuja en un circuito como el que se muestra a continuación, con <code class="docutils literal notranslate"><span class="pre">q0</span></code> como control y <code class="docutils literal notranslate"><span class="pre">q1</span></code> como objetivo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Apply CNOT</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># See the circuit:</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_20_0.png" src="../_images/multiple-qubits-entangled-states_20_0.png" />
+</div>
+</div>
+<p>Cuando nuestros qubits no están en superposición de <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span> (comportándose como bits clásicos), esta puerta es muy sencilla e intuitiva de entender. Podemos utilizar la tabla de verdad clásica siguiente:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Input (t,c)</p></th>
+<th class="text-align:center head"><p>Output (t,c)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>00</p></td>
+<td class="text-align:center"><p>00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>01</p></td>
+<td class="text-align:center"><p>11</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>10</p></td>
+<td class="text-align:center"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>11</p></td>
+<td class="text-align:center"><p>01</p></td>
+</tr>
+</tbody>
+</table>
+<p>Y actuando sobre nuestro vector estado 4D, tiene una de las dos matrices siguientes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\text{CNOT} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\
+                              0 &amp; 0 &amp; 0 &amp; 1 \\
+                              0 &amp; 0 &amp; 1 &amp; 0 \\
+                              0 &amp; 1 &amp; 0 &amp; 0 \\
+              \end{bmatrix}, \quad
+\text{CNOT} = \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; 0 \\
+                              0 &amp; 1 &amp; 0 &amp; 0 \\
+                              0 &amp; 0 &amp; 0 &amp; 1 \\
+                              0 &amp; 0 &amp; 1 &amp; 0 \\
+              \end{bmatrix}
+\end{split}\]</div>
+<p>dependiendo de qué qubit es el control y cuál es el objetivo. Diferentes libros, simuladores y documentos ordenan los qubits de forma diferente. En nuestro caso, la matriz de la izquierda corresponde a la CNOT del circuito anteriormente dibujado. Esta matriz intercambia las amplitudes de <span class="math notranslate nohighlight">\(|01\rangle\)</span> y <span class="math notranslate nohighlight">\(|11\rangle\)</span> en nuestro vector de estado:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} 
+|a\rangle = \begin{bmatrix} a_{00} \\ a_{01} \\ a_{10} \\ a_{11} \end{bmatrix}, \quad \text{CNOT}|a\rangle = \begin{bmatrix} a_{00} \\ a_{11} \\ a_{10} \\ a_{01} \end{bmatrix} \begin{matrix} \\ \leftarrow \\ \\ \leftarrow \end{matrix}
+\end{split}\]</div>
+<p>Hemos visto cómo actúa sobre estados clásicos, pero veamos ahora cómo actúa sobre un qubit en superposición. Pondremos un qubit en el estado <span class="math notranslate nohighlight">\(|+\rangle\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Apply H-gate to the first:</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_22_0.png" src="../_images/multiple-qubits-entangled-states_22_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see the result:</span>
+<span class="n">svsim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">final_state</span> <span class="o">=</span> <span class="n">svsim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="c1"># Print the statevector neatly:</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">final_state</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">text{Statevector = }&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\text{Statevector = }
+\begin{bmatrix}
+\tfrac{1}{\sqrt{2}} &amp; \tfrac{1}{\sqrt{2}} &amp; 0 &amp; 0  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>Como es de esperar, esto genera el estado <span class="math notranslate nohighlight">\(|0\rangle \otimes |{+}\rangle = |0{+}\rangle\)</span> (recordar que <span class="math notranslate nohighlight">\(H|0\rangle\)</span> genera el estado <span class="math notranslate nohighlight">\(|+\rangle\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+|0{+}\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |01\rangle)
+\]</div>
+<p>Y veamos qué ocurre cuando aplicamos la puerta CNOT, con qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Apply H-gate to the first:</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Apply a CNOT:</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_25_0.png" src="../_images/multiple-qubits-entangled-states_25_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Let&#39;s get the result:</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">svsim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="c1"># Print the statevector neatly:</span>
+<span class="n">final_state</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="n">array_to_latex</span><span class="p">(</span><span class="n">final_state</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">text{Statevector = }&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\begin{split}
+\text{Statevector = }
+\begin{bmatrix}
+\tfrac{1}{\sqrt{2}} &amp; 0 &amp; 0 &amp; \tfrac{1}{\sqrt{2}}  \\
+ \end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<p>Es decir obtenemos el siguiente estado:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{CNOT}|0{+}\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
+\]</div>
+<p id="index-3">Este estado es muy interesante para nosotros, porque está <em>entangled.</em> Esto nos lleva claramente a la siguiente sección.</p>
+</section>
+<section id="entangled-states-a-id-entangled-a">
+<h3><span class="section-number">7.3.2. </span>Entangled States <a id="entangled"></a><a class="headerlink" href="#entangled-states-a-id-entangled-a" title="Permalink to this headline">#</a></h3>
+<p>Vimos en la sección anterior que podíamos crear el estado siguiente:</p>
+<div class="math notranslate nohighlight">
+\[
+\tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)
+\]</div>
+<p>Este estado es conocido como <strong><em>Bell</em> state</strong>. Podemos ver que este estado tiene un 50% de probabilidad de ser medido en el estado <span class="math notranslate nohighlight">\(|00\rangle\)</span>, y un 50% de probabilidad de ser medido en el estado <span class="math notranslate nohighlight">\(|11\rangle\)</span>. Lo más interesante es que tiene un <strong>0%</strong> de probabilidad de ser medido en los estados <span class="math notranslate nohighlight">\(|01\rangle\)</span> o <span class="math notranslate nohighlight">\(|10\rangle\)</span>. Podemos ver esto de forma gráfica en Qiskit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_29_0.png" src="../_images/multiple-qubits-entangled-states_29_0.png" />
+</div>
+</div>
+<p>Este estado combinado <em>no puede escribirse como dos estados qubit separados</em>, lo que tiene interesantes implicaciones. Aunque nuestros qubits están en superposición, medir uno nos dirá el estado del otro y colapsará su superposición. Por ejemplo, si medimos el qubit superior y obtenemos el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>, el estado colectivo de nuestros qubits cambia así:</p>
+<div class="math notranslate nohighlight">
+\[
+\tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \quad \xrightarrow[]{\text{measure}} \quad |11\rangle
+\]</div>
+<p>Aunque separemos estos qubits a años luz de distancia, la medición de uno de ellos colapsa la superposición y parece tener un efecto inmediato sobre el otro. Esta es la <a class="reference external" href="https://en.wikipedia.org/wiki/Quantum_nonlocality">‘espeluznante acción a distancia’</a> que perturbó a tantos físicos a principios del siglo XX.</p>
+<p>Es importante señalar que el resultado de la medición es aleatorio, y que las estadísticas de medición de un qubit <strong>no</strong> se ven afectadas por ninguna operación en el otro qubit. Debido a esto, no hay <strong>ningún modo</strong> de utilizar estados cuánticos compartidos para comunicarse. Esto se conoce como el teorema de la no-comunicación.</p>
+</section>
+<section id="visualizacion-de-entangled-states-a-id-visual-a">
+<h3><span class="section-number">7.3.3. </span>Visualización de Entangled States<a id="visual"></a><a class="headerlink" href="#visualizacion-de-entangled-states-a-id-visual-a" title="Permalink to this headline">#</a></h3>
+<p>Hemos visto que este estado no se puede escribir como dos estados qubit separados, esto también significa que perdemos información cuando intentamos graficar nuestro estado en esferas de Bloch separadas:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_bloch_multivector</span><span class="p">(</span><span class="n">final_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_32_0.png" src="../_images/multiple-qubits-entangled-states_32_0.png" />
+</div>
+</div>
+<p>Teniendo en cuenta cómo hemos definido la esfera de Bloch en los capítulos anteriores, puede que no esté claro cómo Qiskit incluso calcula los vectores de Bloch con qubits enredados como éste. En el caso de un solo qubit, la posición del vector de Bloch a lo largo de un eje se corresponde perfectamente con el valor de expectativa de la medición en esa base. Si tomamos esto como <em>la</em> regla de trazado de los vectores de Bloch, llegamos a la conclusión anterior. Esto nos muestra que no hay <em>ninguna</em> base de medida de un solo qubit para la que esté garantizada una medida específica. Esto contrasta con nuestros estados de qubit único, en los que siempre podríamos elegir una base de qubit único. Si observamos los qubits individuales de este modo, pasamos por alto el importante efecto de la correlación entre los qubits. No podemos distinguir entre diferentes estados entrelazados. Por ejemplo, los dos estados</p>
+<div class="math notranslate nohighlight">
+\[\tfrac{1}{\sqrt{2}}(|01\rangle + |10\rangle) \quad \text{and} \quad \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle)\]</div>
+<p>tendrán ambas el mismo aspecto en estas esferas de Bloch separadas, a pesar de ser estados muy diferentes con resultados de medición distintos.</p>
+<p>¿De qué otra forma podríamos visualizar este vector de estado? Este vector de estado es simplemente una colección de cuatro amplitudes (números complejos), y hay infinitas formas de representarlo en una imagen. Una de ellas es la “Q-sphere”, en la que cada amplitud está representada por una mancha en la superficie de una esfera. El tamaño de la mancha es proporcional a la magnitud de la amplitud, y el color es proporcional a la fase de la amplitud. En el ejemplo que estamos contemplando, las amplitudes para <span class="math notranslate nohighlight">\(|00\rangle\)</span> y <span class="math notranslate nohighlight">\(|11\rangle\)</span> son iguales, y todas las demás amplitudes son 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_state_qsphere</span>
+<span class="n">plot_state_qsphere</span><span class="p">(</span><span class="n">final_state</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/multiple-qubits-entangled-states_34_0.png" src="../_images/multiple-qubits-entangled-states_34_0.png" />
+</div>
+</div>
+<p>Aquí podemos ver claramente la correlación entre los qubits. La forma de la esfera Q no tiene ningún significado, es simplemente una forma agradable de organizar nuestros blobs; el número de <code class="docutils literal notranslate"><span class="pre">0</span></code>s en el estado es proporcional a la posición de los estados en el eje Z, así que aquí podemos ver que la amplitud de <span class="math notranslate nohighlight">\(|00\rangle\)</span> está en el polo superior de la esfera, y la amplitud de <span class="math notranslate nohighlight">\(|11\rangle\)</span> está en el polo inferior de la esfera.</p>
+</section>
+<section id="ejercicios-a-id-ex3-a">
+<h3><span class="section-number">7.3.4. </span>Ejercicios: <a id="ex3"></a><a class="headerlink" href="#ejercicios-a-id-ex3-a" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Crear un circuito cuántico que produzca el estado de Bell: <span class="math notranslate nohighlight">\(\tfrac{1}{\sqrt{2}}(|01\rangle + |10\rangle)\)</span>.
+Utiliza el simulador de vectores de estado para verificar tu resultado.</p></li>
+<li><p>El circuito que has creado en la pregunta 1 transforma el estado <span class="math notranslate nohighlight">\(|00\rangle\)</span> a <span class="math notranslate nohighlight">\(\tfrac{1}{\sqrt{2}}(|01\rangle + |10\rangle)\)</span>, calcula la matriz unitaria de este circuito utilizando el simulador de Qiskit. Comprueba que esta matriz unitariz realiza la transformación correcta.</p></li>
+<li><p>Piensa en otras formas de representar visualmente un vector de estado. ¿Puedes diseñar una visualización interesante en la que puedas leer la magnitud y la fase de cada amplitud?</p></li>
+</ol>
+</section>
+</section>
+<section id="referencias">
+<h2><span class="section-number">7.4. </span>Referencias<a class="headerlink" href="#referencias" title="Permalink to this headline">#</a></h2>
+<p>[1] Asher Peres, Daniel R. Terno, <em>Quantum Information and Relativity Theory,</em> 2004, <a class="reference external" href="https://arxiv.org/abs/quant-ph/0212023">https://arxiv.org/abs/quant-ph/0212023</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit.tools.jupyter</span>
+<span class="o">%</span><span class="k">qiskit_version_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><h3>Version Information</h3><table><tr><th>Qiskit Software</th><th>Version</th></tr><tr><td><code>qiskit-terra</code></td><td>0.22.3</td></tr><tr><td><code>qiskit-aer</code></td><td>0.11.2</td></tr><tr><td><code>qiskit-ibmq-provider</code></td><td>0.19.2</td></tr><tr><td><code>qiskit</code></td><td>0.39.4</td></tr><tr><th>System information</th></tr><tr><td>Python version</td><td>3.9.13</td></tr><tr><td>Python compiler</td><td>MSC v.1929 64 bit (AMD64)</td></tr><tr><td>Python build</td><td>main, May 27 2022 16:51:29</td></tr><tr><td>OS</td><td>Windows</td></tr><tr><td>CPUs</td><td>4</td></tr><tr><td>Memory (Gb)</td><td>11.799663543701172</td></tr><tr><td colspan='2'>Wed Jan 04 06:46:57 2023 Hora estándar romance</td></tr></table></div></div>
+</div>
+</section>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"3cb7f26cb46941f389491b8aba201f98": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 10px 0px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "850619a1913f4a6abe10b27c79e2af04": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "ad58d3c6b95e4954bccb8fda50513a06": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3cb7f26cb46941f389491b8aba201f98", "placeholder": "\u200b", "style": "IPY_MODEL_850619a1913f4a6abe10b27c79e2af04", "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}, "6d6b6ab535f24734b7bbf89c4db3e5b0": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": "right", "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": "0px 0px 0px 0px", "right": null, "top": null, "visibility": null, "width": "70px"}}, "aa8d9173435a4572b68bdc940250c8d1": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "0af191579cfd4feaac51239ee64ed0e5": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "primary", "description": "Clear", "disabled": false, "icon": "", "layout": "IPY_MODEL_6d6b6ab535f24734b7bbf89c4db3e5b0", "style": "IPY_MODEL_aa8d9173435a4572b68bdc940250c8d1", "tooltip": ""}}, "2378db5b725e46dfa13718e4b0ead790": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": "\n                                       \". . . . right \"\n                                        ", "grid_template_columns": "20% 20% 20% 20% 20%", "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "5e06ec2197cf486690e045158b1f87a8": {"model_name": "GridBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "GridBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "GridBoxView", "box_style": "", "children": ["IPY_MODEL_0af191579cfd4feaac51239ee64ed0e5"], "layout": "IPY_MODEL_2378db5b725e46dfa13718e4b0ead790"}}, "20f36d3369dd47c38164079f9f1ec3c5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "190px"}}, "c1cb6218e69c417a889d111ec1482010": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "77a2c0fdb364414dadb521bc0564fba1": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_20f36d3369dd47c38164079f9f1ec3c5", "placeholder": "\u200b", "style": "IPY_MODEL_c1cb6218e69c417a889d111ec1482010", "value": "<h5>Job ID</h5>"}}, "5dc9e3dbcda34e18b0cd347c9db67d86": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "145px"}}, "670d4da25329456b97c49f1eff94050b": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "5e267d1c823e4bf1b0af9374eb52e100": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_5dc9e3dbcda34e18b0cd347c9db67d86", "placeholder": "\u200b", "style": "IPY_MODEL_670d4da25329456b97c49f1eff94050b", "value": "<h5>Backend</h5>"}}, "01a9b4764ae24fec80c389a9be30f6f9": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "95px"}}, "b219d3a88161443f9bb763cff5402d70": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "524f6b4413a84e359a8bf543c3c0374d": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_01a9b4764ae24fec80c389a9be30f6f9", "placeholder": "\u200b", "style": "IPY_MODEL_b219d3a88161443f9bb763cff5402d70", "value": "<h5>Status</h5>"}}, "3783d47d471c425a8990f5acf4a94a54": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "70px"}}, "d82ce865128345b19924c00b87c82f29": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "2960d02b1c0740adaac6d48e89d4e474": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3783d47d471c425a8990f5acf4a94a54", "placeholder": "\u200b", "style": "IPY_MODEL_d82ce865128345b19924c00b87c82f29", "value": "<h5>Queue</h5>"}}, "ae2ad0b5b940499b94cb2aaf54b30931": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6584d0c434604edaaa0bc9708e1a3d52": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "22f0d36889704aaaa8d6f909533f5518": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ae2ad0b5b940499b94cb2aaf54b30931", "placeholder": "\u200b", "style": "IPY_MODEL_6584d0c434604edaaa0bc9708e1a3d52", "value": "<h5>Message</h5>"}}, "0882026d36134311b233aba5a7583a00": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 0px 37px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "600px"}}, "70efc5555db74183a88765cb44c3e00e": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_77a2c0fdb364414dadb521bc0564fba1", "IPY_MODEL_5e267d1c823e4bf1b0af9374eb52e100", "IPY_MODEL_524f6b4413a84e359a8bf543c3c0374d", "IPY_MODEL_2960d02b1c0740adaac6d48e89d4e474", "IPY_MODEL_22f0d36889704aaaa8d6f909533f5518"], "layout": "IPY_MODEL_0882026d36134311b233aba5a7583a00"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Tema3_single-qubit-gates.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Puertas cuánticas simples</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../genindex.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Índice</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Miguel Rodríguez<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

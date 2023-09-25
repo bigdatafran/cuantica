@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "D:\programas\Anaconda\envs\py39\lib\site-packages\jupyter_cache\executors\utils.py", line 51, in single_nb_execution
+    executenb(
+  File "D:\programas\Anaconda\envs\py39\lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "D:\programas\Anaconda\envs\py39\lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "D:\programas\Anaconda\envs\py39\lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "D:\programas\Anaconda\envs\py39\lib\asyncio\base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "D:\programas\Anaconda\envs\py39\lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "D:\programas\Anaconda\envs\py39\lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "D:\programas\Anaconda\envs\py39\lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+final = lhs.append(rhs)
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mCircuitError[0m                              Traceback (most recent call last)
+Input [1;32mIn [28][0m, in [0;36m<cell line: 1>[1;34m()[0m
+[1;32m----> 1[0m final [38;5;241m=[39m [43mlhs[49m[38;5;241;43m.[39;49m[43mappend[49m[43m([49m[43mrhs[49m[43m)[49m
+
+File [1;32mD:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\quantumcircuit.py:1309[0m, in [0;36mQuantumCircuit.append[1;34m(self, instruction, qargs, cargs)[0m
+[0;32m   1307[0m instructions [38;5;241m=[39m InstructionSet(resource_requester[38;5;241m=[39mrequester)
+[0;32m   1308[0m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(operation, Instruction):
+[1;32m-> 1309[0m     [38;5;28;01mfor[39;00m qarg, carg [38;5;129;01min[39;00m operation[38;5;241m.[39mbroadcast_arguments(expanded_qargs, expanded_cargs):
+[0;32m   1310[0m         [38;5;28mself[39m[38;5;241m.[39m_check_dups(qarg)
+[0;32m   1311[0m         instruction [38;5;241m=[39m CircuitInstruction(operation, qarg, carg)
+
+File [1;32mD:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\instruction.py:479[0m, in [0;36mInstruction.broadcast_arguments[1;34m(self, qargs, cargs)[0m
+[0;32m    464[0m [38;5;124;03m"""[39;00m
+[0;32m    465[0m [38;5;124;03mValidation of the arguments.[39;00m
+[0;32m    466[0m 
+[1;32m   (...)[0m
+[0;32m    476[0m [38;5;124;03m        arguments does not match the gate expectation.[39;00m
+[0;32m    477[0m [38;5;124;03m"""[39;00m
+[0;32m    478[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m(qargs) [38;5;241m!=[39m [38;5;28mself[39m[38;5;241m.[39mnum_qubits:
+[1;32m--> 479[0m     [38;5;28;01mraise[39;00m CircuitError(
+[0;32m    480[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124mThe amount of qubit arguments [39m[38;5;132;01m{[39;00m[38;5;28mlen[39m(qargs)[38;5;132;01m}[39;00m[38;5;124m does not match[39m[38;5;124m"[39m
+[0;32m    481[0m         [38;5;124mf[39m[38;5;124m"[39m[38;5;124m the instruction expectation ([39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mnum_qubits[38;5;132;01m}[39;00m[38;5;124m).[39m[38;5;124m"[39m
+[0;32m    482[0m     )
+[0;32m    484[0m [38;5;66;03m#  [[q[0], q[1]], [c[0], c[1]]] -> [q[0], c[0]], [q[1], c[1]][39;00m
+[0;32m    485[0m flat_qargs [38;5;241m=[39m [qarg [38;5;28;01mfor[39;00m sublist [38;5;129;01min[39;00m qargs [38;5;28;01mfor[39;00m qarg [38;5;129;01min[39;00m sublist]
+
+[1;31mCircuitError[0m: 'The amount of qubit arguments 0 does not match the instruction expectation (2).'
+CircuitError: 'The amount of qubit arguments 0 does not match the instruction expectation (2).'
+

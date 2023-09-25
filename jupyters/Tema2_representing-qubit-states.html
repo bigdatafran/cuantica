@@ -1,0 +1,1261 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Representando los estados de un qubit. &#8212; Programación quántica</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Puertas cuánticas simples" href="Tema3_single-qubit-gates.html" />
+    <link rel="prev" title="4. La computación" href="Tema1_atoms-computation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Programación quántica</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Números complejos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="numeros_complejos.html">
+   1. Introducción a los números complejos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Estados quanticos y qubits
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema0_Introducci%C3%B3n.html">
+   2. qiskit_textbook
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema1_atoms-computation.html">
+   4. Los qubits
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Representación de los estados del qubit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema3_single-qubit-gates.html">
+   6. Puertas cuánticas para un qubit
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Qubits múltiples y Entanglement
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">
+   7. Múltiples qubits
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema5_phase-kickback.html">
+   8. Explorando la puerta CNOT-Gate
+   <a id="exploring-cnot">
+   </a>
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema6_more-circuit-identities.html">
+   10. Otros circuitos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Tema7_proving-universality.html">
+   11. Universalidad
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Índice de términos
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../genindex.html">
+   12. Índice de términos
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Apéndice
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="otras/anexo1_Algebralineal.html">
+   Resumen Algebra lineal
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="videos_anexo.html">
+   Vídeos
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="otras/apendice.html">
+   Apendice.
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/jupyters/Tema2_representing-qubit-states.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/jupyters/Tema2_representing-qubit-states.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classical-vs-quantum-bits-a-id-cvsq-a">
+   5.1. 1. Classical vs Quantum Bits
+   <a id="cvsq">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statevectors-o-vector-de-estados-a-id-statevectors-a">
+     5.1.1. Statevectors o vector de estados
+     <a id="statevectors">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qubit-notation-a-id-notation-a">
+     5.1.2. 1.2 Qubit Notation
+     <a id="notation">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-qubits-with-qiskit-a-id-exploring-qubits-a">
+     5.1.3. 1.3 Exploring Qubits with Qiskit
+     <a id="exploring-qubits">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reglas-de-la-medicion-a-id-rules-measurement-a">
+   5.2. Reglas de la medición
+   <a id="rules-measurement">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#una-regla-muy-importante-a-id-important-rule-a">
+     5.2.1. Una regla muy importante
+     <a id="important-rule">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implicaciones-de-esta-norma-a-id-implications-a">
+     5.2.2. Implicaciones de esta norma
+     <a id="implications">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalizacion">
+     5.2.3. Normalización.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quick-ejercicios">
+       5.2.3.1. Quick Ejercicios
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#medicion-alternativa">
+     5.2.4. Medición alternativa​.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fase-global">
+     5.2.5. Fase global.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#el-efecto-observado">
+     5.2.6. El efecto observado.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#una-nota-sobre-los-simuladores-cuanticos">
+     5.2.7. Una nota sobre los simuladores cuánticos.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#la-esfera-de-bloch-a-id-bloch-sphere-a">
+   5.3. La esfera de  Bloch
+   <a id="bloch-sphere">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#describiendo-los-estados-de-un-qubit-a-id-bloch-sphere-1-a">
+     5.3.1. Describiendo los estados de un qubit.
+     <a id="bloch-sphere-1">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representacion-visual-del-estado-de-un-qubit-a-id-bloch-sphere-2-a">
+     5.3.2. Representación visual del estado de un qubit.
+     <a id="bloch-sphere-2">
+     </a>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nota-aclaratoria">
+       5.3.2.1. Nota aclaratoria.
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       5.3.2.2. Quick Ejercicios
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Representando los estados de un qubit.</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classical-vs-quantum-bits-a-id-cvsq-a">
+   5.1. 1. Classical vs Quantum Bits
+   <a id="cvsq">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#statevectors-o-vector-de-estados-a-id-statevectors-a">
+     5.1.1. Statevectors o vector de estados
+     <a id="statevectors">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qubit-notation-a-id-notation-a">
+     5.1.2. 1.2 Qubit Notation
+     <a id="notation">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exploring-qubits-with-qiskit-a-id-exploring-qubits-a">
+     5.1.3. 1.3 Exploring Qubits with Qiskit
+     <a id="exploring-qubits">
+     </a>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reglas-de-la-medicion-a-id-rules-measurement-a">
+   5.2. Reglas de la medición
+   <a id="rules-measurement">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#una-regla-muy-importante-a-id-important-rule-a">
+     5.2.1. Una regla muy importante
+     <a id="important-rule">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#implicaciones-de-esta-norma-a-id-implications-a">
+     5.2.2. Implicaciones de esta norma
+     <a id="implications">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalizacion">
+     5.2.3. Normalización.
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#quick-ejercicios">
+       5.2.3.1. Quick Ejercicios
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#medicion-alternativa">
+     5.2.4. Medición alternativa​.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fase-global">
+     5.2.5. Fase global.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#el-efecto-observado">
+     5.2.6. El efecto observado.
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#una-nota-sobre-los-simuladores-cuanticos">
+     5.2.7. Una nota sobre los simuladores cuánticos.
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#la-esfera-de-bloch-a-id-bloch-sphere-a">
+   5.3. La esfera de  Bloch
+   <a id="bloch-sphere">
+   </a>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#describiendo-los-estados-de-un-qubit-a-id-bloch-sphere-1-a">
+     5.3.1. Describiendo los estados de un qubit.
+     <a id="bloch-sphere-1">
+     </a>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#representacion-visual-del-estado-de-un-qubit-a-id-bloch-sphere-2-a">
+     5.3.2. Representación visual del estado de un qubit.
+     <a id="bloch-sphere-2">
+     </a>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nota-aclaratoria">
+       5.3.2.1. Nota aclaratoria.
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       5.3.2.2. Quick Ejercicios
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="representando-los-estados-de-un-qubit">
+<h1><span class="section-number">5. </span>Representando los estados de un qubit.<a class="headerlink" href="#representando-los-estados-de-un-qubit" title="Permalink to this headline">#</a></h1>
+<p>Por lo comentado en el tema anterior, ya sabes algo sobre bits y sobre cómo funcionan nuestros conocidos ordenadores digitales. Todas las variables complejas, objetos y estructuras de datos que se utilizan en el software moderno son, básicamente, grandes montones de bits. Los que trabajan en computación cuántica las llaman <em>variables clásicas</em> y a los ordenadores que las utilizan, como el que estás usando para leer este artículo, los llamamos <em>ordenadores clásicos</em>.</p>
+<p>En los ordenadores cuánticos, la variable básica es el <em>qubit:</em> una variante cuántica del bit. Tienen exactamente las mismas restricciones que los bits normales: sólo pueden almacenar una única pieza binaria de información y sólo pueden darnos una salida de “0” o “1”. Sin embargo, también pueden manipularse de forma que sólo puede describir la mecánica cuántica. Esto nos da nuevas puertas con las que jugar y nos permite encontrar nuevas formas de diseñar algoritmos.</p>
+<p>Para entender bien estas nuevas puertas, primero tenemos que entender cómo se escriben los estados de los qubits. Para ello utilizaremos las matemáticas de vectores, matrices y <a class="reference internal" href="numeros_complejos.html#complejos"><span class="std std-ref">números complejos</span></a>. Aunque introduciremos estos conceptos a medida que avancemos, lo mejor es que ya te sientas cómodo con ellos. Se pueden encontrar los conceptos necesarios de álgebra matricial <a href="https://qiskit.org/textbook/ch-appendix/linear_algebra.html" target="_blank"> en este enlace (en inglés)</a>.</p>
+<section id="classical-vs-quantum-bits-a-id-cvsq-a">
+<h2><span class="section-number">5.1. </span>1. Classical vs Quantum Bits <a id="cvsq"></a><a class="headerlink" href="#classical-vs-quantum-bits-a-id-cvsq-a" title="Permalink to this headline">#</a></h2>
+<section id="statevectors-o-vector-de-estados-a-id-statevectors-a">
+<h3><span class="section-number">5.1.1. </span>Statevectors o vector de estados<a id="statevectors"></a><a class="headerlink" href="#statevectors-o-vector-de-estados-a-id-statevectors-a" title="Permalink to this headline">#</a></h3>
+<p id="index-0">En física cuántica utilizamos <em>vectores de estado</em>(o statevectors) para describir el estado de nuestro sistema. Digamos que queremos describir la posición de un coche a lo largo de una pista, este es un sistema clásico por lo que podríamos utilizar un número <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<p><img alt="tracking a car with scalars" src="../_images/car_1.PNG" /></p>
+<div class="math notranslate nohighlight">
+\[ x=4 \]</div>
+<p>Alternativamente, podríamos utilizar una colección de números en un vector llamado <em>vector de estado.</em> Cada elemento del vector de estado contiene la <em>probabilidad de encontrar el coche en un lugar determinado</em>:</p>
+<p><img alt="tracking a car with vectors" src="../_images/car_2.PNG" /></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|x\rangle = \begin{bmatrix} 0\\ \vdots \\ 0 \\ 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix} 
+            \begin{matrix} \\  \\  \\ \leftarrow \\  \\  \\  \\ \end{matrix}
+             \begin{matrix} \\  \\ \text{Probabilidad} \\ \text{coche esté en} \\ \text{posición 4} \\  \\  \\ \end{matrix}   
+\end{split}\]</div>
+<p>Esto no se limita a la posición, también podríamos mantener un vector de estado de todas las posibles velocidades que podría tener el coche y todos los posibles colores que pudiera tener. Con los sistemas clásicos (como el ejemplo del coche anterior), esto es una tontería, ya que requiere mantener vectores enormes cuando en realidad sólo necesitamos un número. Pero como veremos en este capítulo, los vectores de estado (statevectors) resultan ser una forma muy buena de llevar la cuenta de los sistemas cuánticos, incluidos los ordenadores cuánticos.</p>
+</section>
+<section id="qubit-notation-a-id-notation-a">
+<h3><span class="section-number">5.1.2. </span>1.2 Qubit Notation <a id="notation"></a><a class="headerlink" href="#qubit-notation-a-id-notation-a" title="Permalink to this headline">#</a></h3>
+<p>Los bits clásicos siempre tienen un estado completamente bien definido: o son “0” o son “1” en cada momento del cálculo. No podemos añadir más detalles al estado de un bit. Para escribir el estado de un bit clásico (c), basta con utilizar estos dos valores binarios. Por ejemplo:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>c = 0
+</pre></div>
+</div>
+<p>Esta restricción desaparece en el caso de los bits cuánticos. Para obtener un “0” o un “1” de un qubit, sólo es necesario que esté bien definido cuando se realiza una medición para extraer un resultado. En ese momento, debe comprometerse con una de estas dos opciones. El resto del tiempo, su estado será algo más complejo que un simple valor binario.</p>
+<p>Para ver cómo describirlos, podemos centrarnos primero en los dos casos más sencillos. Como vimos en la última sección, es posible preparar un qubit en un estado para el que definitivamente da el resultado <code class="docutils literal notranslate"><span class="pre">0</span></code> cuando se mide.</p>
+<p>Necesitamos un nombre para este estado. Seamos poco imaginativos y llamémoslo <span class="math notranslate nohighlight">\(0\)</span> . Del mismo modo, existe un estado qubit que tiene la certeza de producir un “1”. Lo llamaremos <span class="math notranslate nohighlight">\(1\)</span>. Estos dos estados se excluyen mutuamente. O bien el qubit da un 0, o bien da un 1. No hay solapamiento. Una forma de representar esto con las matemáticas es utilizar dos vectores ortogonales.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|0\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix} \, \, \, \, |1\rangle =\begin{bmatrix} 0 \\ 1 \end{bmatrix}.
+\end{split}\]</div>
+<p>Esto es mucha notación para asimilar de golpe. En primer lugar, vamos a desentrañar los extraños símbolos utilizados: <span class="math notranslate nohighlight">\(|\)</span> y <span class="math notranslate nohighlight">\(\rangle\)</span>. Su función consiste básicamente en recordarnos que estamos hablando de los vectores que representan los estados de los qubits etiquetados con <span class="math notranslate nohighlight">\(0\)</span> y <span class="math notranslate nohighlight">\(1\)</span>. Esto nos ayuda a distinguirlos de cosas como los valores de bits 0 y 1 o los números 0 y 1. Forma parte de la <em>notación bra-ket</em>, introducida por Dirac.</p>
+<p>Si no estás familiarizado con los vectores, puedes pensar en ellos como listas de números que manipulamos siguiendo ciertas reglas. Si estás familiarizado con los vectores por tus clases de física en el instituto, sabrás que estas reglas hacen que los vectores sean muy adecuados para describir cantidades con una magnitud y una dirección. Por ejemplo, la velocidad de un objeto se describe perfectamente con un vector. Sin embargo, la forma en que utilizamos los vectores para los estados cuánticos es ligeramente distinta a ésta, así que no te aferres demasiado a tu intuición anterior. ¡Es hora de hacer algo nuevo!.</p>
+<p>Con los vectores podemos describir estados más complejos que <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Por ejemplo, consideremos el vector</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+|q_0\rangle = \begin{bmatrix} \tfrac{1}{\sqrt{2}} \\ \tfrac{i}{\sqrt{2}} \end{bmatrix} .
+\end{split}\]</div>
+<p>Para entender lo que significa este estado, tendremos que utilizar las reglas matemáticas para manipular vectores. En concreto, tendremos que entender cómo sumar vectores y cómo multiplicarlos por escalares.</p>
+<p>Como los estados <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> forman una base ortonormal, podemos representar cualquier vector 2D con una combinación de estos dos estados. Esto nos permite escribir el estado de nuestro qubit en la forma alternativa:</p>
+<div class="math notranslate nohighlight">
+\[ |q_0\rangle = \tfrac{1}{\sqrt{2}}|0\rangle + \tfrac{i}{\sqrt{2}}|1\rangle \]</div>
+<p>Este vector, <span class="math notranslate nohighlight">\(|q_0\rangle\)</span> se llama <em>vector de estado</em> del qubit, y nos dice todo lo que podemos saber sobre este qubit. Por ahora, sólo podemos sacar algunas conclusiones sencillas sobre este ejemplo particular de vector de estado: no es enteramente <span class="math notranslate nohighlight">\(|0\rangle\)</span> ni enteramente <span class="math notranslate nohighlight">\(|1\rangle\)</span>. En su lugar, se describe mediante una combinación lineal de ambos. En mecánica cuántica, solemos describir este tipo de combinaciones lineales con la palabra “superposición”.</p>
+<p>Aunque nuestro estado de ejemplo <span class="math notranslate nohighlight">\(|q_0\rangle\)</span> puede expresarse como una superposición de <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>, no deja de ser un estado qubit definido y bien definido. Para ver esto, podemos empezar a explorar cómo se puede manipular un qubit.</p>
+</section>
+<section id="exploring-qubits-with-qiskit-a-id-exploring-qubits-a">
+<h3><span class="section-number">5.1.3. </span>1.3 Exploring Qubits with Qiskit <a id="exploring-qubits"></a><a class="headerlink" href="#exploring-qubits-with-qiskit-a-id-exploring-qubits-a" title="Permalink to this headline">#</a></h3>
+<p>En primer lugar, tenemos que importar todas las herramientas que vamos a necesitar:</p>
+<div class="cell tag_thebelab-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">assemble</span><span class="p">,</span> <span class="n">Aer</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span><span class="p">,</span> <span class="n">plot_bloch_vector</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-1">En Qiskit, utilizamos el objeto <code class="docutils literal notranslate"><span class="pre">QuantumCircuit</span></code> para almacenar nuestros circuitos, esto es esencialmente una lista de las operaciones cuánticas en nuestro circuito y los qubits a los que se aplican.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Creamos un circuito cuántico con un qubit.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-2">En nuestros circuitos cuánticos, nuestros qubits siempre comienzan por defecto en el estado <span class="math notranslate nohighlight">\(|0\rangle\)</span>. Podemos utilizar el método <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> para transformar esto en cualquier estado. Le damos a <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> el vector que queremos en forma de lista, y le decimos qué qubit(s) queremos inicializar en este estado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create a quantum circuit with one qubit</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># Define initial_state as |1&gt;</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Apply initialisation operation to the 0th qubit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>  <span class="c1"># Let&#39;s view our circuit</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema2_representing-qubit-states_7_0.png" src="../_images/Tema2_representing-qubit-states_7_0.png" />
+</div>
+</div>
+<p>A continuación, podemos utilizar uno de los simuladores de Qiskit para ver el estado resultante de nuestro qubit.</p>
+<div class="cell tag_thebelab-init docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>  <span class="c1"># le dice a  Qiskit cómo debe simular el circuito</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para obtener los resultados de nuestro circuito, usamos <code class="docutils literal notranslate"><span class="pre">run</span></code> para ejecutar nuestro circuito, dando el circuito y el backend como argumentos. Luego usamos <code class="docutils literal notranslate"><span class="pre">.result()</span></code> para obtener el resultado de esto:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Create a quantum circuit with one qubit</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># Define initial_state as |1&gt;</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Apply initialisation operation to the 0th qubit</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>   <span class="c1"># Tell simulator to save statevector</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>     <span class="c1"># Create a Qobj from the circuit for the simulator to run</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="c1"># Do the simulation and return the result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>del <code class="docutils literal notranslate"><span class="pre">resultado</span></code>, podemos obtener el vector de estado final usando <code class="docutils literal notranslate"><span class="pre">.get_statevector()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">out_state</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out_state</span><span class="p">)</span> <span class="c1"># Display the output state vector</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.+0.j, 1.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Nota:</strong> Python usa <code class="docutils literal notranslate"><span class="pre">j</span></code> para representar <span class="math notranslate nohighlight">\(i\)</span> en el caso de los números complejos. En la salida anterior vemos un vector con dos números complejos: <code class="docutils literal notranslate"><span class="pre">0.+0.j</span></code> = 0, and <code class="docutils literal notranslate"><span class="pre">1.+0.j</span></code> = 1.</p>
+<p>Midamos ahora nuestro qubit como lo haríamos en un ordenador cuántico real y veamos el resultado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema2_representing-qubit-states_15_0.png" src="../_images/Tema2_representing-qubit-states_15_0.png" />
+</div>
+</div>
+<p>Esta vez, en lugar del vector estado obtendremos los recuentos de los resultados 0 y 1 utilizando <code class="docutils literal notranslate"><span class="pre">.get_counts()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema2_representing-qubit-states_17_0.png" src="../_images/Tema2_representing-qubit-states_17_0.png" />
+</div>
+</div>
+<p>Podemos ver que (como era de esperar) tenemos un 100% de posibilidades de medir <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Esta vez, pongamos nuestro qubit en superposición y veamos qué ocurre. Usaremos el estado <span class="math notranslate nohighlight">\(|q_0\rangle\)</span> de antes en esta sección:</p>
+<div class="math notranslate nohighlight">
+\[ |q_0\rangle = \tfrac{1}{\sqrt{2}}|0\rangle + \tfrac{i}{\sqrt{2}}|1\rangle \]</div>
+<p>Necesitamos añadir estas amplitudes a una lista de Python. Para añadir una amplitud compleja, Python utiliza <code class="docutils literal notranslate"><span class="pre">j</span></code> para la unidad imaginaria (normalmente la llamamos “<span class="math notranslate nohighlight">\(i\)</span>” en términos matemáticos):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>  <span class="c1"># Definimos el estado |q_0&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y entonces repetimos los pasos para inicializar el qubit como antes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Must redefine qc</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1"># Initialize the 0th qubit in the state `initial_state`</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span> <span class="c1"># Save statevector</span>
+<span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span> <span class="c1"># Execute the circuit</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>           <span class="c1"># Print the result</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.70710678+0.j        , 0.        +0.70710678j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema2_representing-qubit-states_22_0.png" src="../_images/Tema2_representing-qubit-states_22_0.png" />
+</div>
+</div>
+<p>Podemos ver que tenemos la misma probabilidad de medir <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Para explicar esto, tenemos que hablar de la medición en programación cuántica.</p>
+</section>
+</section>
+<section id="reglas-de-la-medicion-a-id-rules-measurement-a">
+<h2><span class="section-number">5.2. </span>Reglas de la medición <a id="rules-measurement"></a><a class="headerlink" href="#reglas-de-la-medicion-a-id-rules-measurement-a" title="Permalink to this headline">#</a></h2>
+<p>A continuación se comentan una serie de reglas que hay que tener en cuenta en programación cuántica para hacer las mediciones de los estados de los qubits</p>
+<section id="una-regla-muy-importante-a-id-important-rule-a">
+<h3><span class="section-number">5.2.1. </span>Una regla muy importante <a id="important-rule"></a><a class="headerlink" href="#una-regla-muy-importante-a-id-important-rule-a" title="Permalink to this headline">#</a></h3>
+<p>Existe una regla simple para la medición de los estados cuánticos. Para encontrar la probabilidad de medir un estado <span class="math notranslate nohighlight">\(|\psi \rangle\)</span> en el estado <span class="math notranslate nohighlight">\(|x\rangle\)</span> hacemos lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[p(|x\rangle) = | \langle x| \psi \rangle|^2\]</div>
+<p>Los símbolos <span class="math notranslate nohighlight">\(\langle\)</span> y <span class="math notranslate nohighlight">\(|\)</span> nos dicen que <span class="math notranslate nohighlight">\(\langle x |\)</span> es un vector fila y los símbolos <span class="math notranslate nohighlight">\(|\)</span> y <span class="math notranslate nohighlight">\(\rangle\)</span> nos dicen que <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> es un vector columna. En mecánica cuántica llamamos a los vectores columna <em>kets</em> y a los vectores fila <em>bras.</em> Juntos forman la notación <em>bra-ket</em>. Cualquier ket <span class="math notranslate nohighlight">\(|a\rangle\)</span> tiene su correspondiente bra <span class="math notranslate nohighlight">\(\langle a|\)</span>, y los unos de convierten en los otros utilizando la transpuesta conjugada.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sabemos que un ket (vector columna) se representa de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\quad|a\rangle = \begin{bmatrix}a_0 \\ a_1 \\ \vdots \\ a_n \end{bmatrix}\end{split}\]</div>
+<p>En el método de transpuesta conjugada, la matriz se transpone y los elementos se convierten en números complejos conjugados (representado por la operación “<span class="math notranslate nohighlight">\(*\)</span>”), donde el conjugado complejo (”<span class="math notranslate nohighlight">\(*\)</span>”) de un número complejo es un número con una parte real igual y una parte imaginaria igual en magnitud pero de signo opuesto. De este modo se obtiene el correspondiente <em>bra</em> (vector fila)  de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\langle a| = \begin{bmatrix}a_0^*, &amp; a_1^*, &amp; \dots &amp; a_n^* \end{bmatrix}\]</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h3>Producto interno</h3>   
+Hay distintas formas de multiplicar vectores, aquí vamos a explicar en qué consiste el producto interno de dos vectores. En esta guía, utilizamos el producto interior entre un *bra* (vector fila) y un *ket* (vector columna), y sigue esta regla:
+<div class="math notranslate nohighlight">
+\[\begin{split}\langle a| = \begin{bmatrix}a_0^*, &amp; a_1^*, &amp; \dots &amp; a_n^* \end{bmatrix}, \quad |b\rangle = \begin{bmatrix}b_0 \\ b_1 \\ \vdots \\ b_n \end{bmatrix}\end{split}\]</div>
+<p>y entonces se tiene:</p>
+<div class="math notranslate nohighlight">
+\[ \langle a|b\rangle =a_0^* b_0 + a_1^* b_1 \dots a_n^* b_n\]</div>
+<p>Vemos que el producto interno de dos vectores <em>siempre nos da un escalar</em>. Una cosa útil para recordar es que el producto interno de dos vectores ortogonales es 0, por ejemplo si tenemos los vectores ortogonales <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\langle1|0\rangle = \begin{bmatrix} 0 &amp; 1\end{bmatrix}\begin{bmatrix}1 \\ 0\end{bmatrix} = 0\end{split}\]</div>
+<p>Además, recuerde que los vectores <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> también están normalizados (las magnitudes son iguales a 1):</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+      \begin{aligned} 
+      \langle0|0\rangle &amp; = \begin{bmatrix} 1 &amp; 0\end{bmatrix}\begin{bmatrix}1 \\ 0\end{bmatrix} = 1 \\
+      \langle1|1\rangle &amp; = \begin{bmatrix} 0 &amp; 1\end{bmatrix}\begin{bmatrix}0 \\ 1\end{bmatrix} = 1
+      \end{aligned}
+\end{split}\]</div>
+</div>
+<p>En la ecuación anterior, <span class="math notranslate nohighlight">\(|x\rangle\)</span> puede ser cualquier estado qubit. Para hallar la probabilidad de medir <span class="math notranslate nohighlight">\(|x\rangle\)</span>, tomamos el producto interno de <span class="math notranslate nohighlight">\(|x\rangle\)</span> y el estado que estamos midiendo (en este caso <span class="math notranslate nohighlight">\(|\psi\rangle\)</span>), y elevamos la magnitud al cuadrado. Esto puede parecer un poco enrevesado, pero pronto se convertirá en algo natural.</p>
+<p>Si nos fijamos en el estado <span class="math notranslate nohighlight">\(|q_0\rangle\)</span> de antes, podemos ver que la probabilidad de medir <span class="math notranslate nohighlight">\(|0\rangle\)</span> es efectivamente 0,5$:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+|q_0\rangle &amp; = \tfrac{1}{\sqrt{2}}|0\rangle + \tfrac{i}{\sqrt{2}}|1\rangle \\
+\langle 0| q_0 \rangle  &amp; = \tfrac{1}{\sqrt{2}}\langle 0|0\rangle + \tfrac{i}{\sqrt{2}}\langle 0|1\rangle \\
+&amp; = \tfrac{1}{\sqrt{2}}\cdot 1 +  \tfrac{i}{\sqrt{2}} \cdot 0\\
+&amp; = \tfrac{1}{\sqrt{2}}\\
+|\langle 0| q_0 \rangle|^2 &amp; = \tfrac{1}{2}
+\end{aligned}
+\end{split}\]</div>
+<p>Debes verificar la probabilidad de medir <span class="math notranslate nohighlight">\(|1\rangle\)</span> como ejercicio.</p>
+<p>Esta regla establece cómo obtenemos información de los estados cuánticos. Por tanto, es muy importante para todos los que hacemos en computación cuántica. También implica de inmediato varios hechos importantes, que vemos en el siguiente apartado.</p>
+</section>
+<section id="implicaciones-de-esta-norma-a-id-implications-a">
+<h3><span class="section-number">5.2.2. </span>Implicaciones de esta norma <a id="implications"></a><a class="headerlink" href="#implicaciones-de-esta-norma-a-id-implications-a" title="Permalink to this headline">#</a></h3>
+<p>A continuación pasamos a ver cuales son las implicaciones a las que se hace mención en el párrafo anterior.</p>
+</section>
+<section id="normalizacion">
+<h3><span class="section-number">5.2.3. </span>Normalización.<a class="headerlink" href="#normalizacion" title="Permalink to this headline">#</a></h3>
+<p>La regla nos muestra que las amplitudes están relacionadas con las probabilidades. Si queremos que las probabilidades sumen 1 (¡y así debe ser!), tenemos que asegurarnos de que el vector de estado está correctamente normalizado. En concreto, necesitamos que la magnitud del vector de estado sea 1.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \langle\psi|\psi\rangle = 1 \\ \end{split}\]</div>
+<p>Entonces si:</p>
+<div class="math notranslate nohighlight">
+\[ |\psi\rangle = \alpha|0\rangle + \beta|1\rangle \]</div>
+<p>Se tiene que:</p>
+<div class="math notranslate nohighlight">
+\[ |\alpha|^2 + |\beta|^2 = 1 \]</div>
+<p>Esto explica los factores de <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> que has visto a lo largo de este capítulo. De hecho, si intentamos dar a <code class="docutils literal notranslate"><span class="pre">initialize()</span></code> un vector que no esté normalizado, nos dará un error:</p>
+<div class="cell tag_raises-exception docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vector</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">QiskitError</span><span class="g g-Whitespace">                               </span>Traceback (most recent call last)
+<span class="nn">Input In [12],</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">vector</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\extensions\quantum_initializer\initializer.py:191,</span> in <span class="ni">initialize</span><span class="nt">(self, params, qubits)</span>
+<span class="g g-Whitespace">    </span><span class="mi">188</span>     <span class="n">qubits</span> <span class="o">=</span> <span class="p">[</span><span class="n">qubits</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">189</span> <span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">qubits</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+<span class="ne">--&gt; </span><span class="mi">191</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Initialize</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">),</span> <span class="n">qubits</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\extensions\quantum_initializer\initializer.py:57,</span> in <span class="ni">Initialize.__init__</span><span class="nt">(self, params, num_qubits)</span>
+<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">num_qubits</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="sa">r</span><span class="sd">&quot;&quot;&quot;Create new initialize composite.</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     Args:</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span><span class="sd">             and the remaining 3 qubits to be initialized to :math:`|0\rangle`.</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">57</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_stateprep</span> <span class="o">=</span> <span class="n">StatePreparation</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">59</span>     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;initialize&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stateprep</span><span class="o">.</span><span class="n">num_qubits</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stateprep</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\library\data_preparation\state_preparation.py:99,</span> in <span class="ni">StatePreparation.__init__</span><span class="nt">(self, params, num_qubits, inverse, label)</span>
+<span class="g g-Whitespace">     </span><span class="mi">96</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from_label</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> <span class="bp">self</span><span class="o">.</span><span class="n">_from_int</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">99</span> <span class="n">num_qubits</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_num_qubits</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span> <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">params</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="k">else</span> <span class="n">params</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">num_qubits</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_label</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\envs\py39\lib\site-packages\qiskit\circuit\library\data_preparation\state_preparation.py:202,</span> in <span class="ni">StatePreparation._get_num_qubits</span><span class="nt">(self, num_qubits, params)</span>
+<span class="g g-Whitespace">    </span><span class="mi">200</span>     <span class="c1"># Check if probabilities (amplitudes squared) sum to 1</span>
+<span class="g g-Whitespace">    </span><span class="mi">201</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">math</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">abs_tol</span><span class="o">=</span><span class="n">_EPS</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">202</span>         <span class="k">raise</span> <span class="n">QiskitError</span><span class="p">(</span><span class="s2">&quot;Sum of amplitudes-squared does not equal one.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">204</span>     <span class="n">num_qubits</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num_qubits</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">205</span> <span class="k">return</span> <span class="n">num_qubits</span>
+
+<span class="ne">QiskitError</span>: &#39;Sum of amplitudes-squared does not equal one.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="quick-ejercicios">
+<h4><span class="section-number">5.2.3.1. </span>Quick Ejercicios<a class="headerlink" href="#quick-ejercicios" title="Permalink to this headline">#</a></h4>
+<ol class="simple">
+<li><p>Crear un vector de estado que dará una probabilidad de <span class="math notranslate nohighlight">\(1/3\)</span> de medir <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p></li>
+<li><p>Crear un vector de estado diferente que dará las mismas probabilidades de medición.</p></li>
+<li><p>Verificar que la probabilidad de medir <span class="math notranslate nohighlight">\(|1\rangle\)</span> para estos dos estados es de <span class="math notranslate nohighlight">\(2/3\)</span>.</p></li>
+</ol>
+<p>Puedes comprobar tu respuesta en el widget de abajo (acepta respuestas con ±1% de precisión, puedes usar términos numpy como <code class="docutils literal notranslate"><span class="pre">pi</span></code> y <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> en el vector):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the code in this cell to interact with the widget</span>
+<span class="kn">from</span> <span class="nn">qiskit_textbook.widgets</span> <span class="kn">import</span> <span class="n">state_vector_exercise</span>
+<span class="n">state_vector_exercise</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "f434da0a7bcd414493ad702f92adeac8"}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "118d529087e44791b3cadf264bddc4a8"}
+</script></div>
+</div>
+</section>
+</section>
+<section id="medicion-alternativa">
+<h3><span class="section-number">5.2.4. </span>Medición alternativa​.<a class="headerlink" href="#medicion-alternativa" title="Permalink to this headline">#</a></h3>
+<p>La regla de medida nos da la probabilidad <span class="math notranslate nohighlight">\(p(|x\rangle)\)</span> de que un estado <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> se mida como <span class="math notranslate nohighlight">\(|x\rangle\)</span>. En ninguna parte nos dice que <span class="math notranslate nohighlight">\(|x\rangle\)</span> sólo puede ser <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p>
+<p>Las medidas que hemos considerado hasta ahora son, de hecho, sólo una de las infinitas formas posibles de medir un qubit. Para cualquier par ortogonal de estados, podemos definir una medida que haga que un qubit elija entre los dos.</p>
+<p>Esta posibilidad se estudiará más a fondo en la siguiente sección. Por ahora, sólo hay que tener en cuenta que <span class="math notranslate nohighlight">\(|x\rangle\)</span> no se limita a ser simplemente <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p>
+</section>
+<section id="fase-global">
+<h3><span class="section-number">5.2.5. </span>Fase global.<a class="headerlink" href="#fase-global" title="Permalink to this headline">#</a></h3>
+<p>Sabemos que medir el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span> nos dará la salida <code class="docutils literal notranslate"><span class="pre">1</span></code> con certeza. Pero también somos capaces de escribir estados como​ el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{bmatrix}0 \\ i\end{bmatrix} = i|1\rangle.\end{split}\]</div>
+<p>Para ver cómo se comporta, aplicamos la regla de la medida vista anteriormente.</p>
+<div class="math notranslate nohighlight">
+\[ |\langle x| (i|1\rangle) |^2 = | i \langle x|1\rangle|^2 = |\langle x|1\rangle|^2 \]</div>
+<p>Aquí encontramos que el factor de <span class="math notranslate nohighlight">\(i\)</span> desaparece una vez que tomamos la magnitud del número complejo. Este efecto es completamente independiente del estado medido <span class="math notranslate nohighlight">\(|x\rangle\)</span>. No importa qué medida estemos considerando, las probabilidades para el estado <span class="math notranslate nohighlight">\(i|1\rangle\)</span> son idénticas a las de <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Dado que las mediciones son la única forma de extraer información de un qubit, esto implica que estos dos estados son equivalentes en todos los aspectos físicamente relevantes.</p>
+<p>De forma más general, nos referimos a cualquier factor global <span class="math notranslate nohighlight">\(\gamma\)</span> sobre un estado para el que <span class="math notranslate nohighlight">\(|\gamma|=1\)</span> como una “fase global”. <em>Los estados que difieren sólo por una fase global son físicamente indistinguibles</em>.</p>
+<div class="math notranslate nohighlight">
+\[ |\langle x| ( \gamma |a\rangle) |^2 = | \gamma \langle x|a\rangle|^2 = |\langle x|a\rangle|^2 \]</div>
+<p>Nótese que esto es distinto de la diferencia de fase <em>entre</em> los términos de una superposición, que se conoce como “fase relativa”. Esto adquiere relevancia cuando consideramos distintos tipos de medición y múltiples qubits.</p>
+</section>
+<section id="el-efecto-observado">
+<h3><span class="section-number">5.2.6. </span>El efecto observado.<a class="headerlink" href="#el-efecto-observado" title="Permalink to this headline">#</a></h3>
+<p>Sabemos que las amplitudes contienen información sobre la probabilidad de que encontremos el qubit en un estado específico, pero una vez que hemos medido el qubit, sabemos con certeza cuál es el estado del qubit. Por ejemplo, si medimos un qubit en el estado</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \alpha|0\rangle + \beta|1\rangle\]</div>
+<p>Y encontrarlo en el estado <span class="math notranslate nohighlight">\(|0\rangle\)</span>, si volvemos a medir, hay un 100% de posibilidades de encontrar el qubit en el estado <span class="math notranslate nohighlight">\(|0\rangle\)</span>. Esto significa que el acto de medir <em>cambia</em> el estado de nuestros qubits.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} |q\rangle = \begin{bmatrix} \alpha \\ \beta \end{bmatrix} \xrightarrow{\text{Measure }|0\rangle} |q\rangle = |0\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}\end{split}\]</div>
+<p>A este efecto se le suele llamar “colapsar” el estado del qubit. Se trata de un efecto muy potente que debe utilizarse con prudencia. Por ejemplo, si midiéramos constantemente cada uno de nuestros qubits para controlar su valor en cada punto de un cálculo, siempre estarían en un estado bien definido de <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Como tales, no se diferenciarían de los bits clásicos y nuestra computación podría sustituirse fácilmente por una computación clásica. Para lograr una computación verdaderamente cuántica debemos permitir que los qubits exploren estados más complejos. Por tanto, las mediciones sólo se utilizan cuando necesitamos extraer un resultado. Esto significa que solemos colocar todas las mediciones <em>al final de nuestro circuito cuántico</em>.</p>
+<p>Podemos demostrarlo utilizando el simulador de vectores de estado de Qiskit. Inicialicemos un qubit en superposición:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># We are redefining qc</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="o">+</span><span class="mf">1.</span><span class="n">j</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">]</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema2_representing-qubit-states_31_0.png" src="../_images/Tema2_representing-qubit-states_31_0.png" />
+</div>
+</div>
+<p>Esto debería inicializar nuestro qubit en el estado:</p>
+<div class="math notranslate nohighlight">
+\[ |q\rangle = \tfrac{i}{\sqrt{2}}|0\rangle + \tfrac{1}{\sqrt{2}}|1\rangle \]</div>
+<p>Podemos comprobarlo con el simulador:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">))</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qubit State = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Qubit State = Statevector([0.        +0.70710678j, 0.70710678+0.j        ],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos ver aquí que el qubit se inicializa en el estado <code class="docutils literal notranslate"><span class="pre">[0.+0.70710678j</span> <span class="pre">0.70710678+0.j]</span></code>, como esperábamos.</p>
+<p>Creemos ahora un circuito en el que midamos este qubit:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># We are redefining qc</span>
+<span class="n">initial_state</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="o">+</span><span class="mf">1.</span><span class="n">j</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mf">0.</span><span class="n">j</span><span class="p">]</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema2_representing-qubit-states_35_0.png" src="../_images/Tema2_representing-qubit-states_35_0.png" />
+</div>
+</div>
+<p>Cuando simulamos este circuito completo, podemos ver que una de las amplitudes es siempre 0:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qobj</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">qobj</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;State of Measured Qubit = &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>State of Measured Qubit = Statevector([0.+0.j, 1.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Puedes volver a ejecutar esta celda unas cuantas veces para reinicializar el qubit y medirlo de nuevo. Observarás que cualquiera de los dos resultados es igualmente probable, pero que el estado del qubit nunca es una superposición de <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Curiosamente, la fase global en el estado <span class="math notranslate nohighlight">\(|0\rangle\)</span> sobrevive, pero como se trata de una fase global, nunca podremos medirla en un ordenador cuántico real.</p>
+</section>
+<section id="una-nota-sobre-los-simuladores-cuanticos">
+<h3><span class="section-number">5.2.7. </span>Una nota sobre los simuladores cuánticos.<a class="headerlink" href="#una-nota-sobre-los-simuladores-cuanticos" title="Permalink to this headline">#</a></h3>
+<p>Podemos ver que escribir el estado de un qubit requiere llevar la cuenta de dos números complejos, pero al utilizar un ordenador cuántico real sólo recibiremos una respuesta de sí o no (<code class="docutils literal notranslate"><span class="pre">0</span></code> o <code class="docutils literal notranslate"><span class="pre">1</span></code>) para cada qubit. La salida de un ordenador cuántico de 10 qubits tendrá este aspecto:</p>
+<p><code class="docutils literal notranslate"><span class="pre">0110111110</span></code></p>
+<p>Sólo 10 bits, sin superposición ni amplitudes complejas. Cuando utilizamos un ordenador cuántico real, no podemos ver los estados de nuestros qubits a mitad del cálculo, ¡ya que los destruiríamos!. Este comportamiento no es ideal para el aprendizaje, por lo que Qiskit proporciona diferentes simuladores cuánticos: Por defecto, el <code class="docutils literal notranslate"><span class="pre">aer_simulator</span></code> imita la ejecución de un ordenador cuántico real, pero también te permitirá echar un vistazo a los estados cuánticos antes de la medición si incluimos ciertas instrucciones en nuestro circuito. Por ejemplo, aquí hemos incluido la instrucción <code class="docutils literal notranslate"><span class="pre">.save_statevector()</span></code>, lo que significa que podemos usar <code class="docutils literal notranslate"><span class="pre">.get_statevector()</span></code> sobre el resultado de la simulación.</p>
+</section>
+</section>
+<section id="la-esfera-de-bloch-a-id-bloch-sphere-a">
+<h2><span class="section-number">5.3. </span>La esfera de  Bloch  <a id="bloch-sphere"></a><a class="headerlink" href="#la-esfera-de-bloch-a-id-bloch-sphere-a" title="Permalink to this headline">#</a></h2>
+<p>Un elemento muy importante para representar qubit es la denominada esfera de Bloch que a continuación se pasa a presentar.</p>
+<section id="describiendo-los-estados-de-un-qubit-a-id-bloch-sphere-1-a">
+<h3><span class="section-number">5.3.1. </span>Describiendo los estados de un qubit. <a id="bloch-sphere-1"></a><a class="headerlink" href="#describiendo-los-estados-de-un-qubit-a-id-bloch-sphere-1-a" title="Permalink to this headline">#</a></h3>
+<p>Hemos visto anteriormente en este capítulo que el estado general de un qubit (<span class="math notranslate nohighlight">\(|q\rangle\)</span>) es:</p>
+<div class="math notranslate nohighlight">
+\[
+|q\rangle = \alpha|0\rangle + \beta|1\rangle
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\alpha, \beta \in \mathbb{C}
+\]</div>
+<p>(La segunda línea nos dice que <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span> son números complejos). Las dos primeras implicaciones de la sección 2 nos dicen que no podemos diferenciar entre algunos de estos estados. Esto significa que podemos ser más específicos en nuestra descripción del qubit.</p>
+<p>En primer lugar, como no podemos medir la fase global, sólo podemos medir la diferencia de fase entre los estados <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>. En lugar de que <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span> sean complejos, podemos limitarlos a los números reales y añadir un término que nos diga la fase relativa entre ellos:</p>
+<div class="math notranslate nohighlight">
+\[
+|q\rangle = \alpha|0\rangle + e^{i\phi}\beta|1\rangle
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\alpha, \beta, \phi \in \mathbb{R}
+\]</div>
+<p>Por último, dado que el estado del qubit debe estar normalizado, i.e.</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\alpha^2 + \beta^2} = 1
+\]</div>
+<p>Podemos usar la identidad trigonométrica:</p>
+<div class="math notranslate nohighlight">
+\[
+\sqrt{\sin^2{x} + \cos^2{x}} = 1
+\]</div>
+<p>para describir los reales <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span> en términos de una variable, <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha = \cos{\tfrac{\theta}{2}}, \quad \beta=\sin{\tfrac{\theta}{2}}
+\]</div>
+<p>A partir de aquí podemos describir el estado de cualquier qubit utilizando las dos variables <span class="math notranslate nohighlight">\(\phi\)</span> y <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+|q\rangle = \cos{\tfrac{\theta}{2}}|0\rangle + e^{i\phi}\sin{\tfrac{\theta}{2}}|1\rangle
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\theta, \phi \in \mathbb{R}
+\]</div>
+</section>
+<section id="representacion-visual-del-estado-de-un-qubit-a-id-bloch-sphere-2-a">
+<h3><span class="section-number">5.3.2. </span>Representación visual del estado de un qubit. <a id="bloch-sphere-2"></a><a class="headerlink" href="#representacion-visual-del-estado-de-un-qubit-a-id-bloch-sphere-2-a" title="Permalink to this headline">#</a></h3>
+<p>Queremos trazar el estado general de nuestro qubit:</p>
+<div class="math notranslate nohighlight">
+\[
+|q\rangle = \cos{\tfrac{\theta}{2}}|0\rangle + e^{i\phi}\sin{\tfrac{\theta}{2}}|1\rangle
+\]</div>
+<p>Si interpretamos <span class="math notranslate nohighlight">\(\theta\)</span> y <span class="math notranslate nohighlight">\(\phi\)</span> como coordenadas esféricas (<span class="math notranslate nohighlight">\(r = 1\)</span>, ya que la magnitud del estado qubit es <span class="math notranslate nohighlight">\(1\)</span>), podemos representar cualquier estado qubit individual en la superficie de una esfera, conocida como la esfera <em>Bloch</em>.</p>
+<p>A continuación hemos representado un qubit en el estado <span class="math notranslate nohighlight">\(|{+}\rangle\)</span>. En este caso, <span class="math notranslate nohighlight">\(\theta = \pi/2\)</span> y <span class="math notranslate nohighlight">\(\phi = 0\)</span>.</p>
+<p>Qiskit tiene una función para trazar una esfera Bloch, <code class="docutils literal notranslate"><span class="pre">plot_bloch_vector()</span></code>. Esta función acepta coordenadas cartesianas por defecto, pero también puede aceptar coordenadas esféricas pasando el argumento <code class="docutils literal notranslate"><span class="pre">coord_type='spherical'.</span></code></p>
+<p>También se puede consultar <a href="https://javafxpert.github.io/grok-bloch/" target="_blank"> esta interactiva esfera de Bloch</a> .</p>
+<p>Desde qiskit podemos hacer esta representación de la siguiente manera.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_vector</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># [Radius, Theta, Phi]</span>
+<span class="n">plot_bloch_vector</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">coord_type</span><span class="o">=</span><span class="s1">&#39;spherical&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Tema2_representing-qubit-states_40_0.png" src="../_images/Tema2_representing-qubit-states_40_0.png" />
+</div>
+</div>
+<section id="nota-aclaratoria">
+<h4><span class="section-number">5.3.2.1. </span>Nota aclaratoria.<a class="headerlink" href="#nota-aclaratoria" title="Permalink to this headline">#</a></h4>
+<p>Cuando se aprende por primera vez sobre los estados de los qubits, es fácil confundir el <em>vector de estado</em> de los qubits con su <em>vector Bloch</em>. Recuerda que el vector de estado es el vector del que hablamos al principio de este apartado, que contiene las amplitudes de los dos estados en los que puede estar nuestro qubit. El vector de Bloch es una herramienta de visualización que mapea el vector de estado complejo 2D en un espacio real 3D.</p>
+</section>
+<section id="id1">
+<h4><span class="section-number">5.3.2.2. </span>Quick Ejercicios<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
+<p>Utilizar <code class="docutils literal notranslate"><span class="pre">plot_bloch_vector()</span></code> para dibujar un qubit en los siguientes estados:</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(|0\rangle\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|1\rangle\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\tfrac{1}{\sqrt{2}}(|0\rangle + |1\rangle)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\tfrac{1}{\sqrt{2}}(|0\rangle - i|1\rangle)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\tfrac{1}{\sqrt{2}}\begin{bmatrix}i\\1\end{bmatrix}\)</span></p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit.tools.jupyter</span>
+<span class="o">%</span><span class="k">qiskit_version_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><h3>Version Information</h3><table><tr><th>Qiskit Software</th><th>Version</th></tr><tr><td><code>qiskit-terra</code></td><td>0.22.3</td></tr><tr><td><code>qiskit-aer</code></td><td>0.11.2</td></tr><tr><td><code>qiskit-ibmq-provider</code></td><td>0.19.2</td></tr><tr><td><code>qiskit</code></td><td>0.39.4</td></tr><tr><th>System information</th></tr><tr><td>Python version</td><td>3.9.13</td></tr><tr><td>Python compiler</td><td>MSC v.1929 64 bit (AMD64)</td></tr><tr><td>Python build</td><td>main, May 27 2022 16:51:29</td></tr><tr><td>OS</td><td>Windows</td></tr><tr><td>CPUs</td><td>4</td></tr><tr><td>Memory (Gb)</td><td>11.799663543701172</td></tr><tr><td colspan='2'>Tue Jan 17 00:36:44 2023 Hora estándar romance</td></tr></table></div></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"0e81d43fa6d64dd2ac30b16e3ea086bb": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "73cdf2fbd4934eb884800fa9bb3a5a99": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "118d529087e44791b3cadf264bddc4a8": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_0e81d43fa6d64dd2ac30b16e3ea086bb", "placeholder": "\u200b", "style": "IPY_MODEL_73cdf2fbd4934eb884800fa9bb3a5a99", "value": "<pre></pre>"}}, "8a38e24e16aa4841b8a996af63301370": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "5em"}}, "3532499f45e647ae968df7f24580d877": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "f295342155ee4d3bbac7cc4bc2b47f79": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "", "description": "Check", "disabled": false, "icon": "", "layout": "IPY_MODEL_8a38e24e16aa4841b8a996af63301370", "style": "IPY_MODEL_3532499f45e647ae968df7f24580d877", "tooltip": ""}}, "32b43bcb52bc4ceaa787946f131e72b6": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "54826dc323b343dea3ae4cae406774d9": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e1351ae2039b426780c78c5b3c4020de": {"model_name": "TextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "TextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "TextView", "continuous_update": true, "description": "", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_32b43bcb52bc4ceaa787946f131e72b6", "placeholder": "Type something", "style": "IPY_MODEL_54826dc323b343dea3ae4cae406774d9", "value": "[1, 0]"}}, "6c52c442cdf24e3fa3fd58c3f8633660": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "016ff8b060c54f5490f927ff18f30102": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "c5f8c89132b24d6f8335c1c05592cc41": {"model_name": "LabelModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "LabelModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "LabelView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_6c52c442cdf24e3fa3fd58c3f8633660", "placeholder": "\u200b", "style": "IPY_MODEL_016ff8b060c54f5490f927ff18f30102", "value": "State Vector:"}}, "3c46cbf6446a44b7bab903ea565078be": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "65b0f68e424840d7bb6037f21349558d": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_e1351ae2039b426780c78c5b3c4020de", "IPY_MODEL_f295342155ee4d3bbac7cc4bc2b47f79"], "layout": "IPY_MODEL_3c46cbf6446a44b7bab903ea565078be"}}, "a79854650a3540a0b5c9f8f17144e7ed": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "f434da0a7bcd414493ad702f92adeac8": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_c5f8c89132b24d6f8335c1c05592cc41", "IPY_MODEL_65b0f68e424840d7bb6037f21349558d"], "layout": "IPY_MODEL_a79854650a3540a0b5c9f8f17144e7ed"}}, "427602aab66f48d19fd2b1295fd8c3cd": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 10px 0px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "c43fa8509459453bba88a2604929aab0": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "b80acb286f3940128cb2e52bbbb1851a": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_427602aab66f48d19fd2b1295fd8c3cd", "placeholder": "\u200b", "style": "IPY_MODEL_c43fa8509459453bba88a2604929aab0", "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}, "bd0a5745226a4b7e86764f1f59871370": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": "right", "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": "0px 0px 0px 0px", "right": null, "top": null, "visibility": null, "width": "70px"}}, "eb0cce6d760046d38c09f43b96dc72ab": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "46a8b606a89b49b5a6b3ddd6ade92535": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "primary", "description": "Clear", "disabled": false, "icon": "", "layout": "IPY_MODEL_bd0a5745226a4b7e86764f1f59871370", "style": "IPY_MODEL_eb0cce6d760046d38c09f43b96dc72ab", "tooltip": ""}}, "094cc23402334d0ca729681bfa5e2537": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": "\n                                       \". . . . right \"\n                                        ", "grid_template_columns": "20% 20% 20% 20% 20%", "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "f0f0545fa0d041ea9ddae58fa541f12e": {"model_name": "GridBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "GridBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "GridBoxView", "box_style": "", "children": ["IPY_MODEL_46a8b606a89b49b5a6b3ddd6ade92535"], "layout": "IPY_MODEL_094cc23402334d0ca729681bfa5e2537"}}, "748abd9f5ff84bad812a3b4b9ff79e97": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "190px"}}, "cdf3b11807b0414eaf52673ec5aff38e": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "34e703296f6b42e087fc5a2e7f448d4c": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_748abd9f5ff84bad812a3b4b9ff79e97", "placeholder": "\u200b", "style": "IPY_MODEL_cdf3b11807b0414eaf52673ec5aff38e", "value": "<h5>Job ID</h5>"}}, "3d9d0cfa7cef4d5bb69d8f2b3480fec3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "145px"}}, "c5c065c2321e46a1a75c99adfc4f7b10": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d33b74c015ce4a5aaae24bf3b82b056e": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3d9d0cfa7cef4d5bb69d8f2b3480fec3", "placeholder": "\u200b", "style": "IPY_MODEL_c5c065c2321e46a1a75c99adfc4f7b10", "value": "<h5>Backend</h5>"}}, "f08f49a66a774585ae0ad29636e9175f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "95px"}}, "e9b91b8b1b1e4191a886296366e0104b": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "58706e8775fe4e19b1c514a416d7ce00": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_f08f49a66a774585ae0ad29636e9175f", "placeholder": "\u200b", "style": "IPY_MODEL_e9b91b8b1b1e4191a886296366e0104b", "value": "<h5>Status</h5>"}}, "7f7a4603dadb402dbe9dcf0aa612e440": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "70px"}}, "94a61604f2f0462d9457698eddb71d92": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "f8095d8f8f59449b8b2e08578061d37f": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_7f7a4603dadb402dbe9dcf0aa612e440", "placeholder": "\u200b", "style": "IPY_MODEL_94a61604f2f0462d9457698eddb71d92", "value": "<h5>Queue</h5>"}}, "801c763db825418aace13a93be8c4f86": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "8e8f815a60e24b16b65487536116ad13": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "644691ec3fe74b929c47b0d51f0a5ced": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_801c763db825418aace13a93be8c4f86", "placeholder": "\u200b", "style": "IPY_MODEL_8e8f815a60e24b16b65487536116ad13", "value": "<h5>Message</h5>"}}, "27d9c5f785554ceea1cf8c8a44d33dff": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 0px 37px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "600px"}}, "38a31b06199e44a0883a9b999714b368": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_34e703296f6b42e087fc5a2e7f448d4c", "IPY_MODEL_d33b74c015ce4a5aaae24bf3b82b056e", "IPY_MODEL_58706e8775fe4e19b1c514a416d7ce00", "IPY_MODEL_f8095d8f8f59449b8b2e08578061d37f", "IPY_MODEL_644691ec3fe74b929c47b0d51f0a5ced"], "layout": "IPY_MODEL_27d9c5f785554ceea1cf8c8a44d33dff"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="Tema1_atoms-computation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">4. </span>La computación</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Tema3_single-qubit-gates.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Puertas cuánticas simples</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Miguel Rodríguez<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
