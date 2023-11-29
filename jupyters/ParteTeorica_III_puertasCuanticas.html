@@ -1,0 +1,1281 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>4. Introducción &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/ParteTeorica_III_puertasCuanticas';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Introducción" href="Parte_teorica_IV_algebra.html" />
+    <link rel="prev" title="3. Introducción" href="ParteTeorica_II.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">16. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyters/ParteTeorica_III_puertasCuanticas.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-logicas-clasicas-reversibles">4.1. Puertas lógicas clásicas reversibles.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-cuanticas-muy-comunes-sobre-un-qubit">4.2. Puertas cuánticas muy comunes sobre un qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-cuantica-identidad">4.2.1. Puerta cuántica identidad.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-pauli-x-gate">4.2.2. La puerta de Pauli X-Gate.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-pauli-y-gate">4.2.3. La puerta de Pauli Y-Gate.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-pauli-z">4.2.4. La puerta de Pauli Z</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-gate">4.2.5. Phase gate.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-t">4.2.6. Puerta T.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-de-hadamard">4.2.7. Puerta de Hadamard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-general-sobre-un-qubit">4.2.8. Puerta general sobre un qubit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dibujar-circuitos-cuanticos">4.3. Dibujar circuitos cuánticos.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizando-circuitos-cuanticos-con-qiskit">4.3.1. Visualizando circuitos cuánticos con qiskit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizar-la-salida">4.3.2. Personalizar la salida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizacion-de-la-salida">4.3.3. Personalización de la salida.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funcion-circuit-drawer">4.3.4. La función circuit_drawer().</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-con-quirk">4.3.5. Visualización con quirk .</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<h1><span class="section-number">4. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+<p>En el mundo de la programación tradicional, las puertas lógicas actúan sobre los bits. Un panorama similar existe en el mundo de la programación cuántica, de tal manera que en este caso las puertas cuánticas actúan sobre los qubits. De estas puertas cuánticas nos ocuparemos en esta sección.</p>
+<p>Una puerta cuántica, lo que hace es transformar el estado de un qubit en otro estado. Para denotar estas puertas cuánticas, vamos a utilizar la notación de <em>U</em> (inical de unitary). A continuación de muestra un ejemplo de este tipo de transformaciones:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{U\vert0\rangle=\frac{\sqrt{2}-i}{2}\vert0\rangle-\frac{1}{2}\vert1\rangle,}}\\ {{}}\\ {{U\vert1\rangle=\frac{1}{2}\vert0\rangle+\frac{\sqrt{2}+i}{2}\vert1\rangle.}}\end{array}
+\end{split}\]</div>
+<p>Una puerta cuántica, debe tener la propiedad de linealidad, es decir debe cumplir los siguiente:</p>
+<div class="math notranslate nohighlight">
+\[U(\alpha|0\rangle+\beta|1\rangle)=\alpha U|0\rangle+\beta U|1\rangle
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+=\alpha\left({\frac{{\sqrt{2}}-i}{2}}|0\rangle-{\frac{1}{2}}|1\rangle\right)+\beta\left({\frac{1}{2}}|0\rangle+{\frac{{\sqrt{2}}+i}{2}}|1\rangle\right)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+=\left(\alpha\frac{\sqrt{2}-i}{2}+\beta\frac{1}{2}\right)|0\rangle+\left(-\alpha\frac{1}{2}+\beta\frac{\sqrt{2}+i}{2}\right)|1\rangle.
+\]</div>
+<p>Mas aún, el resultado debe ser un nuevo estado cuántico válido, es decir que las sumas de las probabilidades debe ser 1. Entonces, en el ejemplo anterior y suponiendo que el estado cuántico de inicio está normalizado, se tendrá que <span class="math notranslate nohighlight">\(|\alpha|^{2}+|\beta|^{2}=1\)</span>, entonces se tendrá lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[
+\left\vert\alpha{\frac{\sqrt{2}-i}{2}}+\beta{\frac{1}{2}}\right\vert^{2}+\left\vert-\alpha{\frac{1}{2}}+\beta{\frac{\sqrt{2}+i}{2}}\right\vert^{2}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{=\left(\alpha\displaystyle\frac{\sqrt{2}-i}2+\beta\displaystyle\frac{1}2\right)\left(\alpha^{*}\displaystyle\frac{\sqrt{2}+i}2+\beta^{*}\displaystyle\frac12\right)}}\\ {{+\left(-\alpha\displaystyle\frac12+\beta\displaystyle\frac{\sqrt{2}+i}2\right)\left(-\alpha^{*}\displaystyle\frac12+\beta^{*}\displaystyle\frac{\sqrt{2}-i}2\right)}}\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{=|\alpha|^{2}\frac{(\sqrt{2}-i)(\sqrt{2}+i)}{4}+\alpha\beta^{*}\frac{\sqrt{2}-i}{2}+\beta\alpha^{*}\frac{\sqrt{2}+i}{4}+|\beta|^{2}\frac{1}{4}}}\\ {{+|\alpha|^{2}\frac{4}{4}-\alpha\beta^{*}\frac{\sqrt{2}-i}{4}-\beta\alpha^{*}\frac{\sqrt{2}+i}{4}+|\beta|^{2}\frac{(\sqrt{2}-i)(\sqrt{2}-i)}{4}}}\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{l}{{=|\alpha|^{2}\frac{3}{4}+|\beta|^{2}\frac{1}{4}+|\alpha|^{2}\frac{1}{4}+|\beta|^{2}\frac{3}{4}}}\\ {{|\alpha|^{2}+|\beta|^{2}=1}}\end{array}
+\end{split}\]</div>
+<p>En este ejemplo podemos designar una matriz U, representativa de esta transformación de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U=\left(\begin{array}{cc}
+\frac{\sqrt{2}-i}{2} &amp; \frac{1}{2}\\
+-\frac{1}{2} &amp; \frac{\sqrt{2}+i}{2}
+\end{array}\right)
+\end{split}\]</div>
+<p>Y realmente la transformación anterior, en formato matricial sería la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left(\begin{array}{cc}
+\frac{\sqrt{2}-i}{2} &amp; \frac{1}{2}\\
+-\frac{1}{2} &amp; \frac{\sqrt{2}+i}{2}
+\end{array}\right)\cdot\left(\begin{array}{c}
+\alpha\\
+\beta
+\end{array}\right)=\left(\begin{array}{c}
+\frac{\left(\sqrt{2}-i\right)\alpha+\beta}{2}\\
+\frac{-\alpha+\left(\sqrt{2}+i\right)\beta}{}
+\end{array}\right)
+\end{split}\]</div>
+<p id="index-0">Y entonces, en base al resultado anterior, ahora ya sí se puede decir que <em>U</em> es una puerta cuántica válida. Por lo tanto</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las puerta cuánticas son transformaciones lineales con las que se obtiene otros estado normalizado y válido (La suma de los módulos de sus amplitudes al cuadrado es igual a 1)</p>
+</div>
+<p>De forma general diremos que U es una matriz unitaria, siempre que su matriz adjunta que denotamos por <span class="math notranslate nohighlight">\(U^\dagger\)</span> y que es la matriz transpuesta conjugada de U verifique que:</p>
+<div class="math notranslate nohighlight">
+\[U \cdot U^{\dagger}=I\]</div>
+<p>Veamos que esto se cumple para el ejemplo anterior:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{cc}
+\frac{\sqrt{2}-i}{2} &amp; \frac{1}{2}\\
+-\frac{1}{2} &amp; \frac{\sqrt{2}+i}{2}
+\end{array}\right)\cdot\left(\begin{array}{cc}
+\frac{\sqrt{2}+i}{2} &amp; -\frac{1}{2}\\
+\frac{1}{2} &amp; \frac{\sqrt{2}-i}{2}
+\end{array}\right)=\left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; 1
+\end{array}\right)=I\end{split}\]</div>
+<p>En Python utilizamos el módulo numpy para implementar estos procedimientos. Lo haremos de las siguiente manera</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Definimos la matriz</span>
+<span class="n">U</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span>
+   <span class="p">[[</span><span class="nb">complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="nb">complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)]]</span>
+<span class="p">)</span>
+
+<span class="n">U</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[ 0.70710678-0.5j,  0.5       +0.j ],
+        [-0.5       +0.j ,  0.70710678+0.5j]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>La matriz transpuesta conjugada sería en esta caso la siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">.</span><span class="n">getH</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[ 0.70710678+0.5j, -0.5       -0.j ],
+        [ 0.5       -0.j ,  0.70710678-0.5j]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Y el producto de las dos matrices sería la siguiente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">U</span><span class="p">,</span><span class="n">U</span><span class="o">.</span><span class="n">getH</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>matrix([[1.+0.j, 0.+0.j],
+        [0.+0.j, 1.+0.j]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con qiskit también podemos comprobar si una matriz es unitaria o no. Primero la matriz <a href="https://docs.quantum-computing.ibm.com/build/operators_overview" target="_blank"> la pasamos a un objeto de tipo Operator </a> , y después utilizamos el método <em>is_unitary()</em> para hacer la comprobación. Devuelve <em>True</em> si lo es y <em>False</em> en caso contrario.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+
+<span class="n">U1</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+
+<span class="n">Operator</span><span class="o">.</span><span class="n">is_unitary</span><span class="p">(</span><span class="n">U1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una de la propiedades que tienen este tipo de matrices es que la composición de mas de una matriz unitaria, también es unitaria. En efecto supongamos que U y V son unitarias, entonces se tiene que:
+$<span class="math notranslate nohighlight">\( \left(UV\right)^{\dagger}=V^{\dagger}U^{\dagger}=V^{-1}U^{-1}=\left(UV\right)^{-1} \)</span>$</p>
+<p>Algunas propiedades de las matrices unitarias son las siguientes:</p>
+<ul class="simple">
+<li><p>Las filas de U forman una base ortonormal.</p></li>
+<li><p>Las columnas de U forman una base ortonormal</p></li>
+<li><p>Los vectores propios de U tienen la forma <span class="math notranslate nohighlight">\(e^{i\theta}\)</span></p></li>
+<li><p>U puede ser diagonalizada de la siguiente manera:
+$<span class="math notranslate nohighlight">\(U=\left(\begin{array}{cccc}
+e^{i\theta_{1}} &amp; 0 &amp; ... &amp; 0\\
+0 &amp; \ddots &amp; \ddots &amp; 0\\
+\vdots &amp; \ddots &amp; \ddots &amp; 0\\
+0 &amp; \cdots &amp; 0 &amp; e^{i\theta_{d}}
+\end{array}\right)\)</span>$</p></li>
+</ul>
+<section id="puertas-logicas-clasicas-reversibles">
+<h2><span class="section-number">4.1. </span>Puertas lógicas clásicas reversibles.<a class="headerlink" href="#puertas-logicas-clasicas-reversibles" title="Permalink to this heading">#</a></h2>
+<p>Diremos que una puerta lógica clásica es reversible si los outputs son únicos. Por ejemplo dao un input A y un output B con las siguiente tabla de la verdad diremos que esa puerta lógica es reversible, ya que siempre podemos determinar el input para cualquier valor del output</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>A</p></th>
+<th class="head"><p>B</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Cómo actuaría esta puerta sobre un qubit?. Podría ser de la siguiente manera:</p>
+<p><span class="math notranslate nohighlight">\(Puerta|0\rangle = |1\rangle\)</span></p>
+<p><span class="math notranslate nohighlight">\(Puerta|1\rangle = |0\rangle\)</span></p>
+<p>Entonces si tenemos un qubit en un estado de superposición y normalizado :</p>
+<p><span class="math notranslate nohighlight">\( puerta(\alpha|0\rangle + \beta |1\rangle) = \alpha |1\rangle + \beta |0\rangle =  \beta |0\rangle + \alpha |1\rangle  \)</span></p>
+<p>Y el nuevo estado obtenido también nos da un qubit normalizado. POr lo tanto se tiene lo siguiente:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las puertas lógica reversibles clásicas son puertas cuánticas válidas</p>
+</div>
+</section>
+<section id="puertas-cuanticas-muy-comunes-sobre-un-qubit">
+<span id="puertascomunes"></span><h2><span class="section-number">4.2. </span>Puertas cuánticas muy comunes sobre un qubit<a class="headerlink" href="#puertas-cuanticas-muy-comunes-sobre-un-qubit" title="Permalink to this heading">#</a></h2>
+<p>Existen una serie de puertas cuánticas muy utilizadas, dentro de la programación cuántica. A continuación se pasan a su presentación:</p>
+<section id="puerta-cuantica-identidad">
+<h3><span class="section-number">4.2.1. </span>Puerta cuántica identidad.<a class="headerlink" href="#puerta-cuantica-identidad" title="Permalink to this heading">#</a></h3>
+<p>Esta puerta cuántica deja en el mismo estado los cubits iniciales. Es decir:</p>
+<p><span class="math notranslate nohighlight">\( I|0\rangle = |0\rangle \)</span></p>
+<p><span class="math notranslate nohighlight">\( I|1\rangle = |1\rangle \)</span></p>
+</section>
+<section id="la-puerta-de-pauli-x-gate">
+<h3><span class="section-number">4.2.2. </span>La puerta de Pauli X-Gate.<a class="headerlink" href="#la-puerta-de-pauli-x-gate" title="Permalink to this heading">#</a></h3>
+<p>Esta es puerta también es conocida como puerta NOR y transforma <span class="math notranslate nohighlight">\(|0\rangle\)</span> en <span class="math notranslate nohighlight">\(|1\rangle \)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> en <span class="math notranslate nohighlight">\( |0\rangle \)</span>. Sobre la esfera de Bloch se puede decir que coincide con una rotación sobre el eje X de 180 grados:</p>
+<center>
+<p><img alt="" src="../_images/puertaPauli.PNG" /></p>
+</center>
+<p>La matriz que define esta puerta es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{cc}
+0 &amp; 1\\
+1 &amp; 0
+\end{array}\right)\end{split}\]</div>
+<p>Desde un punto de vista geométrico y con la base que nos puede dar la figura anterior, se puede decir fácilmente que la puerta X hace que el polo norte <span class="math notranslate nohighlight">\(|0\rangle\)</span> rota al polo sur <span class="math notranslate nohighlight">\(|1\rangle\)</span> y viceversa. Lo mismo ocurre con los elementos <span class="math notranslate nohighlight">\(|i\rangle\)</span> y <span class="math notranslate nohighlight">\(|-i\rangle\)</span>, sin embargo los qubits <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span> no cambian (salvo claro está una determinada fase global).</p>
+<p>Tener en cuenta que si aplicamos la puerta X dos veces entonces se vuelve a la situación original y por lo tanto <span class="math notranslate nohighlight">\(X^2=I\)</span>. Esta propiedad, la podemos aplicar de forma reiterada la puerta X y entonces si la aplicamos un número impar se tiene:</p>
+<div class="math notranslate nohighlight">
+\[X^{2n+1}=X^{2n} \cdot X= (X^2)^n \cdot X =IX=X \]</div>
+</section>
+<section id="la-puerta-de-pauli-y-gate">
+<h3><span class="section-number">4.2.3. </span>La puerta de Pauli Y-Gate.<a class="headerlink" href="#la-puerta-de-pauli-y-gate" title="Permalink to this heading">#</a></h3>
+<p>Esta puerta transforma <span class="math notranslate nohighlight">\(|0\rangle\)</span> en <span class="math notranslate nohighlight">\(i|1\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>  en <span class="math notranslate nohighlight">\(-i|0\rangle\)</span>, es decir:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{c}{{Y|0\rangle=i|1\rangle,}}\\ {{Y|1\rangle=-i|0\rangle.}}\end{array} \end{split}\]</div>
+<p>La matriz unitaria es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\left(\begin{array}{cc}
+0 &amp; -i\\
+i &amp; 0
+\end{array}\right)\end{split}\]</div>
+<p>Comprobemos que es una puerta cuántica válida haciendo que actúe sobre un determinado estado de superposición:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{Y\left(\alpha|0\rangle+\beta|1\rangle\right)=\alpha\,Y|0\rangle+\beta\,Y|1\rangle=i\alpha|1\rangle-i\beta|0\rangle=-i\beta|0\rangle+i\alpha|1\rangle.}}\\ {{\phantom{\qquad}}}\end{array}
+\end{split}\]</div>
+<p>La probabilidad total en este caso es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|-i\beta|^{2}+|i\alpha|^{2}=(i\beta^{*})(-i\beta)+(-i\alpha^{*})(i\alpha)=|\beta|^{2}+|\alpha|^{2}=1\]</div>
+<p>Comprobemos esto último utilizando para ello qiskit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">U</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span>
+   <span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)],</span>
+    <span class="p">[</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="mi">0</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="n">U1</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+
+<span class="n">Operator</span><span class="o">.</span><span class="n">is_unitary</span><span class="p">(</span><span class="n">U1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sobre la esfera de Bloch, el efecto que se produce es una rotación sobre el eje Y de 180 grados, como se puede ver en la siguiente figura</p>
+<center>
+<p><img alt="" src="../_images/Bloch_Y_gate.PNG" /></p>
+</center>
+<p>Tal y como sugiere la imagen anterior, si aplicamos esta puerta cuántica dos veces volvemos a la situación inicial (salvo una determinada fase global). Por lo tanto se tiene que <span class="math notranslate nohighlight">\(Y^2=I\)</span></p>
+</section>
+<section id="la-puerta-de-pauli-z">
+<h3><span class="section-number">4.2.4. </span>La puerta de Pauli Z<a class="headerlink" href="#la-puerta-de-pauli-z" title="Permalink to this heading">#</a></h3>
+<p>La puerta de Pauli transforma <span class="math notranslate nohighlight">\(|0\rangle\)</span> en <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> en <span class="math notranslate nohighlight">\(-|1\rangle\)</span></p>
+<p>La matriz unitaria que rige esta puerta es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; -1
+\end{array}\right)\end{split}\]</div>
+<p>Sobre la esfera de Bloch, esta puerta se puede ver como una rotación de 180 grados sobre el eje Z</p>
+<center>
+<p><img alt="" src="../_images/Rotacion_Z.PNG" /></p>
+</center>
+</section>
+<section id="phase-gate">
+<h3><span class="section-number">4.2.5. </span>Phase gate.<a class="headerlink" href="#phase-gate" title="Permalink to this heading">#</a></h3>
+<p>Esta puerta de denota por S y es la raíz cuadrada de la puerta Z, y por lo tanto <span class="math notranslate nohighlight">\(S^2 = Z\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{l}{{S[0)=|0\rangle,}}\\ {{S|1\rangle=i|1\rangle.}}\end{array} \end{split}\]</div>
+<p>La matriz unitaria es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; e^{i\pi/2}
+\end{array}\right)\end{split}\]</div>
+<p>Desde un punto de vista geométrico, se puede decir que esta puerta es un giro de 90 grados alrededor del eje z</p>
+<center>
+<p><img alt="" src="../_images/Puerta_S.PNG" /></p>
+</center>
+<p>A continuación comprobamos con código python que la matriz asociada a esta cuenta es unitaria.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cmath</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">U</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span>
+   <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))]]</span>
+<span class="p">)</span>
+
+<span class="n">U1</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+
+<span class="n">Operator</span><span class="o">.</span><span class="n">is_unitary</span><span class="p">(</span><span class="n">U1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="puerta-t">
+<h3><span class="section-number">4.2.6. </span>Puerta T.<a class="headerlink" href="#puerta-t" title="Permalink to this heading">#</a></h3>
+<p>Esta puerta también es conocida como puerta <span class="math notranslate nohighlight">\(\pi/8\)</span> y es la raíz cuadrada de S, y por lo tanto <span class="math notranslate nohighlight">\(T^2=S\)</span>. Se cumple por lo tanto que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{T|0\rangle=|0\rangle,}}\\ {{T|1\rangle=e^{i\pi/4}|1\rangle.}}\end{array}
+\end{split}\]</div>
+<p>Sobre la esfera de Bloch esta puerta representa un giro de 45 grados sobre el eje Z.</p>
+<center>
+<p><img alt="" src="../_images/Puerta_T.PNG" /></p>
+</center>
+<p>NOTA: esta dos últimas puertas son dos casos especiales de una puerta genérica denominada $R_{z}(\theta), que queda definida de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c l c r}{{R_{z}(\theta)|0\rangle=|0\rangle,}}\\ {{R_{z}(\theta)|1\rangle=e^{i\theta}|1\rangle.}}\end{array}
+\end{split}\]</div>
+<p>Y lo que representa es un giro de <span class="math notranslate nohighlight">\(\theta\)</span> grados sobre el eje z.</p>
+</section>
+<section id="puerta-de-hadamard">
+<span id="index-1"></span><h3><span class="section-number">4.2.7. </span>Puerta de Hadamard<a class="headerlink" href="#puerta-de-hadamard" title="Permalink to this heading">#</a></h3>
+<p>Esta puerta es muy utilizada en programación cuántica y transforma <span class="math notranslate nohighlight">\(|0\rangle\)</span> en <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> en <span class="math notranslate nohighlight">\(|-\rangle\)</span>, es decir:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}{{H|0\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle+|1\rangle\right)=|+\rangle,}}\\ {{H|1\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle-|1\rangle\right)=|-\rangle.}}\end{array}\end{split}\]</div>
+<p>La matriz unitaria que define a esta puerta es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+1 &amp; 1\\
+1 &amp; -1
+\end{array}\right)\end{split}\]</div>
+<p>Sobre la esfera de Bloch, esta puerta queda representada por un giro de 180 grados al rededor del eje x+y</p>
+<center>
+<p><img alt="" src="jupyters/images/Rotaci%C3%B3n_Hadamard.PNG" /></p>
+</center>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}{{H\vert+\rangle=H\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)}}\\ {{=\frac{1}{\sqrt{2}}\bigl(H|0\rangle+H|1\rangle\bigr)}}\\ {{=\frac{1}{\sqrt{2}}\bigl(\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)+\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)\bigr)\Biggr]}}=|0\rangle\end{array}\end{split}\]</div>
+<p>De forma similar se puede demostrar que  <span class="math notranslate nohighlight">\( H|-\rangle=|1\rangle. \)</span></p>
+<p>También se cumple:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+H|i\rangle &amp; =H \frac{1}{\sqrt{2}}(|0\rangle+i|1\rangle) \\
+&amp; =\frac{1}{\sqrt{2}}(H|0\rangle+i H|1\rangle) \\
+&amp; =\frac{1}{\sqrt{2}}\left[\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)+\frac{i}{\sqrt{2}}(|0\rangle-|1\rangle)\right] \\
+&amp; =\frac{1}{\sqrt{2}}\left(\frac{1+i}{\sqrt{2}}|0\rangle+\frac{1-i}{\sqrt{2}}|1\rangle\right) \\
+&amp; =\frac{1}{\sqrt{2}}\left(e^{i \pi / 4}|0\rangle+e^{-i \pi / 4}|1\rangle\right)
+\end{aligned}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+&amp; =\left(e^{i \pi / 4} \frac{1}{\sqrt{2}}|0\rangle+e^{-i \pi / 2}|1\rangle\right) \\
+&amp; =e^{i \pi / 4} \frac{1}{\sqrt{2}}(|0\rangle-i|1\rangle) \\
+&amp; =e^{i \pi / 4}|-i\rangle \\
+&amp; \equiv|-i\rangle .
+\end{aligned}\end{split}\]</div>
+<p>Igualmente se cumple : <span class="math notranslate nohighlight">\( H|-i\rangle=e^{-i\pi/2}|i\rangle\equiv|i\rangle. \)</span></p>
+<p>Podemos combinar estas puertas cuánticas para crear otros muchos estados. Por ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+H S T H|0\rangle &amp; =H S T \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \\
+&amp; =H S \frac{1}{\sqrt{2}}\left(|0\rangle+e^{i \pi / 4}|1\rangle\right) \\
+&amp; =H \frac{1}{\sqrt{2}}\left(|0\rangle+e^{i 3 \pi / 4}|1\rangle\right) \\
+&amp; =\frac{1}{\sqrt{2}}\left[\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)+e^{i 3 \pi / 4} \frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)\right] \\
+&amp; =\frac{1}{2}\left[\left(1+e^{i 3 \pi / 4}\right)|0\rangle+\left(1-e^{i 3 \pi / 4}\right)|1\rangle\right],
+\end{aligned}\end{split}\]</div>
+<p>Donde en la tercera línea se ha usado que <span class="math notranslate nohighlight">\( i e^{i\pi/4}=e^{i\pi/2}e^{i\pi/4}=e^{i3\pi/4}. \)</span></p>
+<p>Vamos a calcular la probabilidades de colapsar hacia los estados de las base. Primero hacia el estado <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))))</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.1464466094067263
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora hacia el esatado <span class="math notranslate nohighlight">\(|1\rangle\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))))</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.8535533905932737
+</pre></div>
+</div>
+</div>
+</div>
+<p>De una manera manual esta comprobación se haría de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{\left|\mathbf{1/2}\left(1+e^{i3\pi/4}\right)\right|^{2}=\displaystyle{\frac{1}{2}}\left(1+e^{i3\pi/4}\right)\frac{1}{2}\left(1+e^{-i3\pi/4}\right)}}\\ {{=\displaystyle{\frac{1}{4}}\left(1+e^{-i3\pi/4}+e^{i3\pi/4}+e^{0}\right)}}\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[={\frac{1}{4}}\left(2+2\cos{\frac{3\pi}{2}}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[={\frac{1}{2}}\left(1-{\frac{\sqrt{2}}{2}}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[ \approx0.146. \]</div>
+<p id="index-2">Para ir de la segunda a la tercera línea, se ha usado la fórmula de Euler que dice: <span class="math notranslate nohighlight">\(e^{i\theta}+e^{-i\theta}=2\cdot cos(\theta)\)</span>. Similarmente la probabilidad de colapsar a <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\left|{\frac{1}{2}}\left(1-e^{3\pi/4}\right)\right|^{2}={\frac{1}{4}}\left(2-2\cos{\frac{3\pi}{2}}\right)={\frac{1}{2}}\left(1+{\frac{\sqrt{2}}{2}}\right)\approx0.854.
+\]</div>
+</section>
+<section id="puerta-general-sobre-un-qubit">
+<h3><span class="section-number">4.2.8. </span>Puerta general sobre un qubit<a class="headerlink" href="#puerta-general-sobre-un-qubit" title="Permalink to this heading">#</a></h3>
+<p>Como se ha podido comprobar todas las puertas cuánticas vistas, lo que hacen es una rotación sobre algunos de los ejes. Este es un comportamiento general.</p>
+<p>Esto es así porque las rotaciones alrededor de la esfera de Bloch las dos propiedades que se requieren para una puerta cuántica: son transformaciones lineales y mantienen la suma de las probabilidades de colapsar a los estados de la base igual a 1.</p>
+<p>Desde un punto de vista matemático,digamos que queremos rotar un ángulo <span class="math notranslate nohighlight">\(\theta\)</span> sobre algún eje de rotación, y que puede ser especificado en términos de los ejes x, y ó z.Vamos a denotar la dirección del eje x por <span class="math notranslate nohighlight">\(\hat{x}\)</span>, la dirección del eje y por  <span class="math notranslate nohighlight">\(\hat{y}\)</span> y la del eje z por <span class="math notranslate nohighlight">\(\hat{z}\)</span>. Entonces denotamos el eje de rotación por <span class="math notranslate nohighlight">\(\hat{n}\)</span> y se tiene que :</p>
+<div class="math notranslate nohighlight">
+\[ \hat{n} = n_x \cdot \hat{x} + n_y \cdot \hat{y} + n_z \cdot \hat{z}\]</div>
+<p>Tener en cuenta que <span class="math notranslate nohighlight">\( \hat{n}\)</span> debe ser un vector unitario es decir debe cumplir: <span class="math notranslate nohighlight">\(n_x^2+n_y^2+n_x^2=1\)</span>.</p>
+<p>Por ejemplo la puerta de Hadamard es una rotación de <span class="math notranslate nohighlight">\( \theta = 180º =\pi\)</span> alrededor de los ejes x e y, y por lo tanto lo podemos expresar de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[ \hat{n}=\frac{1}{\sqrt{2}}\hat{x}+\frac{1}{\sqrt{2}}\hat{z}\]</div>
+<p>Se puede demostrar que una rotación de un ángulo <span class="math notranslate nohighlight">\(\theta\)</span> alrededor de un eje <span class="math notranslate nohighlight">\(\hat{n}=(n_x,n_y,n_z)\)</span> puede ser escrito en término de las matrices I, X, Y, Z de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[ U=e^{i\gamma}\left[cos\left(\frac{\theta}{2}\right)I-i\cdot sen\left(\frac{\theta}{2}\right)(n_{x}X+n_{y}Y+n_{z}Z)\right] \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\gamma\)</span> es una fase global que puede ser olvidada (o borrada), puesto que no tiene ninguna relevancia física.</p>
+<p>Siguiendo con el ejemplo de una puerta de Hadamard, con <span class="math notranslate nohighlight">\(\theta=\pi\)</span> y <span class="math notranslate nohighlight">\(\hat{n}=(1/\sqrt{2},0,1/\sqrt{2})\)</span> tendremos que:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{U=e^{i\gamma}\left[\cos\left(\frac\pi2\right)I-i\sin\left(\frac\pi2\right)\left(\frac1{\sqrt{2}}X+0Y+\frac1{\sqrt{2}}Z\right)\right]}}\\ {{=-i e^{i\gamma}\displaystyle\frac1{\sqrt{2}}(X+Z).\qquad}}\end{array}
+\end{split}\]</div>
+<p>Para comprobar que U es la puerta de Hadamard, veamos cómo actúa sobre <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{U|0\rangle=-i e^{i\gamma}{\frac{1}{\sqrt2}}\left(X+Z\right)|0\rangle=-i e^{i\gamma}{\frac{1}{\sqrt2}}\left(X|0\rangle+Z|0\rangle\right)}}\\ {{\phantom{\qquad}=-i e^{i\gamma}{\frac{1}{\sqrt2}}\left(|1\rangle+|0\rangle\right)=-i e^{i\gamma}|+\rangle,}}\end{array}
+\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{c}{{U|1\rangle=-i e^{i\gamma}{\frac{1}{\sqrt2}}(X+Z)\vert1\rangle=-i e^{i\gamma}{\frac{1}{\sqrt2}}(X\vert1\rangle+Z\vert1\rangle)}}\\ {{\ }}\\ {{=-i e^{i\gamma}{\frac{1}{\sqrt2}}(\vert0\rangle-\vert1\rangle)=-i e^{i\gamma}\vert-\rangle.}}\end{array}
+\end{split}\]</div>
+<p>Podemos olvidarnos de la fase global <span class="math notranslate nohighlight">\(-ie^{i \gamma}\)</span> y entonces <span class="math notranslate nohighlight">\(U|0\rangle=|+\rangle\)</span> y <span class="math notranslate nohighlight">\(U|1\rangle = |-\rangle\)</span>, y por lo tanto queda demostrado que es la puerta de Hadamard</p>
+</section>
+</section>
+<section id="dibujar-circuitos-cuanticos">
+<h2><span class="section-number">4.3. </span>Dibujar circuitos cuánticos.<a class="headerlink" href="#dibujar-circuitos-cuanticos" title="Permalink to this heading">#</a></h2>
+<p>Al igual que se hace en la programación cuántica, donde se pueden dibijar esquemas de puertas lógicas, también en progamación cuántica se puede hacer algo similar, y en concreto utilizando qiskit se pueden representar las secuencias de puertas lógicas que constituyen el circuito en el que se basa el programa cuántico que queramos desarrollar.</p>
+<p>Se puede utilizar matplotlib de python para representar este tipo de esquemas, por ejemplo si queremos representar la secuencia siguiente de puertas cuánticas <span class="math notranslate nohighlight">\(ZSH|0\rangle\)</span> , lo podrímos hacer de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">z</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2b68696bd3ebdb11fefd45044dae00e5586b6dab8f8835781fe8e42570b7e45c.png" src="../_images/2b68696bd3ebdb11fefd45044dae00e5586b6dab8f8835781fe8e42570b7e45c.png" />
+</div>
+</div>
+<p>Estos circuitos se tienen leer de izquierda a derecha, tal y como ocurre en los circuitos clásicos. En este sentido y para el ejemplo anterior, se comienza con un qubit simple <span class="math notranslate nohighlight">\(|o\rangle\)</span> y se aplica una puerta de Hadamrt H, seguida de otra puerta de tipo S para finalmente aplicar una puerta Z.</p>
+<p>Existen muchas más opciones para representar este tipo de fenómenos con qiskit, por lo que a continuación abrimos un nuevo apartado centrado en este aspecto.</p>
+<section id="visualizando-circuitos-cuanticos-con-qiskit">
+<h3><span class="section-number">4.3.1. </span>Visualizando circuitos cuánticos con qiskit<a class="headerlink" href="#visualizando-circuitos-cuanticos-con-qiskit" title="Permalink to this heading">#</a></h3>
+<p>Lo primero que vamos a hacer es cargar los paquetes necesarios para el correcto desarrollo de los códigos que vamos a utilizar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">ClassicalRegister</span><span class="p">,</span> <span class="n">QuantumRegister</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para entender mejor un circuito cuántico en muchas ocasiones ayuda mucho tener una representación gráfica del mismo, para poder hacer esto qiskit nos ofrece el objeto <em>QuantumCircuit</em>. Entonces una vez construido el circuito, podemos obtener una imagen del mismo bien con la instrucción <em>print()</em> de python o bien utilizando el método <em>draw()</em>. Veamos esto con un ejemplo:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Construimos el siguiente circuito</span>
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1">#Añadimos una puerta x</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#Añadimos una puerta h</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># ahora un puerta cx</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># hacemos una medición del circuito</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dibujamos el circuito anterior</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ┌───┐          ┌─┐   
+q_0: ┤ H ├───────■──┤M├───
+     ├───┤┌───┐┌─┴─┐└╥┘┌─┐
+q_1: ┤ X ├┤ H ├┤ X ├─╫─┤M├
+     ├───┤└┬─┬┘└───┘ ║ └╥┘
+q_2: ┤ H ├─┤M├───────╫──╫─
+     └───┘ └╥┘       ║  ║ 
+c: 3/═══════╩════════╩══╩═
+            2        0  1 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Conseguimos lo mismo d ela siguiente manera</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">     ┌───┐          ┌─┐   
+q_0: ┤ H ├───────■──┤M├───
+     ├───┤┌───┐┌─┴─┐└╥┘┌─┐
+q_1: ┤ X ├┤ H ├┤ X ├─╫─┤M├
+     ├───┤└┬─┬┘└───┘ ║ └╥┘
+q_2: ┤ H ├─┤M├───────╫──╫─
+     └───┘ └╥┘       ║  ║ 
+c: 3/═══════╩════════╩══╩═
+            2        0  1 </pre></div></div>
+</div>
+<p>Como podemos ver, la figura que obtenemos no es estéticamente hablando muy estética, mas bien, todo lo contrario. No obstante existen alternativas para mejorar sustancialmente esta presentación.</p>
+<p id="index-3">En este sentido existen dos tipos de randerizado para este tipo de presentación:</p>
+<ul class="simple">
+<li><p>Utilizando <em>matplotlib</em></p></li>
+<li><p>Utilizando <em>LaTeX</em>, pero en este caso se necesita tener instalado el paquete de LaTeX denominado qcircuit para poder obtener el resultado deseado</p></li>
+</ul>
+<p>Estas herramientas se pueden indicar que sean utilizadas, empleando para ello lo valores <em>mpl</em> y <em>latex</em> para el parámetro <em>output</em> del método <em>draw()</em>. Por ejemplo el circuito anterior se podría presentar como una figura de matplotlib de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># figura utilizando Matplotlib</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/bf6bac386c4f24c45d224945d5a70ef4a6704f3ca7be0bc444c91a5796eccb9c.png" src="../_images/bf6bac386c4f24c45d224945d5a70ef4a6704f3ca7be0bc444c91a5796eccb9c.png" />
+</div>
+</div>
+<p>Para la salida utilizando formato latex, se necesita tener instalado el paquete de latex denominado qcircuit. Como para este trabajo no se tiene instalado este paquete, se indica la instrucción a utilizar para conseguir esto, pero con la misma comentada para que no sea ejecutada por parte de python.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#circuit.draw(output=&#39;latex&#39;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Igualmente se puede obtener el código latex con el que se podría dibujar el circuito en cualquier documento escrito en este lenguaje:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex_source&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\\documentclass[border=2px]{standalone}\n\n\\usepackage[braket, qm]{qcircuit}\n\\usepackage{graphicx}\n\n\\begin{document}\n\\scalebox{1.0}{\n\\Qcircuit @C=1.0em @R=0.2em @!R { \\\\\n\t \t\\nghost{{q}_{0} :  } &amp; \\lstick{{q}_{0} :  } &amp; \\gate{\\mathrm{H}} &amp; \\qw &amp; \\ctrl{1} &amp; \\meter &amp; \\qw &amp; \\qw &amp; \\qw\\\\\n\t \t\\nghost{{q}_{1} :  } &amp; \\lstick{{q}_{1} :  } &amp; \\gate{\\mathrm{X}} &amp; \\gate{\\mathrm{H}} &amp; \\targ &amp; \\qw &amp; \\meter &amp; \\qw &amp; \\qw\\\\\n\t \t\\nghost{{q}_{2} :  } &amp; \\lstick{{q}_{2} :  } &amp; \\gate{\\mathrm{H}} &amp; \\meter &amp; \\qw &amp; \\qw &amp; \\qw &amp; \\qw &amp; \\qw\\\\\n\t \t\\nghost{\\mathrm{{c} :  }} &amp; \\lstick{\\mathrm{{c} :  }} &amp; \\lstick{/_{_{3}}} \\cw &amp; \\dstick{_{_{\\hspace{0.0em}2}}} \\cw \\ar @{&lt;=} [-1,0] &amp; \\cw &amp; \\dstick{_{_{\\hspace{0.0em}0}}} \\cw \\ar @{&lt;=} [-3,0] &amp; \\dstick{_{_{\\hspace{0.0em}1}}} \\cw \\ar @{&lt;=} [-2,0] &amp; \\cw &amp; \\cw\\\\\n\\\\ }}\n\\end{document}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Para una mejor interpretación del resultado latex obtenido, lo mejor es utilizar la función <em>print()</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;latex_source&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>\documentclass[border=2px]{standalone}
+
+\usepackage[braket, qm]{qcircuit}
+\usepackage{graphicx}
+
+\begin{document}
+\scalebox{1.0}{
+\Qcircuit @C=1.0em @R=0.2em @!R { \\
+	 	\nghost{{q}_{0} :  } &amp; \lstick{{q}_{0} :  } &amp; \gate{\mathrm{H}} &amp; \qw &amp; \ctrl{1} &amp; \meter &amp; \qw &amp; \qw &amp; \qw\\
+	 	\nghost{{q}_{1} :  } &amp; \lstick{{q}_{1} :  } &amp; \gate{\mathrm{X}} &amp; \gate{\mathrm{H}} &amp; \targ &amp; \qw &amp; \meter &amp; \qw &amp; \qw\\
+	 	\nghost{{q}_{2} :  } &amp; \lstick{{q}_{2} :  } &amp; \gate{\mathrm{H}} &amp; \meter &amp; \qw &amp; \qw &amp; \qw &amp; \qw &amp; \qw\\
+	 	\nghost{\mathrm{{c} :  }} &amp; \lstick{\mathrm{{c} :  }} &amp; \lstick{/_{_{3}}} \cw &amp; \dstick{_{_{\hspace{0.0em}2}}} \cw \ar @{&lt;=} [-1,0] &amp; \cw &amp; \dstick{_{_{\hspace{0.0em}0}}} \cw \ar @{&lt;=} [-3,0] &amp; \dstick{_{_{\hspace{0.0em}1}}} \cw \ar @{&lt;=} [-2,0] &amp; \cw &amp; \cw\\
+\\ }}
+\end{document}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="personalizar-la-salida">
+<h3><span class="section-number">4.3.2. </span>Personalizar la salida<a class="headerlink" href="#personalizar-la-salida" title="Permalink to this heading">#</a></h3>
+<p>Dependiendo de la salida que queramos obtener también hay opciones para personalizar el formato de la figura de salida deseada.</p>
+<p>A continuación se muestra un ejemplo en el que se invierte el orden de colocación de los bits</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q_a</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;qa&#39;</span><span class="p">)</span>
+<span class="n">q_b</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;qb&#39;</span><span class="p">)</span>
+<span class="n">c_a</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">c_b</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q_a</span><span class="p">,</span> <span class="n">q_b</span><span class="p">,</span> <span class="n">c_a</span><span class="p">,</span> <span class="n">c_b</span><span class="p">)</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q_a</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q_b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q_b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q_b</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q_a</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">(</span><span class="n">q_a</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q_b</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">cswap</span><span class="p">(</span><span class="n">q_b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">q_b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">q_b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">cswap</span><span class="p">(</span><span class="n">q_b</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">q_b</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">q_b</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">cswap</span><span class="p">(</span><span class="n">q_b</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">q_b</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">q_b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">(</span><span class="n">q_b</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q_a</span><span class="p">,</span> <span class="n">c_a</span><span class="p">)</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q_b</span><span class="p">,</span> <span class="n">c_b</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d7defbb0f90b7a0f2f08193aa9619868352f284ccbb1a6470f8585e76e3d5b16.png" src="../_images/d7defbb0f90b7a0f2f08193aa9619868352f284ccbb1a6470f8585e76e3d5b16.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ahora invertimos la colocación de los bits</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">reverse_bits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8b0d01751e622c001b1ff850be335dfb595e6670d37993ab3aaa85838df0b9bb.png" src="../_images/8b0d01751e622c001b1ff850be335dfb595e6670d37993ab3aaa85838df0b9bb.png" />
+</div>
+</div>
+<p>Igualmente se pueden eliminar las barraras mostradas en el ejemplo anterior</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">plot_barriers</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">reverse_bits</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ca1006c628ca25f66b9f1e1263064e017266c78ebaf1a9a46702814d22aaf403.png" src="../_images/ca1006c628ca25f66b9f1e1263064e017266c78ebaf1a9a46702814d22aaf403.png" />
+</div>
+</div>
+</section>
+<section id="personalizacion-de-la-salida">
+<h3><span class="section-number">4.3.3. </span>Personalización de la salida.<a class="headerlink" href="#personalizacion-de-la-salida" title="Permalink to this heading">#</a></h3>
+<p>Existen muchas opciones que se pueden utilizar para personalizar nuestra salida. Todas estas posibilidades <a href="https://qiskit.org/documentation/stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit.draw" target="blank"> se pueden ver en este enlace </a>.</p>
+<p>Algunas de estas opciones las podemos ver en los siguientes ejemplos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">            ░ ┌───┐ ░    ┌─┐                           
+qa_0: ──────░─┤ H ├─░────┤M├───────────────────────────
+      ┌───┐ ░ ├───┤ ░    └╥┘┌─┐                        
+qa_1: ┤ X ├─░─┤ H ├─░─────╫─┤M├────────────────────────
+      └───┘ ░ ├───┤ ░     ║ └╥┘┌─┐                     
+qa_2: ──────░─┤ H ├─░─────╫──╫─┤M├─────────────────────
+            ░ ├───┤ ░     ║  ║ └╥┘    ░ ┌─┐            
+qb_0: ──────░─┤ H ├─■─────╫──╫──╫──X──░─┤M├────────────
+      ┌───┐ ░ ├───┤ │     ║  ║  ║  │  ░ └╥┘┌─┐         
+qb_1: ┤ X ├─░─┤ H ├─X─────╫──╫──╫──┼──░──╫─┤M├─────────
+      ├───┤ ░ ├───┤ │     ║  ║  ║  │  ░  ║ └╥┘┌─┐      
+qb_2: ┤ X ├─░─┤ H ├─X──■──╫──╫──╫──┼──░──╫──╫─┤M├──────
+      └───┘ ░ ├───┤    │  ║  ║  ║  │  ░  ║  ║ └╥┘┌─┐   
+qb_3: ──────░─┤ H ├────X──╫──╫──╫──■──░──╫──╫──╫─┤M├───
+      ┌───┐ ░ ├───┤    │  ║  ║  ║  │  ░  ║  ║  ║ └╥┘┌─┐
+qb_4: ┤ X ├─░─┤ H ├────X──╫──╫──╫──X──░──╫──╫──╫──╫─┤M├
+      └───┘ ░ └───┘       ║  ║  ║     ░  ║  ║  ║  ║ └╥┘
+c0: 3/════════════════════╩══╩══╩════════╬══╬══╬══╬══╬═
+                          0  1  2        ║  ║  ║  ║  ║ 
+c1: 5/═══════════════════════════════════╩══╩══╩══╩══╩═
+                                         0  1  2  3  4 </pre></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;backgroundcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">}</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8b46e484f70de1e5bd827a6aa4ead6ad6118fdec0967353c948f69f755a7a80f.png" src="../_images/8b46e484f70de1e5bd827a6aa4ead6ad6118fdec0967353c948f69f755a7a80f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7e0a46244f363cb84f38b086d0aa9b58cfc58b32344d73c0ca0f38610ad57c6a.png" src="../_images/7e0a46244f363cb84f38b086d0aa9b58cfc58b32344d73c0ca0f38610ad57c6a.png" />
+</div>
+</div>
+</section>
+<section id="la-funcion-circuit-drawer">
+<span id="index-4"></span><h3><span class="section-number">4.3.4. </span>La función circuit_drawer().<a class="headerlink" href="#la-funcion-circuit-drawer" title="Permalink to this heading">#</a></h3>
+<p>Existe una función dentro de qiskit que nos permite dibujar de forma autónoma con el circuito con el que estamos trabajando, dicha función se denomina <em>circuit_drawer()</em> y podemos <a href="https://qiskit.org/documentation/stubs/qiskit.visualization.circuit_drawer.html" target="_blank"> ver todas sus propiedades en este enlace </a>. Esta función tiene un comportamiento idéntico al que hemos visto anteriormente y forma parte de la interfaz pública <em>qiskit.tools.visualization</em>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.tools.visualization</span> <span class="kn">import</span> <span class="n">circuit_drawer</span>
+
+<span class="n">circuit_drawer</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">plot_barriers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e940dacca3419dd874b11a3f0163e565dbe0f77e11f3b0a7fdbb9efb79b714db.png" src="../_images/e940dacca3419dd874b11a3f0163e565dbe0f77e11f3b0a7fdbb9efb79b714db.png" />
+</div>
+</div>
+</section>
+<section id="visualizacion-con-quirk">
+<span id="index-5"></span><h3><span class="section-number">4.3.5. </span>Visualización con quirk .<a class="headerlink" href="#visualizacion-con-quirk" title="Permalink to this heading">#</a></h3>
+<p>Existe otra manera de poder implementar los circuitos cuánticos, y además de una forma más intuitiva que la que ofrece qiskit. Esta herramienta se denomina quirk y se puede acceder a la misma a traves de este enlace: <a href="https://algassert.com/quirk" target="_blank"> https://algassert.com/quirk </a>. La imagen que nos muestra nada más entrar en la siguiente:</p>
+<p><img alt="" src="../_images/quirk_1.PNG" />k
+Dentro de esta aplicación ewb, existe una amplia variedad de puertas cuánticas que el usuario puede utilizar simplemente arrastrándolas hacia la zona donde se definen los circuitos cuánticos. Todos los qubits están inicializados a <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p>
+<p>El cuadradtito verde que hay a la izquierda de la esfera nos mide la probabilidad de que el qubit colapse al estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Como por defecto el qubit inicial esta en estado <span class="math notranslate nohighlight">\(|0\rangle\)</span>, aparece dentro de él la expresión off. Si ahora llevamos al panel de circuitos la puerta X (indicado por el ´simbolo <span class="math notranslate nohighlight">\(\oplus\)</span> )podremos observar que la posición ha cambiado al estado <span class="math notranslate nohighlight">\(|1\rangle\)</span> y que la probabilidad de colapsar al estado <span class="math notranslate nohighlight">\(|1\rangle\)</span> ahora ha cambiado a 1 y el botón ahora tiene la inscripción “on”.</p>
+<p>Apliquemos ahora una puerta H, y el resultado será el que se muestra en la siguiente figura:</p>
+<p><img alt="" src="../_images/quirt_H.PNG" /></p>
+<p>Es decir el resultado es el esperado, pues la probabilidad de colapsar hacia cada elemento de la base es del 50%. Finalmente, apliquemos la siguiente secuencia de puertas lógicas: <span class="math notranslate nohighlight">\(HSTH|0\rangle\)</span> que como hemos visto en un apartado anterior se obtiene una probabilidad de colapsar hacia <span class="math notranslate nohighlight">\(|1\rangle\)</span> de 0.854. Aplicando esta composición en quirk, obtenemos lo siguiente:</p>
+<p><img alt="" src="../_images/quirt_2.PNG" /></p>
+<p>Y efectivamente, con quirk obtenemos directamente que la probabilidad de colapsar hacia el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span> es 85.4% = 0.854, exactamente como lo que hemos obtenido en nuestro cálculo manual</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ParteTeorica_II.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Introducción</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Parte_teorica_IV_algebra.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Introducción</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-logicas-clasicas-reversibles">4.1. Puertas lógicas clásicas reversibles.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-cuanticas-muy-comunes-sobre-un-qubit">4.2. Puertas cuánticas muy comunes sobre un qubit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-cuantica-identidad">4.2.1. Puerta cuántica identidad.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-pauli-x-gate">4.2.2. La puerta de Pauli X-Gate.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-pauli-y-gate">4.2.3. La puerta de Pauli Y-Gate.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-pauli-z">4.2.4. La puerta de Pauli Z</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#phase-gate">4.2.5. Phase gate.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-t">4.2.6. Puerta T.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-de-hadamard">4.2.7. Puerta de Hadamard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-general-sobre-un-qubit">4.2.8. Puerta general sobre un qubit</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dibujar-circuitos-cuanticos">4.3. Dibujar circuitos cuánticos.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizando-circuitos-cuanticos-con-qiskit">4.3.1. Visualizando circuitos cuánticos con qiskit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizar-la-salida">4.3.2. Personalizar la salida</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#personalizacion-de-la-salida">4.3.3. Personalización de la salida.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-funcion-circuit-drawer">4.3.4. La función circuit_drawer().</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-con-quirk">4.3.5. Visualización con quirk .</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,48 +1,60 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>10. Más ciruitos cuánticos &#8212; Programación quántica</title>
-    
+    <title>14. Más ciruitos cuánticos &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -50,60 +62,98 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/Tema6_more-circuit-identities';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="11. Proving Universality" href="Tema7_proving-universality.html" />
-    <link rel="prev" title="8. Explorando la puerta CNOT-Gate" href="Tema5_phase-kickback.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="15. Proving Universality" href="Tema7_proving-universality.html" />
+    <link rel="prev" title="12. Explorando la puerta CNOT-Gate" href="Tema5_phase-kickback.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Programación quántica</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
@@ -112,397 +162,212 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Números complejos
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="numeros_complejos.html">
-   1. Introducción a los números complejos
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Estados quanticos y qubits
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Tema0_Introducci%C3%B3n.html">
-   2. qiskit_textbook
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Tema1_atoms-computation.html">
-   4. Los qubits
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Tema2_representing-qubit-states.html">
-   5. Representación de los estados del qubit
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Tema3_single-qubit-gates.html">
-   6. Puertas cuánticas para un qubit
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Qubits múltiples y Entanglement
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">
-   7. Múltiples qubits
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Tema5_phase-kickback.html">
-   8. Explorando la puerta CNOT-Gate
-   <a id="exploring-cnot">
-   </a>
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   10. Otros circuitos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="Tema7_proving-universality.html">
-   11. Universalidad
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Índice de términos
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../genindex.html">
-   12. Índice de términos
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">16. Índice de términos</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Apéndice
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="otras/anexo1_Algebralineal.html">
-   Resumen Algebra lineal
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="videos_anexo.html">
-   Vídeos
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="otras/apendice.html">
-   Apendice.
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
+
+
+
+
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
-</div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/jupyters/Tema6_more-circuit-identities.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
   
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-    </ul>
+  <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyters/Tema6_more-circuit-identities.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
 </div>
+
+
+
 
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/jupyters/Tema6_more-circuit-identities.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#construyendo-una-z-controlada-desde-un-cnot-a-id-c-from-cnot-a">
-   10.1. Construyendo una Z controlada desde un CNOT.
-   <a id="c-from-cnot">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#intercambio-de-qubits-a-id-swapping-a">
-   10.2. Intercambio de Qubits
-   <a id="swapping">
-   </a>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-ejercicios">
-     10.2.1. Quick Ejercicios:
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#controlled-rotations-a-id-controlled-rotations-a">
-   10.3. Controlled Rotations
-   <a id="controlled-rotations">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#la-puerta-de-toffoli-a-id-ccx-a">
-   10.4. La puerta de Toffoli
-   <a id="ccx">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arbitrary-rotations-from-h-and-t-a-id-arbitrary-rotations-a">
-   10.5. 5. Arbitrary rotations from H and T
-   <a id="arbitrary-rotations">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-a-id-references-a">
-   10.6. 6. References
-   <a id="references">
-   </a>
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Más ciruitos cuánticos</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#construyendo-una-z-controlada-desde-un-cnot-a-id-c-from-cnot-a">
-   10.1. Construyendo una Z controlada desde un CNOT.
-   <a id="c-from-cnot">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#intercambio-de-qubits-a-id-swapping-a">
-   10.2. Intercambio de Qubits
-   <a id="swapping">
-   </a>
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#quick-ejercicios">
-     10.2.1. Quick Ejercicios:
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#controlled-rotations-a-id-controlled-rotations-a">
-   10.3. Controlled Rotations
-   <a id="controlled-rotations">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#la-puerta-de-toffoli-a-id-ccx-a">
-   10.4. La puerta de Toffoli
-   <a id="ccx">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arbitrary-rotations-from-h-and-t-a-id-arbitrary-rotations-a">
-   10.5. 5. Arbitrary rotations from H and T
-   <a id="arbitrary-rotations">
-   </a>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references-a-id-references-a">
-   10.6. 6. References
-   <a id="references">
-   </a>
-  </a>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Más ciruitos cuánticos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-una-z-controlada-desde-un-cnot-a-id-c-from-cnot-a">14.1. Construyendo una Z controlada desde un CNOT. <a id="c-from-cnot"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intercambio-de-qubits-a-id-swapping-a">14.2. Intercambio de Qubits <a id="swapping"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-ejercicios">14.2.1. Quick Ejercicios:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotaciones-controladas-a-id-controlled-rotations-a">14.3. Rotaciones controladas <a id="controlled-rotations"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-toffoli-a-id-ccx-a">14.4. La puerta de Toffoli <a id="ccx"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotacion-arbitraria-de-h-y-t-a-id-arbitrary-rotations-a">14.5. Rotación arbitraria de H y T. <a id="arbitrary-rotations"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-a-id-references-a">14.6. Referencias <a id="references"></a></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="mas-ciruitos-cuanticos">
-<h1><span class="section-number">10. </span>Más ciruitos cuánticos<a class="headerlink" href="#mas-ciruitos-cuanticos" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">14. </span>Más ciruitos cuánticos<a class="headerlink" href="#mas-ciruitos-cuanticos" title="Permalink to this heading">#</a></h1>
 <p>Cuando programamos ordenadores cuánticos, nuestro objetivo es siempre construir circuitos cuánticos útiles a partir de los bloques de construcción básicos. Pero a veces, puede que no tengamos todos los bloques de construcción básicos que queremos. En esta sección, veremos cómo podemos transformar puertas básicas entre sí, y cómo utilizarlas para construir algunas puertas que son un poco más complejas (pero todavía bastante básicas).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -517,8 +382,8 @@ title="Print to PDF"
 </div>
 </div>
 <section id="construyendo-una-z-controlada-desde-un-cnot-a-id-c-from-cnot-a">
-<h2><span class="section-number">10.1. </span>Construyendo una Z controlada desde un CNOT. <a id="c-from-cnot"></a><a class="headerlink" href="#construyendo-una-z-controlada-desde-un-cnot-a-id-c-from-cnot-a" title="Permalink to this headline">#</a></h2>
-<p>La <a class="reference internal" href="Tema3_single-qubit-gates.html#zcontrolada"><span class="std std-ref">puerta Z controlada</span></a> o <code class="docutils literal notranslate"><span class="pre">cz</span></code> (así se denomina en qiskit) es otra puerta de dos qubits muy utilizada. Al igual que la CNOT aplica una <span class="math notranslate nohighlight">\(X\)</span> a su qubit de destino siempre que su control esté en estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>, la controlada-<span class="math notranslate nohighlight">\(Z\)</span> aplica una <span class="math notranslate nohighlight">\(Z\)</span> en el mismo caso. En Qiskit se puede invocar directamente con</p>
+<h2><span class="section-number">14.1. </span>Construyendo una Z controlada desde un CNOT. <a id="c-from-cnot"></a><a class="headerlink" href="#construyendo-una-z-controlada-desde-un-cnot-a-id-c-from-cnot-a" title="Permalink to this heading">#</a></h2>
+<p>La <a class="reference internal" href="Tema3_single-qubit-gates.html#zcontrolada"><span class="std std-ref">puerta Z controlada</span></a> o <code class="docutils literal notranslate"><span class="pre">cz</span></code> (así se denomina en qiskit) es otra puerta de dos qubits muy utilizada. Al igual que la CNOT aplica una <span class="math notranslate nohighlight">\(X\)</span> a su qubit de destino siempre que su control esté en estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>, la puerta controlada-<span class="math notranslate nohighlight">\(Z\)</span> aplica una <span class="math notranslate nohighlight">\(Z\)</span> en el mismo caso. En Qiskit se puede invocar directamente con el siguiente código:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a controlled-Z</span>
@@ -528,11 +393,112 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_3_0.png" src="../_images/Tema6_more-circuit-identities_3_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">MissingOptionalLibraryError</span><span class="g g-Whitespace">               </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># a controlled-Z</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">qc</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\Lib\site-packages\qiskit\circuit\quantumcircuit.py:1913,</span> in <span class="ni">QuantumCircuit.draw</span><span class="nt">(self, output, scale, filename, style, interactive, plot_barriers, reverse_bits, justify, vertical_compression, idle_wires, with_layout, fold, ax, initial_state, cregbundle, wire_order)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1910</span> <span class="c1"># pylint: disable=cyclic-import</span>
+<span class="g g-Whitespace">   </span><span class="mi">1911</span> <span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">circuit_drawer</span>
+<span class="ne">-&gt; </span><span class="mi">1913</span> <span class="k">return</span> <span class="n">circuit_drawer</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1914</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1915</span>     <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1916</span>     <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1917</span>     <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1918</span>     <span class="n">output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1919</span>     <span class="n">interactive</span><span class="o">=</span><span class="n">interactive</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1920</span>     <span class="n">plot_barriers</span><span class="o">=</span><span class="n">plot_barriers</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1921</span>     <span class="n">reverse_bits</span><span class="o">=</span><span class="n">reverse_bits</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1922</span>     <span class="n">justify</span><span class="o">=</span><span class="n">justify</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1923</span>     <span class="n">vertical_compression</span><span class="o">=</span><span class="n">vertical_compression</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1924</span>     <span class="n">idle_wires</span><span class="o">=</span><span class="n">idle_wires</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1925</span>     <span class="n">with_layout</span><span class="o">=</span><span class="n">with_layout</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1926</span>     <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1927</span>     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1928</span>     <span class="n">initial_state</span><span class="o">=</span><span class="n">initial_state</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1929</span>     <span class="n">cregbundle</span><span class="o">=</span><span class="n">cregbundle</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1930</span>     <span class="n">wire_order</span><span class="o">=</span><span class="n">wire_order</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1931</span> <span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\Lib\site-packages\qiskit\visualization\circuit\circuit_visualization.py:292,</span> in <span class="ni">circuit_drawer</span><span class="nt">(circuit, scale, filename, style, output, interactive, plot_barriers, reverse_bits, justify, vertical_compression, idle_wires, with_layout, fold, ax, initial_state, cregbundle, wire_order)</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span>     <span class="k">return</span> <span class="n">_generate_latex_source</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span>         <span class="n">circuit</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span>         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">289</span>         <span class="n">wire_order</span><span class="o">=</span><span class="n">complete_wire_order</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">290</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">291</span> <span class="k">elif</span> <span class="n">output</span> <span class="o">==</span> <span class="s2">&quot;mpl&quot;</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">292</span>     <span class="n">image</span> <span class="o">=</span> <span class="n">_matplotlib_circuit_drawer</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">293</span>         <span class="n">circuit</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">294</span>         <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span>         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span>         <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">297</span>         <span class="n">plot_barriers</span><span class="o">=</span><span class="n">plot_barriers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span>         <span class="n">reverse_bits</span><span class="o">=</span><span class="n">reverse_bits</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">299</span>         <span class="n">justify</span><span class="o">=</span><span class="n">justify</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">300</span>         <span class="n">idle_wires</span><span class="o">=</span><span class="n">idle_wires</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">301</span>         <span class="n">with_layout</span><span class="o">=</span><span class="n">with_layout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span>         <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">304</span>         <span class="n">initial_state</span><span class="o">=</span><span class="n">initial_state</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>         <span class="n">cregbundle</span><span class="o">=</span><span class="n">cregbundle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>         <span class="n">wire_order</span><span class="o">=</span><span class="n">complete_wire_order</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">307</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="k">raise</span> <span class="n">VisualizationError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">310</span>         <span class="s2">&quot;Invalid output type </span><span class="si">%s</span><span class="s2"> selected. The only valid choices &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span>         <span class="s2">&quot;are text, latex, latex_source, and mpl&quot;</span> <span class="o">%</span> <span class="n">output</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\Lib\site-packages\qiskit\visualization\circuit\circuit_visualization.py:662,</span> in <span class="ni">_matplotlib_circuit_drawer</span><span class="nt">(circuit, scale, filename, style, plot_barriers, reverse_bits, justify, idle_wires, with_layout, fold, ax, initial_state, cregbundle, wire_order)</span>
+<span class="g g-Whitespace">    </span><span class="mi">659</span> <span class="k">if</span> <span class="n">fold</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">660</span>     <span class="n">fold</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="ne">--&gt; </span><span class="mi">662</span> <span class="n">qcd</span> <span class="o">=</span> <span class="n">_matplotlib</span><span class="o">.</span><span class="n">MatplotlibDrawer</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">663</span>     <span class="n">qubits</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">664</span>     <span class="n">clbits</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span>     <span class="n">nodes</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span>     <span class="n">circuit</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">667</span>     <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span>     <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span>     <span class="n">reverse_bits</span><span class="o">=</span><span class="n">reverse_bits</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">670</span>     <span class="n">plot_barriers</span><span class="o">=</span><span class="n">plot_barriers</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">671</span>     <span class="n">fold</span><span class="o">=</span><span class="n">fold</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span>     <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="n">initial_state</span><span class="o">=</span><span class="n">initial_state</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">674</span>     <span class="n">cregbundle</span><span class="o">=</span><span class="n">cregbundle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span>     <span class="n">with_layout</span><span class="o">=</span><span class="n">with_layout</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">676</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">677</span> <span class="k">return</span> <span class="n">qcd</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\Lib\site-packages\qiskit\utils\classtools.py:111,</span> in <span class="ni">_WrappedMethod.__get__.&lt;locals&gt;.out</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">109</span> <span class="k">def</span> <span class="nf">out</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span>     <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_before</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">111</span>         <span class="n">callback</span><span class="o">.</span><span class="fm">__get__</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">objtype</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">112</span>     <span class="n">retval</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>     <span class="k">for</span> <span class="n">callback</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_after</span><span class="p">:</span>
+
+<span class="nn">File D:\programas\Anaconda\Lib\site-packages\qiskit\utils\lazy_tester.py:39,</span> in <span class="ni">_RequireNow.__call__</span><span class="nt">(self, *_args, **_kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_args</span><span class="p">,</span> <span class="o">**</span><span class="n">_kwargs</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">39</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_tester</span><span class="o">.</span><span class="n">require_now</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_feature</span><span class="p">)</span>
+
+<span class="nn">File D:\programas\Anaconda\Lib\site-packages\qiskit\utils\lazy_tester.py:223,</span> in <span class="ni">LazyDependencyManager.require_now</span><span class="nt">(self, feature)</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span> <span class="k">if</span> <span class="bp">self</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">222</span>     <span class="k">return</span>
+<span class="ne">--&gt; </span><span class="mi">223</span> <span class="k">raise</span> <span class="n">MissingOptionalLibraryError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="n">libname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">feature</span><span class="p">,</span> <span class="n">pip_install</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_install</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_msg</span>
+<span class="g g-Whitespace">    </span><span class="mi">225</span> <span class="p">)</span>
+
+<span class="ne">MissingOptionalLibraryError</span>: &quot;The &#39;pylatexenc&#39; library is required to use &#39;MatplotlibDrawer&#39;. You can install it with &#39;pip install pylatexenc&#39;.&quot;
+</pre></div>
 </div>
 </div>
-<p>donde c (control) y t (target) son los qubits de control y de destino. <em>En los dispositivos IBM Q, sin embargo, el único tipo de puerta de dos qubits que puede aplicarse directamente es la CNOT</em>. Por tanto, necesitamos una forma de transformar una en otra.</p>
-<p>El proceso es bastante sencillo. Sabemos que la puerta de  Hadamard transforma los estados <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> a los estados <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span> respectivamente. También sabemos que el efecto de la puerta <span class="math notranslate nohighlight">\(Z\)</span> sobre los estados <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span> es el mismo que el de <span class="math notranslate nohighlight">\(X\)</span> sobre los estados <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> respectivamente. De este razonamiento, o de la simple multiplicación de matrices, resulta que</p>
+</div>
+<p>donde c (control) y t (target) son los qubits de control y de destino. <em>En los dispositivos IBM Q, sin embargo, el único tipo de puerta de dos qubits que puede aplicarse directamente es la CNOT</em>. Por tanto en ese sistema, necesitamos una forma de transformar una en otra.</p>
+<p>El proceso es bastante sencillo. Sabemos que la puerta de  Hadamard transforma los estados <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> a los estados <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span> respectivamente. También sabemos que el efecto de la puerta <span class="math notranslate nohighlight">\(Z\)</span> sobre los estados <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span> es el mismo (en el sentido de que transforma un estado en otro) que el de <span class="math notranslate nohighlight">\(X\)</span> sobre los estados <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> respectivamente. De este razonamiento, o de la simple multiplicación de matrices, resulta que</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 H X H = Z,\\\\
@@ -552,7 +518,7 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_5_0.png" src="../_images/Tema6_more-circuit-identities_5_0.png" />
+<img alt="../_images/12a252c532e0be2836716c1ada4e6c09be9f51e59eb4196c8ac5cc483910e2a9.png" src="../_images/12a252c532e0be2836716c1ada4e6c09be9f51e59eb4196c8ac5cc483910e2a9.png" />
 </div>
 </div>
 <p>De forma más general, podemos transformar una CNOT simple en una versión controlada de cualquier rotación alrededor de la esfera de Bloch por un ángulo <span class="math notranslate nohighlight">\(\pi\)</span>, simplemente precediéndola y siguiéndola con las rotaciones correctas. Por ejemplo, <strong>un <span class="math notranslate nohighlight">\(Y\)</span> controlado</strong>:</p>
@@ -568,7 +534,7 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_7_0.png" src="../_images/Tema6_more-circuit-identities_7_0.png" />
+<img alt="../_images/ece799b8ddfe3f9f2f3bd80c96468862f578dc8efed5f4afadcf8875275a51b4.png" src="../_images/ece799b8ddfe3f9f2f3bd80c96468862f578dc8efed5f4afadcf8875275a51b4.png" />
 </div>
 </div>
 <p>y un  <strong><span class="math notranslate nohighlight">\(H\)</span> controlado</strong>:</p>
@@ -584,12 +550,12 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_9_0.png" src="../_images/Tema6_more-circuit-identities_9_0.png" />
+<img alt="../_images/c8e2bef570fe2f8a8ba95d43aad36261eb47b8a8f58954d4d2bbd821a64d1beb.png" src="../_images/c8e2bef570fe2f8a8ba95d43aad36261eb47b8a8f58954d4d2bbd821a64d1beb.png" />
 </div>
 </div>
 </section>
 <section id="intercambio-de-qubits-a-id-swapping-a">
-<h2><span class="section-number">10.2. </span>Intercambio de Qubits <a id="swapping"></a><a class="headerlink" href="#intercambio-de-qubits-a-id-swapping-a" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">14.2. </span>Intercambio de Qubits <a id="swapping"></a><a class="headerlink" href="#intercambio-de-qubits-a-id-swapping-a" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Denominamos los qubits con estas letras</span>
@@ -610,7 +576,7 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_13_0.png" src="../_images/Tema6_more-circuit-identities_13_0.png" />
+<img alt="../_images/7cbf1b74463dab7ef734891bafad282f4f75373538d7bf871fe24dd104393608.png" src="../_images/7cbf1b74463dab7ef734891bafad282f4f75373538d7bf871fe24dd104393608.png" />
 </div>
 </div>
 <p>El comando anterior invoca directamente esta puerta, pero veamos <em>cómo podríamos hacerlo utilizando nuestro conjunto de puertas estándar</em>. Para ello, tendremos que considerar algunos ejemplos.</p>
@@ -626,7 +592,7 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_15_0.png" src="../_images/Tema6_more-circuit-identities_15_0.png" />
+<img alt="../_images/0bd5cf97039bbc736154997ede5e94d93e621fc240bce60611e6ee6954b3dd1a.png" src="../_images/0bd5cf97039bbc736154997ede5e94d93e621fc240bce60611e6ee6954b3dd1a.png" />
 </div>
 </div>
 <p>Según el esquema anterior, como el qubit a es uno la primera puerta CNOT transforma el qubit b a 1 (antes estaba en 0). Ahora la segunda puerta CNOT (X controlado), ve que el qubit de control (b en este caso) está a 1 y por lo tanto cambia el qubit target (a en este caso) del estado 1 al 0. Por lo tanto al final de todo este proceso, se ha pasado del estado <span class="math notranslate nohighlight">\(|01\rangle\)</span> al estado <span class="math notranslate nohighlight">\(|10\rangle\)</span>.</p>
@@ -642,7 +608,7 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_17_0.png" src="../_images/Tema6_more-circuit-identities_17_0.png" />
+<img alt="../_images/a7a2ce6d2f5265eb3918f654aa5a28a9051571233111419c763a222e15710970.png" src="../_images/a7a2ce6d2f5265eb3918f654aa5a28a9051571233111419c763a222e15710970.png" />
 </div>
 </div>
 <p>Nótese que en estos dos procesos, la primera puerta de uno no tendría ningún efecto sobre el estado inicial del otro. Por ejemplo, cuando cambiamos el <span class="math notranslate nohighlight">\(|1\rangle\)</span> b por a, la primera puerta es <code class="docutils literal notranslate"><span class="pre">cx(b,a)</span></code>. Si esto se aplicara a un estado en el que no hubiera ningún <span class="math notranslate nohighlight">\(|1\rangle\)</span> inicialmente en b, no tendría ningún efecto.</p>
@@ -659,7 +625,7 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_19_0.png" src="../_images/Tema6_more-circuit-identities_19_0.png" />
+<img alt="../_images/547d435c2cff6ae6cb2536aabc3d30f8149c9a58cc8c7a1820acbafe23ffaa0b.png" src="../_images/547d435c2cff6ae6cb2536aabc3d30f8149c9a58cc8c7a1820acbafe23ffaa0b.png" />
 </div>
 </div>
 <p>Podemos pensar en esto como un proceso que intercambia un <span class="math notranslate nohighlight">\(|1\rangle\)</span> de a a b, pero con un inútil <code class="docutils literal notranslate"><span class="pre">qc.cx(b,a)</span></code> al principio (porque al principio como b esta en cero no haría ningún cambio el CNOT de la izquierda). También podemos pensar en ello como un proceso que intercambia un <span class="math notranslate nohighlight">\(|1\rangle\)</span> de b a a, pero con un inútil <code class="docutils literal notranslate"><span class="pre">qc.cx(b,a)</span></code> al final. De cualquier manera, el resultado es un proceso que puede hacer el intercambio en ambos sentidos.</p>
@@ -678,7 +644,7 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_21_0.png" src="../_images/Tema6_more-circuit-identities_21_0.png" />
+<img alt="../_images/547d435c2cff6ae6cb2536aabc3d30f8149c9a58cc8c7a1820acbafe23ffaa0b.png" src="../_images/547d435c2cff6ae6cb2536aabc3d30f8149c9a58cc8c7a1820acbafe23ffaa0b.png" />
 </div>
 </div>
 <p>Funciona para los estados <span class="math notranslate nohighlight">\(|00\rangle\)</span>, <span class="math notranslate nohighlight">\(|01\rangle\)</span>, <span class="math notranslate nohighlight">\(|10\rangle\)</span> y <span class="math notranslate nohighlight">\(|11\rangle\)</span>, y si funciona para todos los estados de la base de cálculo, debe funcionar para todos los estados en general. Por lo tanto, este circuito intercambia todos los estados posibles de dos qubits.</p>
@@ -695,26 +661,26 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_23_0.png" src="../_images/Tema6_more-circuit-identities_23_0.png" />
+<img alt="../_images/5b5a27716e2f3e1795ea8df41a2222ef9201409dc343696b557bb0a115cadf6a.png" src="../_images/5b5a27716e2f3e1795ea8df41a2222ef9201409dc343696b557bb0a115cadf6a.png" />
 </div>
 </div>
 <p>Por lo tanto este es un camino para obtener puertas del tipo  SWAP.</p>
 <p>La derivación utilizada aquí se basó en gran medida en los estados de la base z, pero también podría hacerse pensando en lo que se necesita para intercambiar qubits en los estados <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span>. Las formas resultantes de implementar la puerta SWAP serán completamente equivalentes a las de aquí.</p>
 <section id="quick-ejercicios">
-<h3><span class="section-number">10.2.1. </span>Quick Ejercicios:<a class="headerlink" href="#quick-ejercicios" title="Permalink to this headline">#</a></h3>
+<h3><span class="section-number">14.2.1. </span>Quick Ejercicios:<a class="headerlink" href="#quick-ejercicios" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Encuentre un circuito diferente que intercambie qubits en los estados <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span>, y demuestre que es equivalente al circuito mostrado anteriormente.</p></li>
 </ul>
 </section>
 </section>
-<section id="controlled-rotations-a-id-controlled-rotations-a">
-<h2><span class="section-number">10.3. </span>Controlled Rotations <a id="controlled-rotations"></a><a class="headerlink" href="#controlled-rotations-a-id-controlled-rotations-a" title="Permalink to this headline">#</a></h2>
+<section id="rotaciones-controladas-a-id-controlled-rotations-a">
+<h2><span class="section-number">14.3. </span>Rotaciones controladas <a id="controlled-rotations"></a><a class="headerlink" href="#rotaciones-controladas-a-id-controlled-rotations-a" title="Permalink to this heading">#</a></h2>
 <p>Ya hemos visto cómo construir rotaciones <span class="math notranslate nohighlight">\(\pi\)</span> controladas a partir de una sola puerta CNOT. Ahora veremos cómo construir cualquier rotación controlada.</p>
 <p>En primer lugar, consideremos rotaciones arbitrarias alrededor del eje y. Específicamente, considere la siguiente secuencia de puertas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">theta</span> <span class="o">=</span> <span class="n">pi</span> <span class="c1"># theta can be anything (pi chosen arbitrarily)</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">pi</span> <span class="c1"># theta puede ser cualquier valor (pi se ha elegido arbitrariamente)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="o">-</span><span class="n">theta</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
@@ -724,10 +690,10 @@ H Z H = X.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_26_0.png" src="../_images/Tema6_more-circuit-identities_26_0.png" />
+<img alt="../_images/3f568923359fdfde5ecbeb0c726f61fd9b6359e5465f37fa8dceb6655bc75a0a.png" src="../_images/3f568923359fdfde5ecbeb0c726f61fd9b6359e5465f37fa8dceb6655bc75a0a.png" />
 </div>
 </div>
-<p>Si el qubit de control está en estado <span class="math notranslate nohighlight">\(|0\rangle\)</span>, todo lo que tenemos aquí es un <span class="math notranslate nohighlight">\(R_y(\theta/2)\)</span> inmediatamente seguido de su inverso, <span class="math notranslate nohighlight">\(R_y(-\theta/2)\)</span>. El efecto final es trivial. Si el qubit de control está en el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>, sin embargo, el <code class="docutils literal notranslate"><span class="pre">ry(-theta/2)</span></code> es efectivamente precedido y seguido por una puerta X. Esto tiene el efecto de dar la vuelta al qubit. Esto tiene el efecto de invertir la dirección de la rotación y y hacer un segundo <span class="math notranslate nohighlight">\(R_y(\theta/2)\)</span>. El efecto neto en este caso **es, por tanto, hacer una versión controlada de la rotación <span class="math notranslate nohighlight">\(R_y(\theta)**\)</span>.</p>
+<p>Si el qubit de control está en estado <span class="math notranslate nohighlight">\(|0\rangle\)</span>, todo lo que tenemos aquí es un <span class="math notranslate nohighlight">\(R_y(\theta/2)\)</span> inmediatamente seguido de su inverso, <span class="math notranslate nohighlight">\(R_y(-\theta/2)\)</span>. El efecto final es trivial. Si el qubit de control está en el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>, sin embargo, el <code class="docutils literal notranslate"><span class="pre">ry(-theta/2)</span></code> es efectivamente precedido y seguido por una puerta X. Esto tiene el efecto de dar la vuelta al qubit. Esto tiene el efecto de invertir la dirección de la rotación  y hacer un segundo <span class="math notranslate nohighlight">\(R_y(\theta/2)\)</span>. El efecto neto en este caso <strong>es, por tanto, hacer una versión controlada de la rotación <span class="math notranslate nohighlight">\(R_y(\theta)\)</span></strong>.</p>
 <p>Este método funciona porque los ejes x e y son ortogonales, lo que hace que las puertas x inviertan la dirección de la rotación. Por lo tanto, funciona de manera similar para hacer un controlado <span class="math notranslate nohighlight">\( R_z(\theta)\)</span>. Un <span class="math notranslate nohighlight">\(R_x(\theta)\)</span> controlado podría hacerse de manera similar utilizando puertas CNOT.</p>
 <p>También podemos hacer una versión controlada de cualquier rotación de un solo qubit, <span class="math notranslate nohighlight">\(V\)</span>. Para ello sólo tenemos que encontrar tres rotaciones A, B y C, y una fase <span class="math notranslate nohighlight">\(\alpha\)</span> tal que</p>
 <div class="math notranslate nohighlight">
@@ -759,14 +725,14 @@ ABC = I, ~~~e^{i\alpha}AZBZC = V
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_29_0.png" src="../_images/Tema6_more-circuit-identities_29_0.png" />
+<img alt="../_images/0917333222c7f5dddfde9c4f459769716e86c92b1a9d98f8021e3241ffb28ea8.png" src="../_images/0917333222c7f5dddfde9c4f459769716e86c92b1a9d98f8021e3241ffb28ea8.png" />
 </div>
 </div>
 <p><img alt="A controlled version of a gate V" src="../_images/iden1.png" /></p>
 <p>Aquí <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code> y <code class="docutils literal notranslate"><span class="pre">C</span></code> son puertas que implementan <span class="math notranslate nohighlight">\(A\)</span> , <span class="math notranslate nohighlight">\(B\)</span> y <span class="math notranslate nohighlight">\(C\)</span>, respectivamente​.</p>
 </section>
 <section id="la-puerta-de-toffoli-a-id-ccx-a">
-<h2><span class="section-number">10.4. </span>La puerta de Toffoli <a id="ccx"></a><a class="headerlink" href="#la-puerta-de-toffoli-a-id-ccx-a" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">14.4. </span>La puerta de Toffoli <a id="ccx"></a><a class="headerlink" href="#la-puerta-de-toffoli-a-id-ccx-a" title="Permalink to this heading">#</a></h2>
 <p id="index-1">La puerta de Toffoli es una puerta de tres qubits con <em>dos controles y un objetivo</em>. Realiza una X en el objetivo sólo si ambos controles están en el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>. El estado final del objetivo es entonces igual a la AND o la NAND de los dos controles, dependiendo de si el estado inicial del objetivo era <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Un Toffoli también se puede considerar como un controlado-controlado-NOT, y también se llama puerta CCX.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -781,7 +747,7 @@ ABC = I, ~~~e^{i\alpha}AZBZC = V
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_32_0.png" src="../_images/Tema6_more-circuit-identities_32_0.png" />
+<img alt="../_images/12056b5891ef1811ad3fa782a42464b32303ddf2578f850e61ee0fd430107491.png" src="../_images/12056b5891ef1811ad3fa782a42464b32303ddf2578f850e61ee0fd430107491.png" />
 </div>
 </div>
 <p>Para ver cómo construirlo a partir de puertas de uno y dos qubits, es útil mostrar primero cómo construir algo aún más general: una U arbitraria controlada-controlada para cualquier rotación de un solo qubit U. Para ello necesitamos definir versiones controladas de <span class="math notranslate nohighlight">\(V = \sqrt{U}\)</span> y <span class="math notranslate nohighlight">\(V^\dagger\)</span>. En el código de abajo, usamos <code class="docutils literal notranslate"><span class="pre">cp(theta,c,t)</span></code> y <code class="docutils literal notranslate"><span class="pre">cp(-theta,c,t)</span></code> en lugar de las subrutinas indefinidas <code class="docutils literal notranslate"><span class="pre">cv</span></code> y <code class="docutils literal notranslate"><span class="pre">cvdg</span></code> respectivamente. Los controles son los qubits <span class="math notranslate nohighlight">\(a\)</span> y <span class="math notranslate nohighlight">\(b\)</span>, y el objetivo es el qubit <span class="math notranslate nohighlight">\(t\)</span>.</p>
@@ -798,14 +764,15 @@ ABC = I, ~~~e^{i\alpha}AZBZC = V
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/Tema6_more-circuit-identities_34_0.png" src="../_images/Tema6_more-circuit-identities_34_0.png" />
+<img alt="../_images/536f80d015a78dad945473a92034af95551469625c2886252265e1755603a920.png" src="../_images/536f80d015a78dad945473a92034af95551469625c2886252265e1755603a920.png" />
 </div>
 </div>
-<p><img alt="A doubly controlled version of a gate V" src="jupyters/images/iden2.png" /></p>
-<p>By tracing through each value of the two control qubits, you can convince yourself that a U gate is applied to the target qubit if and only if both controls are 1. Using ideas we have already described, you could now implement each controlled-V gate to arrive at some circuit for the doubly-controlled-U gate. It turns out that the minimum number of CNOT gates required to implement the Toffoli gate is six [2].</p>
-<p><img alt="A Toffoli" src="jupyters/images/iden3.png" />
-*This is a Toffoli with 3 qubits(q0,q1,q2) respectively. In this circuit example, q0 is connected with q2 but q0 is not connected with q1.</p>
-<p>The Toffoli is not the unique way to implement an AND gate in quantum computing. We could also define other gates that have the same effect, but which also introduce relative phases. In these cases, we can implement the gate with fewer CNOTs.</p>
+<p><img alt="A doubly controlled version of a gate V" src="../_images/iden2.PNG" /></p>
+<p>Rastreando cada valor de los dos qubits de control, puedes convencerte de que se aplica una puerta U al qubit objetivo si y sólo si ambos controles son 1. Utilizando las ideas que ya hemos descrito, ahora podrías implementar cada puerta V controlada para llegar a algún circuito para la puerta U doblemente controlada. Resulta que el número mínimo de puertas CNOT necesarias para implementar la puerta Toffoli es seis .</p>
+<p><img alt="A Toffoli" src="../_images/iden3.PNG" /></p>
+<p>Se trata de una puerta de Toffoli con 3 qubits(q0,q1,q2) respectivamente. En este ejemplo de circuito, q0 está conectado con q2 pero q0 no está conectado con q1</p>
+<p>La puerta de Toffoli no es la única forma de implementar una puerta AND en la informática cuántica. También podríamos definir otras puertas que tengan el mismo efecto, pero que además introduzcan fases relativas. En estos casos, podemos implementar la puerta con menos CNOTs.</p>
+<p>Por ejemplo, supongamos que utilizamos las puertas controlada-Hadamard y controlada-<span class="math notranslate nohighlight">\(Z\)</span>, que pueden implementarse con una sola CNOT. Con ellas podemos hacer el siguiente circuito:</p>
 <p>For example, suppose we use both the controlled-Hadamard and controlled-<span class="math notranslate nohighlight">\(Z\)</span> gates, which can both be implemented with a single CNOT. With these we can make the following circuit:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -813,60 +780,53 @@ ABC = I, ~~~e^{i\alpha}AZBZC = V
 <span class="n">qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">cz</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">ch</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">                  
-q_0: ──■───────■──
-       │       │  
-q_1: ──┼───■───┼──
-     ┌─┴─┐ │ ┌─┴─┐
-q_2: ┤ H ├─■─┤ H ├
-     └───┘   └───┘</pre></div></div>
+<img alt="../_images/95df2360ab7a3220355d169482b81c9ceffb5498b537a98d714460d202aac9f9.png" src="../_images/95df2360ab7a3220355d169482b81c9ceffb5498b537a98d714460d202aac9f9.png" />
 </div>
-<p>For the state <span class="math notranslate nohighlight">\(|00\rangle\)</span> on the two controls, this does nothing to the target. For <span class="math notranslate nohighlight">\(|11\rangle\)</span>, the target experiences a <span class="math notranslate nohighlight">\(Z\)</span> gate that is both preceded and followed by an H. The net effect is an <span class="math notranslate nohighlight">\(X\)</span> on the target. For the states <span class="math notranslate nohighlight">\(|01\rangle\)</span> and <span class="math notranslate nohighlight">\(|10\rangle\)</span>, the target experiences either just the two Hadamards (which cancel each other out) or just the <span class="math notranslate nohighlight">\(Z\)</span> (which only induces a relative phase). This therefore also reproduces the effect of an AND, because the value of the target is only changed for the <span class="math notranslate nohighlight">\(|11\rangle\)</span> state on the controls – but it does it with the equivalent of just three CNOT gates.</p>
+</div>
+<p>Para el estado <span class="math notranslate nohighlight">\(|00\rangle\)</span> en los dos controles, esto no hace nada al objetivo. Para <span class="math notranslate nohighlight">\(|11\rangle\)</span>, el objetivo experimenta una puerta <span class="math notranslate nohighlight">\(Z\)</span> precedida y seguida por una H. El efecto neto es una <span class="math notranslate nohighlight">\(X\)</span> en el objetivo. Para los estados <span class="math notranslate nohighlight">\(|01\rangle\)</span> y <span class="math notranslate nohighlight">\(|10\rangle\)</span>, el objetivo experimenta sólo los dos Hadamards \ (que se anulan mutuamente) o sólo el <span class="math notranslate nohighlight">\(Z\)</span> \ (que sólo induce una fase relativa). Por lo tanto, esto también reproduce el efecto de una AND, porque el valor del objetivo sólo se cambia para el estado <span class="math notranslate nohighlight">\(|11\rangle\)</span> en los controles – pero lo hace con el equivalente de sólo tres puertas CNOT.</p>
 </section>
-<section id="arbitrary-rotations-from-h-and-t-a-id-arbitrary-rotations-a">
-<h2><span class="section-number">10.5. </span>5. Arbitrary rotations from H and T <a id="arbitrary-rotations"></a><a class="headerlink" href="#arbitrary-rotations-from-h-and-t-a-id-arbitrary-rotations-a" title="Permalink to this headline">#</a></h2>
-<p>The qubits in current devices are subject to noise, which basically consists of gates that are done by mistake. Simple things like temperature, stray magnetic fields or activity on neighboring qubits can make things happen that we didn’t intend.</p>
-<p>For large applications of quantum computers, it will be necessary to encode our qubits in a way that protects them from this noise. This is done by making gates much harder to do by mistake, or to implement in a manner that is slightly wrong.</p>
-<p>This is unfortunate for the single-qubit rotations <span class="math notranslate nohighlight">\(R_x(\theta)\)</span>, <span class="math notranslate nohighlight">\(R_y(\theta)\)</span> and <span class="math notranslate nohighlight">\(R_z(\theta)\)</span>. It is impossible to implement an angle <span class="math notranslate nohighlight">\(\theta\)</span> with perfect accuracy, such that you are sure that you are not accidentally implementing something like <span class="math notranslate nohighlight">\(\theta + 0.0000001\)</span>. There will always be a limit to the accuracy we can achieve, and it will always be larger than is tolerable when we account for the build-up of imperfections over large circuits. We will therefore not be able to implement these rotations directly in fault-tolerant quantum computers, but will instead need to build them in a much more deliberate manner.</p>
-<p>Fault-tolerant schemes typically perform these rotations using multiple applications of just two gates: <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(T\)</span>.</p>
-<p>The T gate is expressed in Qiskit as <code class="docutils literal notranslate"><span class="pre">.t()</span></code>:</p>
+<section id="rotacion-arbitraria-de-h-y-t-a-id-arbitrary-rotations-a">
+<h2><span class="section-number">14.5. </span>Rotación arbitraria de H y T. <a id="arbitrary-rotations"></a><a class="headerlink" href="#rotacion-arbitraria-de-h-y-t-a-id-arbitrary-rotations-a" title="Permalink to this heading">#</a></h2>
+<p>Los qubits de los dispositivos actuales están sujetos a ruido, que consiste básicamente en puertas que se abren por error. Cosas tan simples como la temperatura, los campos magnéticos parásitos o la actividad en qubits vecinos pueden hacer que ocurran cosas que no pretendíamos.</p>
+<p>Para las grandes aplicaciones de los ordenadores cuánticos, será necesario codificar nuestros qubits de forma que queden protegidos de este ruido. Esto se consigue haciendo que las puertas sean mucho más difíciles de hacer por error, o de implementar de forma ligeramente errónea.</p>
+<p>Esto es desafortunado para las rotaciones de un solo qubit <span class="math notranslate nohighlight">\(R_x(\theta)\)</span>, <span class="math notranslate nohighlight">\(R_y(\theta)\)</span> y <span class="math notranslate nohighlight">\(R_z(\theta)\)</span>. Es imposible implementar un ángulo <span class="math notranslate nohighlight">\(\theta\)</span> con una precisión perfecta, de tal manera que estés seguro de que no estás implementando accidentalmente algo como <span class="math notranslate nohighlight">\(\theta + 0.0000001\)</span>. Siempre habrá un límite a la precisión que podemos alcanzar, y siempre será mayor de lo tolerable cuando tengamos en cuenta la acumulación de imperfecciones en circuitos grandes. Por lo tanto, <strong>no podremos implementar estas rotaciones directamente en ordenadores cuánticos tolerantes a fallos</strong>, sino que tendremos que construirlas de una manera mucho más deliberada.</p>
+<p>Los esquemas tolerantes a fallos suelen realizar estas rotaciones utilizando múltiples aplicaciones de sólo dos puertas: <span class="math notranslate nohighlight">\(H\)</span> y <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>La puerta T se expresa en Qiskit como <code class="docutils literal notranslate"><span class="pre">.t()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># T gate on qubit 0</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Puerta T sobre el qubit 0</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐
-q: ┤ T ├
-   └───┘</pre></div></div>
+<img alt="../_images/fe49971d4dc7909f328fb1b28dcb4858307ea4bc52e8c9c13241d7eb2debdd67.png" src="../_images/fe49971d4dc7909f328fb1b28dcb4858307ea4bc52e8c9c13241d7eb2debdd67.png" />
 </div>
-<p>It is a rotation around the z axis by <span class="math notranslate nohighlight">\(\theta = \pi/4\)</span>, and so is expressed mathematically as <span class="math notranslate nohighlight">\(R_z(\pi/4) = e^{i\pi/8~Z}\)</span>.</p>
-<p>In the following we assume that the <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(T\)</span> gates are effectively perfect. This can be engineered by suitable methods for error correction and fault-tolerance.</p>
-<p>Using the Hadamard and the methods discussed in the last chapter, we can use the T gate to create a similar rotation around the x axis.</p>
+</div>
+<p>Es una rotación alrededor del eje z por <span class="math notranslate nohighlight">\(\theta = \pi/4\)</span>, y así se expresa matemáticamente como <span class="math notranslate nohighlight">\(R_z(\pi/4) = e^{i\pi/8~Z}\)</span>.</p>
+<p>A continuación supondremos que las puertas <span class="math notranslate nohighlight">\(H\)</span> y <span class="math notranslate nohighlight">\(T\)</span> son efectivamente perfectas. Esto puede lograrse mediante métodos adecuados de corrección de errores y tolerancia a fallos.</p>
+<p>Utilizando la puerta Hadamard y los métodos discutidos en el último capítulo, podemos utilizar la puerta T para crear una rotación similar alrededor del eje x.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐┌───┐┌───┐
-q: ┤ H ├┤ T ├┤ H ├
-   └───┘└───┘└───┘</pre></div></div>
+<img alt="../_images/9d222e414ceb45795be3e3f2d34aad2278e02ea5ba237c1e0f7003ffb8d4199c.png" src="../_images/9d222e414ceb45795be3e3f2d34aad2278e02ea5ba237c1e0f7003ffb8d4199c.png" />
 </div>
-<p>Now let’s put the two together. Let’s make the gate <span class="math notranslate nohighlight">\(R_z(\pi/4)~R_x(\pi/4)\)</span>.</p>
+</div>
+<p>Ahora unamos las dos cosas. Hagamos la puerta <span class="math notranslate nohighlight">\(R_z(\pi/4)~R_x(\pi/4)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -874,26 +834,25 @@ q: ┤ H ├┤ T ├┤ H ├
 <span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐┌───┐┌───┐┌───┐
-q: ┤ H ├┤ T ├┤ H ├┤ T ├
-   └───┘└───┘└───┘└───┘</pre></div></div>
+<img alt="../_images/05d124a9e71f6427d6baffe9fd49ab8ff3267022068698649a3ee4da3cf46b93.png" src="../_images/05d124a9e71f6427d6baffe9fd49ab8ff3267022068698649a3ee4da3cf46b93.png" />
 </div>
-<p>Since this is a single-qubit gate, we can think of it as a rotation around the Bloch sphere. That means that it is a rotation around some axis by some angle. We don’t need to think about the axis too much here, but it clearly won’t be simply x, y or z. More important is the angle.</p>
-<p>The crucial property of the angle for this rotation is that it is an irrational multiple of <span class="math notranslate nohighlight">\(\pi\)</span>. You can prove this yourself with a bunch of math, but you can also see the irrationality in action by applying the gate. Keeping in mind that every time we apply a rotation that is larger than <span class="math notranslate nohighlight">\(2\pi\)</span>, we are doing an implicit modulos by <span class="math notranslate nohighlight">\(2\pi\)</span> on the rotation angle. Thus, repeating the combined rotation mentioned above <span class="math notranslate nohighlight">\(n\)</span> times results in a rotation around the same axis by a different angle. As a hint to a rigorous proof, recall that an irrational number cannot be be written as what?</p>
-<p>We can use this to our advantage. Each angle will be somewhere between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\pi\)</span>. Let’s split this interval up into <span class="math notranslate nohighlight">\(n\)</span> slices of width <span class="math notranslate nohighlight">\(2\pi/n\)</span>. For each repetition, the resulting angle will fall in one of these slices. If we look at the angles for the first <span class="math notranslate nohighlight">\(n+1\)</span> repetitions, it must be true that at least one slice contains two of these angles due to the pigeonhole principle. Let’s use <span class="math notranslate nohighlight">\(n_1\)</span> to denote the number of repetitions required for the first, and <span class="math notranslate nohighlight">\(n_2\)</span> for the second.</p>
-<p>With this, we can prove something about the angle for <span class="math notranslate nohighlight">\(n_2-n_1\)</span> repetitions. This is effectively the same as doing <span class="math notranslate nohighlight">\(n_2\)</span> repetitions, followed by the inverse of <span class="math notranslate nohighlight">\(n_1\)</span> repetitions. Since the angles for these are not equal (because of the irrationality) but also differ by no greater than <span class="math notranslate nohighlight">\(2\pi/n\)</span> (because they correspond to the same slice), the angle for <span class="math notranslate nohighlight">\(n_2-n_1\)</span> repetitions satisfies</p>
+</div>
+<p>Dado que se trata de una puerta de un solo qubit, podemos pensar en ella como una rotación alrededor de la esfera de Bloch. Eso significa que es una rotación alrededor de algún eje por algún ángulo. No necesitamos pensar demasiado en el eje aquí, pero está claro que no será simplemente x, y o z. Más importante es el ángulo.</p>
+<p>La propiedad crucial del ángulo para esta rotación es que es un múltiplo irracional de <span class="math notranslate nohighlight">\(\pi\)</span>. Puedes demostrarlo tú mismo con un montón de matemáticas, pero también puedes ver la irracionalidad en acción aplicando la puerta. Teniendo en cuenta que cada vez que aplicamos una rotación mayor que <span class="math notranslate nohighlight">\(2\pi\)</span>, estamos haciendo un módulo implícito por <span class="math notranslate nohighlight">\(2\pi\)</span> sobre el ángulo de rotación. Así, repitiendo la rotación combinada antes mencionada <span class="math notranslate nohighlight">\(n\)</span> veces se obtiene una rotación alrededor del mismo eje por un ángulo diferente.</p>
+<p>Podemos usar esto a nuestro favor. Cada ángulo estará en algún lugar entre <span class="math notranslate nohighlight">\(0\)</span> y <span class="math notranslate nohighlight">\(2\pi\)</span>. Dividamos este intervalo en <span class="math notranslate nohighlight">\(n\)</span> trozos de anchura <span class="math notranslate nohighlight">\(2\pi/n\)</span>. Para cada repetición, el ángulo resultante caerá en una de estas rebanadas. Si nos fijamos en los ángulos de las primeras <span class="math notranslate nohighlight">\(n+1\)</span> repeticiones, debe ser cierto que al menos una rebanada contiene dos de estos ángulos debido al principio de encasillamiento. Utilicemos <span class="math notranslate nohighlight">\(n_1\)</span> para denotar el número de repeticiones necesarias para la primera, y <span class="math notranslate nohighlight">\(n_2\)</span> para la segunda.</p>
+<p>Con esto, podemos demostrar algo sobre el ángulo para <span class="math notranslate nohighlight">\(n_2-n_1\)</span> repeticiones. Esto es efectivamente lo mismo que hacer <span class="math notranslate nohighlight">\(n_2\)</span> repeticiones, seguido de la inversa de <span class="math notranslate nohighlight">\(n_1\)</span> repeticiones. Dado que los ángulos para estos no son iguales (debido a la irracionalidad), pero también difieren en no más de <span class="math notranslate nohighlight">\(2\pi/n\)</span> (porque corresponden a la misma rebanada), el ángulo para <span class="math notranslate nohighlight">\(n_2-n_1\)</span> repeticiones satisface</p>
 <div class="math notranslate nohighlight">
 \[
 \theta_{n_2-n_1} \neq 0, ~~~~-\frac{2\pi}{n} \leq \theta_{n_2-n_1} \leq \frac{2\pi}{n} .
 \]</div>
-<p>We therefore have the ability to do rotations around small angles. We can use this to rotate around angles that are as small as we like, just by increasing the number of times we repeat this gate.</p>
-<p>By using many small-angle rotations, we can also rotate by any angle we like. This won’t always be exact, but it is guaranteed to be accurate up to <span class="math notranslate nohighlight">\(2\pi/n\)</span>, which can be made as small as we like. We  now have power over the inaccuracies in our rotations.</p>
-<p>So far, we only have the power to do these arbitrary rotations around one axis. For a second axis, we simply do the <span class="math notranslate nohighlight">\(R_z(\pi/4)\)</span> and <span class="math notranslate nohighlight">\(R_x(\pi/4)\)</span> rotations in the opposite order.</p>
+<p>Por lo tanto, tenemos la capacidad de hacer rotaciones alrededor de ángulos pequeños. Podemos usar esto para rotar alrededor de ángulos tan pequeños como queramos, simplemente aumentando el número de veces que repetimos esta puerta.</p>
+<p>Mediante el uso de muchas rotaciones de ángulo pequeño, también podemos rotar por cualquier ángulo que nos gusta. Esto no siempre será exacta, pero se garantiza que sea exacta hasta <span class="math notranslate nohighlight">\(2\pi/n\)</span>, que se puede hacer tan pequeño como nos gusta. Ahora tenemos poder sobre las imprecisiones en nuestras rotaciones.</p>
+<p>Hasta ahora, sólo tenemos el poder de hacer estas rotaciones arbitrarias alrededor de un eje. Para un segundo eje, simplemente hacemos las rotaciones <span class="math notranslate nohighlight">\(R_z(\pi/4)\)</span> y <span class="math notranslate nohighlight">\(R_x(\pi/4)\)</span> en el orden inverso.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -901,20 +860,19 @@ q: ┤ H ├┤ T ├┤ H ├┤ T ├
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">t</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+<span class="n">qc</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">   ┌───┐┌───┐┌───┐┌───┐
-q: ┤ T ├┤ H ├┤ T ├┤ H ├
-   └───┘└───┘└───┘└───┘</pre></div></div>
+<img alt="../_images/7faa50968628eb54c854e7f10a67cc9090b9f99e19fd28db96df751c1382cbcb.png" src="../_images/7faa50968628eb54c854e7f10a67cc9090b9f99e19fd28db96df751c1382cbcb.png" />
 </div>
-<p>The axis that corresponds to this rotation is not the same as that for the gate considered previously. We therefore now have arbitrary rotation around two axes, which can be used to generate any arbitrary rotation around the Bloch sphere. We are back to being able to do everything, though it costs quite a lot of <span class="math notranslate nohighlight">\(T\)</span> gates.</p>
-<p>It is because of this kind of application that <span class="math notranslate nohighlight">\(T\)</span> gates are so prominent in quantum computation. In fact, the complexity of algorithms for fault-tolerant quantum computers is often quoted in terms of how many <span class="math notranslate nohighlight">\(T\)</span> gates they’ll need. This motivates the quest to achieve things with as few <span class="math notranslate nohighlight">\(T\)</span> gates as possible. Note that the discussion above was simply intended to prove that <span class="math notranslate nohighlight">\(T\)</span> gates can be used in this way, and does not represent the most efficient method we know.</p>
+</div>
+<p>El eje que corresponde a esta rotación no es el mismo que el de la puerta considerada anteriormente. Por lo tanto, ahora tenemos una rotación arbitraria alrededor de dos ejes, que puede utilizarse para generar cualquier rotación arbitraria alrededor de la esfera de Bloch. Volvemos a poder hacerlo todo, aunque cuesta bastantes <span class="math notranslate nohighlight">\(T\)</span> compuertas.</p>
+<p>POr esto y para este tipo de aplicaciones, las puertas <span class="math notranslate nohighlight">\(T\)</span> son tan importantes en la computación cuántica. De hecho, la complejidad de los algoritmos de los ordenadores cuánticos con tolerancia a fallos se suele expresar en términos de cuántas puertas <span class="math notranslate nohighlight">\(T\)</span> se necesitan. Esto motiva la búsqueda de logros con el menor número posible de puertas <span class="math notranslate nohighlight">\(T\)</span>. Nótese que la discusión anterior sólo pretendía demostrar que las puertas <span class="math notranslate nohighlight">\(T\)</span> pueden utilizarse de este modo, y no representa el método más eficiente que conocemos.</p>
 </section>
-<section id="references-a-id-references-a">
-<h2><span class="section-number">10.6. </span>6. References <a id="references"></a><a class="headerlink" href="#references-a-id-references-a" title="Permalink to this headline">#</a></h2>
+<section id="referencias-a-id-references-a">
+<h2><span class="section-number">14.6. </span>Referencias <a id="references"></a><a class="headerlink" href="#referencias-a-id-references-a" title="Permalink to this heading">#</a></h2>
 <p>[1] <a class="reference external" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.52.3457?cm_mc_uid=43781767191014577577895&amp;cm_mc_sid_50200000=1460741020">Barenco, <em>et al.</em> 1995</a></p>
 <p>[2] <a class="reference external" href="http://dl.acm.org/citation.cfm?id=2011799">Shende and Markov, 2009</a></p>
 <div class="cell docutils container">
@@ -925,16 +883,10 @@ q: ┤ T ├┤ H ├┤ T ├┤ H ├
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><h3>Version Information</h3><table><tr><th>Qiskit Software</th><th>Version</th></tr><tr><td><code>qiskit-terra</code></td><td>0.22.3</td></tr><tr><td><code>qiskit-aer</code></td><td>0.11.2</td></tr><tr><td><code>qiskit-ibmq-provider</code></td><td>0.19.2</td></tr><tr><td><code>qiskit</code></td><td>0.39.4</td></tr><tr><th>System information</th></tr><tr><td>Python version</td><td>3.9.13</td></tr><tr><td>Python compiler</td><td>MSC v.1929 64 bit (AMD64)</td></tr><tr><td>Python build</td><td>main, May 27 2022 16:51:29</td></tr><tr><td>OS</td><td>Windows</td></tr><tr><td>CPUs</td><td>4</td></tr><tr><td>Memory (Gb)</td><td>11.799663543701172</td></tr><tr><td colspan='2'>Tue Jan 17 17:57:19 2023 Hora estándar romance</td></tr></table></div></div>
+<div class="output text_html"><h3>Version Information</h3><table><tr><th>Software</th><th>Version</th></tr><tr><td><code>qiskit</code></td><td>0.44.2</td></tr><tr><td><code>qiskit-terra</code></td><td>0.25.2</td></tr><tr><th colspan='2'>System information</th></tr><tr><td>Python version</td><td>3.11.4</td></tr><tr><td>Python compiler</td><td>MSC v.1916 64 bit (AMD64)</td></tr><tr><td>Python build</td><td>main, Jul  5 2023 13:38:37</td></tr><tr><td>OS</td><td>Windows</td></tr><tr><td>CPUs</td><td>4</td></tr><tr><td>Memory (Gb)</td><td>11.799663543701172</td></tr><tr><td colspan='2'>Tue Oct 24 10:15:32 2023 Hora de verano romance</td></tr></table></div></div>
 </div>
 </section>
 </section>
-
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"0eebfb93cda14225b07925c60f705e8e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 10px 0px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "78bb0ae8c383495491a24e35b167af58": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "48ff7788946e4d968a6c0432fc7a3c88": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_0eebfb93cda14225b07925c60f705e8e", "placeholder": "\u200b", "style": "IPY_MODEL_78bb0ae8c383495491a24e35b167af58", "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}, "b19153d8291f40bda4f891d4198f038d": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": "right", "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": "0px 0px 0px 0px", "right": null, "top": null, "visibility": null, "width": "70px"}}, "b1c91aea977d4485b1dcc211cbf55ee3": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "button_color": null, "font_weight": ""}}, "ca8c6a45bc684783b96b1903752e859b": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "ButtonView", "button_style": "primary", "description": "Clear", "disabled": false, "icon": "", "layout": "IPY_MODEL_b19153d8291f40bda4f891d4198f038d", "style": "IPY_MODEL_b1c91aea977d4485b1dcc211cbf55ee3", "tooltip": ""}}, "3eed929498f242b8917f1a4c35bf34cf": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": "\n                                       \". . . . right \"\n                                        ", "grid_template_columns": "20% 20% 20% 20% 20%", "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "100%"}}, "ccd8b4c473b74536a08f414a5f8beb8b": {"model_name": "GridBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "GridBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "GridBoxView", "box_style": "", "children": ["IPY_MODEL_ca8c6a45bc684783b96b1903752e859b"], "layout": "IPY_MODEL_3eed929498f242b8917f1a4c35bf34cf"}}, "3df1791335584693b2a4648d4783c6c3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "190px"}}, "8242178ef4dd4f308ecf73d1b65f17ec": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "d4f49a935c7d4c8ea89865bba74f4ae2": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_3df1791335584693b2a4648d4783c6c3", "placeholder": "\u200b", "style": "IPY_MODEL_8242178ef4dd4f308ecf73d1b65f17ec", "value": "<h5>Job ID</h5>"}}, "ecb89ddca0e443b1b4c34f3d91d8067b": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "145px"}}, "87f8e0e8ba5942d594aba9f3dd3e77e3": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "00b51b8457964021ae159e132745ac73": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_ecb89ddca0e443b1b4c34f3d91d8067b", "placeholder": "\u200b", "style": "IPY_MODEL_87f8e0e8ba5942d594aba9f3dd3e77e3", "value": "<h5>Backend</h5>"}}, "8643f66c722e417eb5b1ad7192005c92": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "95px"}}, "93f6b3e922e8426399df65032123506e": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "654022807dd147548c68b9e365abdf84": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_8643f66c722e417eb5b1ad7192005c92", "placeholder": "\u200b", "style": "IPY_MODEL_93f6b3e922e8426399df65032123506e", "value": "<h5>Status</h5>"}}, "87cbe859d16246c5af8fc790170f8100": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "70px"}}, "d242a3c449374c3b9d7d62abb8f6785c": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "646a1e531b3c40699b039573d4e2d75e": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_87cbe859d16246c5af8fc790170f8100", "placeholder": "\u200b", "style": "IPY_MODEL_d242a3c449374c3b9d7d62abb8f6785c", "value": "<h5>Queue</h5>"}}, "4d198017c7f140a08441566936fa08fc": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "970e593bf15d4775a2320a029e610406": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "89479dd689764488819dd0e520e542d0": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HTMLView", "description": "", "description_tooltip": null, "layout": "IPY_MODEL_4d198017c7f140a08441566936fa08fc", "placeholder": "\u200b", "style": "IPY_MODEL_970e593bf15d4775a2320a029e610406", "value": "<h5>Message</h5>"}}, "a25cbad46db343d5b1e8bc034b8ddbcc": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 0px 37px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "600px"}}, "e8b382d3b0304b9f876de59652ff13ff": {"model_name": "HBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "HBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "HBoxView", "box_style": "", "children": ["IPY_MODEL_d4f49a935c7d4c8ea89865bba74f4ae2", "IPY_MODEL_00b51b8457964021ae159e132745ac73", "IPY_MODEL_654022807dd147548c68b9e365abdf84", "IPY_MODEL_646a1e531b3c40699b039573d4e2d75e", "IPY_MODEL_89479dd689764488819dd0e520e542d0"], "layout": "IPY_MODEL_a25cbad46db343d5b1e8bc034b8ddbcc"}}}, "version_major": 2, "version_minor": 0}
-</script>
-
 
     <script type="text/x-thebe-config">
     {
@@ -948,7 +900,7 @@ q: ┤ T ├┤ H ├┤ T ├┤ H ├
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./jupyters"
         },
         predefinedOutput: true
@@ -956,50 +908,109 @@ q: ┤ T ├┤ H ├┤ T ├┤ H ├
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="Tema5_phase-kickback.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">8. </span>Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="Tema7_proving-universality.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">11. </span>Proving Universality <a id='intro'></a></p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Miguel Rodríguez<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
 
-
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Tema5_phase-kickback.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></p>
       </div>
+    </a>
+    <a class="right-next"
+       href="Tema7_proving-universality.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Proving Universality <a id='intro'></a></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#construyendo-una-z-controlada-desde-un-cnot-a-id-c-from-cnot-a">14.1. Construyendo una Z controlada desde un CNOT. <a id="c-from-cnot"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intercambio-de-qubits-a-id-swapping-a">14.2. Intercambio de Qubits <a id="swapping"></a></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-ejercicios">14.2.1. Quick Ejercicios:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotaciones-controladas-a-id-controlled-rotations-a">14.3. Rotaciones controladas <a id="controlled-rotations"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-de-toffoli-a-id-ccx-a">14.4. La puerta de Toffoli <a id="ccx"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotacion-arbitraria-de-h-y-t-a-id-arbitrary-rotations-a">14.5. Rotación arbitraria de H y T. <a id="arbitrary-rotations"></a></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referencias-a-id-references-a">14.6. Referencias <a id="references"></a></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

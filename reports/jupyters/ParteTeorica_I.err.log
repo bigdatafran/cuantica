@@ -1,0 +1,140 @@
+Traceback (most recent call last):
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programas\Anaconda\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+from qiskit.visualization import plot_bloch_vector
+
+# You can use spherical coordinates instead of cartesian.
+
+plot_bloch_vector([1, theta, phi], coord_type='spherical',title='Aquí irá el título',figsize=(3,3))
+------------------
+
+----- stdout -----
+Unexpected exception formatting exception. Falling back to standard exception
+----- stderr -----
+Traceback (most recent call last):
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\IPython\core\interactiveshell.py", line 3526, in run_code
+    exec(code_obj, self.user_global_ns, self.user_ns)
+  File "C:\Users\Francisco\AppData\Local\Temp\ipykernel_4792\2127643805.py", line 2, in <module>
+    from qiskit.visualization import plot_bloch_vector
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\__init__.py", line 58, in <module>
+    from qiskit.circuit import ClassicalRegister
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\circuit\__init__.py", line 383, in <module>
+    from . import library
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\circuit\library\__init__.py", line 493, in <module>
+    from .generalized_gates import (
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\circuit\library\generalized_gates\__init__.py", line 22, in <module>
+    from .linear_function import LinearFunction
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\circuit\library\generalized_gates\linear_function.py", line 19, in <module>
+    from qiskit.synthesis.linear import check_invertible_binary_matrix
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\synthesis\__init__.py", line 89, in <module>
+    from .evolution import (
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\synthesis\evolution\__init__.py", line 17, in <module>
+    from .product_formula import ProductFormula
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\synthesis\evolution\product_formula.py", line 20, in <module>
+    from qiskit.quantum_info import SparsePauliOp, Pauli
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\__init__.py", line 129, in <module>
+    from .analysis import hellinger_distance, hellinger_fidelity, Z2Symmetries
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\analysis\__init__.py", line 17, in <module>
+    from .z2_symmetries import Z2Symmetries
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\analysis\z2_symmetries.py", line 25, in <module>
+    from ..operators import Pauli, SparsePauliOp
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\operators\__init__.py", line 18, in <module>
+    from .measures import average_gate_fidelity, diamond_norm, gate_error, process_fidelity
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\operators\measures.py", line 28, in <module>
+    from qiskit.quantum_info.states.densitymatrix import DensityMatrix
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\states\__init__.py", line 16, in <module>
+    from .statevector import Statevector
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\states\statevector.py", line 26, in <module>
+    from qiskit.quantum_info.states.quantum_state import QuantumState
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\quantum_info\states\quantum_state.py", line 27, in <module>
+    from qiskit.result.counts import Counts
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\result\__init__.py", line 56, in <module>
+    from .result import Result
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\result\result.py", line 19, in <module>
+    from qiskit.pulse.schedule import Schedule
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\pulse\__init__.py", line 67, in <module>
+    from qiskit.pulse.builder import (
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\pulse\builder.py", line 467, in <module>
+    from qiskit.pulse import (
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\qiskit\pulse\macros.py", line 19, in <module>
+    from qiskit.pulse.instruction_schedule_map import InstructionScheduleMap
+  File "<frozen importlib._bootstrap>", line 1176, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1147, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 690, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 936, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1032, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1131, in get_data
+MemoryError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\IPython\core\interactiveshell.py", line 2120, in showtraceback
+    stb = self.InteractiveTB.structured_traceback(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\IPython\core\ultratb.py", line 1435, in structured_traceback
+    return FormattedTB.structured_traceback(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\IPython\core\ultratb.py", line 1326, in structured_traceback
+    return VerboseTB.structured_traceback(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\IPython\core\ultratb.py", line 1173, in structured_traceback
+    formatted_exception = self.format_exception_as_a_whole(etype, evalue, etb, number_of_lines_of_context,
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\IPython\core\ultratb.py", line 1063, in format_exception_as_a_whole
+    self.get_records(etb, number_of_lines_of_context, tb_offset) if etb else []
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\IPython\core\ultratb.py", line 1160, in get_records
+    res = list(stack_data.FrameInfo.stack_data(etb, options=options))[tb_offset:]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\stack_data\core.py", line 597, in stack_data
+    yield from collapse_repeated(
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\stack_data\utils.py", line 83, in collapse_repeated
+    yield from map(mapper, original_group)
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\stack_data\core.py", line 587, in mapper
+    return cls(f, options)
+           ^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\stack_data\core.py", line 551, in __init__
+    self.executing = Source.executing(frame_or_tb)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\executing\executing.py", line 264, in executing
+    source = cls.for_frame(frame)
+             ^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\executing\executing.py", line 183, in for_frame
+    return cls.for_filename(frame.f_code.co_filename, frame.f_globals or {}, use_cache)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\executing\executing.py", line 212, in for_filename
+    return cls._for_filename_and_lines(filename, tuple(lines))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\executing\executing.py", line 223, in _for_filename_and_lines
+    result = source_cache[(filename, lines)] = cls(filename, lines)
+                                               ^^^^^^^^^^^^^^^^^^^^
+  File "D:\MisTrabajos\Iberdrola_Miguel\ProgramacionCuantica\venv\Lib\site-packages\executing\executing.py", line 163, in __init__
+    self.tree = ast.parse(self.text, filename=filename)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\programas\Anaconda\Lib\ast.py", line 50, in parse
+    return compile(source, filename, mode, flags,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MemoryError
+------------------
+
+
+

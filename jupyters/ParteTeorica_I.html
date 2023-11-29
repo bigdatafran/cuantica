@@ -1,0 +1,704 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Introducción &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/ParteTeorica_I';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Números complejos en Python." href="numeros_complejos.html" />
+    <link rel="prev" title="Introducción" href="../introduccion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">16. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyters/ParteTeorica_I.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#superposicion-de-estados">1.1. Superposición de estados.</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<span id="superposicion"></span><h1><span class="section-number">1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+<p id="index-0">La informática clásica se basa en la noción de bit como la unidad primaria de la información. Esta concepción de unidad básica de información se denomina <em>qubit</em> en programación cuántica. Aunque esto puede variar, los dos qubits más utilizado son <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>, los cuales forman lo que se denomina una base (similar a lo que ocurre en una base de un espacio vectorial). La notación anterior es la normalmente utilizada dentro de la programación cuántica y se denominación notación de <em>Dirac</em>, y los elementos que la componen son los <em>bra-ket</em>. Como se puede observar los dígitos 0 y 1 están encerrados entre una barra vertical y una escuadra angular, denominada <em>Ket</em>.</p>
+<p id="index-1">Para visualizar los estados dentro del mundo cuántico, se utiliza la denominada <em>esfera de Bloch (Bloch sphere)</em>. Esta esfera tienen la característica principal de que tiene radio 1, y entonces los qubits  anteriormente referenciados se representan en la misma según la figura que sigue, que como se puede observar están situados en el polo norte y polo sur de dicha esfera.</p>
+<p><img alt="" src="../_images/Bloch_0_1.PNG" /></p>
+<p>Más adelante se verá cómo poder representar este tipo de información utilizando <a href="https://qiskit.org/" target="_blank"> la herramienta qiskit </a>, ampliamente utilizada para el desarrollo de la programación cuántica.</p>
+<p>Como puede verse en la figura anterior, y si utilizamos coordenadas cartesianas, el qubit <span class="math notranslate nohighlight">\(|0\rangle\)</span> quedaría representado por el siguiente trío de valores: (0,0,1), mientras que el elemento <span class="math notranslate nohighlight">\(|1\rangle\)</span> sería equivalente a (0,0,-1).</p>
+<section id="superposicion-de-estados">
+<h2><span class="section-number">1.1. </span>Superposición de estados.<a class="headerlink" href="#superposicion-de-estados" title="Permalink to this heading">#</a></h2>
+<p>En el aparatado anterior, se han presentado dos qubits que pueden ser asimilados a los bits de la programación clásica. Pero sin embargo en la programación cuántica se establece el concepto de superposición de estados, que no es más que una combinación líneal de elementos de una base. De esta manera posemos poner en estado de superposición los dos elementos anteriores generando un nuevo qubit, de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[|\gamma\rangle=\alpha \cdot |0\rangle +  \beta \cdot |1\rangle\]</div>
+<p>De tal manera que <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span> serían números complejos y además para que el valor obtenido quede dentro de la esfera unidad deberán cumplir que <span class="math notranslate nohighlight">\(\alpha^2 + \beta^2=1\)</span>.</p>
+<p>Por lo tanto uno de los muchos estados que podemos obtener de esta manera podría ser el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\sqrt{2}}\left(|0\rangle+|1\rangle\right)\]</div>
+<p>que verifica lo siguiente, dada la construcción que se ha hecho del mismo: puesto que los coeficientes utilizados son los mismos, debería estar a la misma distancia de los elementos <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>, es decir debería estar equidistante del polo norte y del sur y por lo tanto los puntos de la esfera unidad que verifican esta propiedad son todos los que están en el ecuador de la esfera de Bloch. En concreto ese punto sería el que se representa en la siguiente figura:</p>
+<p><img alt="" src="../_images/Bloch_1_0_0.PNG" /></p>
+<p>En coordenadas cartesianas, este punto sería el (1,0,0).</p>
+<p>A pesar de que en estos momentos el lector no entienda bien el código que se le va a presentar, se ha creído útil hacerlo, de cara a la representación de estos estados superpuestos utilizando quiskit. Para ello simplemente decir que existen tres formas de representar los elementos de la esfera de Bloch:</p>
+<ul class="simple">
+<li><p>Mediante coordenadas polares</p></li>
+<li><p>Mediante coordenadas cartesianas</p></li>
+<li><p>utilizando la nomenclatura que se ha utilizado anteriormente.</p></li>
+</ul>
+<p id="index-2">Teniendo en cuenta lo anterior, cabe decir que quiskit tiene la clase denominada <a href="https://qiskit.org/documentation/stubs/qiskit.visualization.plot_bloch_vector.html" target="_blank"> <em>plot_bloch_vector</em> </a> que permite hacer estas representaciones gráficas sobre la esfera de Bloch. Pero como puede verse en su documentación los tipos de coordenadas que admiten son las de tipo cartesiano y la de coordenadas polares. Por lo tanto se deben hacer una serie de transformaciones para que un qubit expresado de la tercera forma (que es la que se ha visto hasta la fecha), se pueda representar con esta clase. Para ello lo que hacemos es pasar ese tipo de coordenadas a polares y después utilizar esta clase de python.</p>
+<p>Observar que previamente a ejecutar el siguiente código, lo que tenemos que tener es descargadas las librerías de numpy y qiskit. Esto lo haríamos con el siguiente código (descomentarlo si se quiere reutilizar).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install qiskit</span>
+<span class="c1">#pip install numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora ya podríamos generar el código necesario. Se aconseja al lector <a href="https://quantumcomputing.stackexchange.com/questions/26431/can-i-convert-a-qubit-in-complex-form-to-polar-form" target="_blank"> ir a este enlace </a> para entender mejor lo que se está haciendo, aunque como ya se ha dicho antes no es necesario entenderlo para seguir hacia adelante con el resto de la materia (no obstante, más adelante, en el apartado <a class="reference internal" href="ParteTeorica_II.html#mapeo"><span class="std std-ref">específico de la esfera de Bloch</span></a> se explica mejor esta forma de proceder).</p>
+<p>Importamos inicialmente la librerías necesarias</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">cmath</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación vamos a definir los dos números complejos del estado superpuesto siguiente:
+$<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|0\rangle+\frac{1}{\sqrt{2}}|1\rangle\)</span>$</p>
+<p>Es decir con <span class="math notranslate nohighlight">\(z_1\)</span> representamos el completo <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}+0i\)</span> y con <span class="math notranslate nohighlight">\(z_2\)</span> el mismo complejo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z2</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación pasamos a coordenadas polares el punto que representan en la esfera de Bloch, de la siguiente manera</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r1</span><span class="p">,</span> <span class="n">phi1</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+<span class="n">r2</span><span class="p">,</span> <span class="n">phi2</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
+
+<span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">phi2</span> <span class="o">-</span> <span class="n">phi1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;θ =&#39;</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;φ =&#39;</span><span class="p">,</span> <span class="n">phi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>θ = 1.5707963267948968
+φ = 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con la información anterior, ya podemos hacer la representación gráfica del qubit sobre el que estamos trabajando</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_vector</span>
+
+<span class="c1"># You can use spherical coordinates instead of cartesian.</span>
+
+<span class="n">plot_bloch_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">],</span> <span class="n">coord_type</span><span class="o">=</span><span class="s1">&#39;spherical&#39;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Aquí irá el título&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d645f487f81723b1badd1691e7877328a3554cacabf9084cf882fc3f107d0540.png" src="../_images/d645f487f81723b1badd1691e7877328a3554cacabf9084cf882fc3f107d0540.png" />
+</div>
+</div>
+<p>Con la explicación dada anteriormente, ya estamos en condiciones de definir una función en Python que nos obtenga esas coordenadas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">,</span> <span class="n">titulo</span><span class="o">=</span><span class="s2">&quot;Un título&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Función que nos sirve para pasar de unas coordenadas del tercer tipo a coordenadas polares</span>
+<span class="sd">    </span>
+<span class="sd">    @parámetros:</span>
+<span class="sd">    </span>
+<span class="sd">    z1: Valores del primero número complejo</span>
+<span class="sd">    </span>
+<span class="sd">    z2: valores del segundo número complejo</span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+<span class="sd">    @return:</span>
+<span class="sd">    </span>
+<span class="sd">    Los valores del theta y phi de las coordenadas esféricas</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    
+    <span class="n">r1</span><span class="p">,</span> <span class="n">phi1</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+    <span class="n">r2</span><span class="p">,</span> <span class="n">phi2</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
+
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">phi2</span> <span class="o">-</span> <span class="n">phi1</span>
+
+    <span class="k">return</span> <span class="n">theta</span><span class="p">,</span><span class="n">phi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Utilizamos la función anterior para hacer la representación gráfica correspondiente sobre la esfera de Bloch</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># primer número</span>
+<span class="n">z2</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span> <span class="c1">#segundo número</span>
+<span class="n">resul</span> <span class="o">=</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)</span> <span class="c1"># almacenamos la información en una tupla</span>
+<span class="c1"># Y ahora ya podemos hacer la representación gráfica</span>
+<span class="n">plot_bloch_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">resul</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">resul</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">coord_type</span><span class="o">=</span><span class="s1">&#39;spherical&#39;</span><span class="p">,</span>
+                  <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Estado: $</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{1}</span><span class="s1">{</span><span class="se">\\</span><span class="s1">sqrt</span><span class="si">{2}</span><span class="s1">}|0</span><span class="se">\\</span><span class="s1">rangle+</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{1}</span><span class="s1">{</span><span class="se">\\</span><span class="s1">sqrt</span><span class="si">{2}</span><span class="s1">}|1</span><span class="se">\\</span><span class="s1">rangle$&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/841ef288bed4f9b5bf770cbb51b6d6be43ef3fc6e1a4968339041450867cc007.png" src="../_images/841ef288bed4f9b5bf770cbb51b6d6be43ef3fc6e1a4968339041450867cc007.png" />
+</div>
+</div>
+<p>Existen igualmente una serie de estados que tienen una amplia utilización dentro de la programación cuántica, y que además cuentan con una denominación concreta. Estos estados son los siguientes:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|+\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle+|1\rangle\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|-\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle-|1\rangle\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|i\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle+i|1\rangle\right)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|-i\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle-i|1\rangle\right)\)</span></p></li>
+</ul>
+<p>La representación gráfica de estos cuatro estados en la esfera de Bloch, se puede apreciar en la siguiente figura:</p>
+<p><img alt="" src="../_images/Bloch_importantes.PNG" /></p>
+<p>Otra forma de representación de los estados cuánticos puede ser por ejemplo la siguiente:<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}\left(|0\rangle+e^{i\pi/6}|1\rangle\right)\)</span>. Observar que este qubit también se encuentra sobre el ecuador de la esfera de Bloch.</p>
+<p>Para familiarizarnos con los números complejos de python, vamos a poner el número complejo <span class="math notranslate nohighlight">\(e^{i\pi/6}\)</span> en un formato con el que se pueda operar en python, de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.8660254037844387+0.49999999999999994j)
+</pre></div>
+</div>
+</div>
+</div>
+<p>vamos ahora a ver cómo podemos hacer su representación gráfica en la esfera de Bloch</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">cmath</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resul</span> <span class="o">=</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)</span>
+<span class="n">plot_bloch_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">resul</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">resul</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">coord_type</span><span class="o">=</span><span class="s1">&#39;spherical&#39;</span><span class="p">,</span>
+                  <span class="n">title</span><span class="o">=</span><span class="s1">&#39;qubit: $</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{1}</span><span class="s1">{</span><span class="se">\\</span><span class="s1">sqrt</span><span class="si">{2}</span><span class="s1">}</span><span class="se">\\</span><span class="s1">left(|0</span><span class="se">\\</span><span class="s1">rangle+e^{i</span><span class="se">\\</span><span class="s1">pi/6}|1</span><span class="se">\\</span><span class="s1">rangle</span><span class="se">\\</span><span class="s1">right)$&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/88f7498f468e845f59894aceb91a14009e2e4975355ef8492a2abb4999d4fd91.png" src="../_images/88f7498f468e845f59894aceb91a14009e2e4975355ef8492a2abb4999d4fd91.png" />
+</div>
+</div>
+<p id="puntoesfera">Por supuesto existen puntos que no necesariamente están sobre el ecuador de la esfera. Por ejemplo el qubit  <span class="math notranslate nohighlight">\(\frac{\sqrt{3}}{2}|0\rangle+\frac{1}{2}|1\rangle\)</span>.</p>
+<p>Su representación gráfica es la siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z2</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resul</span> <span class="o">=</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)</span>
+<span class="n">plot_bloch_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">resul</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">resul</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">coord_type</span><span class="o">=</span><span class="s1">&#39;spherical&#39;</span><span class="p">,</span>
+                  <span class="n">title</span><span class="o">=</span><span class="s1">&#39;qubit:$</span><span class="se">\\</span><span class="s1">frac{</span><span class="se">\\</span><span class="s1">sqrt</span><span class="si">{3}</span><span class="s1">}</span><span class="si">{2}</span><span class="s1">|0</span><span class="se">\\</span><span class="s1">rangle+</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{1}{2}</span><span class="s1">|1</span><span class="se">\\</span><span class="s1">rangle$&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2f3e28ae7a7d4e3b783bc4696b5177b15d6f4cb6c6fb3c5c260cc55ab951b03b.png" src="../_images/2f3e28ae7a7d4e3b783bc4696b5177b15d6f4cb6c6fb3c5c260cc55ab951b03b.png" />
+</div>
+</div>
+<p>Igualmente, representemos el qubit <span class="math notranslate nohighlight">\(\frac{2}{3}|0\rangle+\frac{1-2i}{3}|1\rangle\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z2</span><span class="o">=</span><span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">resul</span> <span class="o">=</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)</span>
+<span class="n">plot_bloch_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="n">resul</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">resul</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">coord_type</span><span class="o">=</span><span class="s1">&#39;spherical&#39;</span><span class="p">,</span>
+                  <span class="n">title</span><span class="o">=</span><span class="s1">&#39;qubit:$</span><span class="se">\\</span><span class="s1">frac</span><span class="si">{2}{3}</span><span class="s1">|0</span><span class="se">\\</span><span class="s1">rangle+</span><span class="se">\\</span><span class="s1">frac{1-2i}</span><span class="si">{3}</span><span class="s1">|1</span><span class="se">\\</span><span class="s1">rangle$&#39;</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3b96ff14984e053bb1329e26d045f32764ff4f9774a2a2d508ae41141bfd0268.png" src="../_images/3b96ff14984e053bb1329e26d045f32764ff4f9774a2a2d508ae41141bfd0268.png" />
+</div>
+</div>
+<p>Es conveniente recordar por lo tanto que un <strong>un qubit es cualquier punto de la esfera de Bloch</strong>.</p>
+<p>Como puede verse todo este aparato teórico está fuertemente soportado en base a una estructura donde los números complejos juegan un papel importante, por lo que se ha creído oportuno crear un apartado dedicado en exclusiva a este tipo de números, y dicho capítulo <a class="reference internal" href="numeros_complejos.html#complejos"><span class="std std-ref">se puede encontrar en este apartado</span></a>.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../introduccion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="numeros_complejos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Números complejos en Python.</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#superposicion-de-estados">1.1. Superposición de estados.</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

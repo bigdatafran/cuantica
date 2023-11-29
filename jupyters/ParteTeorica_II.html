@@ -1,0 +1,1044 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Introducción &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/ParteTeorica_II';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Introducción" href="ParteTeorica_III_puertasCuanticas.html" />
+    <link rel="prev" title="2. Números complejos en Python." href="numeros_complejos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">16. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyters/ParteTeorica_II.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicion-en-la-bases-z">3.1. Medición en la bases Z</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion">3.2. Normalización.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-sobre-otras-bases">3.3. Medidas sobre otras bases.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapeo-sobre-la-esfera-de-bloch">3.4. Mapeo sobre la esfera de Bloch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fases-global-y-relativa">3.4.1. Fases global y relativa.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esfera-de-bloch">3.4.2. Esfera de Bloch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobacion-si-dos-qubit-forman-una-base">3.5. Comprobación si dos qubit forman una base.</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<h1><span class="section-number">3. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+<p>En apartados anteriores hemos hecho una introducción a los diferentes aspectos que rodean al mundo de la programación cuántica. En este apartado seguimos profundizando en este terreno y mostraremos diferentes cuestiones que es imprescindible conocer y dominar para manejarnos de forma fluida en este mundo.</p>
+<section id="medicion-en-la-bases-z">
+<h2><span class="section-number">3.1. </span>Medición en la bases Z<a class="headerlink" href="#medicion-en-la-bases-z" title="Permalink to this heading">#</a></h2>
+<p>En la sección anterior ya hemos mostrado el siguiente qubit que como allí se ha dicho se encuentra situado en el ecuador de la esfera de Bloch.</p>
+<p><img alt="" src="../_images/esferaBloch_II_1.PNG" /></p>
+<p>Aunque las leyes de la mecánica cuántica permiten esta superposición de estados <span class="math notranslate nohighlight">\(|0\rangle \)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>, también exige que si medimos el qubit, como al final de un cálculo para leer el resultado, obtengamos un valor único y <a class="reference external" href="http://definido.Es">definido.Es</a> decir, obtenemos <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>, cada uno con cierta probabilidad, no una superposición de los estados <span class="math notranslate nohighlight">\(|0\rangle \)</span> y <span class="math notranslate nohighlight">\(|1\rangle \)</span>. Geométricamente, este qubit en particular se encuentra en el ecuador, y por lo tanto a medio camino entre los polos norte y sur,  así que si lo medimos, deberíamos de obtener <span class="math notranslate nohighlight">\(|0\rangle\)</span> con probabilidad 1/2 o <span class="math notranslate nohighlight">\(|1\rangle\)</span> con probabilidad 1/2.</p>
+<p>Para calcular estas probabilidades, lo que hacemos es tomar la denominada norma-cuadrado de cada de los coeficientes de <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>, es decir, la probabilidad de obtnere <span class="math notranslate nohighlight">\(|0\rangle\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[\left|\frac{1}{\sqrt{2}}\right|^{2}=\frac{1}{2}\]</div>
+<p>Y la probabilidad de obtener <span class="math notranslate nohighlight">\(|1\rangle \)</span> es :</p>
+<div class="math notranslate nohighlight">
+\[\left|\frac{e^{i\pi/6}}{\sqrt{2}}\right|^{2}=\frac{e^{i\pi/6}}{\sqrt{2}}\cdot\frac{e^{-i\pi/6}}{\sqrt{2}}=\frac{e^{0}}{2}=\frac{1}{2}\]</div>
+<p>Como se ve la probabilidad es la misma dado que el punto está situado en el ecuador de la esfera Bloch.</p>
+<p>Veamos cómo poder obtener estos valores utilizando python</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cmath</span> <span class="k">as</span> <span class="nn">cm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># definimos el primer número complejo</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># calculamos su módulo al cuadrado</span>
+<span class="n">res1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La probabilidad de colapsar a |0&gt; es: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res1</span><span class="p">))</span>
+
+<span class="c1"># Definimos el segundo número complejo</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">cm</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">0</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">cm</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># Calculamos el módulo de z2</span>
+<span class="n">res2</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La probabilidad de colapsar a |1&gt; es: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La probabilidad de colapsar a |0&gt; es: 0.4999999999999999
+La probabilidad de colapsar a |1&gt; es: 0.4999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<p id="index-0">Los coeficientes anteriores se denominan <em>amplitudes</em> y en consecuencia se puede decir que</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las probabilidades de colapsar a los elementos de las base están dadas por la norma al cuadrado de las amplitudes</p>
+</div>
+<p>Veamos a continuación otro ejemplo:</p>
+<p><img alt="" src="../_images/Bloch_II_2.PNG" /></p>
+<p>Desde el punto de vista geométrico, puesto que el qubit está más cerca del polo sur, es esperable que la probabilidad de colapsar a <span class="math notranslate nohighlight">\(|1\rangle\)</span> sea mayor que la probabilidad de colapsar a <span class="math notranslate nohighlight">\(|0\rangle\)</span>. Veamos esto de forma exacta.</p>
+<div class="math notranslate nohighlight">
+\[\left|\frac{2}{3}\right|^{2}=\frac{4}{9}\]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[\left|\frac{1-2i}{3}\right|^{2}=\frac{1-2i}{3}\frac{1+2i}{3}=\frac{1^{2}-\left(2i\right)^{2}}{9}=\frac{5}{9}\]</div>
+<p>Utilizando python se tiene:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos el primer número complejo</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># calculamos su módulo al cuadrado</span>
+<span class="n">res1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La probabilidad de colapsar a |0&gt; es: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res1</span><span class="p">))</span>
+
+<span class="c1"># Definimos el segundo número complejo</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">2</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Calculamos el módulo de z2</span>
+<span class="n">res2</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La probabilidad de colapsar a |1&gt; es: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La probabilidad de colapsar a |0&gt; es: 0.4444444444444444
+La probabilidad de colapsar a |1&gt; es: 0.5555555555555556
+</pre></div>
+</div>
+</div>
+</div>
+<p>Veamos otro ejemplo. Supongamos el qubit que tiene la siguiente superposición de estados:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1+i\sqrt{3}}{3}|0\rangle+\frac{2-i}{3}|1\rangle\]</div>
+<p>Calculemos ahora mediante pytgon las probabilidades de colapsar a cada uno de los dos estados de la base.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos el primer número complejo</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="c1"># calculamos su módulo al cuadrado</span>
+<span class="n">res1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La probabilidad de colapsar a |0&gt; es: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res1</span><span class="p">))</span>
+
+<span class="c1"># Definimos el segundo número complejo</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Calculamos el módulo de z2</span>
+<span class="n">res2</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;La probabilidad de colapsar a |1&gt; es: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">res2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>La probabilidad de colapsar a |0&gt; es: 0.4444444444444444
+La probabilidad de colapsar a |1&gt; es: 0.5555555555555556
+</pre></div>
+</div>
+</div>
+</div>
+<p>Podemos decir  que un qubit es una superposición de los estados <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Supongamos entonces que lo medimos, y el resultado
+es <span class="math notranslate nohighlight">\(|0\rangle\)</span>. Ahora algo nuevo: El qubit ya no está en superposición de <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Ahora es simplemente <span class="math notranslate nohighlight">\(|0\rangle\)</span>, y lo sabemos porque lo hemos medido. Medir el qubit lo ha cambiado, esta medición lo obligó a tomar una posición. Decimos que <strong>el estado ha colapsado</strong> a <span class="math notranslate nohighlight">\(|0\rangle\)</span>. Si medimos el qubit de nuevo, obtenemos <span class="math notranslate nohighlight">\(|0\rangle\)</span> con probabilidad 1. Este aspecto de la medición
+es lo suficientemente importante como para dejarlo enmarcado:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Medir un qubit hace que colapse hacia uno de los dos estados básicos</p>
+</div>
+</section>
+<section id="normalizacion">
+<h2><span class="section-number">3.2. </span>Normalización.<a class="headerlink" href="#normalizacion" title="Permalink to this heading">#</a></h2>
+<p>Otro aspecto importante a tener cuenta es que los parámetros de una superposición de estados deben estar normalizados. En este sentido, diremos que un qubit está normalizado si la suma de sus probabilidades es igual a 1. Esta situación se debe requerir siempre, ya que como se ha indicado en repetidas ocasiones, los qubits deben de estar sobre la esfera de BLoch que tiene radio 1. No obstante siempre se podrá normalizar  un qubit que no lo esté siguiendo los pasos que se van a mostrar a continuación.</p>
+<p>Supongamos que tenemos el siguiente qubit:</p>
+<div class="math notranslate nohighlight">
+\[\sqrt{2}|0\rangle+i|1\rangle\]</div>
+<p>Podemos ver que la suma de sus dos probabilidades no vale 1. Efecto:</p>
+<div class="math notranslate nohighlight">
+\[\left(\sqrt{2}\rangle\right)\left(\sqrt{2}\right)^{*}+i\cdot i^{*}=2+1=3\]</div>
+<p>Por lo tanto deberíamos multiplicar los dos términos del qubit anterior por una constante de normalización   que en este caso tomará el valor de <span class="math notranslate nohighlight">\(1/\sqrt{3}\)</span>, ya que el valor que hemos obtenido sería la constante de normalización elevada al cuadrado.</p>
+<p>A continuación procedemos a crear una función que permite calcular de forma rápida la constante normalización para cualquier qubit. Lo único que habrá que pasar a la función serán los dos parámetros que definen el qubit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalización</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Función que calcula el parámetro de normalización de un qubit.</span>
+
+<span class="sd">    @return: devuelve el parámetro de normalización elevado al cuadrado</span>
+
+<span class="sd">    @ parameters</span>
+
+<span class="sd">    z1,z2 son los dos número complejos que definen el qubit</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">resul</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z1</span><span class="o">*</span><span class="n">z1</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="o">*</span><span class="n">z2</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">resul</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comprobemos</span>
+<span class="kn">from</span> <span class="nn">fractions</span> <span class="kn">import</span> <span class="n">Fraction</span>
+
+<span class="n">z1</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado en formato decimal:&quot;</span><span class="p">,</span> <span class="n">normalización</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Resultado en formato de Fracción: &quot;</span><span class="p">,</span> <span class="n">Fraction</span><span class="p">(</span><span class="n">normalización</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">))</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Resultado en formato decimal: 0.33333333333333326
+Resultado en formato de Fracción:  1/3
+</pre></div>
+</div>
+</div>
+</div>
+<p>El resultado anterior, es la <strong>constante de normalización elevada al cuadrado</strong>, por lo tanto habrá que tomar la raíz cuadrada de ese valor y obtendremos como resultado <span class="math notranslate nohighlight">\(1/\sqrt{3}\)</span></p>
+</section>
+<section id="medidas-sobre-otras-bases">
+<h2><span class="section-number">3.3. </span>Medidas sobre otras bases.<a class="headerlink" href="#medidas-sobre-otras-bases" title="Permalink to this heading">#</a></h2>
+<p>Hasta este momento, hemos introducido los qubits <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> como polo norte y polo sur respectivamente, y también podemos decir que forman una base pues mediante combinaciones lineales de estos elementos se pueden generar cualquier qubit que esté en la esfera de Bloch. Ahora bien se puede afirmar que cualesquiera dos puntos que se sitúen en la esfera de Bloch y estén situados de una forma diametralmente opuesta, se puede decir que también forman una base y también se les podría denominar como olo norte o plo sur.</p>
+<p>De esta manera, por ejemplo, los qubits <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span> podremos decir que también forman una base, igual tratamiento se podría dar a los dos qubits: <span class="math notranslate nohighlight">\(|i\rangle\)</span> y <span class="math notranslate nohighlight">\(|-i\rangle\)</span>. Estas tres bases tienen una denominación especial.</p>
+<p>En este sentido la base <span class="math notranslate nohighlight">\(\{|0\rangle ; |1\rangle\}\)</span> se le denomina base Z, igualmente a la base <span class="math notranslate nohighlight">\(\{|+\rangle ; |-\rangle\}\)</span> se le denomina base X y a la base <span class="math notranslate nohighlight">\(\{|i\rangle ; |-i\rangle\}\)</span> base Y.</p>
+<p>Entonces cualquier punto de la esfera de Bloch se podría poner como combinación lineal de los elementos que forman una base, y además mediante transformaciones matemáticas adecuadas se pueden pasar de expresar los elementos en una base a expresarlos como función de otra base sin ningún problema.</p>
+<p>Veamos a continuación un ejemplo de cómo poder pasar de la base <span class="math notranslate nohighlight">\(\{|0\rangle ; |1\rangle\}\)</span> a la base <span class="math notranslate nohighlight">\(\{|+\rangle ; |-\rangle\}\)</span>: tomemos por ejemplo el siguiente qubit:</p>
+<div class="math notranslate nohighlight">
+\[ {\frac{\sqrt{3}}{2}}|0\rangle+{\frac{1}{2}}|1\rangle\]</div>
+<p>En este caso tenemos una combinación lineal de los dos elementos que forman la base Z. Nuestro objetivo está a psarlos a la base X, es decir expresar ese qubit como una combinación lineal del los dos elementos que forman las base X. Lo primero que demos de hacer es expresar cada uno de los dos elementos de la base Z como una combinación lineal de los elementos de la base X. Esto ya sabemos cómo va pues según se ha dicho anteriormente:</p>
+<p><span class="math notranslate nohighlight">\(|+\rangle={\frac{1}{\sqrt{2}}}\left(|0\rangle+|1\rangle\right)\)</span> y <span class="math notranslate nohighlight">\(|-\rangle={\frac{1}{\sqrt{2}}}{\big(}|0\rangle-|1\rangle{\big)}\,\)</span></p>
+<p>De esas dos ecuaciones se llega a lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|0\rangle={\frac{1}{\sqrt{2}}}(|+\rangle+|-\rangle),\quad|1\rangle={\frac{1}{\sqrt{2}}}(|+\rangle-|-\rangle) \]</div>
+<p>Y en consecuencia ya se tienen expresados los elementos de la base Z como combinaciones lineales de la base X. Ahora, haciendo los cambios y operaciones pertinentes, se llega a la siguiente conclusión:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}{{\frac{\sqrt{3}}{2}\vert0\rangle+\frac{1}{2}\vert1\rangle=\frac{\sqrt{3}}{2}\frac{1}{\sqrt{2}}\left(\vert+\rangle+\vert-\rangle\right)+\frac{1}{2}\frac{1}{\sqrt{3}-1}{2\sqrt{2}}\left(\vert+\rangle-\vert-\rangle\right)}}\\ {{}}&amp;{{=\frac{\sqrt{3}+1}{2\sqrt{2}}\vert+\rangle+\frac{\sqrt{3}-1}{2\sqrt{2}}\vert-\rangle.}}\end{array}\end{split}\]</div>
+<p>Comprobemos que la suma de las probabilidades de colapsar hacia cada elemento de la base sigue siendo 1:</p>
+<div class="math notranslate nohighlight">
+\[\left|{\frac{{\sqrt{3}}+1}{2{\sqrt{2}}}}\right|^{2}={\frac{{\sqrt{3}}+2}{4}}\approx0.93\]</div>
+<p>Y la probabilidad de colapsar a <span class="math notranslate nohighlight">\(|-\rangle\)</span> es:</p>
+<div class="math notranslate nohighlight">
+\[\left|\frac{\sqrt{3}-1}{2\sqrt{2}}\right|^{2}=\frac{-\sqrt{3}+2}{4}\approx0.07 \]</div>
+<p>Y de esta manera hemos podido pasar de expresar un qubit en la base Z a expresarlo como combinación lineal de los elementos de la base X. La forma de hacerlo de forma general sería la siguiente.</p>
+<p>Creamos la matriz de cambio de base de la siguiente manera: En la primera columna ponemos los coeficientes obtenido de expresar <span class="math notranslate nohighlight">\(|0\rangle\)</span> en la base X y en la segunda columna los coeficientes de expresar <span class="math notranslate nohighlight">\(|1\rangle\)</span> en la base X. De esta manera tenemos la siguiente matriz de cambio de base:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}M=\left(\begin{array}{cc}
+\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}}
+\end{array}\right)\end{split}\]</div>
+<p>Ahora multiplicamos la matriz M por las coordenadas que tenemos en la base Z y el resultado sería las coordenadas que se obtienen en la base X. La expresión matemática sería la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{cc}
+\frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}}
+\end{array}\right)\cdot\left(\begin{array}{c}
+\frac{\sqrt{3}}{2}\\
+\frac{1}{2}
+\end{array}\right)=\left(\begin{array}{c}
+\frac{\sqrt{3}}{2\sqrt{2}}+\frac{1}{2\sqrt{2}}\\
+\frac{\sqrt{3}}{2\sqrt{2}}-\frac{1}{2\sqrt{2}}
+\end{array}\right)=\left(\begin{array}{c}
+\frac{\sqrt{3}+1}{2\sqrt{2}}\\
+\frac{\sqrt{3}-1}{2\sqrt{2}}
+\end{array}\right)\end{split}\]</div>
+<p>Hagamos ahora este cambio de base, pero pasando las coordenadas a la base Y. Como se tiene que :</p>
+<div class="math notranslate nohighlight">
+\[\vert0\rangle=\frac{1}{\sqrt{2}}\left(\left\vert i\right\rangle+\left\vert-i\right\rangle\right),\quad\left\vert1\right\rangle=\frac{-i}{\sqrt{2}}\left(\left\vert i\right\rangle-\left\vert-i\right\rangle\right) \]</div>
+<p>La matriz de cambio de base será:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} M=\left(\begin{array}{cc}
+\frac{1}{\sqrt{2}} &amp; \frac{-i}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} &amp; \frac{i}{\sqrt{2}}
+\end{array}\right)\cdot \end{split}\]</div>
+<p>Y por lo tanto, las nuevas coordenadas serían:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{cc}
+\frac{1}{\sqrt{2}} &amp; \frac{-i}{\sqrt{2}}\\
+\frac{1}{\sqrt{2}} &amp; \frac{i}{\sqrt{2}}
+\end{array}\right)\cdot\left(\begin{array}{c}
+\frac{\sqrt{3}}{2}\\
+\frac{1}{2}
+\end{array}\right)=\left(\begin{array}{c}
+\frac{\sqrt{3}}{2\sqrt{2}}-\frac{i}{2\sqrt{2}}\\
+\frac{\sqrt{3}}{2\sqrt{2}}+\frac{i}{2\sqrt{2}}
+\end{array}\right)=\left(\begin{array}{c}
+\frac{\sqrt{3}-i}{2\sqrt{2}}\\
+\frac{\sqrt{3}+i}{2\sqrt{2}}
+\end{array}\right)\end{split}\]</div>
+<p>En esta caso la probabilidad de colapsar a <span class="math notranslate nohighlight">\(|i\rangle \)</span> es : <span class="math notranslate nohighlight">\(\left\lfloor{\frac{\sqrt{3}-i}{2{\sqrt{2}}}}\right\rfloor^{2}={\frac{3+1}{8}}={\frac{1}{2}}\)</span>.</p>
+<p>Y la de colapsar a <span class="math notranslate nohighlight">\(|-i\rangle \)</span> es : <span class="math notranslate nohighlight">\(\left\lfloor{\frac{\sqrt{3}+i}{2{\sqrt{2}}}}\right\rfloor^{2}={\frac{3+1}{8}}={\frac{1}{2}}\)</span></p>
+</section>
+<section id="mapeo-sobre-la-esfera-de-bloch">
+<span id="mapeo"></span><h2><span class="section-number">3.4. </span>Mapeo sobre la esfera de Bloch<a class="headerlink" href="#mapeo-sobre-la-esfera-de-bloch" title="Permalink to this heading">#</a></h2>
+<p>En lo visto hasta, ya sabemos que los qubits deben de estar sobre la esfera de Bloch, y ahora en esta sección vamos a ver diferentes sistemas de coordenadas que nso facilitan la localización de esos puntos o qubits sobre la esfera.</p>
+<section id="fases-global-y-relativa">
+<h3><span class="section-number">3.4.1. </span>Fases global y relativa.<a class="headerlink" href="#fases-global-y-relativa" title="Permalink to this heading">#</a></h3>
+<p id="index-1">Ya sabemos que un qubit se puede ver como una combinación lineal de elementos de una base. Entonces supongamos que lo podemos representar de la siguiente manera (aquí el qubit está multiplicado por <span class="math notranslate nohighlight">\(e^{i\theta}\)</span> que sería la <em>fase global</em>):</p>
+<div class="math notranslate nohighlight">
+\[e^{i\theta}\left(\frac{\sqrt{3}}{2}|0\rangle+\frac{1}{2}|1\rangle\right)\]</div>
+<p>para un determinado ángulo <span class="math notranslate nohighlight">\(\theta\)</span>. Si procedemos a medir este qubit en la base Z, la probabilidad de colapsar al <span class="math notranslate nohighlight">\(|o\rangle\)</span> será:</p>
+<div class="math notranslate nohighlight">
+\[\left|e^{i\theta}{\frac{\sqrt{3}}{2}}\right|^{2}={\frac{3}{4}}\]</div>
+<p>y la de colapsar a <span class="math notranslate nohighlight">\(|1\rangle\)</span> :</p>
+<div class="math notranslate nohighlight">
+\[\left|e^{i\theta}\frac{1}{2}\right|^{2}=\frac{1}{4}\]</div>
+<p>Como podemos ver esta fase global no tiene en absoluto ninguna influencia en la localización del punto sobre la esfera de Bloch. Si hiciéramos la mediación sobre la base X, entonces el qubit estaría representado por:</p>
+<div class="math notranslate nohighlight">
+\[ e^{i\theta}\left(\frac{\sqrt3+1}{2\sqrt2}|+\rangle+\frac{\sqrt3-1}{2\sqrt2}|-\rangle\right) \]</div>
+<p>Y las probabilidades de colapsar hacia cada elemento de la base serían:</p>
+<div class="math notranslate nohighlight">
+\[ \left|e^{i\theta}{\frac{\sqrt{3}+1}{2{\sqrt{2}}}}\right|^{2}={\frac{\sqrt{3}+2}{4}}\approx0.93 \]</div>
+<p>y</p>
+<div class="math notranslate nohighlight">
+\[ \left|e^{i\theta}{\frac{\sqrt{3}-1}{2{\sqrt{2}}}}\right|^{2}={\frac{-{\sqrt{3}}+2}{4}}\approx0.07 \]</div>
+<p>Es decir tenemos el mismo resultado que si no consideramos la fase global. Este es un comportamiento general, por lo que podemos recuadrar lo siguiente:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las fase globales son irrelevantes desde un punto de vista de situación de los qubits sobre la esfera de Bloch</p>
+</div>
+<p>Podemos entonces decir que estas fases globales pueden ser borradas/ignoradas. Estados que difieren en una fase global se puede considerar que son el mismo estado, y que corresponde al mismo punto sobre la esfera de Bloch.</p>
+<p>Sin embargo las fases relativas, sí son físicamente significativas como podemos ver en el siguiente ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[ |+\rangle={\frac{1}{\sqrt{2}}}{\big(}|0\rangle+|1\rangle{\big)} \]</div>
+<p>comparado con</p>
+<div class="math notranslate nohighlight">
+\[ |i\rangle={\frac{1}{\sqrt{2}}}\left(|0\rangle+i|1\rangle\right)={\frac{1}{\sqrt{2}}}\left(|0\rangle+e^{i\pi/2}|1\rangle\right)\]</div>
+<p>En este caso son dos puntos diferentes sobre la esfera de Bloch</p>
+</section>
+<section id="esfera-de-bloch">
+<h3><span class="section-number">3.4.2. </span>Esfera de Bloch<a class="headerlink" href="#esfera-de-bloch" title="Permalink to this heading">#</a></h3>
+<p>Un genérico estado cuántico se suele denominar por  <span class="math notranslate nohighlight">\(\Psi\)</span>, y como es un estado cuántico es escrito como un ket, es decir en la forma <span class="math notranslate nohighlight">\(|\Psi\rangle\)</span> y tendrá unas amplitudes <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span>. Por lo tanto se podrá escribir de las siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[ |\Psi\rangle=\alpha|0\rangle+\beta|1\rangle \]</div>
+<p>De manera que se cumple la normalización</p>
+<div class="math notranslate nohighlight">
+\[ |\alpha|^{2}+|\beta|^{2}=1 \]</div>
+<p>Como la fase global no aparece, por convención se suele asumir que <span class="math notranslate nohighlight">\(\alpha\)</span> es un número real y positivo y <span class="math notranslate nohighlight">\(\beta\)</span> debe ser un número complejo. Para determinar que este punto se encuentra en la esfera de Bloch lo debemos parametrizar o escribir en términos de otros parámetros. Así pues vamos a escribir <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span> en términos de dos ángulos que vamos a denominar <span class="math notranslate nohighlight">\(\theta\)</span> y <span class="math notranslate nohighlight">\(\phi\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ \alpha=\cos\left({\frac{\theta}{2}}\right),\quad\beta=e^{i\phi}\sin\left({\frac{\theta}{2}}\right) \]</div>
+<p>Con <span class="math notranslate nohighlight">\(0\leq\theta\leq\pi{\mathrm{~y~}}0\leq\phi&lt;2\pi\)</span>, de esta manera se captura todas las propiedades que necesitamos: <span class="math notranslate nohighlight">\(\alpha\)</span> es un número real y positivo y <span class="math notranslate nohighlight">\(\beta\)</span> es un número complejo. Asi pues el qubit anterior <span class="math notranslate nohighlight">\(\Psi\)</span>, se puede escribir como:</p>
+<div class="math notranslate nohighlight">
+\[ \psi\rangle=\cos\left({\frac{\theta}{2}}\right)|0\rangle+e^{i\phi}\sin\left({\frac{\theta}{2}}\right)|1\rangle \]</div>
+<p>Veamos esto con un ejemplo. Supongamos que tenemos el qubit siguiente:</p>
+<div class="math notranslate nohighlight">
+\[ {\frac{3+i{\sqrt{3}}}{4}}|0\rangle-{\frac{1}{2}}|1\rangle \]</div>
+<p>Podemos observar que la amplitud de <span class="math notranslate nohighlight">\(|0\rangle\)</span> es un número complejo, pero como ya se ha dicho antes se suele asumir que debe ser un real positivo. Entonces para hacer esto, convertimos este complejo a formato polar, y entonces se tiene lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[ (3^{*}+i{\sqrt{3}})/4=({\sqrt{3}}/2)e^{i\pi/6} \]</div>
+<p>el estado</p>
+<div class="math notranslate nohighlight">
+\[ {\frac{\sqrt{3}}{2}}e^{i\pi/6}|0\rangle-{\frac{1}{2}}|1\rangle \]</div>
+<p>se puede factorizar y obtener:</p>
+<div class="math notranslate nohighlight">
+\[ e^{i\pi/6}\left(\frac{\sqrt{3}}{2}|0\rangle-e^{-i\pi/6}\frac{1}{2}|1\rangle\right)\equiv\frac{\sqrt{3}}{2}|0\rangle-e^{-i\pi/6}\frac{1}{2}|1\rangle \]</div>
+<p>Donde el símbolo <span class="math notranslate nohighlight">\(\equiv\)</span> significa que es equivalente, ya que no se tiene en cuenta la fase global. Para poner en el formato que se ha visto anteriormente, necesitamos cambiar el signo menos de la segunda amplitud por un signo más, pero esto es fácil, ya que <span class="math notranslate nohighlight">\(e^{i\pi}=-1\)</span>. Entonces tendríamos el siguiente estado cuántico:</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\sqrt{3}}{2}|0\rangle+e^{i\pi}e^{-i\pi/6}\frac{1}{2}|1\rangle=\frac{\sqrt{3}}{2}|0\rangle+e^{i5\pi/6}\frac{1}{2}|1\rangle \]</div>
+<p>Ahora ya sí lo tenemos en el formato que deseamos y en consecuencia se tendría:</p>
+<div class="math notranslate nohighlight">
+\[ \cos\left(\frac{\theta}{2}\right)=\frac{\sqrt{3}}{2},\quad e^{i\phi}=e^{i5\pi/6},\quad\sin\left(\frac{\theta}{2}\right)=\frac{1}{2} \]</div>
+<p>En consecuencia los ángulos buscados serían los siguientes:</p>
+<div class="math notranslate nohighlight">
+\[ \theta={\frac{\pi}{3}},\quad\phi={\frac{5\pi}{6}}\]</div>
+<p>Por lo tanto nuestro qubit, una vez normalizado sería el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[ \cos\left({\frac{\pi/3}{2}}\right)|0\rangle+e^{i5\pi/6}\sin\left({\frac{\pi/3}{2}}\right)|1\rangle \]</div>
+<p>Una vez puesto en qubit en este formato, podremos localizar el qubit en la esfera de Bloch mediante estos dos ángulos ( esto es lo que se denomina coordenadas esféricas), como se muestra en la siguiente figura.</p>
+<center>
+<p><img alt="coordenadas esféricas" src="../_images/coordenadasEsfericas.PNG" /></p>
+</center>
+<p id="index-2">Por lo tanto, y tal como se aprecia en la figura, el valor del ángulo <span class="math notranslate nohighlight">\(\theta\)</span> mide el ángulo con las zona del polo norte y se llama <strong>ángulo polar</strong>, y <span class="math notranslate nohighlight">\(\phi\)</span> mide el ángulo sobre el eje X en el plano xy y se denomina <strong>ángulo azimuthal</strong>. Por lo tanto, en el caso del ejemplo anterior, nuestro qubit se encontraría situado en un ángulo de <span class="math notranslate nohighlight">\(\theta = \pi/3 = 60º\)</span>  sobre el olo norte y en un ángulo de <span class="math notranslate nohighlight">\(\phi=5\pi/6=150º\)</span> en el plano xy y sobre el eje x.</p>
+<p>También se puede demostrar que el paso de estas coordenadas esféricas a cartesianas, se realiza en base a las siguientes ecuaciones:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{c}{{x=\sin\theta\cos\phi\,,}}\\ {{y=\sin\theta\sin\phi\,,}}\\ {{z=\cos\theta.}}\end{array} \end{split}\]</div>
+<p>Continuando con nuestro ejemplo, ahora tenemos que <span class="math notranslate nohighlight">\(\theta=\pi/3\)</span> y <span class="math notranslate nohighlight">\(\phi=5\pi/6\)</span>, por lo tanto las coordenadas en el espacio tridimensional serían las siguientes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \begin{array}{c}{{x=\sin\left(\frac{\pi}{3}\right)\cos\left(\frac{5\pi}{6}\right)=\frac{\sqrt{3}}{2}\cdot\frac{-\sqrt{3}}{2}=-\frac{3}{4},}}\\ {{y=\sin\left(\frac{\pi}{3}\right)\sin\left(\frac{5\pi}{6}\right)=\frac{\sqrt{3}}{2}\cdot\frac{1}{2}=\frac{\sqrt{3}}{4},}}\\
+{{z=\cos\left({\frac{\pi}{3}}\right)={\frac{1}{2}}.}}\end{array}  \end{split}\]</div>
+<p>Y en consecuencia el qubit anterior dado en coordenadas cartesianas sería: <span class="math notranslate nohighlight">\((-3/4,\sqrt{3}/4,1/2)\)</span></p>
+<p>Ya vimos <a class="reference internal" href="ParteTeorica_I.html#superposicion"><span class="std std-ref">en un apartado anterior</span></a> cómo poder obtener una función para pasar de las coordenadas dadas en formato de amplitudes a coordenadas polares. La función que en ese momento se presentó, recordemos, era la siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cmath</span><span class="o">,</span><span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">,):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Función que nos sirve para pasar de unas coordenadas del tercer tipo a coordenadas polares</span>
+<span class="sd">    </span>
+<span class="sd">    @parámetros:</span>
+<span class="sd">    </span>
+<span class="sd">    z1: Valores del primero número complejo</span>
+<span class="sd">    </span>
+<span class="sd">    z2: valores del segundo número complejo</span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+<span class="sd">    @return:</span>
+<span class="sd">    </span>
+<span class="sd">    Los valores del theta y phi de las coordenadas esféricas</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    
+    <span class="n">r1</span><span class="p">,</span> <span class="n">phi1</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+    <span class="n">r2</span><span class="p">,</span> <span class="n">phi2</span> <span class="o">=</span> <span class="n">cmath</span><span class="o">.</span><span class="n">polar</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
+
+    <span class="n">theta</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">acos</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">phi2</span> <span class="o">-</span> <span class="n">phi1</span>
+
+    <span class="k">return</span> <span class="n">theta</span><span class="p">,</span><span class="n">phi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Vamos a utilizar esta función para comprobar si obtenemos con ella los mismos resultados que los obtenidos de forma manual.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">z1</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0471975511965979, 2.6179938779914944)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># comparamos con el resultado anterior</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valor de theta manualmente: &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;valor de phi manualmente: &quot;</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>valor de theta manualmente:  1.0471975511965976
+valor de phi manualmente:  2.6179938779914944
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora podemos definir en Python otra función de manera que se le pase como parámetros a la función los valores de theta y phi y devuelva las coordenadas cartesianas (x,y,z). Construimos a continuación esa función:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polar2cartesian</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span><span class="n">phi</span><span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Esta función va a transformar las coordenadas esféricas de un qubit en coordenadas </span>
+<span class="sd">    cartesianas</span>
+
+<span class="sd">    @param:</span>
+<span class="sd">    Theta, valor del ángulo theta</span>
+<span class="sd">    phi, valor del ángulo phi</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A esta última función le pasamos las coordenadas esféricas obtenidas anteriormente, y después comparamos resultado:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">polar2cartesian</span><span class="p">(</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.7500000000000001, 0.4330127018922193, 0.4999999999999999)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comparamos resultado con el obtenido manualmente</span>
+<span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.75, 0.4330127018922193, 0.5)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="comprobacion-si-dos-qubit-forman-una-base">
+<h2><span class="section-number">3.5. </span>Comprobación si dos qubit forman una base.<a class="headerlink" href="#comprobacion-si-dos-qubit-forman-una-base" title="Permalink to this heading">#</a></h2>
+<p>Ya hemos visto en apartados anteriores que la condición pata que dos qubits formaran uan base, era que estuvieran en la esfera de bloch y que además estuvieran en puntos diametralmente opuestos.</p>
+<p>En este apartado vamos a utilizar las funciones definidas anteriormente para comprobar esto, bien entendido que para que dos qubits sean diametralmente opuestos, equivale a decir que la distancia entre ellos sea 2 (porque el diámetro de la esfera de Bloch es 1).</p>
+<p>Vamos a probar ahora esto para los los qubits:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}{{|a\rangle=\frac{\sqrt{3}}{2}|0\rangle+\frac{i}{2}|1\rangle,}}\\ {{|b\rangle=\frac{i}{2}|0\rangle+\frac{\sqrt{3}}{2}|1\rangle.}}\end{array} \end{split}\]</div>
+<p>Veamos que el primer qubit está sobre la esfera de Bloch</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z1</span><span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">abs</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<p>Su paso a polares se harías de la siguiente manera</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1.0471975511965979, 1.5707963267948966)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Comprobemos que el segundo qubit también está sobre la esfera de Bloch</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">z11</span><span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">z22</span> <span class="o">=</span> <span class="nb">complex</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="nb">abs</span><span class="p">(</span><span class="n">z11</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="nb">abs</span><span class="p">(</span><span class="n">z22</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999999999999999
+</pre></div>
+</div>
+</div>
+</div>
+<p>Su paso a polares se haría de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">super2polares</span><span class="p">(</span><span class="n">z11</span><span class="p">,</span><span class="n">z22</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2.0943951023931957, -1.5707963267948966)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Definimos la siguiente función que nos permite calcular la distancia cartesiana entre dos puntos en el espacio.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distancia</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Función que sirve para calcular la distancia entre dos puntos, dadas sus coordenadas cartesianas</span>
+
+<span class="sd">    @param</span>
+
+<span class="sd">    a,b son las coordenadas cartesianas en el espacio de los dos puntos</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">a1</span> <span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">a2</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">a3</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">dis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">a1</span><span class="o">+</span><span class="n">a2</span><span class="o">+</span><span class="n">a3</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dis</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Con todos los datos anteriores comprobemos que la distancia entre los dos puntos es 2</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pasamos a coordenadas cartesianas  el primer qubit</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">polar2cartesian</span><span class="p">(</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">z2</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># pasamos a coordenadas cartesianas el segundo qubit</span>
+<span class="n">b</span><span class="o">=</span> <span class="n">polar2cartesian</span><span class="p">(</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z11</span><span class="p">,</span><span class="n">z22</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="n">super2polares</span><span class="p">(</span><span class="n">z11</span><span class="p">,</span><span class="n">z22</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># calculamos la distancia</span>
+<span class="n">distancia</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.9999999999999998
+</pre></div>
+</div>
+</div>
+</div>
+<p>Efectivamente como hemos podido comprobar se puede confirmar que los dos qubits anteriores forman una base. En <a class="reference internal" href="Parte_teorica_IV_algebra.html#algrebralineal"><span class="std std-ref">la sección álgebra lineal</span></a>, se describirá otro procedimiento más científico para detectar si dos qubits forman o no una base.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="numeros_complejos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Números complejos en Python.</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ParteTeorica_III_puertasCuanticas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Introducción</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicion-en-la-bases-z">3.1. Medición en la bases Z</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion">3.2. Normalización.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-sobre-otras-bases">3.3. Medidas sobre otras bases.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mapeo-sobre-la-esfera-de-bloch">3.4. Mapeo sobre la esfera de Bloch</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fases-global-y-relativa">3.4.1. Fases global y relativa.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#esfera-de-bloch">3.4.2. Esfera de Bloch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comprobacion-si-dos-qubit-forman-una-base">3.5. Comprobación si dos qubit forman una base.</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

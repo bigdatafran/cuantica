@@ -1,0 +1,1291 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>5. Introducción &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/Parte_teorica_IV_algebra';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. qiskit_textbook" href="Tema0_Introducci%C3%B3n.html" />
+    <link rel="prev" title="4. Introducción" href="ParteTeorica_III_puertasCuanticas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Álgebra lineal</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">16. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyters/Parte_teorica_IV_algebra.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectores-fila">5.1. Vectores fila.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-producto-interno">5.2. El producto interno.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-internos-o-escalar">5.3. Productos internos o escalar.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ortonormalidad">5.4. Ortonormalidad.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecciones-medidas-y-cambios-de-base">5.5. Proyecciones, medidas y cambios de base.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-puertas-cuanticas">5.6. Matrices de puertas cuánticas.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-mas-comunmente-utilizadas">5.6.1. Matrices más comúnmente utilizadas.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operando-con-puertas-secuenciales">5.6.2. Operando con puertas secuenciales.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identidades-entre-circuitos">5.7. Identidades entre circuitos.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unitariedad">5.8. Unitariedad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversibilidad">5.9. Reversibilidad.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-externo-outer">5.10. Producto externo (Outer).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-de-completitud">5.11. Relación de completitud.</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<span id="algrebralineal"></span><h1><span class="section-number">5. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+<p id="index-0">En este apartado vamos a ver diferentes forma de representar los qubits. Seguiremos trabajando, de momento, con un sólo qubit y presentaremos diferentes operaciones sobre ellos. Comprenderemos lo que es el producto interno y ciertas propiedades sobre el mismo.</p>
+<p>Veamos en primer cómo poder representar mediante coordenada los qubits de la base <span class="math notranslate nohighlight">\(\{|0\rangle , |1\rangle \}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[|0\rangle={\binom{1}{0}},\quad|1\rangle={\binom{0}{1}}.\]</div>
+<p>Como podemos ver se han utilizado vectores columnas para representar estos vectores que vamos a denominar <em>statevector</em> o <em>vectores de estado</em>.</p>
+<p>De la misma manera se podría representar cualquier qubit que tuviera de amplitudes <span class="math notranslate nohighlight">\(\alpha\)</span> y <span class="math notranslate nohighlight">\(\beta\)</span>. Es decir se tendría la siguiente representación:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|0\rangle+\beta|1\rangle=\alpha\binom{1}{0}+\beta\binom{0}{1}={\binom{\alpha}{0}}+{\binom{0}{\beta}}=\]</div>
+<div class="math notranslate nohighlight">
+\[={\binom{\alpha}{\beta}}.\]</div>
+<p>Como ya sabemos los qubits <span class="math notranslate nohighlight">\(\{|i\rangle, |-i\rangle\} forman una base por lo tanto el qubit \)</span>|i\rangle$ se puede representar por el siguiente vector columna en esa base:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{c}
+1\\
+0
+\end{array}\right)\end{split}\]</div>
+<p>Pero en la base formada por los qubits <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> ( que en adelante la llamaremos la base canónica), su expresión sería de las siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[|i\rangle=\frac{1}{\sqrt{2}}|0\rangle+\frac{i}{\sqrt{2}}|1\rangle=\frac{1}{\sqrt{2}}{\binom{1}{0}}+\frac{i}{\sqrt{2}}{\binom{0}{1}}={\binom{1/{\sqrt{2}}}{0}}+{\binom{0}{i/{\sqrt{2}}}}=\]</div>
+<div class="math notranslate nohighlight">
+\[={\binom{1/{\sqrt{2}}}{i/{\sqrt{2}}}}={\frac{1}{\sqrt{2}}}{\binom{1}{i}}.\]</div>
+<p>Igualmente sabemos que <span class="math notranslate nohighlight">\(H(|0\rangle)=|+\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle+|1\rangle\right)\)</span>, por lo que en este caso el vector columna será:</p>
+<div class="math notranslate nohighlight">
+\[\binom{\frac{1}{\sqrt{2}}}{\frac{1}{\sqrt{2}}}\]</div>
+<p>En el mundo de la programación cuántica, este tipo de vectores se denominan <a class="reference internal" href="Tema2_representing-qubit-states.html#statevector"><span class="std std-ref"><em>statevector</em> o <em>vectores de estado</em></span></a>, <a href="https://qiskit.org/documentation/stubs/qiskit.quantum_info.Statevector.html" target="_blank"> qiskit tiene una clase específicamente diseñada para trabajar </a> con este tipo de elementos. A continuación veamos cómo introducir esta clase.</p>
+<p>La forma de definir un vector de estado sería de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
+<span class="n">v1</span><span class="o">=</span><span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El vector de estado generado es el siguiente: &quot;</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El vector de estado generado es el siguiente:  Statevector([1.+0.j, 0.+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>En el ejemplo anterior, la forma de definir ese vector de estado sería la siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="mi">0</span><span class="n">j</span><span class="p">,</span><span class="mi">0</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.70710678+0.j        , 0.        +0.70710678j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Igualmente ya hemos dicho que se cumple lo siguiente: <span class="math notranslate nohighlight">\(H(|0\rangle)=|+\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle+|1\rangle\right)\)</span>, por lo que en este caso el vector columna será:</p>
+<div class="math notranslate nohighlight">
+\[\binom{\frac{1}{\sqrt{2}}}{\frac{1}{\sqrt{2}}}\]</div>
+<p>Veamos que con quiskit también podemos obtener este resultado, y para ello definimos un circuito de un sólo qubit al que se le aplica una puerta H</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
+<span class="c1"># Definimos el circuito de un solo qubit</span>
+<span class="n">circuito</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#Aplicamos un puerta H</span>
+<span class="n">circuito</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Import Aer</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">Aer</span>
+
+<span class="c1">#  Ejecutamos el circuito sobre un simulador de  statevector simulator backend</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;statevector_simulator&#39;</span><span class="p">)</span>
+
+<span class="c1"># creamos un programa cuántico para ejecución.</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuito</span><span class="p">)</span>
+
+<span class="c1"># obtenemos el resultado</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="c1"># Ahora ya podemos sacar el vector de estado y lo imprimimos</span>
+<span class="n">outputstate</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">(</span><span class="n">circuito</span><span class="p">,</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">outputstate</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Statevector([0.707+0.j, 0.707+0.j],
+            dims=(2,))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprobamos que el resultado es el correcto</span>
+<span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7071067811865475
+</pre></div>
+</div>
+</div>
+</div>
+<section id="vectores-fila">
+<h2><span class="section-number">5.1. </span>Vectores fila.<a class="headerlink" href="#vectores-fila" title="Permalink to this heading">#</a></h2>
+<p id="index-1">Los vectores fila, no son más que el vector columna transpuesto, es decir :</p>
+<div class="math notranslate nohighlight">
+\[\binom{\alpha}{\beta}^{T}=\left(\alpha,\beta\right)\]</div>
+<p>Sin embargo en la programación cuántica, se utiliza mucho el denominado vector transpuesto conjugado,  que como su nombre indica consiste en tomar el vector transpuesto y después el conjugado. Se denota por el superíndice  <span class="math notranslate nohighlight">\(\dagger\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[{\binom{\alpha}{\beta}}^{\dagger}=(\alpha^{*}\,\beta^{*}).\]</div>
+<p>De acuerdo con esta explicación, también hay que comentar que dentro de la programación cuántica se utiliza mucho la notación <em>bra-ket</em>. La parte ket ya se ha utilizado anteriormente y por y un ejemplo de la misma puede ser: <span class="math notranslate nohighlight">\(|1\rangle\)</span>, sin embargo, con la parta bra, queremos indicar lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\langle\psi|=(\alpha^{*}\,\beta^{*}).\]</div>
+</section>
+<section id="el-producto-interno">
+<h2><span class="section-number">5.2. </span>El producto interno.<a class="headerlink" href="#el-producto-interno" title="Permalink to this heading">#</a></h2>
+<p>Así pues y tal como se ha presentado en el anterior apartado, la parte <em>bra</em> no es más que el transpuesto conjugado de la parte <em>bra</em>. Por ejemplo, vamos a considerar un qubit ya utilizado anteriormente en este capítulo:</p>
+<div class="math notranslate nohighlight">
+\[|i\rangle={\binom{1/{\sqrt{2}}}{i/{\sqrt{2}}}}={\frac{1}{\sqrt{2}}}{\binom{1}{i}}.\]</div>
+<p>Por lo tanto la parte bra de la expresión anterior, sería la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|i\rangle=(1/{\sqrt{2}},-i/{\sqrt{2}})\]</div>
+<p>Podemos tomar los transpuestos conjugados de <span class="math notranslate nohighlight">\(|0\rangle=\binom{1}{0}\)</span> y <span class="math notranslate nohighlight">\(|1\rangle=\binom{0}{1}\)</span>, tiene las siguientes partes bra:</p>
+<div class="math notranslate nohighlight">
+\[\langle 0| = (1 , 0) \quad \langle1|=(0 , 1)\]</div>
+<p>Y entonces podemos tener la siguiente conclusión:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}{{\langle\psi|=(\alpha^{\ast}\beta^{\ast})=(\alpha^{\ast}\ 0)+(0\,\beta^{\ast})=\alpha^{\ast}(1\ 0)+\beta^{\ast}(0\ 1)}}\\ {{=\alpha^{\ast}\langle0|+\beta^{\ast}\langle1|.}}\end{array}\end{split}\]</div>
+<p>Notemos que en este caso tendremos amplitudes <span class="math notranslate nohighlight">\(\alpha^*\)</span> y <span class="math notranslate nohighlight">\(\beta^*\)</span> y por lo tanto cuando pasamos de  <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> a <span class="math notranslate nohighlight">\(\langle \psi|\)</span>, lo que se necesita es tomar los complejos conjugados de las amplitudes y pasar de vector columna a vector fila. Por ejemplo, si  sabemos que <span class="math notranslate nohighlight">\(|i\rangle=\frac{1}{\sqrt{2}}|0\rangle+\frac{i}{\sqrt{2}}|1\rangle\)</span>, entonces:</p>
+<div class="math notranslate nohighlight">
+\[\langle i|=\frac{1}{\sqrt{2}}\langle0|-\frac{i}{\sqrt{2}}\langle1|\]</div>
+<p>Resumamos todo esto a continuación</p>
+<div class="math notranslate nohighlight">
+\[|\Psi\rangle={\binom{\alpha}{\beta}}\Longleftrightarrow\quad\quad\langle\Psi|=(\alpha^{*}\,{\beta^{*}})\]</div>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\iff\langle\psi|=\alpha^{*}\langle0|+\beta^{*}\langle1|\]</div>
+</section>
+<section id="productos-internos-o-escalar">
+<span id="productointerno"></span><h2><span class="section-number">5.3. </span>Productos internos o escalar.<a class="headerlink" href="#productos-internos-o-escalar" title="Permalink to this heading">#</a></h2>
+<p>Supongamos que tenemos dos estados:</p>
+<div class="math notranslate nohighlight">
+\[|\Psi\rangle={\binom{\alpha}{\beta}},\quad y \quad|\phi\rangle={\binom{\gamma}{\delta}}\]</div>
+<p>Definiremos su producto interno y lo designaremos por <span class="math notranslate nohighlight">\(\langle \Psi | \phi\rangle\)</span>, de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\langle\Psi|\phi\rangle=\left(\alpha^{*}\,\beta^{*}\right)\left(\gamma, \delta\right)  \]</div>
+<p>El resultado por lo tanto será un escalar complejo, y en concreto:</p>
+<div class="math notranslate nohighlight">
+\[ \langle\phi|\psi\rangle=\alpha^{*}\gamma+\beta^{*}\delta.\]</div>
+<p>Una propiedad muy importante del producto escalar es que el producto escalar de <span class="math notranslate nohighlight">\(\Psi\)</span> y <span class="math notranslate nohighlight">\(\phi\)</span> es igual cl complejo del producto escalar de <span class="math notranslate nohighlight">\(\phi\)</span> por <span class="math notranslate nohighlight">\(\Psi\)</span>. Es decir:</p>
+<div class="math notranslate nohighlight">
+\[\langle\Psi|\phi\rangle=\langle\phi|\Psi\rangle^{*}\]</div>
+<p>Un conclusión del resultado anterior es que el producto interno no tiene la propiedad conmutativa.</p>
+<p>Vamos a demostrar el enunciado anterior.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}{{\langle\Psi|\phi\rangle=(\gamma^{*}\;\delta^{*})\binom{\alpha}{\beta}=\gamma^{*}\alpha+\delta^{*}\beta=(\gamma\alpha^{*}+\delta\beta^{*})^{*}=(\alpha^{*}\gamma+\beta^{*}\delta)^{*}}}\\ {{=\langle\phi\left|\Psi\right\rangle^{*}.}}\end{array}\end{split}\]</div>
+<p>Veamos cómo calcular el producto interno desde quiskit. Supongamos que tenemos los siguientes qubits.</p>
+<div class="math notranslate nohighlight">
+\[|a\rangle=\frac{3+i\sqrt{3}}{4}|0\rangle+\frac{1}{2}|1\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[|b\rangle=\frac{1}{4}|0\rangle+\frac{\sqrt{15}}{4}|1\rangle\]</div>
+<p>Procedamos al cálculo del producto interno con qiskit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># definimos el primer vector de estado</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="c1"># Ahora calculamos el producto interno</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El producto interno es: &quot;</span><span class="p">)</span>
+<span class="n">v1</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El producto interno es: 
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.6716229182759271-0.10825317547305482j)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ortonormalidad">
+<h2><span class="section-number">5.4. </span>Ortonormalidad.<a class="headerlink" href="#ortonormalidad" title="Permalink to this heading">#</a></h2>
+<p>Una vez introducido el concepto de producto interno, vamos a ver que nos podemos apoyar en él para demostrar ciertas condiciones que ya sabemos deben cumplirse al trabajar con qubits.</p>
+<p>En este sentido, supongamos que tenemos el siguiente qubit: <span class="math notranslate nohighlight">\(\Psi = \alpha |0\rangle +\beta |1\rangle\)</span>, como es un qubit debe estar sobre la esfera de radio unidad, y por lo tanto verifica que <span class="math notranslate nohighlight">\(|\alpha|^2+|\beta|^2 =1\)</span>. Pero vemos cunato vale el producto interno de ese qubit consigo mismo:</p>
+<div class="math notranslate nohighlight">
+\[\langle\Psi|\Psi\rangle=(\alpha^{*},\beta^{*})\binom{\alpha}{\beta}=|\alpha|^{2}+|\beta|^{2}=1\]</div>
+<p>Por lo tanto una condición que debe cumplir cada elemento de una base (que esté en la esfera de radio unidad), es que el producto interno del qubit por sí mismo es la unidad.</p>
+<p>Otra de las condiciones que deben cumplir los dos qubits que formen una base es que sean ortonormales. Veamos que esto es cierto para la base canónica.</p>
+<div class="math notranslate nohighlight">
+\[\langle0|1\rangle=\left(1~0\right)\!\left(_{1}^{0}\right)=1\cdot0+0\cdot1=0+0=0\]</div>
+<p>Igual ocurre con los qubits <span class="math notranslate nohighlight">\(|+\rangle\)</span> y <span class="math notranslate nohighlight">\(|-\rangle\)</span></p>
+<div class="math notranslate nohighlight">
+\[\left|+\right\rangle\langle-|={\frac{1}{\sqrt2}}\big(1\left.1\right){\frac{1}{\sqrt2}}\binom{1}{-1}={\frac{1}{2}}\big(1\ 1\big)\binom{1}{-1}={\frac{1}{2}}\left(1-1\right)=0\]</div>
+<p>Lo mismo tenemos para los estados <span class="math notranslate nohighlight">\(|i\rangle\)</span> y <span class="math notranslate nohighlight">\(|-i\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\vert i\rangle\langle-i\vert=\frac{1}{\sqrt{2}}(1-i)\frac{1}{\sqrt{2}}{\binom{1}{-i}}=\frac{1}{2}\left(1-i\right){\binom{1}{-i}}=\frac{1}{2}\left(1+i^{2}\right)=0\]</div>
+<p>Siempre se va a verificar que dos puntos de la esfera de Bloch que estén en posiciones opuestas, siempre su producto interno va a ser cero, y estos dos puntos en esas condiciones, diremos que son ortogonales. Si además los dos puntos están normalizados, diremos que son ortonormales.</p>
+</section>
+<section id="proyecciones-medidas-y-cambios-de-base">
+<span id="proyecciones"></span><h2><span class="section-number">5.5. </span>Proyecciones, medidas y cambios de base.<a class="headerlink" href="#proyecciones-medidas-y-cambios-de-base" title="Permalink to this heading">#</a></h2>
+<p>El producto interno tiene muchas aplicaciones dentro de la programación cuántica, y alguna de ellas las vamos a ver en este apartado. En concreto vamos a ver cómo podemos utilizar este producto interno o escalar para medir amplitudes de estados cuánticos. Igualmente vamos a ver cómo proceder para hacer diferentes cambios de base. Para los propósitos de este apartado, vamos a trabajar con el siguiente qubit:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle={\frac{\sqrt{3}}{2}}|0\rangle+{\frac{1}{2}}|1\rangle\]</div>
+<p>Este qubit ya <a class="reference internal" href="ParteTeorica_I.html#puntoesfera"><span class="std std-ref">fue presentado en un apartado anterior</span></a>, y podemos decir que su representación gráfica sobre la esfera de Bloch es la siguiente:</p>
+<center>
+<p><img alt="" src="../_images/puntoesfera.PNG" /></p>
+</center>
+<p>Vamos a ver que gracias al producto interno de este qubit por cada elemento de la base nos da sus amplitudes. En efecto, vamos a calcular el siguiente producto interno:</p>
+<div class="math notranslate nohighlight">
+\[\langle0|\Psi\rangle=\langle0|\left(\frac{\sqrt{3}}{2}|0\rangle+\frac{1}{2}|1\rangle\right)=\frac{\sqrt{3}}{2}\underset{1}{\underbrace{\langle0|0\rangle}}+\frac{1}{2}\underset{0}{\underbrace{\langle0|1\rangle}}=\frac{\sqrt{3}}{2}\]</div>
+<p>Como podemos observar, lo que obtenemos es la amplitud sobre el qubit <span class="math notranslate nohighlight">\(|0\rangle\)</span>. De forma similar podemos obtener las amplitud sobre el segundo elemento de la base:</p>
+<div class="math notranslate nohighlight">
+\[\langle1|\Psi\rangle=\langle1|\left(\frac{\sqrt{3}}{2}|0\rangle+\frac{1}{2}|1\rangle\right)=\frac{\sqrt{3}}{2}\underset{0}{\underbrace{\langle1|0\rangle}}+\frac{1}{2}\underset{1}{\underbrace{\langle1|1\rangle}}=\frac{1}{2}\]</div>
+<p>En vista de estos resultados, podemos concluir que el qubit anterior <span class="math notranslate nohighlight">\(\psi\)</span>, se puede escribir de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\psi\rangle=\langle0|\psi\rangle|0\rangle+\langle1|\psi\rangle|1\rangle\]</div>
+<p>Este método, es aún más interesante cuando pretendemos medir las amplitudes sobre otro tipo de bases, y así por ejemplo supongamos que queremos medir las amplitudes sobre la base X que era {<span class="math notranslate nohighlight">\(|+\rangle , |1\rangle\)</span>}. En este caso se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\langle+\vert\psi\rangle=\frac{1}{\sqrt{2}}{\big(}\langle0\vert+\langle1\vert{\big)}\left(\frac{\sqrt{3}}{2}\vert0\rangle+\frac{1}{2}\vert1\rangle\right)\]</div>
+<div class="math notranslate nohighlight">
+\[=\frac{1}{\sqrt{2}}\left(\frac{\sqrt{3}}{2}\underset{1}{\underbrace{\langle0|0\rangle}}+\frac{1}{2}\underset{0}{\underbrace{\langle0|1\rangle}+\frac{\sqrt{3}}{2}\underset{0}{\underbrace{\langle1|0\rangle}}}+\frac{1}{2}\underset{1}{\underbrace{\langle1|1\rangle}}\right)=\]</div>
+<div class="math notranslate nohighlight">
+\[={\frac{1}{\sqrt{2}}}\left({\frac{\sqrt{3}}{2}}+{\frac{1}{2}}\right)={\frac{{\sqrt{3}}+1}{2{\sqrt{2}}}}\]</div>
+<p>Por lo tanto con este procedimiento podemos hacer cambios de base de un forma rápida y práctica.</p>
+<p>Los resultados anteriores los podemos obtener con qiskit de la siguiente manera:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Statevector</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># definimos el primer vector de estado</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># Ahora calculamos el producto interno</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El producto interno es: &quot;</span><span class="p">)</span>
+<span class="n">v1</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El producto interno es: 
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.9659258262890682+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprobemos que coincide con el resultado manual</span>
+<span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9659258262890682
+</pre></div>
+</div>
+</div>
+</div>
+<p>Comprobemos la amplitud sobre <span class="math notranslate nohighlight">\(|-\rangle\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># definimos el primer vector de estado</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">Statevector</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># Ahora calculamos el producto interno</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;El producto interno es: &quot;</span><span class="p">)</span>
+<span class="n">v1</span><span class="o">.</span><span class="n">inner</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>El producto interno es: 
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.25881904510252074+0j)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprobemos que coincide con el resultado manual</span>
+<span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.2588190451025207
+</pre></div>
+</div>
+</div>
+</div>
+<p>Se puede mejorar ostensiblemente este resultado utilizando la matemática simbólica que nos proporciona Sympy. Por este motivo se puede acudir al capítulo dedicado a esta materia al que <a class="reference internal" href="anexo_simpy.html#sympy"><span class="std std-ref">se puede acceder desde este enlace</span></a> para ver un procedimiento fácil con el cual se obtiene el mismo resultado que el obtenido de una forma manual. A continuación se transcribe el resultado central de ese apartado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">init_session</span>
+<span class="n">init_session</span><span class="p">(</span><span class="n">use_latex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">productoInterno</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">simplificar</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    Con esta función calculamos el producto interno de dos qubits</span>
+
+<span class="sd">    @parámteros:</span>
+<span class="sd">    x,y son dos mtarices de Sympy definidas como vectores columna. Estas matrices</span>
+<span class="sd">    son la amplitudes de los qubits</span>
+
+<span class="sd">    simplificar es un valor lógico que permite obtener el resultado simplificado o no.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">resul</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">y</span>
+
+    <span class="k">if</span> <span class="n">simplificar</span><span class="p">:</span>
+        <span class="n">resul</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">resul</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">resul</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>IPython console for SymPy 1.12 (Python 3.11.4-64-bit) (ground types: python)
+
+These commands were executed:
+&gt;&gt;&gt; from sympy import *
+&gt;&gt;&gt; x, y, z, t = symbols(&#39;x y z t&#39;)
+&gt;&gt;&gt; k, m, n = symbols(&#39;k m n&#39;, integer=True)
+&gt;&gt;&gt; f, g, h = symbols(&#39;f g h&#39;, cls=Function)
+&gt;&gt;&gt; init_printing()
+
+Documentation can be found at https://docs.sympy.org/1.12/
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># defino las amplitudes del primer elemento</span>
+<span class="n">a</span><span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+<span class="c1"># defino las amplitudes del segundo elemento</span>
+<span class="n">b</span><span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">productoInterno</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/772491b7844ad09e268d84f7edb4019c5babe57c4b7af8c36613f2cf7150a88c.png" src="../_images/772491b7844ad09e268d84f7edb4019c5babe57c4b7af8c36613f2cf7150a88c.png" />
+</div>
+</div>
+<p>Como resultado de todo lo visto en este apartado podemos concluir que :</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\langle+|\psi\rangle|+\rangle+\langle-|\psi\rangle|-\rangle\]</div>
+<p>En consecuencia de puede afirmar que:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Para una base ortonormal cualquiera <span class="math notranslate nohighlight">\(\{|a\rangle, |b\rangle  \} \)</span>, el estado de un qubit se puede escribir como:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|a\rangle +\beta |b\rangle \]</div>
+<p>donde <span class="math notranslate nohighlight">\(\alpha=\langle a|\psi\rangle\)</span> y <span class="math notranslate nohighlight">\(\beta=\langle b|\psi\rangle\)</span></p>
+</div>
+<p>Por lo tanto <span class="math notranslate nohighlight">\(\langle a|\psi\rangle\)</span> es la amplitud de <span class="math notranslate nohighlight">\(| \psi\rangle\)</span> en <span class="math notranslate nohighlight">\(|a\rangle\)</span>. En lenguaje matemático <span class="math notranslate nohighlight">\(\langle a|\psi\rangle\)</span> es la proyección de <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> en <span class="math notranslate nohighlight">\(|a\rangle\)</span></p>
+</section>
+<section id="matrices-de-puertas-cuanticas">
+<h2><span class="section-number">5.6. </span>Matrices de puertas cuánticas.<a class="headerlink" href="#matrices-de-puertas-cuanticas" title="Permalink to this heading">#</a></h2>
+<p>Como ya se ha comentado en un apartado anterior, una puerta U lo que en el fondo hace es cambiar los estados de superposición de los qubits delas base canónica, es decir <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Utilizando notación simbólica, lo anterior quiere decir lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[U|0\rangle=a|0\rangle+b|1\rangle={\binom{a}{b}},\]</div>
+<div class="math notranslate nohighlight">
+\[U|1\rangle=c|0\rangle+d|1\rangle={\binom{c}{d}}.\]</div>
+<p>Las expresiones anteriores se pueden expresar con un formato matricial, y en concreto en el caso anterior, la matriz de la puerta U sería la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\left(\begin{array}{cc}
+\left(\begin{array}{c}
+a\\
+b
+\end{array}\right) &amp; \left(\begin{array}{c}
+c\\
+d
+\end{array}\right)\end{array}\right)=\left(\begin{array}{cc}
+a &amp; c\\
+b &amp; d
+\end{array}\right)\end{split}\]</div>
+<p>Entonces si tenemos un qubit en el siguiente estado de superposición:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|0\rangle+\beta|1\rangle={\binom{\alpha}{\beta}},\]</div>
+<p>Aplicar una puerta U es equivalente a hacer la siguiente multiplicación matricial.</p>
+<div class="math notranslate nohighlight">
+\[U|\psi\rangle={\binom{a\ c}{b\ d}}{\binom{\alpha}{\beta}}={\binom{a\alpha+c\beta}{b\alpha+d\beta}}.\]</div>
+<p>Por lo tanto y utilizando el lenguaje de álgebra lineal, las puerta cuánticas en el fondo no son otra cosa que matrices. No obstante estas matrices deben de asegurar que la suma de probabilidades de colapsar hacia cada elemento de la base debe ser 1, es decir en el ejemplo anterior, se debe cumplir</p>
+<div class="math notranslate nohighlight">
+\[|a\alpha+c\beta|^{2}+|b\alpha+d\beta|^{2}=1\]</div>
+<p>Veamos un ejemplo de esta situación:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U|0\rangle=\frac{\sqrt{2}-i}{2}|0\rangle-\frac{1}{2}|1\rangle=\left(\begin{array}{c}
+\frac{\sqrt{2}-i}{2}\\
+-\frac{1}{2}
+\end{array}\right),\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}U|1\rangle={\frac{1}{2}}|0\rangle+{\frac{\sqrt{2}+i}{2}}|1\rangle=\left(\begin{array}{c}
+\frac{1}{2}\\
+\frac{\sqrt{2}+i}{2}
+\end{array}\right).\end{split}\]</div>
+<p>En consecuencia la matriz asociada a esta puerta es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\left(\begin{array}{cc}
+\frac{\sqrt{2}-i}{2} &amp; \frac{1}{2}\\
+-\frac{1}{2} &amp; \frac{\sqrt{2}+i}{2}
+\end{array}\right)\end{split}\]</div>
+<p id="index-2">Para que una puerta se válida, debe ser unitaría, es decir que conserve la propiedad de que la suma de probabilidades  de colapsar hacia cada elemento de la base es 1. Con qiskit se puede comprobar si una matriz es unitaria o no utilizando la propiedad <em>is_unitary()</em>. Comprobemos esto para el ejemplo con el que estamos trabajando.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit.quantum_info.operators</span> <span class="kn">import</span> <span class="n">Operator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">U</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matrix</span><span class="p">([[(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],[</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">op</span> <span class="o">=</span><span class="n">Operator</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+
+<span class="n">op</span><span class="o">.</span><span class="n">is_unitary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>En la <a href="https://algassert.com/quirk" target="_blank"> herramienta Quirk </a> que ya se ha presentado en un apartado anterior, también se puede crear las matrices asociadas a las puertas lógicas utilizando la opción del menú principal “<em>Make Gate</em>”. al realizar esta operación se abre un cuadro de diálogo para introducir los elementos de la matriz, como se aprecia en la siguiente imagen.</p>
+<center>
+<p><img alt="" src="../_images/gatesQuirt.PNG" /></p>
+</center>
+<p>A esta puerta en el momento de la creación se le asigna un nombre, y esta nueva puerta aparecerá en en la pantalla de Quirk con el nombre que se le ha dado en su creación.</p>
+<center>
+<p><img alt="" src="../_images/PuertaU.PNG" /></p>
+</center>
+<p>Una vez creada la puerta se puede trabajar con ella, y obtener los resultados correspondientes, como se puede ver en el ejemplo de la siguiente imagen:</p>
+<center>
+<p><img alt="" src="../_images/PuertaU_2.PNG" /></p>
+</center>
+<p>en este caso podemos ver que <span class="math notranslate nohighlight">\(HTU|0\rangle\)</span> tiene un 57.3% de probabilidad de colapsar a <span class="math notranslate nohighlight">\(|1\rangle\)</span> y 42.7% hacia <span class="math notranslate nohighlight">\(|0\rangle\)</span>.</p>
+<section id="matrices-mas-comunmente-utilizadas">
+<span id="index-3"></span><h3><span class="section-number">5.6.1. </span>Matrices más comúnmente utilizadas.<a class="headerlink" href="#matrices-mas-comunmente-utilizadas" title="Permalink to this heading">#</a></h3>
+<p>Ya se han comentado <a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html#puertascomunes"><span class="std std-ref">en otro apartado anterior</span></a>, cómo se forman y cual es el resultado de las puertas cuánticas más usuales. En este apartado, vamos a exponer esas mismas puertas pero desde el lado algebraico, es decir viendo la matriz (tal y como se han definido anteriormente) que hay detrás de ellas. Estas matrices son las siguientes.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Puerta</p></th>
+<th class="head"><p>Acción</p></th>
+<th class="head"><p>Matriz</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Identidad</p></td>
+<td><p><span class="math notranslate nohighlight">\(I|0\rangle=|0\rangle\)</span> <br> <span class="math notranslate nohighlight">\(I|1\rangle=|1\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(I=\left(\begin{array}{cc} 1 &amp; 0\\ 0 &amp; 1 \end{array}\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Pauli X</p></td>
+<td><p><span class="math notranslate nohighlight">\(X|0\rangle=|1\rangle\)</span> <br> <span class="math notranslate nohighlight">\(X|1\rangle=|0\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(X=\left(\begin{array}{cc} 0 &amp; 1\\ 1 &amp; 0 \end{array}\right)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Pauli Y</p></td>
+<td><p><span class="math notranslate nohighlight">\(Y|0\rangle=i|1\rangle\)</span> <br> <span class="math notranslate nohighlight">\(Y|1\rangle=-i|0\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(Y=\left(\begin{array}{cc} 0 &amp; -i\\ i &amp; 0 \end{array}\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Pauli Z</p></td>
+<td><p><span class="math notranslate nohighlight">\(X|0\rangle=|0\rangle\)</span> <br> <span class="math notranslate nohighlight">\(X|1\rangle=|1\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(Z=\left(\begin{array}{cc} 1 &amp; 0\\ 0 &amp; -1 \end{array}\right)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Fase S</p></td>
+<td><p><span class="math notranslate nohighlight">\(S|0\rangle=|0\rangle\)</span> <br> <span class="math notranslate nohighlight">\(S|1\rangle=i|1\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(S=\left(\begin{array}{cc} 1 &amp; 0\\ 0 &amp; i \end{array}\right)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Puerta T</p></td>
+<td><p><span class="math notranslate nohighlight">\(T|0\rangle=|0\rangle\)</span> <br> <span class="math notranslate nohighlight">\(T|1\rangle=e^{i\pi/4}|1\rangle\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(T=\left(\begin{array}{cc} 1 &amp; 0\\ 0 &amp; e^{i\pi/4} \end{array}\right)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Hadamard H</p></td>
+<td><p><span class="math notranslate nohighlight">\(H|0\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle+|1\rangle\right)\)</span> <br> <span class="math notranslate nohighlight">\(H|1\rangle=\frac{1}{\sqrt{2}}\left(|0\rangle-|1\rangle\right)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(H=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1 &amp; 1\\1 &amp; -1\end{array}\right)\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="operando-con-puertas-secuenciales">
+<h3><span class="section-number">5.6.2. </span>Operando con puertas secuenciales.<a class="headerlink" href="#operando-con-puertas-secuenciales" title="Permalink to this heading">#</a></h3>
+<p>Usando el álgebra lineal y la definición de las matrices dadas anteriormente, se puede calcular fácilmente el resultado de una secuencia de puertas cuánticas. Por ejemplo se puede demostrar que:</p>
+<div class="math notranslate nohighlight">
+\[{HSTH|0}\rangle={\frac{1}{2}}\left[\left(1+e^{i3\pi/4}\right)|0\rangle+\left(1-e^{i3\pi/4}\right)|1\rangle\right]\]</div>
+<p>La operación manual se haría de la siguiente manera:</p>
+<center>
+<p><img alt="" src="../_images/operaciones.PNG" /></p>
+</center>
+<p>Mientras que si utilizamos el paquete Sympy de python, nos daría:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Definimos las matrices</span>
+<span class="n">H</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">*</span><span class="n">I</span><span class="p">]])</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="n">exp</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">I</span><span class="o">/</span><span class="mi">4</span><span class="p">)]])</span>
+
+<span class="c1"># Definimos el vector columna (1,0)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Hacemos ahora la multiplicación</span>
+
+<span class="n">H</span><span class="o">*</span><span class="n">S</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">H</span><span class="o">*</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/2648ea89fb69a777da5b7ec24a787eb611e33262fd1ef5597d71c1d05c6b4ad8.png" src="../_images/2648ea89fb69a777da5b7ec24a787eb611e33262fd1ef5597d71c1d05c6b4ad8.png" />
+</div>
+</div>
+<p>Observar que el resultado es el mismo que el obtenido de forma manual ya que <span class="math notranslate nohighlight">\(i=e^{i\pi/2}\)</span> y entonces con una simple operación aritmética se llega al mismo resultado que el obtenido de forma manual.</p>
+<p>Como estas matrices de puertas lógicas son utilizadas con mucha frecuencia, lo que se ha hecho es crear un fichero denominado “<a class="reference external" href="http://puertasLogicas.py">puertasLogicas.py</a>” que contiene la definición de estas puertas. Entonces se le puede considerar que es un módulo de Python, con lo que no se tiene que hacer más que importarlo para trabajar con esas matrices de puertas lógicas.</p>
+<p>El código que contiene este fichero es el siguiente:</p>
+<blockquote>
+<div><p>from sympy import *
+init_printing(use_unicode=True)</p>
+<p>I1=Matrix([[1,0],[0,1]])</p>
+<p>X=Matrix([[0,1],[1,0]])</p>
+<p>Y=Matrix([[0,-I],[I,0]])</p>
+<p>Z = Matrix([[1,0],[0,-1]])</p>
+<p>S = Matrix([[1,0],[0,I]])</p>
+<p>T = Matrix([[1,0],[0,exp(pi*I/4)]])</p>
+<p>H=(1/sqrt(2))*Matrix([[1,1],[1,-1]])</p>
+</div></blockquote>
+<p>Entonces su forma de usos sería como se indica a continuación:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">puertasLogicas</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">H</span><span class="o">*</span><span class="n">pl</span><span class="o">.</span><span class="n">S</span><span class="o">*</span><span class="n">pl</span><span class="o">.</span><span class="n">T</span><span class="o">*</span><span class="n">pl</span><span class="o">.</span><span class="n">H</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/44604736dca1cf2ea04102050cd58a330f80f3650f2e9ad9d96ba0cad4d07293.png" src="../_images/44604736dca1cf2ea04102050cd58a330f80f3650f2e9ad9d96ba0cad4d07293.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="identidades-entre-circuitos">
+<h2><span class="section-number">5.7. </span>Identidades entre circuitos.<a class="headerlink" href="#identidades-entre-circuitos" title="Permalink to this heading">#</a></h2>
+<p>Existen algunas indentidades importantes que conviene tenerlas en cuenta cuando trabajamos en programación cuántica. A continuación se muestran algunas de estas identidades.</p>
+<p>Se puede comprobar que: HXH=Z, para comprobarlo vamos a ver si es cierto que HXH-Z=0</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">puertasLogicas</span> <span class="k">as</span> <span class="nn">pl</span>
+
+<span class="n">pl</span><span class="o">.</span><span class="n">H</span><span class="o">*</span><span class="n">pl</span><span class="o">.</span><span class="n">X</span><span class="o">*</span><span class="n">pl</span><span class="o">.</span><span class="n">H</span><span class="o">-</span><span class="n">pl</span><span class="o">.</span><span class="n">Z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/aef43ba7ac8303b7a03ec46cf59cade9a54afd652edd530eb3bea4c686378845.png" src="../_images/aef43ba7ac8303b7a03ec46cf59cade9a54afd652edd530eb3bea4c686378845.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># También de esta manera</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">H</span><span class="o">*</span><span class="n">pl</span><span class="o">.</span><span class="n">X</span><span class="o">*</span><span class="n">pl</span><span class="o">.</span><span class="n">H</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0a23be06fdbd98c2934f4db72d5a84e322488e128c87fbe9bbd43a7178788d04.png" src="../_images/0a23be06fdbd98c2934f4db72d5a84e322488e128c87fbe9bbd43a7178788d04.png" />
+</div>
+</div>
+</section>
+<section id="unitariedad">
+<h2><span class="section-number">5.8. </span>Unitariedad<a class="headerlink" href="#unitariedad" title="Permalink to this heading">#</a></h2>
+<p>Recordemos que si una puerta cuántica transforma <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span> de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[U|0\rangle=a|0\rangle+b|1\rangle=\binom{a}{b}\]</div>
+<div class="math notranslate nohighlight">
+\[U|1\rangle=c|0\rangle+d|1\rangle=\binom{c}{d}\]</div>
+<p>Entonces podemos escribir U mediante una matriz 2x2, de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\left(\begin{array}{cc}
+a &amp; c\\
+b &amp; d
+\end{array}\right)\end{split}\]</div>
+<p>En estas circunstancias, si aplicamos es puerta al estado <span class="math notranslate nohighlight">\(|\Psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span> se obtiene lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U|\psi\rangle=\left(\begin{array}{cc}
+a &amp; c\\
+b &amp; d
+\end{array}\right)\left(\begin{array}{c}
+\alpha\\
+\beta
+\end{array}\right)=\left[\begin{array}{c}
+a\alpha+b\beta\\
+b\alpha+d\beta
+\end{array}\right]\end{split}\]</div>
+<p>Como puede verse, <span class="math notranslate nohighlight">\(U|\psi\rangle\)</span> es un vector columna y también lo podemos escribir como un elemento ket <span class="math notranslate nohighlight">\(|U\psi\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[U|\psi\rangle=|U\psi\rangle\]</div>
+<p>Ahora consideremos el conjugado transpuesto de <span class="math notranslate nohighlight">\(|U\psi\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\langle U\psi|=(a^{*}\alpha^{*}+c^{*}\beta^{*}\quad b^{*}\alpha^{*}+d^{*}\beta^{*})=(\alpha^{*}\,\beta^{*})\left(\begin{array}{cc}
+a^{*} &amp; b^{*}\\
+c^{*} &amp; d^{*}
+\end{array}\right) = \left(\alpha^{`*}\:\beta^{*}\right)\left(\begin{array}{cc}
+a &amp; c\\
+b &amp; d
+\end{array}\right)^{\dagger}= \langle \psi | U^{\dagger}\end{split}\]</div>
+<p>Resumiendo:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c l c r}{{|U\psi\rangle=U|\psi\rangle,}}\\ {{\langle U\psi|=\langle\psi|U^{\dagger}.}}\end{array}\end{split}\]</div>
+<p>Entonces, utilizando lo anterior, podemos determinar si una matriz U deja la probabilidad total igual a 1. Entonces consideremos una puerta cuántica dada por su matriz U y actúa sobre un estado <span class="math notranslate nohighlight">\(\psi\)</span>, es decir <span class="math notranslate nohighlight">\(U|\psi\rangle=|U\psi\rangle\)</span>. Para que U sea una puerta cuántica, debe estar normalizada, es decir su producto interno consigo mismo debe ser igual a 1:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}{{\langle U\psi|U\psi\rangle=1}}\\ {{\langle\psi|U^{\dagger}U|\psi\rangle=\langle\psi|\psi,}}\\ {{U^{\dagger}U=I.}}\end{array}\end{split}\]</div>
+<p id="index-4">Una matriz que verifica la condición anterior, se denomina <strong>matriz unitaria</strong>, y en consecuencia podemos concluir que:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las puertas cuánticas son matrices unitarias, y además si una matriz es unitaria entonces es una puerta cuántica</p>
+</div>
+<p>Tenemos varias formas de comprobar si una matriz es unitaria o no. Una forma es utilizar la propiedad <a href="https://qiskit.org/documentation/stable/0.19/stubs/qiskit.quantum_info.Operator.is_unitary.html" target="_blank"> is_unitary </a> de qiskit. Pero también se puede utilizar la multiplicación de matrices de Sympy. Hay que tener en cuenta que la matriz transpuesta conjugada se obtiene utilizando el método <em>.H</em>. Veamos un ejemplo. Supongamos que tenemos la siguiente matriz:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+1 &amp; i\\
+-i &amp; 1
+\end{array}\right)\end{split}\]</div>
+<p>Comprobemos mediante sympy si es o no unitaria</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Definimos y presentamos la matriz</span>
+<span class="n">A</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="n">I</span><span class="p">],[</span><span class="o">-</span><span class="n">I</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ea7fe39ba7094c189d0e48d44b8880c1b767d0dbfb74f93ac1069b8d5f83c2c6.png" src="../_images/ea7fe39ba7094c189d0e48d44b8880c1b767d0dbfb74f93ac1069b8d5f83c2c6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiplicamos la transpuesta conjugada por esa matriz</span>
+<span class="n">A</span><span class="o">.</span><span class="n">H</span><span class="o">*</span><span class="n">A</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5a8c09ecff41b73c1832e963a00b984efcfab87597390b196f0ecd370f231d56.png" src="../_images/5a8c09ecff41b73c1832e963a00b984efcfab87597390b196f0ecd370f231d56.png" />
+</div>
+</div>
+<p>Como en el ejemplo anterior, no se obtiene la matriz identidad no podemos utilizar esa matriz como una puerta cuántica. Comprobemos si la matriz</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+1 &amp; i\\
+i &amp; -1
+\end{array}\right)\end{split}\]</div>
+<p>es unitaria:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)],[</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)]])</span>
+<span class="n">U1</span><span class="o">=</span><span class="n">Operator</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="n">U1</span><span class="o">.</span><span class="n">is_unitary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<p>En consecuencia no sería unitaria. Probemos con</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+1 &amp; 1\\
+i &amp; -i
+\end{array}\right)\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)],[</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)]])</span>
+<span class="n">U1</span><span class="o">=</span><span class="n">Operator</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="n">U1</span><span class="o">.</span><span class="n">is_unitary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>Entonces la matriz anterior sería unitaria y por lo tanto se corresponde con alguna puerta cuántica. Ademas:</p>
+<div class="math notranslate nohighlight">
+\[U|0\rangle = |i\rangle \qquad U|1\rangle=-|i\rangle\]</div>
+</section>
+<section id="reversibilidad">
+<span id="index-5"></span><h2><span class="section-number">5.9. </span>Reversibilidad.<a class="headerlink" href="#reversibilidad" title="Permalink to this heading">#</a></h2>
+<p>Diremos que una matriz es reversible o invertible si existe una matriz, denotada por <span class="math notranslate nohighlight">\(M^{-1}\)</span> de forma que se cumple:</p>
+<div class="math notranslate nohighlight">
+\[M\cdot M^{-1}=M^{-1}\cdot M=I\]</div>
+<p>Ahora ya sabemos que una matriz correspondiente a una puerta cuántica verifica:</p>
+<div class="math notranslate nohighlight">
+\[U^{\dagger}U=UU^{\dagger}=I\]</div>
+<p>De la expresión anterior además se puede deducir que U también verifica que la matriz transpuesta conjugada debe ser igual a la matriz inversa, es decir:</p>
+<div class="math notranslate nohighlight">
+\[U^{-1}=U^{\dagger}\]</div>
+<p>Por lo tanto, se concluye lo siguiente:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La matriz de una puerta cuántica también deber ser reversible y la inversa coincide con la matriz transpuesta conjugada</p>
+</div>
+</section>
+<section id="producto-externo-outer">
+<h2><span class="section-number">5.10. </span>Producto externo (Outer).<a class="headerlink" href="#producto-externo-outer" title="Permalink to this heading">#</a></h2>
+<p>En esta sección vamos a mostrar lo que se entiende por producto externo de matrices o <em>outer product</em>. El resultado que se obtiene es otra matriz, no un escalar como era el caso del producto interno ya visto en secciones anteriores.</p>
+<p>Consideremos dos estados cuánticos:</p>
+<div class="math notranslate nohighlight">
+\[ |\psi\rangle=\alpha|0\rangle+\beta|1\rangle,\quad|\phi\rangle=\gamma|0\rangle+\delta|1\rangle. \]</div>
+<p>En lugar de hacer el producto interno <span class="math notranslate nohighlight">\(\langle \psi | \phi\rangle\)</span>, vamos a definir el producto externo de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[ |\psi\rangle\langle\phi|={\binom{\alpha}{\beta}}(\gamma^{*}\ \delta^{*}) = \binom{\alpha\gamma^{*} \quad \alpha\delta^{*}}{\beta\gamma^{*} \quad \beta\delta^{*}} \]</div>
+<p>Por lo tanto el resultado es una matriz 2x2, y entonces podemos utilizar este producto externo para construir otras puertas cuánticas. Por ejemplo consideremos lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[ U=|1\rangle\langle0|+|0\rangle\langle1|. \]</div>
+<p>Y ahora veamos cómo actúa sobre el estado <span class="math notranslate nohighlight">\(|\psi\rangle=\alpha|0\rangle+\beta|1\rangle\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align*}
+U|\psi\rangle &amp; =\left(|1\rangle\langle0|+|0\rangle\langle1|\right)\left(\alpha|0\rangle+\beta|1\rangle\right)=\\
+= &amp; \alpha|1\rangle\underset{1}{\underbrace{\langle0|0\rangle}}+\beta|1\rangle\underset{0}{\underbrace{\langle0|1\rangle}+}\alpha|0\rangle\underset{0}{\underbrace{\langle1|0\rangle}}+\beta|0\rangle\underset{1}{\underbrace{\langle1|1\rangle}}=\\
+= &amp; \alpha|1\rangle+\beta|0\rangle=\beta|0\rangle+\alpha|1\rangle
+\end{align*}\end{split}\]</div>
+<p>Y como <span class="math notranslate nohighlight">\(|\alpha|^2+|\beta|^2=1\)</span>, podemos concluir que la matriz U corresponde a una puerta cuántica válida. También hemos visto que esta puerta intercambia <span class="math notranslate nohighlight">\(|0\rangle\)</span> con <span class="math notranslate nohighlight">\(|1\rangle\)</span>, por lo tanto se trata de la puerta X. Lo podemos ver igualmente de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[U=|1\rangle\langle0|+|0\rangle\langle1|={\binom{0}{1}}(1\ 0)+{\binom{1}{0}}+(0 \, 1)={\binom{0 \, 0}{1\ 0}}+{\binom{0\ 1}{0}}={\binom{0 \  1}{1\ 0}}\]</div>
+<p>Se puede demostrar lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\phi\rangle\langle\psi|=|\psi\rangle\langle\phi|^{\dagger}\]</div>
+<p>Pues en efecto se tiene lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|\phi\rangle\langle\psi|={\binom{\gamma}{\delta}}(\alpha^{*}\:\beta^{*})={\binom{\gamma\alpha^{*}\;\gamma\beta^{*}}{\delta\alpha^{*}\;\delta\beta^{*}}}={\binom{\alpha\gamma^{*}\;\alpha\delta^{*}}{\beta\gamma^{*}}^{\gamma}}=|\psi\rangle\langle\phi|^{\dagger}\]</div>
+</section>
+<section id="relacion-de-completitud">
+<h2><span class="section-number">5.11. </span>Relación de completitud.<a class="headerlink" href="#relacion-de-completitud" title="Permalink to this heading">#</a></h2>
+<p>Recordar  <a class="reference internal" href="#proyecciones"><span class="std std-ref">de un apartado anteriormente visto</span></a> que para cualquier base ortonormal <span class="math notranslate nohighlight">\(\{|a\rangle , |b\rangle \}\)</span> el estado de un qubit puede ser escrito de la de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\alpha|a\rangle+\beta|b\rangle,\]</div>
+<p>de tal manera que <span class="math notranslate nohighlight">\(\alpha=\langle a|\psi\rangle\operatorname{y}\beta=\langle b|\psi\rangle\)</span>. Sustituyendo estos valores.</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\underset{escalar}{\underbrace{\langle a|\psi\rangle}}|a\rangle+\underset{escalar}{\underbrace{\langle b|\psi\rangle}}|b\rangle\]</div>
+<p>Como ya se ha dicho el producto interno es un escalar o número y por lo tanto en lugar de multiplicar por la izquierda, lo pasamos al lado derecho:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=\underset{escalar}{|a\rangle\underbrace{\langle a|\psi\rangle}}+\underset{escalar}{|b\rangle\underbrace{\langle b|\psi\rangle}}\]</div>
+<p>Lo anterior lo podemos escribir de la siguiente manera con la finalidad de dejar más claro su significado:</p>
+<div class="math notranslate nohighlight">
+\[\psi\rangle=|a\rangle\langle a||\psi\rangle+|b\rangle\langle b| |{\boldsymbol{\psi}}\rangle\]</div>
+<p>Ahora tenemos dos productos externos <span class="math notranslate nohighlight">\(|a\rangle\langle a|\mathrm{\,y\,}|b\rangle\langle b|\)</span> y podemos reducir la expresión anterior a lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|\psi\rangle=(|a\rangle\langle a|+|b\rangle\langle b|)|\psi\rangle\]</div>
+<p>Commo esto es cierto para cualquier <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> , entonces se puede concluir que:</p>
+<div class="math notranslate nohighlight">
+\[|a\rangle\langle a|+|b\rangle\langle b|=I\]</div>
+<p>Esta propiedad se conoce como <em>relación de completitud</em> e indica que el esatdo de cualquier qubit en términos de <span class="math notranslate nohighlight">\(|a\rangle \, y \, |b\rangle\)</span>. En consecuencia, podemos afirmar que:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Una base ortonormal completa <span class="math notranslate nohighlight">\(\{|a\rangle,|b\rangle\}\)</span> satisface la relación de completitud siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|a\rangle\langle a|+|b\rangle\langle b|=I\]</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="ParteTeorica_III_puertasCuanticas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Introducción</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Tema0_Introducci%C3%B3n.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>qiskit_textbook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectores-fila">5.1. Vectores fila.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#el-producto-interno">5.2. El producto interno.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#productos-internos-o-escalar">5.3. Productos internos o escalar.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ortonormalidad">5.4. Ortonormalidad.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecciones-medidas-y-cambios-de-base">5.5. Proyecciones, medidas y cambios de base.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-de-puertas-cuanticas">5.6. Matrices de puertas cuánticas.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrices-mas-comunmente-utilizadas">5.6.1. Matrices más comúnmente utilizadas.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operando-con-puertas-secuenciales">5.6.2. Operando con puertas secuenciales.</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identidades-entre-circuitos">5.7. Identidades entre circuitos.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unitariedad">5.8. Unitariedad</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reversibilidad">5.9. Reversibilidad.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-externo-outer">5.10. Producto externo (Outer).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#relacion-de-completitud">5.11. Relación de completitud.</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
