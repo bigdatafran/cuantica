@@ -166,11 +166,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_V_qubitMultiple.html">6. Múltiples qubits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="../Tema0_Introducci%C3%B3n.html">7. Introducción a programación cuántica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Tema1_atoms-computation.html">8. Los qubits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
@@ -183,14 +183,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Tema7_proving-universality.html">15. Universalidad</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../algoritmos/deutsch_Jozsa.html">16. Algoritmo Deutsch_Jozsa</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">16. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">17. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../videos_anexo.html">Vídeos</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Apendice.</a></li>
 
@@ -371,8 +376,13 @@ document.write(`
 <h1>Páginas web.<a class="headerlink" href="#paginas-web" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p><a href="https://algassert.com/quirk" target="_blank">Simulador quantico Quirk </a></p></li>
+<li><p><a href="https://thequantumlaend.de/quantum-circuit-designer/" target="_blank"> Otro simulador diciendo el código QASM </a></p></li>
 <li><p><a href="https://www.primaryobjects.com/2021/09/15/the-ultimate-guide-to-a-quantum-computing-certification-with-qiskit/" target="_blank">The Ultimate Guide to a Quantum Computing Certification with Qiskit</a></p></li>
 <li><p><a href="https://gitlab.citius.usc.es/tf.pena/CiTIUS-Curso_Intro_QC" target="_blank"> Curso de introducción a la computación cuántica </a></p></li>
+<li><p><a href="https://www.etsisi.upm.es/sites/default/files/curso_2015_16/MASTER/MCTC_CCyCN_TextoCC.pdf" target="_blank"> Computación cuántica </a></p></li>
+<li><p><a href="https://qc-fem.github.io/CrashCourse/" target="_blank"> Artículos estudiantes Universidad de Colombia </a></p></li>
+<li><p><a href="https://uvadoc.uva.es/bitstream/handle/10324/8011/TFM-G377.pdf?sequence=1&isAllowed=y" target="_blank"> TFG Univarsidad Valladolid </a></p></li>
+<li><p><a href="https://idus.us.es/bitstream/handle/11441/93645/Pastor%20D%C3%ADaz%20Ulises%20TFM.pdf?sequence=1&isAllowed=y" target="_blank"> Algoritmos fundamentales en computación cuántica </a></p></li>
 </ul>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="esfera-bloch">
@@ -387,9 +397,10 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="paquetes-python">
 <h1>Paquetes Python.<a class="headerlink" href="#paquetes-python" title="Permalink to this heading">#</a></h1>
-<p>*<a href="https://github.com/cduck/bloch_sphere" target="_blank">Paquete Python para esfera bloch</a></p>
 <ul class="simple">
+<li><p><a href="https://github.com/cduck/bloch_sphere" target="_blank">Paquete Python para esfera bloch</a></p></li>
 <li><p><a href="https://qutip.org/docs/latest/index.html" target='_blank'>QuTiP: Quantum Toolbox in Python </a></p></li>
+<li><p><a href="https://github.com/cduck/bloch_sphere" target='_blank'> Paquete bloch_sphere </a></p></li>
 </ul>
 </section>
 

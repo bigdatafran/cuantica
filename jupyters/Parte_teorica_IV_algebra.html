@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>5. Introducción &#8212; Programación Cuántica</title>
+    <title>5. Introducción. Álgebra &#8212; Programación Cuántica</title>
   
   
   
@@ -67,8 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/Parte_teorica_IV_algebra';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. qiskit_textbook" href="Tema0_Introducci%C3%B3n.html" />
-    <link rel="prev" title="4. Introducción" href="ParteTeorica_III_puertasCuanticas.html" />
+    <link rel="next" title="6. Introducción qubits múltiples." href="Parte_teorica_V_qubitMultiple.html" />
+    <link rel="prev" title="4. Introducción. Puertas cuánticas" href="ParteTeorica_III_puertasCuanticas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -169,11 +169,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">5. Álgebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parte_teorica_V_qubitMultiple.html">6. Múltiples qubits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">7. Introducción a programación cuántica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">8. Los qubits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
@@ -186,14 +186,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="algoritmos/deutsch_Jozsa.html">16. Algoritmo Deutsch_Jozsa</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../genindex.html">16. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">17. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
 
@@ -336,7 +341,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introducción</h1>
+    <h1>Introducción. Álgebra</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -372,8 +377,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
-<span id="algrebralineal"></span><h1><span class="section-number">5. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-algebra">
+<span id="algrebralineal"></span><h1><span class="section-number">5. </span>Introducción. Álgebra<a class="headerlink" href="#introduccion-algebra" title="Permalink to this heading">#</a></h1>
 <p id="index-0">En este apartado vamos a ver diferentes forma de representar los qubits. Seguiremos trabajando, de momento, con un sólo qubit y presentaremos diferentes operaciones sobre ellos. Comprenderemos lo que es el producto interno y ciertas propiedades sobre el mismo.</p>
 <p>Veamos en primer cómo poder representar mediante coordenada los qubits de la base <span class="math notranslate nohighlight">\(\{|0\rangle , |1\rangle \}\)</span>.</p>
 <div class="math notranslate nohighlight">
@@ -901,7 +906,7 @@ b &amp; d
 <img alt="../_images/2648ea89fb69a777da5b7ec24a787eb611e33262fd1ef5597d71c1d05c6b4ad8.png" src="../_images/2648ea89fb69a777da5b7ec24a787eb611e33262fd1ef5597d71c1d05c6b4ad8.png" />
 </div>
 </div>
-<p>Observar que el resultado es el mismo que el obtenido de forma manual ya que <span class="math notranslate nohighlight">\(i=e^{i\pi/2}\)</span> y entonces con una simple operación aritmética se llega al mismo resultado que el obtenido de forma manual.</p>
+<p id="puertas-logicas">Observar que el resultado es el mismo que el obtenido de forma manual ya que <span class="math notranslate nohighlight">\(i=e^{i\pi/2}\)</span> y entonces con una simple operación aritmética se llega al mismo resultado que el obtenido de forma manual.</p>
 <p>Como estas matrices de puertas lógicas son utilizadas con mucha frecuencia, lo que se ha hecho es crear un fichero denominado “<a class="reference external" href="http://puertasLogicas.py">puertasLogicas.py</a>” que contiene la definición de estas puertas. Entonces se le puede considerar que es un módulo de Python, con lo que no se tiene que hacer más que importarlo para trabajar con esas matrices de puertas lógicas.</p>
 <p>El código que contiene este fichero es el siguiente:</p>
 <blockquote>
@@ -1099,7 +1104,7 @@ i &amp; -i
 </div>
 </section>
 <section id="producto-externo-outer">
-<h2><span class="section-number">5.10. </span>Producto externo (Outer).<a class="headerlink" href="#producto-externo-outer" title="Permalink to this heading">#</a></h2>
+<span id="outer"></span><h2><span class="section-number">5.10. </span>Producto externo (Outer).<a class="headerlink" href="#producto-externo-outer" title="Permalink to this heading">#</a></h2>
 <p>En esta sección vamos a mostrar lo que se entiende por producto externo de matrices o <em>outer product</em>. El resultado que se obtiene es otra matriz, no un escalar como era el caso del producto interno ya visto en secciones anteriores.</p>
 <p>Consideremos dos estados cuánticos:</p>
 <div class="math notranslate nohighlight">
@@ -1193,15 +1198,15 @@ U|\psi\rangle &amp; =\left(|1\rangle\langle0|+|0\rangle\langle1|\right)\left(\al
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Introducción</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Introducción. Puertas cuánticas</p>
       </div>
     </a>
     <a class="right-next"
-       href="Tema0_Introducci%C3%B3n.html"
+       href="Parte_teorica_V_qubitMultiple.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>qiskit_textbook</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Introducción qubits múltiples.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -1,0 +1,1269 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>6. Introducción qubits múltiples. &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/Parte_teorica_V_qubitMultiple';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. qiskit_textbook" href="Tema0_Introducci%C3%B3n.html" />
+    <link rel="prev" title="5. Introducción. Álgebra" href="Parte_teorica_IV_algebra.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Múltiples qubits</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">7. qiskit_textbook</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">9. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">10. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">11. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">12. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">13. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">15. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">16. Universalidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">17. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/jupyters/Parte_teorica_V_qubitMultiple.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción qubits múltiples.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-tensorial">6.1. Producto tensorial.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-de-kronecker">6.2. Producto de Kronecker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicion-de-qubits-individuales">6.3. Medición de qubits individuales.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-secuenciales-sobre-qubits-unitarios">6.4. Medidas secuenciales sobre qubits unitarios.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entanglement-estados-entrelazados">6.5. Entanglement (estados entrelazados).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-cuanticas">6.6. Puertas cuánticas.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-cuanticas-de-dos-qubits">6.7. Puertas cuánticas de dos qubits.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-cnot">6.7.1. La puerta CNOT.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-controladas-u">6.7.2. Puertas controladas U</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-swap">6.7.3. La puerta SWAP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-de-toffoli">6.7.4. Puerta de Toffoli</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-qubits-multiples">
+<span id="qubitmultiple"></span><h1><span class="section-number">6. </span>Introducción qubits múltiples.<a class="headerlink" href="#introduccion-qubits-multiples" title="Permalink to this heading">#</a></h1>
+<p>En este apartado vamos a extender los conocimientos ya vistos anteriormente, pero aumentando el número de qubits con los que se trabaja, dando más realismo a esta ciencia y acercándonos más a la realidad actual, pues con un sólo qubit pocas cosas se pueden conseguir.</p>
+<p>Vamos a comenzar a introducir una serie de conceptos previos que nos van a servir para entender mejor el mundo cuántico con más de un qubit.</p>
+<section id="producto-tensorial">
+<span id="tensorial"></span><h2><span class="section-number">6.1. </span>Producto tensorial.<a class="headerlink" href="#producto-tensorial" title="Permalink to this heading">#</a></h2>
+<p id="index-0">Cuando estamos trabajando con múltiples qubits, definimos el producto tensorial de dos de ellos ( por ejemplo <span class="math notranslate nohighlight">\(|0\rangle\)</span>) mediante el símbolo <span class="math notranslate nohighlight">\(\otimes\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[|0\rangle \otimes |0\rangle\]</div>
+<p>A menudo y con el fin d agilizar la escritura, lo que se suele hacer es suprimir el símbolo <span class="math notranslate nohighlight">\(\otimes\)</span> y en consecuencia, el producto tensorial anterior, también se suele expresar de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[|0\rangle  |0\rangle\]</div>
+<p>Y además de una forma muy frecuente, lo anterior también se donota de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[|00\rangle\]</div>
+<p>Con dos qubits, la base Z es la siguiente: <span class="math notranslate nohighlight">\(\{|00\rangle,|01\rangle,|10\rangle,|11\rangle\}\)</span> y un estado general de superposición se expresa de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[c_{0}|00\rangle+c_{1}|01\rangle+c_{2}|10\rangle+c_{3}|11\rangle\]</div>
+<p>Si se procede a la medición de estos dos qubits en la base Z vamoa a obtener el estado <span class="math notranslate nohighlight">\(|00\rangle\)</span> con probabilidad <span class="math notranslate nohighlight">\(|c_0|^2\)</span>, <span class="math notranslate nohighlight">\(|01\rangle\)</span> con probabilidad <span class="math notranslate nohighlight">\(|c_1|^2\)</span>, <span class="math notranslate nohighlight">\(|10\rangle\)</span> con probabilidad <span class="math notranslate nohighlight">\(|c_2|^2\)</span> y <span class="math notranslate nohighlight">\(|11\rangle\)</span> con probabilidad <span class="math notranslate nohighlight">\(|c_3|^2\)</span>. De tal manera que la suma de las anteriores probabilidades sea igual a 1:</p>
+<div class="math notranslate nohighlight">
+\[|c_1|^2+|c_2|^2+|c_3|^2+|c_4|^2=1\]</div>
+<p>Si trabajamos con tres qubits, tendríamos ocho elementos que conforman la base Z:</p>
+<div class="math notranslate nohighlight">
+\[|000\rangle,\,|001\rangle,\,|010\rangle,\,|011\rangle,\,|100\rangle,\,|101\rangle,\,|110\rangle,\,|111\rangle\]</div>
+<p>En ocasiones, estos estrings binarios son escritos como números decimales: <span class="math notranslate nohighlight">\(|0\rangle,\, |1\rangle,\, ... |7\rangle\)</span>.</p>
+<p>Inspirado en lo anterior, se suele denominar al qubit de la derecha qubit cero, al del centro qubit 1 y el de la izquierda segundo qubit. De forma genérica tendrá una representación como:</p>
+<div class="math notranslate nohighlight">
+\[|b_{2}b_{1}b_{0}\rangle\]</div>
+<p>Entonces la representación decimal de los quibits anteriores, tendrá la siguiente representación decimal:</p>
+<div class="math notranslate nohighlight">
+\[2^{2}b_{2}+2^{1}b_{1}+2^{0}b_{0}.\]</div>
+<p id="index-1">En otras palabras, etiquetamos los qubits de derecha a izquierda, empezando por cero. Esta convención, donde el qubit más a la derecha es el qubit número cero, se llama <strong>little endian</strong>.</p>
+<p>Quirk  y muchos lenguajes de programación cuántica,  también utilizan esta codificación <em>little endian</em>.</p>
+<p>En contraste, la convención opuesta, en la que el bit más a la izquierda es el qubit cero y el más a la derecha el qububit segundo, se denomina <em>big endian</em>. En este trabajo, nosotros vamos a considerar la notación <em>little endian</em>.</p>
+<p>Con la notación ya desarrollada anteriormente, el estado general de tres qubits puede ser expresado como</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=0}^{7}c_{j}|j\rangle=c_{0}|0\rangle+c_{1}|1\rangle+\cdots+c_{7}|7\rangle\]</div>
+<p>Y la probabilidad de obtener <span class="math notranslate nohighlight">\(|j\rangle\)</span> cuando se mide en la base Z es <span class="math notranslate nohighlight">\(|c_{j}|^2\)</span>, de tal manera que <span class="math notranslate nohighlight">\(\sum |c_{j}|^2 = 1\)</span>.</p>
+<p>Con n qubits, tendríamos <span class="math notranslate nohighlight">\(N=2^n\)</span> estados que conforman la base Z, y entonces generalizando lo anterior, tendríamos:</p>
+<div class="math notranslate nohighlight">
+\[|b_{N-1}\dots b_{1}b_{0}\rangle=|2^{N-1}b_{N-1}+\dots+2^{1}b_{1}+2^{0}b_{0}\rangle.\]</div>
+<p>Un estado se representará como:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=0}^{N-1}c_{j}|j\rangle=c_{0}|0\rangle+c_{1}|1\rangle+\cdots+c_{N-1}|N-1\rangle.\]</div>
+<p>Igualmente y con el fín de agilizar la nomenclatura, también usamos potencias de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[|0\rangle^{\otimes n}=\underset{n}{\underbrace{|0\rangle\otimes|0\rangle\otimes...\otimes|0\rangle}}=\underset{n}{\underbrace{|0\rangle|0\rangle...|0\rangle}}=|\underset{n}{\underbrace{00...0}\rangle}=|o^{n}\rangle\]</div>
+<p>Ya sabemos que con un qubit simple, podemos parametrizar el estado con la expresión:</p>
+<div class="math notranslate nohighlight">
+\[\cos{\frac{\theta}{2}}|0\rangle+e^{i\phi}\sin{\frac{\theta}{2}}|1\rangle\]</div>
+<p>Con dos qubits, sin embargo tendríamos cuatro amplitudes o números complejos <span class="math notranslate nohighlight">\(c_0,c_1,c_2,c_3\)</span>, y en consecuencia, no podremos hacer una representación en la esfera de Bloch como ocurría en el caso de un solo qubit.</p>
+<p>El producto tensorial también se puede escribir con la notación bra:</p>
+<div class="math notranslate nohighlight">
+\[\langle0|\otimes\langle0|=\langle0|\langle0|=\langle00|\]</div>
+<p>También aquí tendremos un producto interno, por ejemplo podremos hacer el producto interno de <span class="math notranslate nohighlight">\(\langle01|\)</span> y <span class="math notranslate nohighlight">\(|00\rangle\)</span>, y tendremos lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\langle01|00\rangle=\underset{1}{\underbrace{\langle0|0\rangle}\cdot}\underset{0}{\underbrace{\langle1|0\rangle}}=0\]</div>
+<p>En consecuencia <span class="math notranslate nohighlight">\(\langle01|\)</span> y <span class="math notranslate nohighlight">\(|00\rangle\)</span> son ortogonales.</p>
+</section>
+<section id="producto-de-kronecker">
+<h2><span class="section-number">6.2. </span>Producto de Kronecker<a class="headerlink" href="#producto-de-kronecker" title="Permalink to this heading">#</a></h2>
+<p>En álgebra lineal, el producto tensorial no es más que el denominado producto de Kronecker entre dos matrices, el cual se obtiene multiplicando cada elemento de la primera matriz por la matriz del segundo términos. Veamos cómo se haría con dos qubits.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|00\rangle=|0\rangle|0\rangle=|0\rangle\otimes|0\rangle=\left(\begin{array}{c}
+1\\
+0
+\end{array}\right)\otimes\left(\begin{array}{c}
+1\\
+0
+\end{array}\right)=\left(\begin{array}{cc}
+1 &amp; \left(\begin{array}{c}
+1\\
+0
+\end{array}\right)\\
+0 &amp; \left(\begin{array}{c}
+1\\
+0
+\end{array}\right)
+\end{array}\right)=\left(\begin{array}{c}
+1\\
+0\\
+0\\
+0
+\end{array}\right)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}|01\rangle=|0\rangle|1\rangle=|0\rangle\otimes|1\rangle=\left(\begin{array}{c}
+1\\
+0
+\end{array}\right)\otimes\left(\begin{array}{c}
+0\\
+1
+\end{array}\right)=\left(\begin{array}{cc}
+1 &amp; \left(\begin{array}{c}
+0\\
+1
+\end{array}\right)\\
+0 &amp; \left(\begin{array}{c}
+0\\
+1
+\end{array}\right)
+\end{array}\right)=\left(\begin{array}{c}
+0\\
+1\\
+0\\
+0
+\end{array}\right)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}|10\rangle=|1\rangle|0\rangle=|1\rangle\otimes|0\rangle=\left(\begin{array}{c}
+0\\
+1
+\end{array}\right)\otimes\left(\begin{array}{c}
+1\\
+0
+\end{array}\right)=\left(\begin{array}{cc}
+0 &amp; \left(\begin{array}{c}
+1\\
+0
+\end{array}\right)\\
+1 &amp; \left(\begin{array}{c}
+1\\
+0
+\end{array}\right)
+\end{array}\right)=\left(\begin{array}{c}
+0\\
+0\\
+1\\
+0
+\end{array}\right)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}|11\rangle=|1\rangle|0\rangle=|1\rangle\otimes|1\rangle=\left(\begin{array}{c}
+0\\
+1
+\end{array}\right)\otimes\left(\begin{array}{c}
+0\\
+1
+\end{array}\right)=\left(\begin{array}{cc}
+0 &amp; \left(\begin{array}{c}
+0\\
+1
+\end{array}\right)\\
+1 &amp; \left(\begin{array}{c}
+0\\
+1
+\end{array}\right)
+\end{array}\right)=\left(\begin{array}{c}
+0\\
+0\\
+0\\
+1
+\end{array}\right)\end{split}\]</div>
+<p>y por lo tanto</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}c_{0}|00\rangle+c_{1}|01\rangle+c_{2}|10\rangle+c_{3}|11\rangle= \left(\begin{array}{c}
+c_{0}\\
+c_{1}\\
+c_{2}\\
+c_{3}
+\end{array}\right)\end{split}\]</div>
+<p>De forma similar con tres qubits, su estado puede ser escrito como un vector columna de ocho elementos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{i=0}^{7}c_{j}|j\rangle=c_{0}|0\rangle+c_{1}|1\rangle+\cdots+c_{7}|7\rangle= \left(\begin{array}{c}
+c_{0}\\
+c_{1}\\
+\vdots\\
+c_{7}
+\end{array}\right)  \end{split}\]</div>
+<p>Y en general con n qubits el vector de estado tendrá <span class="math notranslate nohighlight">\(N=2^n\)</span> elementos</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}|\psi\rangle=\sum_{j=0}^{N-1}c_{j}|j\rangle=c_{0}|0\rangle+c_{1}|1\rangle+\cdots+c_{N-1}|N-1\rangle=\left(\begin{array}{c}
+c_{0}\\
+c_{1}\\
+\vdots\\
+c_{N-1}
+\end{array}\right)\end{split}\]</div>
+<p>Con la notación bras el producto Kronecker sigue siendo el producto tensorial. POr ejemplo:</p>
+<div class="math notranslate nohighlight">
+\[\langle00|=\langle0|\otimes\langle0|=(1~0)\,(1~0)=(1~0~0~0)\]</div>
+<p>Y de forma general:</p>
+<div class="math notranslate nohighlight">
+\[\langle\Psi|=\sum_{j=0}^{N-1}c_{j}^{*}\langle j|=c_{0}^{*}\langle0|+c_{1}^{*}\langle1|+\cdots+c_{N-1}^{*}\langle N-1|=\left(c_{0}^{*}\,c_{1}^{*}\cdots\,c_{N-1}^{*}\right)\]</div>
+<p>En Sympy tenemos <a href="https://docs.sympy.org/latest/modules/physics/quantum/tensorproduct.html" target="_blank"> la clase TensorProduct </a> que nos permite realizar este tipo de productos. Veamos a continuación algunos ejemplos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Matrix</span>
+<span class="kn">from</span> <span class="nn">sympy.physics.quantum</span> <span class="kn">import</span> <span class="n">TensorProduct</span>
+
+<span class="n">m1</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
+<span class="n">TensorProduct</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[\begin{matrix}1 &amp; 0 &amp; 0 &amp; 0\end{matrix}\right]\]</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span><span class="o">=</span> <span class="n">Matrix</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">TensorProduct</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \left[\begin{matrix}0 &amp; 1 &amp; 0 &amp; 0\end{matrix}\right]\]</div>
+</div>
+</div>
+<p>Numpy también nos ofrece <a href="https://www.w3resource.com/python-exercises/numpy/linear-algebra/numpy-linear-algebra-exercise-8.php" target="_blank"> la clase <em>numpy.kron</em>  </a> que nos permite realizar este tipo de productos de matrices.</p>
+</section>
+<section id="medicion-de-qubits-individuales">
+<h2><span class="section-number">6.3. </span>Medición de qubits individuales.<a class="headerlink" href="#medicion-de-qubits-individuales" title="Permalink to this heading">#</a></h2>
+<p>Supongamos que tenemos dos qubits en el siguiente estado:</p>
+<div class="math notranslate nohighlight">
+\[{\frac{1}{\sqrt{2}}}|00\rangle+{\frac{1}{2}}|01\rangle+{\frac{\sqrt{3}}{4}}|10\rangle+{\frac{1}{4}}|11\rangle\]</div>
+<p>Si hacemos la medición sobre los dos qubits, obtenemos <span class="math notranslate nohighlight">\(|00\rangle\)</span> con probabilidad 1/2, <span class="math notranslate nohighlight">\(|01\rangle\)</span> con probabilidad 1/4, <span class="math notranslate nohighlight">\(|10\rangle\)</span> con probabilidad 3/16 o <span class="math notranslate nohighlight">\(|11\rangle\)</span> con probabilidad 1/16.</p>
+<p>Ahora, en lugar de querer medir sobre ambos qubits, supongamos que queremos medir sobre el qubit que figura a la la izquierda, que como puede verse puede tomar los valores <span class="math notranslate nohighlight">\(|0\rangle\)</span> o <span class="math notranslate nohighlight">\(|1\rangle\)</span>, y entoncs colapsará hacia uno de esos valores con alguna probabilidad.</p>
+<p>La probabilidad de que colapse hacia <span class="math notranslate nohighlight">\(|0\rangle\)</span> será igual a la suma de las amplitudes al cuadrado de <span class="math notranslate nohighlight">\(|00\rangle\)</span> y <span class="math notranslate nohighlight">\(|01\rangle\)</span> puesto que estos estados tienen en su parte izquierda el qubit <span class="math notranslate nohighlight">\(|0\rangle\)</span>, por lo tanto en nuestro caso ese valor será el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\left|{\frac{1}{\sqrt{2}}}\right|^{2}+\left|{\frac{1}{2}}\right|^{2}={\frac{3}{4}}\]</div>
+<p>Razonando de forma similar, para el valor de <span class="math notranslate nohighlight">\(|1\rangle\)</span> debemos de tomar los estados <span class="math notranslate nohighlight">\(|10\rangle\)</span> y <span class="math notranslate nohighlight">\(|11\rangle\)</span>, y se obtiene:</p>
+<div class="math notranslate nohighlight">
+\[{\Bigg|}{\frac{\sqrt{3}}{4}}{\Bigg|}^{2}+{\Bigg|}{\frac{1}{4}}{\Bigg|}^{2}={\frac{1}{4}}\]</div>
+<p>En consecuencia, si miramos el colapso hacia <span class="math notranslate nohighlight">\(|0\rangle\)</span>, entonces el valor buscado está dado por la expresión:</p>
+<div class="math notranslate nohighlight">
+\[A\left({\frac{1}{\sqrt2}}|00\rangle+{\frac{1}{2}}|01\rangle\right)\]</div>
+<p>y para el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[B\left(\frac{\sqrt{3}}{4}|10\rangle+\frac{1}{4}|11\rangle\right)\]</div>
+<p>Siendo A y B las constantes de normalización, que en este caso valdrán <span class="math notranslate nohighlight">\(A=2/\sqrt{3}\)</span> y B=2</p>
+<p>Por lo tanto, el colapso es :</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|0\rangle\)</span> con probabilidad 3/4 y colapsa hacia <span class="math notranslate nohighlight">\(\sqrt{\frac{2}{3}}|00\rangle+\frac{1}{\sqrt{3}}|01\rangle\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|1\rangle\)</span> con probabilidad 1/4 y colapsa hacia <span class="math notranslate nohighlight">\(\frac{\sqrt{3}}{2}|10\rangle+\frac{1}{2}|11\rangle\)</span></p></li>
+</ul>
+</section>
+<section id="medidas-secuenciales-sobre-qubits-unitarios">
+<h2><span class="section-number">6.4. </span>Medidas secuenciales sobre qubits unitarios.<a class="headerlink" href="#medidas-secuenciales-sobre-qubits-unitarios" title="Permalink to this heading">#</a></h2>
+<p>Como continuación de la sección anterior, en la presente vamos a ver lo que ocurre cuando medimos un qubit detrás de otro. Como ya hemos visto, si medimos el primer qubit a la izquierda se obtiene:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|0\rangle\)</span> con probabilidad 3/4 y colapsa hacia <span class="math notranslate nohighlight">\(\sqrt{\frac{2}{3}}|00\rangle+\frac{1}{\sqrt{3}}|01\rangle\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|1\rangle\)</span> con probabilidad 1/4 y colapsa hacia <span class="math notranslate nohighlight">\(\frac{\sqrt{3}}{2}|10\rangle+\frac{1}{2}|11\rangle\)</span></p></li>
+</ul>
+<p>Y ahora si medimos el qubit de la derecha a continuación, los posibles valores de esta secuencia son: <span class="math notranslate nohighlight">\(|00\rangle\)</span>, <span class="math notranslate nohighlight">\(|01\rangle\)</span>, <span class="math notranslate nohighlight">\(|10\rangle\)</span> y <span class="math notranslate nohighlight">\(|11\rangle\)</span>. Entonces la probabilidad de obtener <span class="math notranslate nohighlight">\(|00\rangle\)</span> es igual a la probabilidad de obtener en primer lugar <span class="math notranslate nohighlight">\(|0\rangle\)</span> para el qubit de la izquierda con probabilidad 3/4 y después se multiplica por 2/3 que es la probabilidad de obtener el segundo qubit de la derecha, por lo tanto la probabilidad total sería: <span class="math notranslate nohighlight">\(3/4 \cdot 2/3 = 1/2\)</span>. Para cada uno de los cuatro estados anteriores la probabilidad sería:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(P(|00\rangle)\)</span> = Prob(primer <span class="math notranslate nohighlight">\(|0\rangle)\)</span> izquierda * Prob(<span class="math notranslate nohighlight">\(|0\rangle)\)</span> derecha) = <span class="math notranslate nohighlight">\(\frac{3}{4} \frac{2}{3}=\frac{1}{2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(|01\rangle)\)</span> = Prob(primer <span class="math notranslate nohighlight">\(|0\rangle)\)</span> izquierda * Prob(<span class="math notranslate nohighlight">\(|1\rangle)\)</span> derecha) = <span class="math notranslate nohighlight">\(\frac{3}{4} \frac{1}{3}=\frac{1}{4}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(|10\rangle)\)</span> = Prob(primer <span class="math notranslate nohighlight">\(|1\rangle)\)</span> izquierda * Prob(<span class="math notranslate nohighlight">\(|0\rangle)\)</span> derecha) = <span class="math notranslate nohighlight">\(\frac{1}{4} \frac{3}{4}=\frac{3}{16}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(P(|11\rangle)\)</span> = Prob(primer <span class="math notranslate nohighlight">\(|1\rangle)\)</span> izquierda * Prob(<span class="math notranslate nohighlight">\(|1\rangle)\)</span> derecha) = <span class="math notranslate nohighlight">\(\frac{1}{4} \frac{1}{4}=\frac{1}{16}\)</span></p></li>
+</ul>
+<p>Observe que estos resultados y probabilidades son exactamente los mismos que si hubiéramos medido ambos qubits al mismo tiempo, como debería ser. Medir ambos qubits es lo mismo que medir uno tras otro, asumiendo que el estado no se modificó entre las dos mediciones.</p>
+</section>
+<section id="entanglement-estados-entrelazados">
+<h2><span class="section-number">6.5. </span>Entanglement (estados entrelazados).<a class="headerlink" href="#entanglement-estados-entrelazados" title="Permalink to this heading">#</a></h2>
+<p>Algunos estados cuánticos pueden ser factorizados o descompuestos en el producto tensorial de otros dos. Por ejemplo</p>
+<div class="math notranslate nohighlight">
+\[{\frac{1}{2}}(|00\rangle-|01\rangle+|10\rangle-|11\rangle)= \underbrace{\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)}_{|+\rangle}\otimes 
+\underbrace {\frac{1}{\sqrt{2}} (|0\rangle-|1\rangle)}_{|-\rangle}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l l}{{}}&amp;{{=\mid+\rangle\otimes\mid-\rangle}}\\ {{}}&amp;{{=\mid+\rangle\mid-\rangle.}}\end{array}\nonumber\end{split}\]</div>
+<p>Este tipo de factorización  se denomina <em>product states</em> o simplemente <em>estados separables</em>. Cada qubit simple obtenido puede ser visualizado sobre la esfera de Bloch. En este caso concreto la visualización sería la siguiente:</p>
+<center>
+<p><img alt="" src="../_images/dosesferas.PNG" /></p>
+</center>
+<p>Vamos a ver a continuación con un ejemplo concreto cómo podremos hacer esto, cuando el estado sea factorizable:</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2\sqrt{2}}\left(\sqrt{3}|00\rangle-\sqrt{3}|01\rangle+|10\rangle-|11\rangle\right)\]</div>
+<p>Y deseamos ponerlo como un producto de dos estados:</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{1}\rangle|\psi_{0}\rangle\]</div>
+<p>donde:</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{1}\rangle=\alpha_{1}|0\rangle+\beta_{1}|1\rangle,\ \ \ |\psi_{0}\rangle=\alpha_{0}|0\rangle+\beta_{0}|1\rangle.\]</div>
+<p>Hacemos el producto y se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}{{|\psi_{1}\rangle|\psi_{0}\rangle=(\alpha_{1}|0\rangle+\beta_{1}|1\rangle)\,(\alpha_{0}|0\rangle+\beta_{0}|1\rangle)}}\\ {{\ }}\\ {{\qquad=\alpha_{1}\alpha_{0}|00\rangle+\alpha_{1}\beta_{0}|01\rangle+\beta_{1}\alpha_{0}|10\rangle+\beta_{1}\beta_{0}|11\rangle.}}\end{array}\end{split}\]</div>
+<p>Enlazando los coeficientes con el estado inicial se tiene:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{1}\alpha_{0}=\frac{\sqrt{3}}{2\sqrt{2}},\quad\alpha_{1}\beta_{0}=\frac{-\sqrt{3}}{2\sqrt{2}},\quad\beta_{1}\alpha_{0}=\frac{1}{2\sqrt{2}}|10\rangle,\quad\beta_{1}\beta_{0}=\frac{-1}{2\sqrt{2}}\]</div>
+<p>Resolviendo lo anterior se llega a que:</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{1}\rangle|\psi_{0}\rangle=\left(\frac{\sqrt{3}}{2\sqrt{2}}|0\rangle+\frac{1}{2\sqrt{2}}|1\rangle\right)(|0\rangle-|1\rangle)\]</div>
+<p>Y si normalizamos ambos qubits, se obtiene:</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{1}\rangle|\psi_{0}\rangle=\left(\frac{\sqrt{3}}{2}|0\rangle+\frac{1}{2}|1\rangle\right)\left(\frac{1}{\sqrt{2}}|0\rangle-\frac{1}{\sqrt{2}}|1\rangle\right).\]</div>
+<p>En general, un producto de estados de qubits puede ser escrito como</p>
+<div class="math notranslate nohighlight">
+\[(\alpha_{n-1}|0\rangle+\beta_{n-1}|0\rangle)\otimes\cdot\cdot\otimes\left(\alpha_{1}|0\rangle+\beta_{1}|1\rangle\right)\otimes\left(\alpha_{0}|0\rangle+\beta_{0}|1\rangle\right)\]</div>
+<p id="index-2">Ahora bien, no siempre se puede conseguir esta descomposición, en este caso se dice que los estados están entrelazados o enredados ( entangled states)</p>
+<p>Un ejemplo es el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|\Phi^{+}\rangle=\frac{1}{\sqrt{2}}{\big(}|00\rangle+|11\rangle{\big)}\]</div>
+<p>El estado anterior no se puede descomponer en el producto de dos estados de la forma <span class="math notranslate nohighlight">\(|\psi_{1}\rangle|\psi_{0}\rangle\)</span>. Para demostrarlo, lo vamos a hacer por reducción al absurdo. Supongamos se pueden poner como el producto de dos estados:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}{{\psi_{1}\rangle|\psi_{0}\rangle=(\alpha_{1}|0\rangle+\beta_{1}|1\rangle)\,(\alpha_{0}|0\rangle+\beta_{0}|1\rangle)}}\\ {{\ }}\\ {{\qquad=\alpha_{1}\alpha_{0}|00\rangle+\alpha_{1}\beta_{0}|01\rangle+\beta_{1}\alpha_{0}|10\rangle+\beta_{1}\beta_{0}|11\rangle.}}\end{array}\end{split}\]</div>
+<p>Entonces igualando los coeficientes, se tendría:</p>
+<div class="math notranslate nohighlight">
+\[\alpha_{1}\alpha_{0}=\frac{1}{\sqrt{2}},\quad\alpha_{1}\beta_{0}=0,\quad\beta_{1}\alpha_{0}=0,\quad\beta_{1}\beta_{0}=\frac{1}{\sqrt{2}}\]</div>
+<p>Solución que claramente es incompatible, debido a que las descomposición inicial es imposible.</p>
+<p>Otros estados entrelazados muy utilizados en la programación cuántica son los siguientes:</p>
+<div class="math notranslate nohighlight">
+\[|\Phi^{+}\rangle=\frac{1}{\sqrt{2}}\left(|00\rangle+|11\rangle\right),\]</div>
+<div class="math notranslate nohighlight">
+\[|\Phi^{-}\rangle=\frac{1}{\sqrt{2}}\left(|00\rangle-|11\rangle\right),\]</div>
+<div class="math notranslate nohighlight">
+\[\vert\Psi^{+}\rangle=\frac{1}{\sqrt{2}}\left(|01\rangle+|10\rangle\right),\]</div>
+<div class="math notranslate nohighlight">
+\[\vert\Psi^{-}\rangle=\frac{1}{\sqrt{2}}\left(\vert01\rangle-\vert10\rangle\right).\]</div>
+</section>
+<section id="puertas-cuanticas">
+<h2><span class="section-number">6.6. </span>Puertas cuánticas.<a class="headerlink" href="#puertas-cuanticas" title="Permalink to this heading">#</a></h2>
+<p>Supomgamos que tenemos un estado formado por dos qubits y que queremos aplicar al primer estado qubit de la izquierda  una puerta de Hadamard H y al de la derecha una puerta I. Entonces podemos escribir lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[(H\otimes I)(|0\rangle\otimes|0\rangle)=H|0\rangle\otimes I|0\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[=|+\rangle\otimes|0\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[={\frac{1}{\sqrt{2}}}{\big(}|0\rangle+|1\rangle{\big)}\otimes|0\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[=\frac{1}{\sqrt{2}}(|0\rangle\otimes|0\rangle+|1\rangle\otimes|0\rangle)\,.\]</div>
+<p>También podemos escribir el resultado como un vector columna de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}({\cal H}\otimes I)|00\rangle={\frac{1}{\sqrt{2}}}(|00\rangle+|10\rangle)=\frac{1}{\sqrt{2}}\left(\begin{array}{c}
+1\\
+0\\
+1\\
+0
+\end{array}\right)\end{split}\]</div>
+<p>Para dibujar un circuito cuántico, vamos a utilizar el convenio de que el el qubit más a la derecha es el que se coloca en la parte superior del diagrama y el más a la izquierda en la parte inferior. Es decir en el caso contemplado más arriba, la representación sería de las siguiente manera:</p>
+<center>
+<p><img alt="" src="../_images/representacionquantum.PNG" /></p>
+</center>
+<p>Veamos cómo actúa este producto tensorial en cada elemento de la base Z. Ya lo hemos visto para <span class="math notranslate nohighlight">\(|00&gt;\)</span>, veamos para el resto de los elementos:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(H\otimes I)|01\rangle={\frac{1}{\sqrt{2}}}{\big(}|01\rangle+|11\rangle{\big)}={\frac{1}{\sqrt{2}}}\left(\begin{array}{c}
+0\\
+1\\
+0\\
+1
+\end{array}\right)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}(H\otimes I)|10\rangle={\frac{1}{\sqrt{2}}}(|00\rangle-|10\rangle)={\frac{1}{\sqrt{2}}} \left(\begin{array}{c}
+1\\
+0\\
+-1\\
+0
+\end{array}\right)\end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}(H\otimes I)|11\rangle={\frac{1}{\sqrt{2}}}(|01\rangle-|11\rangle)={\frac{1}{\sqrt{2}}} \left(\begin{array}{c}
+0\\
+1\\
+0\\
+-1
+\end{array}\right)\end{split}\]</div>
+<p>Teniendo estos resultados en cuenta, podremos escribir ese producto tensorial de dos matrices, mediante otra matriz, donde cada columna es el vector obtenido en las operaciones anteriores, es decir:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H \otimes I= \frac{1}{\sqrt{2}}\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; -1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; -1
+\end{array}\right)\end{split}\]</div>
+<p>Otra manera de obtener esta matriz es mediante el producto de Kronecker entre H e I:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H \otimes I=\frac{1}{\sqrt{2}}\left(\begin{array}{cc}1 &amp; 1\\ 1 &amp; -1\end{array}\right)  \otimes \left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; 1
+\end{array}\right) = \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{1}{\sqrt{2}}\left(\begin{array}{cc}
+1\cdot\left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; 1
+\end{array}\right) &amp; 1\cdot\left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; 1
+\end{array}\right)\\
+1\cdot\left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; 1
+\end{array}\right) &amp; -1\cdot\left(\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; 1
+\end{array}\right)
+\end{array}\right) = \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{1}{\sqrt{2}}\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 1\\
+1 &amp; 0 &amp; -1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; -1
+\end{array}\right)\end{split}\]</div>
+<p>También podemos obtener el resultado anterior utilizando sympy. Recordemos <a class="reference internal" href="Parte_teorica_IV_algebra.html#puertas-logicas"><span class="std std-ref">que en una sección anterior</span></a>, habíamos definido un módulo de python en el que se definían las matrices más usuales dentro de la programación cuántica. Vamos a utilizar ese módulo para obtener de forma rápida este producto tensorial de dos matrices. Lo hacemos con el siguiente código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">puertasLogicas</span> <span class="k">as</span> <span class="nn">p</span>
+
+<span class="n">TensorProduct</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">I1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0d6f5ac792185cd707d23ff624b4f90c59e279c26109e661519954503e3e344d.png" src="../_images/0d6f5ac792185cd707d23ff624b4f90c59e279c26109e661519954503e3e344d.png" />
+</div>
+</div>
+<p>Otro ejemplo similar, lo podemos ver con las matrices H y X, y en este caso tendremos:</p>
+<div class="math notranslate nohighlight">
+\[(H\otimes X)|0\rangle=|+\rangle|1\rangle={\frac{1}{\sqrt{2}}}{\big(}|01\rangle+|11\rangle{\big)}\,.\]</div>
+<p>El dibujo del circuito cuántico sería el siguiente:</p>
+<center>
+<p><img alt="" src="../_images/circuito_2.PNG" /></p>
+</center>
+<p>En Quirk obtendríamos lo siguiente</p>
+<p><img alt="" src="../_images/quirt2.PNG" /></p>
+<p>Puesto que el qubit superior es <span class="math notranslate nohighlight">\(|1\rangle\)</span>, Quirk muestra correctamente que la probabilidad de obtener 1 al medir es 100% (On) y por lo tanto estará sobre el polo sur de la esfera de Bloch. Similarmente, el qubit de la derecha es <span class="math notranslate nohighlight">\(|+\rangle\)</span> y Quirk muestra correctamente que la probabilizar de colapsar al plo sur es del 50%.</p>
+<p>Quirk también facilita información sobre un plano denominado real-imaginario y que está etiquetado como “Fianl amplitudes”. En este apartado hay cuatro cajetines o “boxes” que muestran la información correspondiente cuando sobre ellos se pasa el cursor. El de la parte superior  izquierda hace referencia a la amplitud <span class="math notranslate nohighlight">\(|00\rangle\)</span> que en este ejemplo es cero. El de la parte superior derecha hace referencia a <span class="math notranslate nohighlight">\(|01\rangle\)</span> cuya amplitud en este caso es <span class="math notranslate nohighlight">\(1/\sqrt{2}\)</span> . También se puede ver la probabilidad que es <span class="math notranslate nohighlight">\(\left|1/\sqrt{2}\right|^{2}=1/2\)</span></p>
+<center>
+<p><img alt="" src="../_images/quirt3.PNG" /></p>
+</center>
+<p>La amplitud se puede ver que en este caso es <span class="math notranslate nohighlight">\(0.70711 = 1/\sqrt{2}\)</span>. Similares interpretaciones se pueden aplicar para los dos cajetines situados en la parte inferior de esta zona.</p>
+<p>Utilizamos la siguiente notación para referirnos a un producto reiterado de una determinada puerta lógica. POr ejemplo <span class="math notranslate nohighlight">\(H\otimes H\otimes\cdots\otimes H\)</span>, lo escribiremos de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[H^{\otimes n}|0\rangle^{\otimes n}=|+\rangle^{\otimes n}.\]</div>
+</section>
+<section id="puertas-cuanticas-de-dos-qubits">
+<h2><span class="section-number">6.7. </span>Puertas cuánticas de dos qubits.<a class="headerlink" href="#puertas-cuanticas-de-dos-qubits" title="Permalink to this heading">#</a></h2>
+<p>Igualmente existen puertas que de una manera simultánea actúan sobre dos qubits. Veamos las más populares:</p>
+<section id="la-puerta-cnot">
+<h3><span class="section-number">6.7.1. </span>La puerta CNOT.<a class="headerlink" href="#la-puerta-cnot" title="Permalink to this heading">#</a></h3>
+<p>La puerta CNOT o puerta <em>controlled-NOT</em> invierte el qubit de la derecha si el de la izquierda es el qubit 1:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}{{\mathrm{CNOT}|00\rangle=|00\rangle,}}\\ {{\mathrm{CNOT}|01\rangle=|01\rangle,}}\\ {{\mathrm{CNOT}|10\rangle=|11\rangle,}}\\ {{\mathrm{CNOT}|11\rangle=|10\rangle.}}\end{array}\end{split}\]</div>
+<p>Al qubit de la izquierda se le denomina qubit de control y al de la derecha qubit <em>target</em>. Así pues con esta puerta el qubit de control queda sin modificar y el qubit <em>target</em> se le aplica una transformación del tipo puerta XOR:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{CNOT}|a\rangle|b\rangle=|a\rangle|a\oplus b\rangle.\]</div>
+<p>POr lo tanto una puerta CNOT va a ser un puerta de tipo cúbit XOR</p>
+<p>Cuando actúa sobre un estado en superposición, ocurre lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{CNOT}(c_{0}|00\rangle+c_{1}|01\rangle+c_{2}|10\rangle+c_{3}|11\rangle)\]</div>
+<div class="math notranslate nohighlight">
+\[=c_{0}\mathrm{CNOT}|00\rangle+c_{1}\mathrm{CNOT}|01\rangle+c_{2}\mathrm{CNOT}|10\rangle+c_{3}\mathrm{CNOT}|11\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[=c_{0}|00\rangle+c_{1}|01\rangle+c_{2}|11\rangle+c_{3}|10\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[=c_{0}|00\rangle+c_{1}|01\rangle+c_{3}|10\rangle+c_{2}|11\rangle.\]</div>
+<p>Por lo tanto se intercambian las amplitudes de <span class="math notranslate nohighlight">\(|10\rangle\)</span> y <span class="math notranslate nohighlight">\(|11\rangle\)</span></p>
+<p>Se puede obtener la matriz de una puerta CNOT sin más que ver cómo transforma los elementos de la base Z, al final la matriz que le corresponde es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{array}\right)\end{split}\]</div>
+<p>De acuerdo con esto, si actúa sobre on determinado estado en superposición se obtiene lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{CNOT}\left(c_{0}|009+c_{1}|01\rangle+c_{2}|10\rangle+c_{3}|11\rangle\right)=\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{array}\right)\left(\begin{array}{c}
+c_{0}\\
+c_{1}\\
+c_{2}\\
+c_{3}
+\end{array}\right)=\left(\begin{array}{c}
+c_{0}\\
+c_{1}\\
+c_{3}\\
+c_{2}
+\end{array}\right)\end{split}\]</div>
+<p>Un circuito cuántico CNOT se representa de la siguiente manera:</p>
+<center>
+<p><img alt="" src="../_images/puertaCNOT.PNG" /></p>
+</center>
+<p>El punto sólido indica el qubit de control y el símbolo <span class="math notranslate nohighlight">\(\oplus\)</span> indica la parte del target.</p>
+<p>Para generar una puerta de este tipo en Quirk, debemos colocar el punto oscuro y la puerta X de la forma que se ve en la siguiente figura:</p>
+<p><img alt="" src="../_images/CNOT2.PNG" /></p>
+<p>Notar que también hemos hecho click en el qubit de más abajo para cambiar el estado de 0 a 1.</p>
+<p>Con el fin de detallar con mayor claridad cual es el qubit de control y de target, utilizaremos la siguiente notación:</p>
+<p><span class="math notranslate nohighlight">\(CNOT_{ij}=\)</span> CNOT con qubit i como control y j como target. POr ejemplo si si el control es 0 y el target 1, tendríamos la siguiente puerta:</p>
+<center>
+<p><img alt="" src="../_images/CNOT3.PNG" /></p>
+</center>
+<p>En Quirk tendríamos la siguiente situación</p>
+<center>
+<p><img alt="" src="../_images/CNOT4.PNG" /></p>
+</center>
+<p>Para intercambiar los qubits de control y target, podemos montar el siguiente esquema</p>
+<center>
+<p><img alt="" src="../_images/CNOT5.PNG" /></p>
+</center>
+<p>Es decir:</p>
+<div class="math notranslate nohighlight">
+\[(H\otimes H)\mathrm{CNOT}(H\otimes H)=\mathrm{CNOT}_{01}\]</div>
+<p>La matriz de una puerta <span class="math notranslate nohighlight">\(CNOT_{01}\)</span> es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}CNOT_{01}=\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0
+\end{array}\right)\end{split}\]</div>
+<p>Vamos a demostrar la afirmación anterior, multiplicando las matrices correspondientes. Pero antes debemos decir que hemos ampliado las definiciones de matrices para incorporar las dos matrices de CNOT en el paquete puertaslogicas, a cuyo fichero se le ha añadido el siguiente código:</p>
+<p>CNOT10=Matrix([
+[1,0,0,0],
+[0,1,0,0],
+[0,0,0,1],
+[0,0,1,0]
+])</p>
+<p>CNOT01=Matrix([
+[1,0,0,0],
+[0,0,0,1],
+[0,0,1,0],
+[0,1,0,0]
+])</p>
+<p>Haciendo las pertinentes operaciones algebráicas, vemos que el resultado es el esperado</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">puertasLogicas</span> <span class="k">as</span> <span class="nn">pt</span>
+
+<span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">H</span><span class="p">)</span><span class="o">*</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span><span class="o">*</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">H</span><span class="p">,</span> <span class="n">pt</span><span class="o">.</span><span class="n">H</span><span class="p">)</span><span class="o">-</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT01</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" src="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" />
+</div>
+</div>
+<p>Lo anterior se puede contrastar también utilizando Quirt. Efectivamente en los dós gráficos que siguen, se ha colocado en la figura de la izquierda se puede ver el resultado de la parte izquierda de la igualdad anterior, y en la zona de la derecha la parte derecha de la igualdad y se puede comprobar perfectamente que el resultado es idéntico.</p>
+<table>
+<tr><td>
+<p><img alt="" src="../_images/quirt5.PNG" /></p>
+</td><td>
+<p><img alt="" src="../_images/quirt6.PNG" /></p>
+</td></tr></table><p>Esta puerta CNOT es muy importante pues es capaz de generar estados entrelazados, muy interesantes dentro de la programación cuántica:</p>
+<div class="math notranslate nohighlight">
+\[\mathrm{{CNOT|}}+\rangle|0\rangle={\frac{1}{\sqrt{2}}}{\big(}|00\rangle+|11\rangle{\big)}=|\Phi^{+}\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[\mathrm{{CNOT}}|-\rangle|0\rangle={\frac{1}{\sqrt{2}}}{\big(}|00\rangle-|11\rangle{\big)}=|\Phi^{-}\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[\mathrm{{CNOT}}|+\rangle|1\rangle={\frac{1}{\sqrt{2}}}{\big(}|01\rangle+|10\rangle{\big)}=|\Psi^{+}\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[{\mathrm{CNOT}}|-\rangle|1\rangle={\frac{1}{\sqrt{2}}}{\big(}|01\rangle-|10\rangle{\big)}=|\Psi^{-}\rangle.\]</div>
+<p>Veamos a continuación alguna igualdades que se dan entre circuitos cuánticos.</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{CNOT}(X\otimes I)=(X\otimes X)C N O T.\)</span></p></li>
+</ol>
+<p><img alt="" src="../_images/circuito1.PNG" /></p>
+<p>Comprobamos a continuación esa igualdad:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">puertasLogicas</span> <span class="k">as</span> <span class="nn">pt</span>
+
+<span class="n">A</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span><span class="o">*</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">I1</span><span class="p">)</span>
+<span class="n">B</span><span class="o">=</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">X</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">X</span><span class="p">)</span><span class="o">*</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span>
+<span class="n">A</span><span class="o">-</span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" src="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" />
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{CNOT}(I\otimes X)=(I\otimes X)\mathrm{CNOT}.\)</span></p></li>
+</ol>
+<p><img alt="" src="../_images/circuito2.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span><span class="o">*</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">I1</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+<span class="n">B</span><span class="o">=</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">I1</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">X</span><span class="p">)</span><span class="o">*</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span>
+<span class="n">A</span><span class="o">-</span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" src="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" />
+</div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p><span class="math notranslate nohighlight">\(\mathrm{CNOT}(Z\otimes I)=(Z\otimes I)\mathrm{CNOT}.\)</span></p></li>
+</ol>
+<p><img alt="" src="../_images/circuito3.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span><span class="o">*</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">Z</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">I1</span><span class="p">)</span>
+<span class="n">B</span><span class="o">=</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">Z</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">I1</span><span class="p">)</span><span class="o">*</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span>
+<span class="n">A</span><span class="o">-</span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" src="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" />
+</div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><span class="math notranslate nohighlight">\({\mathrm{CNOT}}(I\otimes Z)=(Z\otimes Z){\mathrm{CNOT}}.\)</span></p></li>
+</ol>
+<p><img alt="" src="../_images/circuito4.PNG" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span><span class="o">*</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">I1</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
+<span class="n">B</span><span class="o">=</span><span class="n">TensorProduct</span><span class="p">(</span><span class="n">pt</span><span class="o">.</span><span class="n">Z</span><span class="p">,</span><span class="n">pt</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span><span class="o">*</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span>
+<span class="n">A</span><span class="o">-</span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" src="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" />
+</div>
+</div>
+</section>
+<section id="puertas-controladas-u">
+<h3><span class="section-number">6.7.2. </span>Puertas controladas U<a class="headerlink" href="#puertas-controladas-u" title="Permalink to this heading">#</a></h3>
+<p>De forma similar a como trabaja la puerta CNOT, se pueden construir las puertas controladas U y en este sentido este tipo de puertas actúa de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}{{c U|00\rangle=|00\rangle,}}\\ {{c U|01\rangle=|01\rangle,}}\\ {{c U|10\rangle=|1\rangle\otimes U|0\rangle.}}\\ {{c U|1\rangle=|1\rangle\otimes U|1\rangle.}}\end{array}\end{split}\]</div>
+<p>Para obtener la representación de cU, primero suponemos que U actúa sobre un qubit simple:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l c r}{{U|0\rangle=a|0\rangle+b|1\rangle,}}\\ {{U|1\rangle=c|0\rangle+d|1\rangle.}}\end{array}\end{split}\]</div>
+<p>y de esta manera U tiene una forma matricial 2x2:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U=\left(\begin{array}{cc}
+a &amp; c\\
+b &amp; d
+\end{array}\right)\end{split}\]</div>
+<p>Entonces:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c}{{c U|00\rangle=|00\rangle,}}\\ {{c U|01\rangle=|01\rangle,}}\\ {{cU|10\rangle=|1\rangle\otimes(a|0\rangle+b|1\rangle)=a|10\rangle+b|11\rangle.}}\\ {{c U[11\rangle=|1\rangle\otimes(c|0\rangle+d|1\rangle)=c|10\rangle+d|11\rangle.}}\end{array}\end{split}\]</div>
+<p>Y por lo tanto la matriz será</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; a &amp; b\\
+0 &amp; 0 &amp; c &amp; d
+\end{array}\right)\end{split}\]</div>
+<p>Como puede verse lo anterior es una generalización de la puerta CNOT vista anteriormente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}CNOT=cX=\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 1 &amp; 0
+\end{array}\right)\end{split}\]</div>
+<p>Algunos de estos ejemplos puede ser la puerta controlada-Z y la puerta controlada-phase</p>
+<center>
+<p><img alt="" src="../_images/puertascontroladas.PNG" /></p>
+</center>
+</section>
+<section id="la-puerta-swap">
+<h3><span class="section-number">6.7.3. </span>La puerta SWAP<a class="headerlink" href="#la-puerta-swap" title="Permalink to this heading">#</a></h3>
+<p>Esta puerta lo que hace es intercambiar dos qubits:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l}{{\mathrm{SWAP}|00\rangle=|00\rangle,}}\\ {{\mathrm{SWAP}|01\rangle=|10\rangle,}}\\ {{\mathrm{SWAP}|10\rangle=|01\rangle.}}
+\\ {{\mathrm{SWAP}|11\rangle=|11\rangle.}}\end{array}\end{split}\]</div>
+<p>En otras palabras:</p>
+<div class="math notranslate nohighlight">
+\[{\bf S W A P}|a\rangle|b\rangle=|b\rangle|a\rangle.\]</div>
+<p>Esta puerta no puede generar estados entrelazados porque simplemente lo que hace es intercambiar los factores. Veamos cómo actúa sobre una superposición de estados:</p>
+<div class="math notranslate nohighlight">
+\[{\bf S W A P}\left(c_{0}|00\rangle+c_{1}|01\rangle+c_{2}|10\rangle+c_{3}|11\rangle\right)\]</div>
+<div class="math notranslate nohighlight">
+\[=c_{0}S\mathrm{WAPl00}\rangle+c_{1}S\mathrm{WAPl01}\rangle+c_{2}S\mathrm{WAPl}10\rangle+c_{3}\mathrm{SWAP}|11\]</div>
+<div class="math notranslate nohighlight">
+\[=c_{0}|00\rangle+c_{1}|10\rangle+c_{2}|01\rangle+c_{3}|11\rangle\]</div>
+<div class="math notranslate nohighlight">
+\[=c_{0}|00\rangle+c_{2}|01\rangle+c_{1}|10\rangle+c_{3}|11\rangle\]</div>
+<p>y en consecuencia la matriz correspondiente sería la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}SWAP=\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right)\end{split}\]</div>
+<p>Por lo tanto su actuación sobre un estado general de superposición sería el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\mathrm{SWAP}(c_{0}|00)+c_{1}|01\rangle+c_{2}|10\rangle+c_{3}|11\rangle)=\left(\begin{array}{cccc}
+1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{array}\right)\left(\begin{array}{c}
+c_{0}\\
+c_{1}\\
+c_{2}\\
+c_{3}
+\end{array}\right)=\left(\begin{array}{c}
+c_{0}\\
+c_{2}\\
+c_{1}\\
+c_{3}
+\end{array}\right)\end{split}\]</div>
+<p>Desde un punto de vista gráfico, este tipo de puertas las podemos representar de la siguiente manera:</p>
+<center>
+<p><img alt="" src="../_images/puertaSWAP.PNG" /></p>
+</center>
+<p>En Quirt podemos implementar esta puerta con el botón marcado con Swap:</p>
+<p><img alt="" src="../_images/diagramaSWAP.PNG" /></p>
+<p>Una puerta SWAP se puede obtener mediante la siguiente composición:</p>
+<div class="math notranslate nohighlight">
+\[SWAP=(CNOT)(CNOT_{01})(CNOT\]</div>
+<p>Efectivamente, veamos a continuación que se da esa equivalencia</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">puertasLogicas</span> <span class="k">as</span> <span class="nn">pt</span>
+
+<span class="n">A</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span><span class="o">*</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT01</span><span class="o">*</span><span class="n">pt</span><span class="o">.</span><span class="n">CNOT10</span>
+<span class="n">B</span><span class="o">=</span><span class="n">pt</span><span class="o">.</span><span class="n">SWAP</span>
+<span class="n">A</span><span class="o">-</span><span class="n">B</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" src="../_images/8d86b99fd54d3d580e13204f2c117fa64fa3222de4272ca6d2bb19b93ef9d481.png" />
+</div>
+</div>
+</section>
+<section id="puerta-de-toffoli">
+<h3><span class="section-number">6.7.4. </span>Puerta de Toffoli<a class="headerlink" href="#puerta-de-toffoli" title="Permalink to this heading">#</a></h3>
+<p>Esta es una puerta que afecta a tres qubits, y es de la forma: controlada-controlada NOT. Esta puerta cambia eu qubit de la derecha si el de la izquierda y el del centro están a 1.</p>
+<div class="math notranslate nohighlight">
+\[Toffoli|000\rangle=|000\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[Toffoli|001\rangle=|001\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[Toffoli|010\rangle=|010\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[Toffoli|011\rangle=|011\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[Toffoli|100\rangle=|100\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[Toffoli|101\rangle=|101\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[Toffoli|110\rangle=|111\rangle,\]</div>
+<div class="math notranslate nohighlight">
+\[Toffoli|111\rangle=|110\rangle,\]</div>
+<p>O también de forma equivalente</p>
+<div class="math notranslate nohighlight">
+\[{\mathrm{Toffoli}}|a\rangle|b\rangle|c\rangle=|a\rangle|b\rangle|a b\oplus c\rangle.\]</div>
+<p>La matriz correspondiente a una puerta de Toffoli es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Toffoli=\left(\begin{array}{cccccccc}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0
+\end{array}\right)\end{split}\]</div>
+<p>La representación gráfica de esta puerta es la siguiente:</p>
+<center>
+<p><img alt="" src="../_images/Toffoli.PNG" /></p>
+</center>
+<p>En Quirt se construye de la siguiente manera</p>
+<p><img alt="" src="../_images/ToffoliQuirt.PNG" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Parte_teorica_IV_algebra.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Introducción. Álgebra</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Tema0_Introducci%C3%B3n.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>qiskit_textbook</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-tensorial">6.1. Producto tensorial.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#producto-de-kronecker">6.2. Producto de Kronecker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medicion-de-qubits-individuales">6.3. Medición de qubits individuales.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#medidas-secuenciales-sobre-qubits-unitarios">6.4. Medidas secuenciales sobre qubits unitarios.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#entanglement-estados-entrelazados">6.5. Entanglement (estados entrelazados).</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-cuanticas">6.6. Puertas cuánticas.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-cuanticas-de-dos-qubits">6.7. Puertas cuánticas de dos qubits.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-cnot">6.7.1. La puerta CNOT.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puertas-controladas-u">6.7.2. Puertas controladas U</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#la-puerta-swap">6.7.3. La puerta SWAP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#puerta-de-toffoli">6.7.4. Puerta de Toffoli</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

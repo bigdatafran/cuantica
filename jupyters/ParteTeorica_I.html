@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Introducción &#8212; Programación Cuántica</title>
+    <title>1. Introducción. Qubits &#8212; Programación Cuántica</title>
   
   
   
@@ -169,31 +169,33 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Parte_teorica_V_qubitMultiple.html">6. Múltiples qubits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema0_Introducci%C3%B3n.html">7. qiskit_textbook</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">8. Los qubits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema1_atoms-computation.html">9. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema2_representing-qubit-states.html">10. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema3_single-qubit-gates.html">11. Puertas cuánticas para un qubit</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema4_multiple-qubits-entangled-states.html">12. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema5_phase-kickback.html">13. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">15. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">16. Universalidad</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../genindex.html">16. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">17. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="videos_anexo.html">Vídeos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="otras/apendice.html">Apendice.</a></li>
 
@@ -336,7 +338,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introducción</h1>
+    <h1>Introducción. Qubits</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -358,8 +360,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
-<span id="superposicion"></span><h1><span class="section-number">1. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-qubits">
+<span id="superposicion"></span><h1><span class="section-number">1. </span>Introducción. Qubits<a class="headerlink" href="#introduccion-qubits" title="Permalink to this heading">#</a></h1>
 <p id="index-0">La informática clásica se basa en la noción de bit como la unidad primaria de la información. Esta concepción de unidad básica de información se denomina <em>qubit</em> en programación cuántica. Aunque esto puede variar, los dos qubits más utilizado son <span class="math notranslate nohighlight">\(|0\rangle\)</span> y <span class="math notranslate nohighlight">\(|1\rangle\)</span>, los cuales forman lo que se denomina una base (similar a lo que ocurre en una base de un espacio vectorial). La notación anterior es la normalmente utilizada dentro de la programación cuántica y se denominación notación de <em>Dirac</em>, y los elementos que la componen son los <em>bra-ket</em>. Como se puede observar los dígitos 0 y 1 están encerrados entre una barra vertical y una escuadra angular, denominada <em>Ket</em>.</p>
 <p id="index-1">Para visualizar los estados dentro del mundo cuántico, se utiliza la denominada <em>esfera de Bloch (Bloch sphere)</em>. Esta esfera tienen la característica principal de que tiene radio 1, y entonces los qubits  anteriormente referenciados se representan en la misma según la figura que sigue, que como se puede observar están situados en el polo norte y polo sur de dicha esfera.</p>
 <p><img alt="" src="../_images/Bloch_0_1.PNG" /></p>
@@ -448,7 +450,7 @@ $<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|0\rangle+\frac{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d645f487f81723b1badd1691e7877328a3554cacabf9084cf882fc3f107d0540.png" src="../_images/d645f487f81723b1badd1691e7877328a3554cacabf9084cf882fc3f107d0540.png" />
+<img alt="../_images/228883eae5c95c81ddfaffb91340e8aaed85aa844661dd3784331227b800a73e.png" src="../_images/228883eae5c95c81ddfaffb91340e8aaed85aa844661dd3784331227b800a73e.png" />
 </div>
 </div>
 <p>Con la explicación dada anteriormente, ya estamos en condiciones de definir una función en Python que nos obtenga esas coordenadas</p>
@@ -495,7 +497,7 @@ $<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|0\rangle+\frac{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/841ef288bed4f9b5bf770cbb51b6d6be43ef3fc6e1a4968339041450867cc007.png" src="../_images/841ef288bed4f9b5bf770cbb51b6d6be43ef3fc6e1a4968339041450867cc007.png" />
+<img alt="../_images/33a5e503a8a61a23d80d5058d85dc5af57efc02b2721a3822a5500c6023d1c38.png" src="../_images/33a5e503a8a61a23d80d5058d85dc5af57efc02b2721a3822a5500c6023d1c38.png" />
 </div>
 </div>
 <p>Existen igualmente una serie de estados que tienen una amplia utilización dentro de la programación cuántica, y que además cuentan con una denominación concreta. Estos estados son los siguientes:</p>
@@ -539,7 +541,7 @@ $<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|0\rangle+\frac{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/88f7498f468e845f59894aceb91a14009e2e4975355ef8492a2abb4999d4fd91.png" src="../_images/88f7498f468e845f59894aceb91a14009e2e4975355ef8492a2abb4999d4fd91.png" />
+<img alt="../_images/53a08afc1257f184bfea2059f1cdfe3a8ff7997ef94582363c32d5f52cf88a70.png" src="../_images/53a08afc1257f184bfea2059f1cdfe3a8ff7997ef94582363c32d5f52cf88a70.png" />
 </div>
 </div>
 <p id="puntoesfera">Por supuesto existen puntos que no necesariamente están sobre el ecuador de la esfera. Por ejemplo el qubit  <span class="math notranslate nohighlight">\(\frac{\sqrt{3}}{2}|0\rangle+\frac{1}{2}|1\rangle\)</span>.</p>
@@ -561,7 +563,7 @@ $<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|0\rangle+\frac{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2f3e28ae7a7d4e3b783bc4696b5177b15d6f4cb6c6fb3c5c260cc55ab951b03b.png" src="../_images/2f3e28ae7a7d4e3b783bc4696b5177b15d6f4cb6c6fb3c5c260cc55ab951b03b.png" />
+<img alt="../_images/503a809ea80fe8c531ba99f1c3172c233d0ce69100d57a9b57aaaef0adeaf792.png" src="../_images/503a809ea80fe8c531ba99f1c3172c233d0ce69100d57a9b57aaaef0adeaf792.png" />
 </div>
 </div>
 <p>Igualmente, representemos el qubit <span class="math notranslate nohighlight">\(\frac{2}{3}|0\rangle+\frac{1-2i}{3}|1\rangle\)</span></p>
@@ -576,7 +578,7 @@ $<span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2}}|0\rangle+\frac{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3b96ff14984e053bb1329e26d045f32764ff4f9774a2a2d508ae41141bfd0268.png" src="../_images/3b96ff14984e053bb1329e26d045f32764ff4f9774a2a2d508ae41141bfd0268.png" />
+<img alt="../_images/62d38264d01758c61538f7eb7cce51742df5783667c121b71e81b740b1bb3cbb.png" src="../_images/62d38264d01758c61538f7eb7cce51742df5783667c121b71e81b740b1bb3cbb.png" />
 </div>
 </div>
 <p>Es conveniente recordar por lo tanto que un <strong>un qubit es cualquier punto de la esfera de Bloch</strong>.</p>

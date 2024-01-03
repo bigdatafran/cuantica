@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>16. Introducción. &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/algoritmos/deutsch_Jozsa';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="17. Índice" href="../../genindex.html" />
+    <link rel="prev" title="15. Proving Universality" href="../Tema7_proving-universality.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_V_qubitMultiple.html">6. Múltiples qubits</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Tema0_Introducci%C3%B3n.html">7. Introducción a programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema7_proving-universality.html">15. Universalidad</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Algoritmo Deutsch_Jozsa</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">17. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../otras/apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/jupyters/algoritmos/deutsch_Jozsa.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción.</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
+<span id="deutschjozsa"></span><h1><span class="section-number">16. </span>Introducción.<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+<p id="index-0">Este algoritmo fue diseñado por un lado por <a herf="https://es.wikipedia.org/wiki/David_Deutsch" target="_blank"> David Deutsh </a>,  profesor de la Universidad de Oxfort (conocido por su teoría de los universos paralelos) y por otro lado  por <a href="https://en.wikipedia.org/wiki/Richard_Jozsa" target="_blank"> Richard Jozsa </a> matemático en la Universidad de Cambrige. La explicación de este algoritmo de una forma muy didáctica la  podemos ver en este vídeo de Ket.G.</p>
+<p>Para comenzar, vamos a dar las siguientes definiciones, suponiendo que tenemos una función que vamos a denominar f que sólo puede tomar los valores 0 ó 1:</p>
+<ul class="simple">
+<li><p>La función f será <strong>constante</strong> si en todos los casos del dominio de definición obtenemos el valor 0 o bien el vaor 1.</p></li>
+<li><p>La función f será <strong>balanceada</strong> si en la mitad de los casos obtenemos el valor 0 y en la otra mitad el valor 1.</p></li>
+</ul>
+<p>De acuerdo con estas definiciones, si contamos con una función que es constante o balanceada, ¿Cuántas veces tenemos que evaluar esta función para estar seguro de qué tipo es?. Con la computación clásica y suponiendo tenemos n números, habría que evaluar la función un máximo de n/2+1 veces para saber con seguridad si la función es constante o balanceada (<a href="https://www.youtube.com/watch?v=G0pctFUOFNM&t=18s" target="_blank"> ver este vídeo </a>). Si teneos muchos números estas evaluaciones pueden crecer muchísimo en cantidad de comprobaciones.</p>
+<p>Sin embargo el algoritmo de Detsch Jozsa lo que consigue es este resultado con una sola evaluación. Este es uno de los primeros resultados que demuestra el poder de la computación cuántica.</p>
+<p>Si al montar el circuito indicado en <a href="https://www.youtube.com/watch?v=G0pctFUOFNM&t=18s" target="_blank">  este vídeo </a> y obtenemos como resultado un valor de cero, entonces diremos que la función es constante y en caso contrario será equilibrada. El circuito con el que se trabaja en este algoritmo es el siguiente:</p>
+<p><img alt="" src="../../_images/deutschJozsa.PNG" /></p>
+<p>La demostración matemática de este algoritmo la podemos <a href="..\documentos\Algoritmo_Deutsch_Jozsa.pdf" target="_blank"> ver en este documento pdf </a> obtenido gracias a <a href="https://www.youtube.com/@KetPuntoG/videos" target="_blank"> los vídeos de Ket.G </a>.</p>
+<p>Para fijar más las ideas, vamos a suponer que la función f toma como entrada una cadena de bits y devuelve 0 ó 1, es decir:</p>
+<div class="math notranslate nohighlight">
+\[f(\{x_{0},x_{1},...,\})\longrightarrow0\ \acute{o}\ 1\quad donde\ x_{i}\ vale\ 0\ \acute{o}\ 1\]</div>
+<p>Como ya hemos dicho, con la solución cuántica podremos saber si la función es constante o equilibrada con una sola evaluación de la función f(x), de tal manera que esta función f está implementada dentro de un oráculo cuántico el cual mapea el estado <span class="math notranslate nohighlight">\(|x\rangle |y\rangle\)</span> en <span class="math notranslate nohighlight">\(|x\rangle |y \oplus f(x)  \rangle \)</span>. Este esquema puede verse en la imagen mostrada anteriormente.</p>
+<p>Veamos todo lo anterior con un función de ejemplo que actúa sobre dos bits. Esta función va a ser la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[f(x_{0},x_{1})=x_{0}\oplus x_{1}\]</div>
+<p>De tal manera que se obtiene lo siguiente:</p>
+<p><span class="math notranslate nohighlight">\(f(0,0)=0\)</span></p>
+<p><span class="math notranslate nohighlight">\(f(0,1)=1\)</span></p>
+<p><span class="math notranslate nohighlight">\(f(1,0)=1\)</span></p>
+<p><span class="math notranslate nohighlight">\(f(1,1)=0\)</span></p>
+<p>A continuación vamos aplicar el algoritmo de Deutsch Jozsa para comprobar que con un intento podemos corroborar que nuestra función es balanceada tal y como la hemos definido. Primero lo hacemos de una forma totalmente teórica y después utilizaremos código para obtener el mismo resultado.</p>
+<p>Arrancamos de la situación inicial mostrada en la figura anterior, es decir los dos primeros qubits a <span class="math notranslate nohighlight">\(|0\rangle\)</span> y el tercero a <span class="math notranslate nohighlight">\(|1\rangle\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{0}\rangle=|00\rangle_{01}\otimes|1\rangle_{2}\]</div>
+<p>Con la anterior notación indicamos lo siguiente:</p>
+<ol class="arabic simple">
+<li><p>El primer registro de dos qubits está inicializado a <span class="math notranslate nohighlight">\(|00\rangle\)</span> y el segundo registro de un solo qubits está en el estado <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Esto queda denotado para mayor claridad por los subíndices 0, 1 y  2.</p></li>
+<li><p>Ahora aplicamos una puerta de Hadamard a todos los qubits y obtenemos:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[|\psi_{1}\rangle=\frac{1}{2}(|00\rangle+|01\rangle+|10\rangle+|11\rangle)_{01}\otimes\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)_{2}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>La función oracle para este ejemplo puede ser implementada mediante lo siguiente <span class="math notranslate nohighlight">\(\mathrm{Q}_{f}=C X_{02}C X_{12}\)</span>. Es decir aplicamos de forma consecutiva dos puertas de tipo control-X. La situación la podemos reproducir sobre Quirk, donde uno de los estados se puede ver en la siguiente figura:</p></li>
+</ol>
+<p><img alt="" src="../../_images/quirtkJozsa.PNG" /></p>
+<p>En la imagen anterior se puede ver que si los dos primeros qubits están en <span class="math notranslate nohighlight">\(|01\rangle\)</span> entonces la salida del tercer qubit ( que es la imagen de f) está en 1 (es decir <span class="math notranslate nohighlight">\(f(1,0)=1\)</span>). Podemos comprobar que si cambiamos los dos primeros estados los resultados son los mismos que cuando hemos presentado y definido la función. Por lo tanto esta puerta nos sirve para este trabajo.</p>
+<p>Aplicando ahora esta puerta, obtenemos la siguiente salida</p>
+<p><span class="math notranslate nohighlight">\(|\psi_{2}\rangle=\frac{1}{2\sqrt{2}}\left[\underbrace{|00\rangle_{01}\otimes(|0\oplus0\oplus0\rangle-|1\oplus0\oplus0\rangle)_{2}}_{=|00\rangle_{01}\otimes(|0\oplus f(0,0)-|1\oplus f(0,0))_{2}}+\underbrace{|01\rangle_{01}\otimes(|0\oplus0\oplus1\rangle-|1\oplus0\oplus1\rangle)_{2}}_{=|01\rangle_{01}\otimes(|0\oplus f(0,1)-|1\oplus f(0,1))_{2}}+\underbrace{|10\rangle_{01}\otimes(|0\oplus1\oplus0\rangle-|1\oplus1\oplus0\rangle)_{2}}_{=|10\rangle_{01}\otimes(|0\oplus f(1,0)-|1\oplus f(1,0))_{2}}\right]\)</span></p>
+<p><span class="math notranslate nohighlight">\(+\left[\underbrace{|11\rangle_{01}\otimes(|0\oplus1\oplus1\rangle-|1\oplus1\oplus1\rangle)}_{=|101\rangle\otimes(|0\oplus f(1,1)-|1\oplus f(1,1))_{2}}\right]\)</span></p>
+<p>Simplificando se tiene:</p>
+<p><span class="math notranslate nohighlight">\(|\psi_{2}\rangle=\frac{1}{2\sqrt{2}}\left[|00\rangle_{01}\otimes(\underbrace{|0\oplus0\oplus0\rangle}_{|0\rangle}-\underbrace{|1\oplus0\oplus0}_{|1\rangle}\rangle)_{2}+|01\rangle_{01}\otimes(\underbrace{|0\oplus0\oplus1}_{|1\rangle}\rangle-\underbrace{|1\oplus0\oplus1}_{|0\rangle}\rangle)_{2}+|10\rangle_{01}\otimes(\underbrace{|0\oplus1\oplus0}_{|1\rangle}\rangle-|\underbrace{1\oplus1\oplus0}_{|0\rangle}\rangle)_{2}\right]\)</span></p>
+<p><span class="math notranslate nohighlight">\(+\left[|11\rangle_{01}\otimes\underbrace{(|0\oplus1\oplus1\rangle}_{|0\rangle}-|\underbrace{1\oplus1\oplus1}_{|1\rangle}\rangle)\right]\)</span></p>
+<p>Es decir:</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{2}\rangle=\frac{1}{2\sqrt{2}}[|00\rangle_{01}\otimes(|0\rangle-|1\rangle)_{2}-|01\rangle_{01}\otimes(|0\rangle-|1\rangle)_{2}-|10\rangle_{01}\otimes(|0\rangle-|1\rangle)_{2}+|11\rangle_{01}\otimes(|0\rangle-|1\rangle)_{2}=\]</div>
+<div class="math notranslate nohighlight">
+\[={\frac{1}{2}}(|00\rangle-|01\rangle-|10\rangle+|11\rangle)_{01}\otimes{\frac{1}{\sqrt{2}}}(|0\rangle-|1\rangle)_{2}\]</div>
+<div class="math notranslate nohighlight">
+\[=\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)_{0}\otimes\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)_{1}\otimes\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)_{2}\]</div>
+<ol class="arabic simple" start="4">
+<li><p>Ahora aplicamos una puerta de Hadamart al primer registro (Es decir los dos primeros qubits) y se obtiene:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[|\psi_{3}\rangle=|1\rangle_{0}\otimes|1\rangle_{1}\otimes(|0\rangle-|1\rangle)_{2}\]</div>
+<ol class="arabic simple" start="5">
+<li><p>Ahora haciendo una medición sobre los dos primeros qubits se obtiene 11, es decir por el teorema de Deutsch Jozsa se obtiene que la función es balanceada.</p></li>
+</ol>
+<p>Veamos esto mismo pero utilizando código</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters\algoritmos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Tema7_proving-universality.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">15. </span>Proving Universality <a id='intro'></a></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../genindex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Índice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

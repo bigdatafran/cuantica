@@ -164,11 +164,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="jupyters/ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyters/Parte_teorica_V_qubitMultiple.html">6. Múltiples qubits</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="jupyters/Tema0_Introducci%C3%B3n.html">6. qiskit_textbook</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="jupyters/Tema0_Introducci%C3%B3n.html">7. Introducción a programación cuántica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/Tema1_atoms-computation.html">8. Los qubits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
@@ -181,14 +181,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="jupyters/Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/Tema7_proving-universality.html">15. Universalidad</a></li>
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="jupyters/algoritmos/deutsch_Jozsa.html">16. Algoritmo Deutsch_Jozsa</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Índice de términos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="jupyters/otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="jupyters/paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/videos_anexo.html">Vídeos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jupyters/otras/apendice.html">Apendice.</a></li>
 
@@ -341,10 +346,12 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="jupyters/Tema4_multiple-qubits-entangled-states.html#index-3">Bell state</a>
 </li>
-      <li><a href="jupyters/ParteTeorica_I.html#index-1">Bloch sphere</a>
+      <li><a href="jupyters/Parte_teorica_V_qubitMultiple.html#index-1">big endian</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="jupyters/ParteTeorica_I.html#index-1">Bloch sphere</a>
+</li>
       <li><a href="jupyters/ParteTeorica_I.html#index-0">bra-ket (notación)</a>
 
       <ul>
@@ -389,6 +396,8 @@ document.write(`
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="jupyters/algoritmos/deutsch_Jozsa.html#index-0">Deutsch Jozsa (Algoritmo)</a>
+</li>
       <li><a href="jupyters/ParteTeorica_I.html#index-0">Dirac (notación)</a>
 </li>
   </ul></td>
@@ -403,9 +412,13 @@ document.write(`
 </li>
       <li><a href="jupyters/Tema4_multiple-qubits-entangled-states.html#index-3">Entangled state</a>
 </li>
+      <li><a href="jupyters/Parte_teorica_V_qubitMultiple.html#index-2">Entangled states</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="jupyters/ParteTeorica_I.html#index-1">esfera de Bloch</a>
+</li>
+      <li><a href="jupyters/Parte_teorica_V_qubitMultiple.html#index-2">Estados entrelazados</a>
 </li>
       <li><a href="jupyters/ParteTeorica_III_puertasCuanticas.html#index-2">Euler (fórmula)</a>
 </li>
@@ -477,6 +490,10 @@ document.write(`
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="jupyters/Parte_teorica_V_qubitMultiple.html#index-1">Little endian</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="jupyters/videos_anexo.html#index-7">LookAhead</a>
 </li>
   </ul></td>
@@ -493,7 +510,7 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="jupyters/Tema7_proving-universality.html#index-0">Matrices Unitarias</a>
 </li>
-      <li><a href="jupyters/videos_anexo.html#index-0">Matriz de densidad</a>
+      <li><a href="jupyters/Tema0_Introducci%C3%B3n.html#index-1">Matriz de densidad</a>, <a href="jupyters/videos_anexo.html#index-0">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -505,9 +522,13 @@ document.write(`
 </li>
       <li><a href="jupyters/Tema5_phase-kickback.html#index-0">phase kickback</a>
 </li>
+      <li><a href="jupyters/ParteTeorica_I.html#index-2">plot_bloch_vector</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="jupyters/ParteTeorica_I.html#index-2">plot_bloch_vector</a>
+      <li><a href="jupyters/Tema0_Introducci%C3%B3n.html#index-2">plot_state_city</a>
+</li>
+      <li><a href="jupyters/Parte_teorica_V_qubitMultiple.html#index-0">producto tensorial</a>
 </li>
       <li><a href="jupyters/Tema3_single-qubit-gates.html#index-2">Puertas controladas</a>
 </li>
@@ -523,8 +544,12 @@ document.write(`
 </li>
       <li><a href="jupyters/videos_anexo.html#index-2">qsphere gráfico</a>
 </li>
+      <li><a href="jupyters/Tema0_Introducci%C3%B3n.html#index-0">Quantum Composer</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="jupyters/Tema0_Introducci%C3%B3n.html#index-0">Quantum Lab</a>
+</li>
       <li><a href="jupyters/videos_anexo.html#index-6">Quantum Volume</a>
 </li>
       <li><a href="jupyters/Tema2_representing-qubit-states.html#index-1">QuantumCircuit</a>
