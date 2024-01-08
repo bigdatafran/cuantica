@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/algoritmos/deutsch_Jozsa';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="17. Índice" href="../../genindex.html" />
+    <link rel="next" title="17. Introducción" href="Algoritmo_Grover.html" />
     <link rel="prev" title="15. Proving Universality" href="../Tema7_proving-universality.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -189,10 +189,11 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">16. Algoritmo Deutsch_Jozsa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Algoritmo_Grover.html">17. Algoritmo de Grover</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">17. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">18. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
@@ -328,7 +329,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -344,6 +347,19 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-los-oraculos">16.1. Creación de los oráculos.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-un-oraculo-constante">16.1.1. Construcción de un oráculo constante</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-un-oraculo-balanceado">16.1.2. Construcción de un oráculo balanceado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-para-crear-el-algortimo-de-deutsch-jozsa">16.1.3. Función para crear el algortimo de Deutsch_jozsa</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -413,9 +429,438 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[|\psi_{3}\rangle=|1\rangle_{0}\otimes|1\rangle_{1}\otimes(|0\rangle-|1\rangle)_{2}\]</div>
 <ol class="arabic simple" start="5">
-<li><p>Ahora haciendo una medición sobre los dos primeros qubits se obtiene 11, es decir por el teorema de Deutsch Jozsa se obtiene que la función es balanceada.</p></li>
+<li><p>Ahora haciendo una medición sobre los dos primeros qubits se obtiene 11, es decir por el teorema de Deutsch-Jozsa se obtiene que la función es balanceada.</p></li>
 </ol>
-<p>Veamos esto mismo pero utilizando código</p>
+<p>Veamos esto mismo pero utilizando código.</p>
+<section id="creacion-de-los-oraculos">
+<h2><span class="section-number">16.1. </span>Creación de los oráculos.<a class="headerlink" href="#creacion-de-los-oraculos" title="Permalink to this heading">#</a></h2>
+<p>Vamos a ver en este apartado algunos caminos para crear este tipo de puertas cuánticas.</p>
+<ol class="arabic simple">
+<li><p>En primer lugar supongamos que la función <em>f es un función constante</em>:</p></li>
+</ol>
+<p>1.a) Si f(x)=0 entonces aplicamos una puerta I en el qubit del registro 2.</p>
+<ol class="arabic simple">
+<li><p>b) Si f(x)=1 entonces aplicamos una puerta X en el qubit del registro 2.</p></li>
+</ol>
+<p>y así de fácil tendríamos generado la puerta <span class="math notranslate nohighlight">\(U_f\)</span>.</p>
+<p>Pongámonos a continuación en el caso de que <em>f es balanceada</em>. En este caso hay muchas formas de crear este tipo de circuitos que generan este oráculo, veamos en este apartado como conseguirlo utilizando puertas CNOT con control en cada cada uno de los qubits del registro 1 y target en el qubit del registro 2.</p>
+<p>Construimos un ejemplo con Quirk de la manera que se muestra en la figura siguiente:</p>
+<p><img alt="" src="../../_images/puertaBalanceada.PNG" /></p>
+<p>En la imagen anterior, los tres qubits superiores forman el registro de entrada y el qubit de abajo el registro de salida. Podemos ver los estados que generan un valor de cero o uno como salida (se puede comprobar la salida que Quirk)</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>estados salida 0</p></th>
+<th class="head"><p>estados salida 1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>000</p></td>
+<td><p>001</p></td>
+</tr>
+<tr class="row-odd"><td><p>011</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-even"><td><p>101</p></td>
+<td><p>010</p></td>
+</tr>
+<tr class="row-odd"><td><p>110</p></td>
+<td><p>111</p></td>
+</tr>
+</tbody>
+</table>
+<p>En consecuencia se puede ver que obtenemos el mismo número de veces el 0 como el 1.</p>
+<p>También podemos cambiar el circuito a otro como el siguiente:</p>
+<p><img alt="" src="../../_images/puertaBalanceada2.PNG" /></p>
+<p>En esta situación los resultados que se obtienen son los siguientes (comprobar con quirk):</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>estados salida 0</p></th>
+<th class="head"><p>estados salida 1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>001</p></td>
+<td><p>000</p></td>
+</tr>
+<tr class="row-odd"><td><p>010</p></td>
+<td><p>011</p></td>
+</tr>
+<tr class="row-even"><td><p>100</p></td>
+<td><p>101</p></td>
+</tr>
+<tr class="row-odd"><td><p>111</p></td>
+<td><p>110</p></td>
+</tr>
+</tbody>
+</table>
+<p>Después de estos preámbulos procedemos a continuación a su implementación en qiskit, que como se ha visto se prueba el algoritmo en esta ocasión para tres qubits en el registro 1 y uno en el registro 2.</p>
+<p>Procedemos primero a hacer las correspondientes importaciones:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para poder usar from qiskit.providers.ibmq import least_busy</span>
+<span class="c1">#!pip install qiskit-ibmq-provider</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># importando Qiskit</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">IBMQ</span><span class="p">,</span> <span class="n">Aer</span>
+<span class="kn">from</span> <span class="nn">qiskit.providers.ibmq</span> <span class="kn">import</span> <span class="n">least_busy</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
+
+<span class="c1"># importando herramienta de plot básica</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación definimos el tamaño de los registros de entrada para el oráculo</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Establecemos la longitud de los n-bits </span>
+<span class="n">n</span><span class="o">=</span><span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="construccion-de-un-oraculo-constante">
+<h3><span class="section-number">16.1.1. </span>Construcción de un oráculo constante<a class="headerlink" href="#construccion-de-un-oraculo-constante" title="Permalink to this heading">#</a></h3>
+<p>Siguiendo las ideas vistas anteriormente, construimos a continuación un oráculo constante, de tal manera que dependiendo del número aleatorio que obtengamos construimos un oráculo constante que sea iguala 0 o igual a 1</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">const_oracle</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creamos un oráculo con salida 1&quot;</span><span class="p">)</span>
+    <span class="n">const_oracle</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creamos un oráculo con salida 0&quot;</span><span class="p">)</span>
+
+<span class="n">const_oracle</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Creamos un oráculo con salida 1
+</pre></div>
+</div>
+<img alt="../../_images/6ecba96792c6ed38a5d78e5b51d99bfe54655e2c44ef8d0467ab035e53eaefaf.png" src="../../_images/6ecba96792c6ed38a5d78e5b51d99bfe54655e2c44ef8d0467ab035e53eaefaf.png" />
+</div>
+</div>
+</section>
+<section id="construccion-de-un-oraculo-balanceado">
+<h3><span class="section-number">16.1.2. </span>Construcción de un oráculo balanceado<a class="headerlink" href="#construccion-de-un-oraculo-balanceado" title="Permalink to this heading">#</a></h3>
+<p>Construimos a continuación un circuito balanceado, teniendo en cuenta que vamos a construir un string que indica los qubits de de entrada. Si uno de esos qubit está a 1 lo transformamos a 0 mediante una puerta X</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balanced_oracle</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b_str</span> <span class="o">=</span> <span class="s2">&quot;101&quot;</span>
+
+<span class="c1"># colocamos la pueras X en los bits igual a 1</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b_str</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">b_str</span><span class="p">[</span><span class="n">qubit</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">balanced_oracle</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+<span class="n">balanced_oracle</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5a3d3f82440a7b325277eef45caa6705d84180f2b98affea304b4319f98e1f3f.png" src="../../_images/5a3d3f82440a7b325277eef45caa6705d84180f2b98affea304b4319f98e1f3f.png" />
+</div>
+</div>
+<p>A continuación añadimos las puertas CNOT, poniendo barreras en el circuito para diferenciar cada apartado.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balanced_oracle</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b_str</span> <span class="o">=</span> <span class="s2">&quot;101&quot;</span>
+
+<span class="c1"># colocamos la pueras X en los bits igual a 1</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b_str</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">b_str</span><span class="p">[</span><span class="n">qubit</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">balanced_oracle</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Usamos las barreras para diferenciar las partes</span>
+<span class="n">balanced_oracle</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Controlled-NOT puertas</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">balanced_oracle</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="n">balanced_oracle</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="n">balanced_oracle</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/eae593d68a64bcfc485eab38c488059b4adf499f8640697b8eb490798d0909d5.png" src="../../_images/eae593d68a64bcfc485eab38c488059b4adf499f8640697b8eb490798d0909d5.png" />
+</div>
+</div>
+<p>Finalmente añadimos las puertas X en los qubits 0 y 2 para así obtener un oráculo balanceado</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">balanced_oracle</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b_str</span> <span class="o">=</span> <span class="s2">&quot;101&quot;</span>
+
+<span class="c1"># colocamos la pueras X en los bits igual a 1</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b_str</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">b_str</span><span class="p">[</span><span class="n">qubit</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">balanced_oracle</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Usamos las barreras para diferenciar las partes</span>
+<span class="n">balanced_oracle</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Controlled-NOT puertas</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">balanced_oracle</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="n">balanced_oracle</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># colocamos X-gates</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b_str</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">b_str</span><span class="p">[</span><span class="n">qubit</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="n">balanced_oracle</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="n">balanced_oracle</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7cd3bb4d2bf2fdf1b4770b50d854da3f3907fe4e7a2ef82aa00538a939202a01.png" src="../../_images/7cd3bb4d2bf2fdf1b4770b50d854da3f3907fe4e7a2ef82aa00538a939202a01.png" />
+</div>
+</div>
+<p>Una vez creados los oráculos correspondientes procedemos a comprobar el algoritmo de Deutsch-Jozsa. Lo primero que hay que hacer es pasar una puerta de Hadamart sobre los primeros tres estados y en el cuarto pasarlo al estado 1 y después aplicar otra puerta de Hadamart</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Añadimos H-gates</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Punemos el qubit en el esatdo |-&gt;</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ac0b115e0254097d6f15195410ba44f5c2cd849aa6eb2429629574e11bfb75b5.png" src="../../_images/ac0b115e0254097d6f15195410ba44f5c2cd849aa6eb2429629574e11bfb75b5.png" />
+</div>
+</div>
+<p>Ahora aplicamos un oráculo balanceado que se ha construido anteriormente</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Añadimos H-gates</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Punemos el qubit en el esatdo |-&gt;</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Añadimos el oráculo</span>
+<span class="n">dj_circuit</span> <span class="o">=</span> <span class="n">dj_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">balanced_oracle</span><span class="p">)</span>
+
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e23c5f8d1d325fb47dc2f457397af39935592d9d5f68887299eaf2a1d9cdd189.png" src="../../_images/e23c5f8d1d325fb47dc2f457397af39935592d9d5f68887299eaf2a1d9cdd189.png" />
+</div>
+</div>
+<p>Finalmente aplicamos una puerta de Hadamrt sobre los tres primero qubits y medimos los tres primeros qubits (los del registro 1)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dj_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Añadimos H-gates</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Punemos el qubit en el esatdo |-&gt;</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># Añadimos el oráculo</span>
+<span class="n">dj_circuit</span> <span class="o">=</span> <span class="n">dj_circuit</span><span class="o">.</span><span class="n">compose</span><span class="p">(</span><span class="n">balanced_oracle</span><span class="p">)</span>
+
+<span class="c1"># Añadimos H-gates</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="c1"># Medimos</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># Dibujamos el circuito</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3128bbcc435f79ca0061a4a29d0d547b453f8b265a594266d83f8e5a5d64b074.png" src="../../_images/3128bbcc435f79ca0061a4a29d0d547b453f8b265a594266d83f8e5a5d64b074.png" />
+</div>
+</div>
+<p>Veamos a continuación el output</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install qiskit-aer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># usamos local simulator</span>
+<span class="n">aer_sim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">aer_sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">dj_circuit</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/3aa666511ed0accb65678c604a5edbaca684d3ca428df1a1de6fc0fab1e81c86.png" src="../../_images/3aa666511ed0accb65678c604a5edbaca684d3ca428df1a1de6fc0fab1e81c86.png" />
+</div>
+</div>
+<p>Como podemos observar el resultado es 111 al 100% por lo que según al algoritmo de Deutsch-Jozsa la función será balanceada. Como ejercicio, se deja que el lector pruebe con el oráculo constante (const_oracle), definido anteriormente y compruebe que la salida en este caso es 000</p>
+</section>
+<section id="funcion-para-crear-el-algortimo-de-deutsch-jozsa">
+<h3><span class="section-number">16.1.3. </span>Función para crear el algortimo de Deutsch_jozsa<a class="headerlink" href="#funcion-para-crear-el-algortimo-de-deutsch-jozsa" title="Permalink to this heading">#</a></h3>
+<p>A continuación se propone una función que generaliza los casos vistos anteriormente. Tiene el parámetro <em>case</em> que puede tomar el valor ‘balanced’ o ‘constant’ y el tamaños de los qubits designado con el parámetro n</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dj_oracle</span><span class="p">(</span><span class="n">case</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="c1"># We need to make a QuantumCircuit object to return</span>
+    <span class="c1"># This circuit has n+1 qubits: the size of the input,</span>
+    <span class="c1"># plus one output qubit</span>
+    <span class="n">oracle_qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># First, let&#39;s deal with the case in which oracle is balanced</span>
+    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s2">&quot;balanced&quot;</span><span class="p">:</span>
+        <span class="c1"># First generate a random number that tells us which CNOTs to</span>
+        <span class="c1"># wrap in X-gates:</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">**</span><span class="n">n</span><span class="p">)</span>
+        <span class="c1"># Next, format &#39;b&#39; as a binary string of length &#39;n&#39;, padded with zeros:</span>
+        <span class="n">b_str</span> <span class="o">=</span> <span class="nb">format</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="c1"># Next, we place the first X-gates. Each digit in our binary string </span>
+        <span class="c1"># corresponds to a qubit, if the digit is 0, we do nothing, if it&#39;s 1</span>
+        <span class="c1"># we apply an X-gate to that qubit:</span>
+        <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b_str</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">b_str</span><span class="p">[</span><span class="n">qubit</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="n">oracle_qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+        <span class="c1"># Do the controlled-NOT gates for each qubit, using the output qubit </span>
+        <span class="c1"># as the target:</span>
+        <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">oracle_qc</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="c1"># Next, place the final X-gates</span>
+        <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b_str</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">b_str</span><span class="p">[</span><span class="n">qubit</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="n">oracle_qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+    <span class="c1"># Case in which oracle is constant</span>
+    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="s2">&quot;constant&quot;</span><span class="p">:</span>
+        <span class="c1"># First decide what the fixed output of the oracle will be</span>
+        <span class="c1"># (either always 0 or always 1)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">output</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">oracle_qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    
+    <span class="n">oracle_gate</span> <span class="o">=</span> <span class="n">oracle_qc</span><span class="o">.</span><span class="n">to_gate</span><span class="p">()</span>
+    <span class="n">oracle_gate</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Oracle&quot;</span> <span class="c1"># To show when we display the circuit</span>
+    <span class="k">return</span> <span class="n">oracle_gate</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación va la función que toma el oráculo creado con la anterior función y formula el algoritmo de Deutsch_Jozsa</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dj_algorithm</span><span class="p">(</span><span class="n">oracle</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">dj_circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="c1"># Set up the output qubit:</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="c1"># And set up the input register:</span>
+    <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+    <span class="c1"># Let&#39;s append the oracle gate to our circuit:</span>
+    <span class="n">dj_circuit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">oracle</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="c1"># Finally, perform the H-gates again and measure:</span>
+    <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dj_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dj_circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">dj_circuit</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finalmente usamos los códigos anteriores</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">oracle_gate</span> <span class="o">=</span> <span class="n">dj_oracle</span><span class="p">(</span><span class="s1">&#39;balanced&#39;</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">dj_circuit</span> <span class="o">=</span> <span class="n">dj_algorithm</span><span class="p">(</span><span class="n">oracle_gate</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">dj_circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/63088f59c0c1627f572b8e952c2035055bb96a2d1cae58284e89c3fe0dceae02.png" src="../../_images/63088f59c0c1627f572b8e952c2035055bb96a2d1cae58284e89c3fe0dceae02.png" />
+</div>
+</div>
+<p>Y a continuación ejecutamos el circuito</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">transpiled_dj_circuit</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">dj_circuit</span><span class="p">,</span> <span class="n">aer_sim</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">aer_sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">transpiled_dj_circuit</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/963ce46a4066110cda97cb1d9a7f0885919341270b6202c9e5b7fd0003773d86.png" src="../../_images/963ce46a4066110cda97cb1d9a7f0885919341270b6202c9e5b7fd0003773d86.png" />
+</div>
+</div>
+<p>Existe otra posibilidad de crear un oráculo balanceado o constante.</p>
+<p>La función <em>dj_problem_oracle</em> (que figura abajo) devuelve un oráculo Deutsch-Jozsa para n = 4 en forma de puerta. La puerta toma 5 qubits como entrada donde el qubit final (q_4) es el qubit de salida (como con los oráculos de ejemplo anteriores). Puedes obtener diferentes oráculos dando a <em>dj_problem_oracle</em> diferentes enteros entre 1 y 5. Usa el algoritmo Deutsch-Jozsa para decidir si cada oráculo está equilibrado o es constante (Nota: Es muy recomendable que pruebes este ejemplo usando el aer_simulator en lugar de un dispositivo real).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit_textbook.problems</span> <span class="kn">import</span> <span class="n">dj_problem_oracle</span>
+<span class="n">oracle</span> <span class="o">=</span> <span class="n">dj_problem_oracle</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">oracle</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>qiskit.circuit.gate.Gate
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -458,11 +903,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../../genindex.html"
+       href="Algoritmo_Grover.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Índice</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Introducción</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -472,6 +917,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-los-oraculos">16.1. Creación de los oráculos.</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-un-oraculo-constante">16.1.1. Construcción de un oráculo constante</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#construccion-de-un-oraculo-balanceado">16.1.2. Construcción de un oráculo balanceado</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcion-para-crear-el-algortimo-de-deutsch-jozsa">16.1.3. Función para crear el algortimo de Deutsch_jozsa</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
