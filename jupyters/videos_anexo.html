@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,15 +78,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -185,15 +175,18 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema8_QFT.html">16. Transformada cuántica de Fourier</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="algoritmos/deutsch_Jozsa.html">16. Algoritmo Deutsch_Jozsa</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algoritmos/Algoritmo_Grover.html">17. Algoritmo de Grover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos/deutsch_Jozsa.html">18. Algoritmo Deutsch_Jozsa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos/Algoritmo_Grover.html">19. Algoritmo de Grover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos/qpe.html">20. quantum phase estimation(QPE)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../genindex.html">18. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">21. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="current nav bd-sidenav">
@@ -314,10 +307,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
@@ -325,7 +318,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -439,7 +432,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a51a57e15f26c71d1fe2b4ded1869c0b1576dd6b97eb06a4608aa0916e8c8b81.png" src="../_images/a51a57e15f26c71d1fe2b4ded1869c0b1576dd6b97eb06a4608aa0916e8c8b81.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\programas\Anaconda\Lib\site-packages\qiskit\visualization\circuit\matplotlib.py:266: FutureWarning: The default matplotlib drawer scheme will be changed to &quot;iqp&quot; in a following release. To silence this warning, specify the current default explicitly as style=&quot;clifford&quot;, or the new default as style=&quot;iqp&quot;.
+  self._style, def_font_ratio = load_style(self._style)
+</pre></div>
+</div>
+<img alt="../_images/f89039b0ec0fb29724ebdc65552c2b08c10256303ab308ade183c43feb9fe1bd.png" src="../_images/f89039b0ec0fb29724ebdc65552c2b08c10256303ab308ade183c43feb9fe1bd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -468,7 +465,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a8d44286806c078d169faf86edb9480d45989c1cd145d0ff81f625ba123911c1.png" src="../_images/a8d44286806c078d169faf86edb9480d45989c1cd145d0ff81f625ba123911c1.png" />
+<img alt="../_images/79e21228f66b6973a2a68225e558e785fd7f83a30e0809eec6e4931e1115e819.png" src="../_images/79e21228f66b6973a2a68225e558e785fd7f83a30e0809eec6e4931e1115e819.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -479,7 +476,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/a8d44286806c078d169faf86edb9480d45989c1cd145d0ff81f625ba123911c1.png" src="../_images/a8d44286806c078d169faf86edb9480d45989c1cd145d0ff81f625ba123911c1.png" />
+<img alt="../_images/79e21228f66b6973a2a68225e558e785fd7f83a30e0809eec6e4931e1115e819.png" src="../_images/79e21228f66b6973a2a68225e558e785fd7f83a30e0809eec6e4931e1115e819.png" />
 </div>
 </div>
 <p>NOTA: El gráfico anterior (<em>plot_state_city</em>) se obtiene de la matriz de densidad que se saca a continuación. Como puede verse, las barras del gráfico tienen como altura los valores de esa matriz de densidad.</p>
@@ -545,7 +542,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1ec33ce4ab5d11d1c08f4f1d0781f9b63ca8b1d263af29b1f0d48866834424a6.png" src="../_images/1ec33ce4ab5d11d1c08f4f1d0781f9b63ca8b1d263af29b1f0d48866834424a6.png" />
+<img alt="../_images/f185c92d7d28570952175adac217fb49a4a2704190e99e18af04c1757cf79b40.png" src="../_images/f185c92d7d28570952175adac217fb49a4a2704190e99e18af04c1757cf79b40.png" />
 </div>
 </div>
 </section>
@@ -558,7 +555,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cad4a4cb3055d74f904db6bf0431de2afeeb8a07e5f5aa1fa9fdfb7617e1bc4c.png" src="../_images/cad4a4cb3055d74f904db6bf0431de2afeeb8a07e5f5aa1fa9fdfb7617e1bc4c.png" />
+<img alt="../_images/f94ce22f6a7147a506862c369393aaa16ef9d78e920a1a1d9ddbc5079ec8c164.png" src="../_images/f94ce22f6a7147a506862c369393aaa16ef9d78e920a1a1d9ddbc5079ec8c164.png" />
 </div>
 </div>
 </section>
@@ -572,7 +569,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1d387a8ad4d65b55d180fc09cdf06fd8f32659bf4c86954fa7d88c0b5bdfbaa4.png" src="../_images/1d387a8ad4d65b55d180fc09cdf06fd8f32659bf4c86954fa7d88c0b5bdfbaa4.png" />
+<img alt="../_images/9f825ed2d8e2942acd8abde2511511fd776ccb18e95a4c166b3d79d60c7b78ec.png" src="../_images/9f825ed2d8e2942acd8abde2511511fd776ccb18e95a4c166b3d79d60c7b78ec.png" />
 </div>
 </div>
 <p>También se puede utilizar <a href="https://qiskit.org/documentation/stubs/qiskit.visualization.plot_state_hinton.html"  target="_blank"> plot_state_hinton </a>.</p>
@@ -594,7 +591,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0d8e247733a447669ebccdcac602fb0abe82261f42ed96e9e614172dfb3f80b2.png" src="../_images/0d8e247733a447669ebccdcac602fb0abe82261f42ed96e9e614172dfb3f80b2.png" />
+<img alt="../_images/40b27954fc034aaba6828bb2896cf9d5dac6f3bfcd7ae1b2561fd1940bc006ac.png" src="../_images/40b27954fc034aaba6828bb2896cf9d5dac6f3bfcd7ae1b2561fd1940bc006ac.png" />
 </div>
 </div>
 <p>El gráfico anterior también se puede obtener con <a href="https://qiskit.org/documentation/stubs/qiskit.visualization.plot_state_paulivec.html" target="_blank"> plot_state_paulivec </a>.</p>
@@ -609,7 +606,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3755b8750a61e201ed5869c3bf41882d71b7ee30373e56ab7bfbc0d4114836b5.png" src="../_images/3755b8750a61e201ed5869c3bf41882d71b7ee30373e56ab7bfbc0d4114836b5.png" />
+<img alt="../_images/7d502a025287b9b787f770cdfb3b939cf231d20868ea4e5961fabe81c630a347.png" src="../_images/7d502a025287b9b787f770cdfb3b939cf231d20868ea4e5961fabe81c630a347.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1470,10 +1467,11 @@ e^{i\varPhi} &amp; e^{i(\varPhi+\lambda)}
 
               
               
-              
-              
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="paquetequtip.html"
@@ -1493,7 +1491,10 @@ e^{i\varPhi} &amp; e^{i(\varPhi+\lambda)}
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1580,8 +1581,8 @@ By Francisco Rodríguez
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

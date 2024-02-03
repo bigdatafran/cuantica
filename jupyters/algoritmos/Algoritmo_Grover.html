@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>17. Introducción &#8212; Programación Cuántica</title>
+    <title>19. Introducción &#8212; Programación Cuántica</title>
   
   
   
@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,8 @@
     <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -67,8 +66,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/algoritmos/Algoritmo_Grover';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="18. Índice" href="../../genindex.html" />
-    <link rel="prev" title="16. Introducción." href="deutsch_Jozsa.html" />
+    <link rel="next" title="20. Quantum Phase Estimation (QPE)" href="qpe.html" />
+    <link rel="prev" title="18. Introducción." href="deutsch_Jozsa.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -79,15 +78,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -185,15 +175,18 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="../Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Tema7_proving-universality.html">15. Universalidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema8_QFT.html">16. Transformada cuántica de Fourier</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="deutsch_Jozsa.html">16. Algoritmo Deutsch_Jozsa</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">17. Algoritmo de Grover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deutsch_Jozsa.html">18. Algoritmo Deutsch_Jozsa</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Algoritmo de Grover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qpe.html">20. quantum phase estimation(QPE)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">18. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">21. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
@@ -314,10 +307,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
@@ -325,7 +318,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -352,9 +345,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-del-oraculo">17.1. Creación del oráculo.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-operador-de-difusion">17.2. Creación de operador de difusión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-del-algoritmo-de-grover-con-grover-problem-oracle">17.3. Solución del algoritmo de Grover con grover_problem_oracle.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-del-oraculo">19.1. Creación del oráculo.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-operador-de-difusion">19.2. Creación de operador de difusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-del-algoritmo-de-grover-con-grover-problem-oracle">19.3. Solución del algoritmo de Grover con grover_problem_oracle.</a></li>
 </ul>
             </nav>
         </div>
@@ -367,7 +360,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduccion">
-<span id="grover"></span><h1><span class="section-number">17. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
+<span id="grover"></span><h1><span class="section-number">19. </span>Introducción<a class="headerlink" href="#introduccion" title="Permalink to this heading">#</a></h1>
 <p id="index-0">El <strong>algoritmo de grover</strong> es uno de los algoritmos más utilizados en el mundo de la computación cuántica, y su finalidad explicada a grandes pinceladas es la siguiente: Supongamos que tenemos un conjunto desordenado de elementos y nos interesa reconocer uno de ellos. Con la computación clásica iríamos uno a uno viendo si es elemento que buscamos o no. Entonces con este método tardaríamos una media de N/2 (N es el número de elementos que tenemos). Pues bien con el algoritmo de Grover podemos reducir considerablemente ese número de intentos a <span class="math notranslate nohighlight">\(\sqrt{N}\)</span>. Es decir si N=100, con un computador clásico en media hay que hacer 50 intentos, mientras que con este algoritmo, se reducirá a <span class="math notranslate nohighlight">\(\sqrt{100}=10\)</span> intentos.</p>
 <p>Para una explicación algo más detallada de esto se recomiendo ver <a href='https://www.youtube.com/watch?v=xPkvB4ECVM4' target='_blank'>Este vídeo </a>, en el cual además de explicar de una forma muy intuitiva el algorimo, también tiene un documento que lo demuestra de una forma más técnica. Este documento lo podemos encontrar <a href='..\documentos\Algoritmo_Grover.pdf' target='_blank'> en este enlace </a>.</p>
 <p>Si bien entender lo que hace el algoritmo es muy interesante, también es importante su implementación, para ello, se aconseja al lector igualmente <a href='https://www.youtube.com/watch?v=u5Yd0St6MN4&t=250s' target='_blank'> ver este vídeo </a> y el documento que explica esta implementación <a href='..\documentos\Grover_implantacion.pdf' target='_blank'> también se puede ver aquí. </a></p>
@@ -382,7 +375,7 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[|s\rangle=\frac{1}{\sqrt{2}}\left[|00\rangle+|01\rangle+|10\rangle+|11\rangle\right]\]</div>
 <section id="creacion-del-oraculo">
-<h2><span class="section-number">17.1. </span>Creación del oráculo.<a class="headerlink" href="#creacion-del-oraculo" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.1. </span>Creación del oráculo.<a class="headerlink" href="#creacion-del-oraculo" title="Permalink to this heading">#</a></h2>
 <p>El segundo paso en la aplicación de este algoritmo es la creación del oráculo. Este oráculo añade añade una fase negativa al estado solución que estamos buscando. En este sentido si estamos trabajando con tres qubits y el estado que buscamos es el <span class="math notranslate nohighlight">\(w=|101\rangle\)</span> entonces la matriz del oráculo tiene en la diagonal 1 salvo en la posición donde se invierte el qubit que en este caso sería la sexta, para ver esta posición hay que recordar lo siguiente:</p>
 <div class="math notranslate nohighlight">
 \[|101\rangle = 0\cdot |000\rangle+0\cdot |001\rangle + ...+1\cdot |101\rangle +0\cdot |110\rangle+0\cdot |111\rangle \]</div>
@@ -456,7 +449,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 \end{array}\right)\end{split}\]</div>
 </section>
 <section id="creacion-de-operador-de-difusion">
-<h2><span class="section-number">17.2. </span>Creación de operador de difusión<a class="headerlink" href="#creacion-de-operador-de-difusion" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.2. </span>Creación de operador de difusión<a class="headerlink" href="#creacion-de-operador-de-difusion" title="Permalink to this heading">#</a></h2>
 <p>Por regla general este operador de difusión tiene el siguiente aspecto.</p>
 <p><img alt="" src="../../_images/operadorDifusion.PNG" /></p>
 <p><a href='..\documentos\Grover_implantacion.pdf' target='_blank'> En este documento  </a> se demuestra que el operador de difusión se puede implementar mediante el siguiente circuito:</p>
@@ -508,7 +501,11 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0f50b78ca81f62b30ccd18a53a5dc6b1b7e74524cad47f9e733129cf2cda0669.png" src="../../_images/0f50b78ca81f62b30ccd18a53a5dc6b1b7e74524cad47f9e733129cf2cda0669.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\programas\Anaconda\Lib\site-packages\qiskit\visualization\circuit\matplotlib.py:266: FutureWarning: The default matplotlib drawer scheme will be changed to &quot;iqp&quot; in a following release. To silence this warning, specify the current default explicitly as style=&quot;clifford&quot;, or the new default as style=&quot;iqp&quot;.
+  self._style, def_font_ratio = load_style(self._style)
+</pre></div>
+</div>
+<img alt="../../_images/bea4d62786c598da16f7997c72801fc8750e641371b8b1a36d48f29f0bddfbf3.png" src="../../_images/bea4d62786c598da16f7997c72801fc8750e641371b8b1a36d48f29f0bddfbf3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -523,7 +520,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/0364d8f678668563bf408a2bb408ab6ac450331066e36a95fe6d4cad8826fc51.png" src="../../_images/0364d8f678668563bf408a2bb408ab6ac450331066e36a95fe6d4cad8826fc51.png" />
+<img alt="../../_images/b2f4913b5fbede454352e772c1289b08eb1d8a695c7cb824f8234010349294f9.png" src="../../_images/b2f4913b5fbede454352e772c1289b08eb1d8a695c7cb824f8234010349294f9.png" />
 </div>
 </div>
 <p>Me interesa buscar lo elementos que la puerta anterior cambia de signo. se puede comprobar que los que cambian de signo son el 011 y el 111, ya que la puerta z transforma el 0 en 0 y el ket 1 en -1</p>
@@ -544,7 +541,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e824cb49029d7fb7f504d0dc27151e92234e13e4cc6a56c3461fe3b11eb4b836.png" src="../../_images/e824cb49029d7fb7f504d0dc27151e92234e13e4cc6a56c3461fe3b11eb4b836.png" />
+<img alt="../../_images/ba5771f112cfef2f0ad747ad8d724c9cced927f8f25f7673edadce271469b7ef.png" src="../../_images/ba5771f112cfef2f0ad747ad8d724c9cced927f8f25f7673edadce271469b7ef.png" />
 </div>
 </div>
 <p>Construimos a continuación el circuito para aplicar el algoritmo de grover</p>
@@ -559,7 +556,13 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2ac8c07bd3b23a1366c9ca13d42f692db767f7a75602f6db3e5b53eac6e015eb.png" src="../../_images/2ac8c07bd3b23a1366c9ca13d42f692db767f7a75602f6db3e5b53eac6e015eb.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\3259579902.py:1: DeprecationWarning: The &#39;qiskit.Aer&#39; entry point is deprecated and will be removed in Qiskit 1.0. You should use &#39;qiskit_aer.Aer&#39; directly instead.
+  backend = Aer.get_backend(&quot;qasm_simulator&quot;)
+C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\3259579902.py:2: DeprecationWarning: The function ``qiskit.execute_function.execute()`` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function combines ``transpile`` and ``backend.run``, which is covered by ``Sampler`` :mod:`~qiskit.primitives`. Alternatively, you can also run :func:`.transpile` followed by ``backend.run()``.
+  job = execute(circ, backend, shots = 1000)
+</pre></div>
+</div>
+<img alt="../../_images/790f03e61b0ced8941a6a2d22e2e962d29fc8a7b3d753391256b54f71317e183.png" src="../../_images/790f03e61b0ced8941a6a2d22e2e962d29fc8a7b3d753391256b54f71317e183.png" />
 </div>
 </div>
 <p>Implementemos a continuación otro ejmeplo para un total de dos qubits y suponiendo que <span class="math notranslate nohighlight">\(|w\rangle = |11\rangle\)</span>.</p>
@@ -591,7 +594,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a0b20a2f863ec7faa577114ee4465c81d9ac9f0782e84fdd68c343dccdf8d989.png" src="../../_images/a0b20a2f863ec7faa577114ee4465c81d9ac9f0782e84fdd68c343dccdf8d989.png" />
+<img alt="../../_images/d1fb596bbef05d01b78c4da605ecb2eafb0aa7d600966ba946c7c60cde780890.png" src="../../_images/d1fb596bbef05d01b78c4da605ecb2eafb0aa7d600966ba946c7c60cde780890.png" />
 </div>
 </div>
 <p>Aplicamos una puerta H para obtener el estado <span class="math notranslate nohighlight">\(|s\rangle\)</span> que hemos llamamo an l parte teórica</p>
@@ -621,7 +624,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8cfeda5b3980873a146de7aaeaddd683cd95d40f7c468011286f3f7c502d5ba2.png" src="../../_images/8cfeda5b3980873a146de7aaeaddd683cd95d40f7c468011286f3f7c502d5ba2.png" />
+<img alt="../../_images/8f99b55dc3295b71fb58c08975a1b1fd2349c7553a2e4c5ad412ffca3b8a33c4.png" src="../../_images/8f99b55dc3295b71fb58c08975a1b1fd2349c7553a2e4c5ad412ffca3b8a33c4.png" />
 </div>
 </div>
 <p>A continuación construimos el oráculo. Suponemos que <span class="math notranslate nohighlight">\(|w\rangle = |11\rangle\)</span>. Entonces de acuerdo con los visto anteriormente y para este estado cuántico, el oráculo <span class="math notranslate nohighlight">\(U_w\)</span> será una matriz de orden 4x4 con 1 en la diagonal salvo el cuarto que sería igual a -1. Esto lo podemos contruir con una puerta contro z. ya que no olvidemo la puerta z es igual a:</p>
@@ -637,7 +640,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a9800df6548d2114ca37dbbbcedd87b702f56cbc504771994d6e1dd17850fb67.png" src="../../_images/a9800df6548d2114ca37dbbbcedd87b702f56cbc504771994d6e1dd17850fb67.png" />
+<img alt="../../_images/0264df47b9a5cd395dc6d891b7e07fa025591da05d897c6052ef85841f08884e.png" src="../../_images/0264df47b9a5cd395dc6d891b7e07fa025591da05d897c6052ef85841f08884e.png" />
 </div>
 </div>
 <p>Ahora cramos y añadimos el difusor</p>
@@ -654,7 +657,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8e2b3598910bc108c10ff759f8b9af96623dc9d6fe260aecb9c3cd08459f7269.png" src="../../_images/8e2b3598910bc108c10ff759f8b9af96623dc9d6fe260aecb9c3cd08459f7269.png" />
+<img alt="../../_images/51fefa4c366fb40293784ee40d75143187d592727efe6504270ea13fe2106e66.png" src="../../_images/51fefa4c366fb40293784ee40d75143187d592727efe6504270ea13fe2106e66.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -692,7 +695,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2713c3f4ee656b48f6b22274ef1d60b0f75680ad4e2c3d11c1868049af70d6ff.png" src="../../_images/2713c3f4ee656b48f6b22274ef1d60b0f75680ad4e2c3d11c1868049af70d6ff.png" />
+<img alt="../../_images/a36991fc61e186f809dbfc4539b86dbb611755294ed4c7abed10312ae4e2a792.png" src="../../_images/a36991fc61e186f809dbfc4539b86dbb611755294ed4c7abed10312ae4e2a792.png" />
 </div>
 </div>
 <p>Hagamos ahora el ejemplo pear tres qubits, y los estados a localizar serían el <span class="math notranslate nohighlight">\(|101\rangle\)</span> y <span class="math notranslate nohighlight">\(|110\rangle\)</span>. El esquema del circuito que resuelve el problema sería el siguiente:</p>
@@ -752,7 +755,11 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/36648b32b674245cc9f8ce9ec8784aca214afd9e742d0b2e24adb55e9df36c4d.png" src="../../_images/36648b32b674245cc9f8ce9ec8784aca214afd9e742d0b2e24adb55e9df36c4d.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\1836156100.py:11: DeprecationWarning: The method ``qiskit.circuit.quantumcircuit.QuantumCircuit.mct()`` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.mcx as direct replacement.
+  qc.mct(list(range(nqubits-1)), nqubits-1)  # multi-controlled-toffoli
+</pre></div>
+</div>
+<img alt="../../_images/74de1446dd05dcc153bbebc9477d8f1a9e055279a00d58e4a7a7af45d8151a54.png" src="../../_images/74de1446dd05dcc153bbebc9477d8f1a9e055279a00d58e4a7a7af45d8151a54.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -766,12 +773,12 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e13a3aec69479b4e6ce388e4b965a9d1be1fbfec92f89cec21fbca42e8b2892d.png" src="../../_images/e13a3aec69479b4e6ce388e4b965a9d1be1fbfec92f89cec21fbca42e8b2892d.png" />
+<img alt="../../_images/f5a806fb022fe2742ff2ab9eab9b80415a72acc64d346cd2e95746baa560f80a.png" src="../../_images/f5a806fb022fe2742ff2ab9eab9b80415a72acc64d346cd2e95746baa560f80a.png" />
 </div>
 </div>
 </section>
 <section id="solucion-del-algoritmo-de-grover-con-grover-problem-oracle">
-<h2><span class="section-number">17.3. </span>Solución del algoritmo de Grover con grover_problem_oracle.<a class="headerlink" href="#solucion-del-algoritmo-de-grover-con-grover-problem-oracle" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">19.3. </span>Solución del algoritmo de Grover con grover_problem_oracle.<a class="headerlink" href="#solucion-del-algoritmo-de-grover-con-grover-problem-oracle" title="Permalink to this heading">#</a></h2>
 <p>A continuación vamos a ver cómo resolver este tipo de problemas con el paquete qiskit_textbook.problems y la función <em>grover_problem_oracle</em>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -786,7 +793,7 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/70dda7a04867f58a53706cb2633a490268c3b139128feb4bd8e281bb44b998bd.png" src="../../_images/70dda7a04867f58a53706cb2633a490268c3b139128feb4bd8e281bb44b998bd.png" />
+<img alt="../../_images/e0c5e0200ab95ed4bd680c33931bbb21a9d3efeb768676cc12a79b6b048d2e4b.png" src="../../_images/e0c5e0200ab95ed4bd680c33931bbb21a9d3efeb768676cc12a79b6b048d2e4b.png" />
 </div>
 </div>
 </section>
@@ -817,10 +824,11 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 
               
               
-              
-              
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="deutsch_Jozsa.html"
@@ -828,19 +836,22 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">16. </span>Introducción.</p>
+        <p class="prev-next-title"><span class="section-number">18. </span>Introducción.</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../genindex.html"
+       href="qpe.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">18. </span>Índice</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Quantum Phase Estimation (QPE)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -855,9 +866,9 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-del-oraculo">17.1. Creación del oráculo.</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-operador-de-difusion">17.2. Creación de operador de difusión</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-del-algoritmo-de-grover-con-grover-problem-oracle">17.3. Solución del algoritmo de Grover con grover_problem_oracle.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-del-oraculo">19.1. Creación del oráculo.</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creacion-de-operador-de-difusion">19.2. Creación de operador de difusión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-del-algoritmo-de-grover-con-grover-problem-oracle">19.3. Solución del algoritmo de Grover con grover_problem_oracle.</a></li>
 </ul>
   </nav></div>
 
@@ -905,8 +916,8 @@ By Francisco Rodríguez
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

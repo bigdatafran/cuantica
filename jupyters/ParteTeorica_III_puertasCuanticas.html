@@ -19,12 +19,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -38,9 +38,8 @@
     <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
-  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -79,15 +78,6 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   <a class="skip-link" href="#main-content">Skip to main content</a>
-  
-  <div id="pst-scroll-pixel-helper"></div>
-
-  
-  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
-    <i class="fa-solid fa-arrow-up"></i>
-    Back to top
-  </button>
-
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -185,15 +175,18 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Tema7_proving-universality.html">15. Universalidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tema8_QFT.html">16. Transformada cuántica de Fourier</a></li>
+
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="algoritmos/deutsch_Jozsa.html">16. Algoritmo Deutsch_Jozsa</a></li>
-<li class="toctree-l1"><a class="reference internal" href="algoritmos/Algoritmo_Grover.html">17. Algoritmo de Grover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos/deutsch_Jozsa.html">18. Algoritmo Deutsch_Jozsa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos/Algoritmo_Grover.html">19. Algoritmo de Grover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="algoritmos/qpe.html">20. quantum phase estimation(QPE)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../genindex.html">18. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">21. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
@@ -314,10 +307,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
-    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
 `);
 </script>
@@ -325,7 +318,7 @@ document.write(`
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 `);
 </script>
@@ -858,7 +851,11 @@ H S T H|0\rangle &amp; =H S T \frac{1}{\sqrt{2}}(|0\rangle+|1\rangle) \\
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2b68696bd3ebdb11fefd45044dae00e5586b6dab8f8835781fe8e42570b7e45c.png" src="../_images/2b68696bd3ebdb11fefd45044dae00e5586b6dab8f8835781fe8e42570b7e45c.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\programas\Anaconda\Lib\site-packages\qiskit\visualization\circuit\matplotlib.py:266: FutureWarning: The default matplotlib drawer scheme will be changed to &quot;iqp&quot; in a following release. To silence this warning, specify the current default explicitly as style=&quot;clifford&quot;, or the new default as style=&quot;iqp&quot;.
+  self._style, def_font_ratio = load_style(self._style)
+</pre></div>
+</div>
+<img alt="../_images/69d5438b75dfdf3d9fb42de03d8329c8b491f2a1d5db36ad1bebcc58e7dc1259.png" src="../_images/69d5438b75dfdf3d9fb42de03d8329c8b491f2a1d5db36ad1bebcc58e7dc1259.png" />
 </div>
 </div>
 <p>Estos circuitos se tienen leer de izquierda a derecha, tal y como ocurre en los circuitos clásicos. En este sentido y para el ejemplo anterior, se comienza con un qubit simple <span class="math notranslate nohighlight">\(|o\rangle\)</span> y se aplica una puerta de Hadamrt H, seguida de otra puerta de tipo S para finalmente aplicar una puerta Z.</p>
@@ -946,7 +943,7 @@ c: 3/═══════╩════════╩══╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bf6bac386c4f24c45d224945d5a70ef4a6704f3ca7be0bc444c91a5796eccb9c.png" src="../_images/bf6bac386c4f24c45d224945d5a70ef4a6704f3ca7be0bc444c91a5796eccb9c.png" />
+<img alt="../_images/036669542f666379efb60dc4393ab75a66fc79d2fc5dec1aa5875f8c13ccac84.png" src="../_images/036669542f666379efb60dc4393ab75a66fc79d2fc5dec1aa5875f8c13ccac84.png" />
 </div>
 </div>
 <p>Para la salida utilizando formato latex, se necesita tener instalado el paquete de latex denominado qcircuit. Como para este trabajo no se tiene instalado este paquete, se indica la instrucción a utilizar para conseguir esto, pero con la misma comentada para que no sea ejecutada por parte de python.</p>
@@ -965,6 +962,10 @@ c: 3/═══════╩════════╩══╩═
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>D:\programas\Anaconda\Lib\site-packages\qiskit\visualization\circuit\latex.py:154: FutureWarning: The default matplotlib drawer scheme will be changed to &quot;iqp&quot; in a following release. To silence this warning, specify the current default explicitly as style=&quot;clifford&quot;, or the new default as style=&quot;iqp&quot;.
+  self._style, _ = load_style(style)
+</pre></div>
+</div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;\\documentclass[border=2px]{standalone}\n\n\\usepackage[braket, qm]{qcircuit}\n\\usepackage{graphicx}\n\n\\begin{document}\n\\scalebox{1.0}{\n\\Qcircuit @C=1.0em @R=0.2em @!R { \\\\\n\t \t\\nghost{{q}_{0} :  } &amp; \\lstick{{q}_{0} :  } &amp; \\gate{\\mathrm{H}} &amp; \\qw &amp; \\ctrl{1} &amp; \\meter &amp; \\qw &amp; \\qw &amp; \\qw\\\\\n\t \t\\nghost{{q}_{1} :  } &amp; \\lstick{{q}_{1} :  } &amp; \\gate{\\mathrm{X}} &amp; \\gate{\\mathrm{H}} &amp; \\targ &amp; \\qw &amp; \\meter &amp; \\qw &amp; \\qw\\\\\n\t \t\\nghost{{q}_{2} :  } &amp; \\lstick{{q}_{2} :  } &amp; \\gate{\\mathrm{H}} &amp; \\meter &amp; \\qw &amp; \\qw &amp; \\qw &amp; \\qw &amp; \\qw\\\\\n\t \t\\nghost{\\mathrm{{c} :  }} &amp; \\lstick{\\mathrm{{c} :  }} &amp; \\lstick{/_{_{3}}} \\cw &amp; \\dstick{_{_{\\hspace{0.0em}2}}} \\cw \\ar @{&lt;=} [-1,0] &amp; \\cw &amp; \\dstick{_{_{\\hspace{0.0em}0}}} \\cw \\ar @{&lt;=} [-3,0] &amp; \\dstick{_{_{\\hspace{0.0em}1}}} \\cw \\ar @{&lt;=} [-2,0] &amp; \\cw &amp; \\cw\\\\\n\\\\ }}\n\\end{document}&#39;
 </pre></div>
 </div>
@@ -1035,7 +1036,7 @@ c: 3/═══════╩════════╩══╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d7defbb0f90b7a0f2f08193aa9619868352f284ccbb1a6470f8585e76e3d5b16.png" src="../_images/d7defbb0f90b7a0f2f08193aa9619868352f284ccbb1a6470f8585e76e3d5b16.png" />
+<img alt="../_images/c72fa010c648d3ebb9d3867c565d7cc6e54d75f6430a1370c99388a809b1c849.png" src="../_images/c72fa010c648d3ebb9d3867c565d7cc6e54d75f6430a1370c99388a809b1c849.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1046,7 +1047,7 @@ c: 3/═══════╩════════╩══╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b0d01751e622c001b1ff850be335dfb595e6670d37993ab3aaa85838df0b9bb.png" src="../_images/8b0d01751e622c001b1ff850be335dfb595e6670d37993ab3aaa85838df0b9bb.png" />
+<img alt="../_images/3143306cf43b9214ad011e90b4ede45689f12cc1691cdefa72a41efcdb056065.png" src="../_images/3143306cf43b9214ad011e90b4ede45689f12cc1691cdefa72a41efcdb056065.png" />
 </div>
 </div>
 <p>Igualmente se pueden eliminar las barraras mostradas en el ejemplo anterior</p>
@@ -1057,7 +1058,7 @@ c: 3/═══════╩════════╩══╩═
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ca1006c628ca25f66b9f1e1263064e017266c78ebaf1a9a46702814d22aaf403.png" src="../_images/ca1006c628ca25f66b9f1e1263064e017266c78ebaf1a9a46702814d22aaf403.png" />
+<img alt="../_images/03aa74b8f254726837e4816d21f7ad37ecea219fe022a762f89977f9576f10cc.png" src="../_images/03aa74b8f254726837e4816d21f7ad37ecea219fe022a762f89977f9576f10cc.png" />
 </div>
 </div>
 </section>
@@ -1103,7 +1104,7 @@ c1: 5/════════════════════════�
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b46e484f70de1e5bd827a6aa4ead6ad6118fdec0967353c948f69f755a7a80f.png" src="../_images/8b46e484f70de1e5bd827a6aa4ead6ad6118fdec0967353c948f69f755a7a80f.png" />
+<img alt="../_images/cb6b8280dbfdddfc5bf9dc3e6c06e2afa51a448e8ccd36e030c031aa696eddb9.png" src="../_images/cb6b8280dbfdddfc5bf9dc3e6c06e2afa51a448e8ccd36e030c031aa696eddb9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1113,7 +1114,7 @@ c1: 5/════════════════════════�
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7e0a46244f363cb84f38b086d0aa9b58cfc58b32344d73c0ca0f38610ad57c6a.png" src="../_images/7e0a46244f363cb84f38b086d0aa9b58cfc58b32344d73c0ca0f38610ad57c6a.png" />
+<img alt="../_images/66ca83f21bcd11d050773293f12aeb18824e1c8f9d13f34bccf1db48a497146a.png" src="../_images/66ca83f21bcd11d050773293f12aeb18824e1c8f9d13f34bccf1db48a497146a.png" />
 </div>
 </div>
 </section>
@@ -1129,7 +1130,7 @@ c1: 5/════════════════════════�
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e940dacca3419dd874b11a3f0163e565dbe0f77e11f3b0a7fdbb9efb79b714db.png" src="../_images/e940dacca3419dd874b11a3f0163e565dbe0f77e11f3b0a7fdbb9efb79b714db.png" />
+<img alt="../_images/c70a9eeeb238c80ac94f3485d85f88a5762a2b3b5aee3e86f1a4d42f9ecb6787.png" src="../_images/c70a9eeeb238c80ac94f3485d85f88a5762a2b3b5aee3e86f1a4d42f9ecb6787.png" />
 </div>
 </div>
 </section>
@@ -1173,10 +1174,11 @@ Dentro de esta aplicación ewb, existe una amplia variedad de puertas cuánticas
 
               
               
-              
-              
-                <footer class="prev-next-footer">
-                  <!-- Previous / next buttons -->
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="ParteTeorica_II.html"
@@ -1196,7 +1198,10 @@ Dentro de esta aplicación ewb, existe una amplia variedad de puertas cuánticas
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -1278,8 +1283,8 @@ By Francisco Rodríguez
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

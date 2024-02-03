@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>20. Quantum Phase Estimation (QPE) &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"f8c6c02dd1994e629e44e9a21e182b6f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 10px 0px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "aed8fe1f155849b787f58de2a1177d8f": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": "0px 0px 10px 0px", "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e5dce630d2d54743b4a6087cccc6085b": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "6ddb695846734195985ddced0a488b7f": {"model_name": "HTMLStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "background": null, "description_width": "", "font_size": null, "text_color": null}}, "7c8d7650a82b4ea98215dfcd2d258c53": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_aed8fe1f155849b787f58de2a1177d8f", "placeholder": "\u200b", "style": "IPY_MODEL_6ddb695846734195985ddced0a488b7f", "tabbable": null, "tooltip": null, "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}, "b30a9cbfec8a4926af4d81b19b171d29": {"model_name": "HTMLModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "HTMLModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "HTMLView", "description": "", "description_allow_html": false, "layout": "IPY_MODEL_aed8fe1f155849b787f58de2a1177d8f", "placeholder": "\u200b", "style": "IPY_MODEL_6ddb695846734195985ddced0a488b7f", "tabbable": null, "tooltip": null, "value": "<p style='font-family: IBM Plex Sans, Arial, Helvetica, sans-serif; font-size: 20px; font-weight: medium;'>Circuit Properties</p>"}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/algoritmos/qpe';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="21. Índice" href="../../genindex.html" />
+    <link rel="prev" title="19. Introducción" href="Algoritmo_Grover.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_V_qubitMultiple.html">6. Múltiples qubits</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Tema0_Introducci%C3%B3n.html">7. Introducción a programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema7_proving-universality.html">15. Universalidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema8_QFT.html">16. Transformada cuántica de Fourier</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="deutsch_Jozsa.html">18. Algoritmo Deutsch_Jozsa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Algoritmo_Grover.html">19. Algoritmo de Grover</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">20. quantum phase estimation(QPE)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">21. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../otras/anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../otras/apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/jupyters/algoritmos/qpe.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Quantum Phase Estimation (QPE)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="quantum-phase-estimation-qpe">
+<span id="qpe"></span><h1><span class="section-number">20. </span>Quantum Phase Estimation (QPE)<a class="headerlink" href="#quantum-phase-estimation-qpe" title="Permalink to this heading">#</a></h1>
+<p id="index-0">En este apartado vamos a explicar el algoritmo de quantum phase estimation (QPE), uno de los algoritmos más utilizados dentro de la computación cuántica. Para poder desarrollar desde cero este algoritmo, necesitamos antes proceder a recordar los conceptos de valor y vector propio de una matriz.</p>
+<p>Dada una matriz A diremos que v es un vector propio de A y <span class="math notranslate nohighlight">\(\lambda\)</span> su valor propio asociado, cuando se cumple lo siguiente:</p>
+<div class="math notranslate nohighlight">
+\[A\cdot v = \lambda \cdot v\]</div>
+<p>Entonces, el algoritmo QPE, nos dice los siguiente: supongamos que tenemos una matriz Unitaria U, y que se cumple los siguiente:</p>
+<div class="math notranslate nohighlight">
+\[{U}|\psi\rangle= \lambda|\psi\rangle\]</div>
+<p>Y de esta manera podemos decir que <span class="math notranslate nohighlight">\(\psi\)</span> es un vector propio de <span class="math notranslate nohighlight">\(U\)</span>, y <span class="math notranslate nohighlight">\(\lambda\)</span> el valor propio asociado. Entonces este algoritmo QPE lo que resuelve es cual es este valor de <span class="math notranslate nohighlight">\(\lambda\)</span>. Ahora bien, hay que tener en cuenta que cuando trabajamos con matrices unitarias, se puede demostrar que <span class="math notranslate nohighlight">\(\lambda\)</span> es de la forma <span class="math notranslate nohighlight">\(e^{2 \pi i \theta} \)</span> (además la norma de los autovalores debe ser 1). Al valor <span class="math notranslate nohighlight">\(\theta\)</span> se le suele llamar la fase del número complejo.</p>
+<p>Así pues y resumiendo, este algoritmo nos va a permitir estimar el valor de <span class="math notranslate nohighlight">\(\theta\)</span> en la expresión:
+$<span class="math notranslate nohighlight">\({ U}|\psi\rangle=e^{2\pi i\theta}|\psi\rangle.\)</span>$</p>
+<p>El circuito que nos va a permitir resolver este problema sería el siguiente:</p>
+<p><img alt="" src="../../_images/qpe_3.PNG" /></p>
+<p>Los t qubits de arriba los denominaremos qubits de estimación, mientras que el qubit de abajo correspondiente a <span class="math notranslate nohighlight">\(|psi \rangle\)</span> lo denominaremos objetivo.</p>
+<p>Veamos a continuación la demostración matemática de que esto es así.</p>
+<p>El estado total de los n+a qubits, se puede representar de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{0}\rangle=|0\rangle^{\otimes n}|\psi\rangle\]</div>
+<p>Por otro lado, al aplicar una puerta de Hadamrd a las primeras n puertas, es resultado de esta acción es el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[|\psi_{1}\rangle=\frac{1}{2^{\frac{n}{2}}}(|0\rangle+|1\rangle)^{\otimes n}|\psi\rangle\]</div>
+<p>Después de esta operación, debemos aplicar los operados de control CU, que aplica el operador U sobre el target sin el qubit de control vale <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Si tenemos además en cuenta que U es unitaria con eigenvector <span class="math notranslate nohighlight">\(|\psi\rangle\)</span>, tal que <span class="math notranslate nohighlight">\({ U}|\psi\rangle=e^{2\pi i\theta}|\psi\rangle\)</span>, entonces se verifica lo siguiente:</p>
+<p><span class="math notranslate nohighlight">\(U^{2^J}|\psi\rangle=U^{2^J-1}U|\psi\rangle=U^{2^J-1}e^{2\pi i\theta}|\psi\rangle=\cdots=e^{2\pi i 2^{J}\theta}|\psi\rangle\)</span></p>
+<p>Además hay que tener en cuenta que si aplicamos el operador de control <span class="math notranslate nohighlight">\(CU^{2^j}\)</span> al estado (<span class="math notranslate nohighlight">\(|0\rangle +|1\rangle\)</span>), al primer qubit al estar en estado cero no le afecta pero si afecta al segundo por estar en estado 1, y al final quedará de la siguiente manera.</p>
+<div class="math notranslate nohighlight">
+\[CU^{2^j}(|0\rangle+|1\rangle)=|0\rangle+e^{2\pi i \theta 2^{2^j}}\]</div>
+<p>Teniendo todo esto en cuenta, después de aplicar todas las puertas de control, al qubit anterior <span class="math notranslate nohighlight">\(|\psi_{1}\rangle\)</span>, llegamos a la siguiente expresión:</p>
+<p><span class="math notranslate nohighlight">\(|\psi_{2}\rangle=\frac{1}{2^{\frac{n}{2}}}\Big(|0\rangle+e^{2\pi i\theta2^{n-1}}|1\rangle\Big)\otimes\cdots\otimes\Big(|0\rangle+e^{2\pi i\theta2^{n}}|1\rangle\Big)\otimes\Big(|0\rangle+e^{2\pi i\theta2^{n}}|1\rangle\Big)\otimes|\psi\rangle=\textcircled{1}\)</span></p>
+<p>Ahora hay que observar que la expresión anterior es una suma de productos, que si operamos entre ellos (por ejemplo <span class="math notranslate nohighlight">\((|0\rangle+|1\rangle) \otimes  (|0\rangle)+|1\rangle)=|00\rangle +|01\rangle +|10\rangle +|11\rangle \)</span>), y ai además se tiene en cuenta que:</p>
+<p><span class="math notranslate nohighlight">\(|0\rangle\otimes|\psi\rangle+|{\bf1}\rangle\otimes e^{2\pi i\theta}|\psi\rangle=\left(|0\rangle+e^{2\pi i\theta}|{\bf1}\rangle\right)\otimes|\psi\rangle\)</span></p>
+<p>Entonces se llega a la siguiente conclusión:</p>
+<div class="math notranslate nohighlight">
+\[\textcircled{1}=\frac{1}{2^{\frac{n}{2}}}\sum_{k=0}^{2^{n}-1}e^{2\pi i\theta k}|k\rangle\otimes|\psi\rangle\]</div>
+<p>donde k denota la representación en número entero de un número binario.Este sería el estado que tendremos, mirando el esquema anterior antes de aplicar la puerta de la transformada inversa de Fourier.</p>
+<p>Ahora bien, hay que tener en cuanta lo que hace la transformada cuántica de Fourier, QFT:</p>
+<div class="math notranslate nohighlight">
+\[QFT|x\rangle\longrightarrow\frac{1}{\sqrt{2^{n}}}\sum_{k=0}^{2^{n}-1}e^{\frac{2\pi ixk}{2^{n}}}|k\rangle\]</div>
+<p>Ahora si en la expresión anterior sustituimos <span class="math notranslate nohighlight">\(x=2^{n}\theta\)</span></p>
+<p>obtendremos que:</p>
+<p><span class="math notranslate nohighlight">\(QFT|x\rangle\longrightarrow\frac{1}{\sqrt{2^{n}}}\sum_{k=}^{2^{n}-1}e^{\frac{2\pi i\cancel{2^{n}}\theta k}{\cancel{2^{n}}}}|k\rangle\)</span></p>
+<p>Y esta expresión es justamente la suma de la izquierda de la expresión <span class="math notranslate nohighlight">\(\textcircled{1}\)</span></p>
+<p>Por lo tanto si ahora aplicamos la QFT inversa se tiene: <span class="math notranslate nohighlight">\(|2^{n}\theta\rangle\)</span></p>
+<p>que es el valor obtenido en la medición del diagrama anterior.</p>
+<p>Por lo tanto obtenido este valor, si lo dividimos por <span class="math notranslate nohighlight">\(2^n\)</span> obtendríamos la estimación del parámetro <span class="math notranslate nohighlight">\(\theta\)</span>. Aproximación a esta valor que estará más acurada, cuantos más qubits utilicemos.</p>
+<p>A continuación vamos crear código en qiskit para la implementación del algoritmo, para lo cual vamos a utilizar la puerta T-gate, para ello recordemos que la Puerta T actuando sobre el qubit <span class="math notranslate nohighlight">\(|1\rangle\)</span> actúa  de la siguiente manera:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T|1\rangle=\left[\begin{array}{cc}
+1 &amp; 0\\
+0 &amp; e^{\frac{i\pi}{4}}
+\end{array}\right]\left[\begin{array}{c}
+0\\
+1
+\end{array}\right]=e^{\frac{i\pi}{4}}|1\rangle\end{split}\]</div>
+<p>Puesto que el algoritmo QPE obtiene <span class="math notranslate nohighlight">\(\theta\)</span> donde:</p>
+<div class="math notranslate nohighlight">
+\[T|1\rangle =e^{2\pi i \theta}|1\rangle\]</div>
+<p>Se debería tener por este algoritmo un valor de <span class="math notranslate nohighlight">\(\theta=\frac{1}{8}\)</span>.</p>
+<p>Veamos cómo se hace con el siguiente código:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#initialization</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># importing Qiskit</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">IBMQ</span><span class="p">,</span> <span class="n">Aer</span><span class="p">,</span> <span class="n">transpile</span><span class="p">,</span> <span class="n">assemble</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">ClassicalRegister</span><span class="p">,</span> <span class="n">QuantumRegister</span>
+
+<span class="c1"># import basic plot tools</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Como en este ejemplo  <span class="math notranslate nohighlight">\(|\psi\rangle=|1\rangle\)</span>, aplicaremos la puerta X al último qubit</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qpe</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8ba75d56bdd8c6907fb29a2b1db610c6998e5c1409afa9851a0be92f060ee9d6.png" src="../../_images/8ba75d56bdd8c6907fb29a2b1db610c6998e5c1409afa9851a0be92f060ee9d6.png" />
+</div>
+</div>
+<p>Ahora aplicamos una puerta Hadamard a los tres primeros qubits</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/60ed424899f3b0e19a94efb5969e2441f7b6e6c1e8eb6717cfb3d963e6410f14.png" src="../../_images/60ed424899f3b0e19a94efb5969e2441f7b6e6c1e8eb6717cfb3d963e6410f14.png" />
+</div>
+</div>
+<p>Ahora aplicamos las puertas controladas, pero recordar que qiskit ordena los qubits de forma inversa a la mostrada en la imagen anterior</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">counting_qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">qpe</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">counting_qubit</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1"># This is CU</span>
+    <span class="n">repetitions</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/67c56019c1732d4b1bec772690c71b921f65b697ab9a2136adf023d8baa70469.png" src="../../_images/67c56019c1732d4b1bec772690c71b921f65b697ab9a2136adf023d8baa70469.png" />
+</div>
+</div>
+<p>Ahora nos queda aplicar las transformada inversa de Fourier a los qubits de estimación</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">qft_dagger</span><span class="p">(</span><span class="n">qc</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;n-qubit QFTdagger los primero n qubits del circuito&quot;&quot;&quot;</span>
+    <span class="c1"># Don&#39;t forget the Swaps!</span>
+    <span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">swap</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">qubit</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">m</span><span class="p">)),</span> <span class="n">m</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Al final tomamos la medición del circuito</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qpe</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="c1"># Aplicamos la inversa de QFT</span>
+<span class="n">qft_dagger</span><span class="p">(</span><span class="n">qpe</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Medimos en los tres primero qubits</span>
+<span class="n">qpe</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    
+<span class="n">qpe</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/704bb630fecab12b316114546db754543d8d41dd551b3347a00a54e61ac3b2a4.png" src="../../_images/704bb630fecab12b316114546db754543d8d41dd551b3347a00a54e61ac3b2a4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># obtengamos el resultado</span>
+<span class="n">aer_sim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">2048</span>
+<span class="n">t_qpe</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qpe</span><span class="p">,</span> <span class="n">aer_sim</span><span class="p">)</span>
+<span class="c1">#qobj = assemble(t_qpe, shots=shots)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">aer_sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">t_qpe</span><span class="p">,</span><span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_25752\54324529.py:2: DeprecationWarning: The &#39;qiskit.Aer&#39; entry point is deprecated and will be removed in Qiskit 1.0. You should use &#39;qiskit_aer.Aer&#39; directly instead.
+  aer_sim = Aer.get_backend(&#39;aer_simulator&#39;)
+</pre></div>
+</div>
+<img alt="../../_images/8c9628bb57e85561a31f40d6bbdc3733d22a5377421a547a3df75943826a79d4.png" src="../../_images/8c9628bb57e85561a31f40d6bbdc3733d22a5377421a547a3df75943826a79d4.png" />
+</div>
+</div>
+<p>Obtenemos el resultado <span class="math notranslate nohighlight">\(|00\rangle\)</span> que en decimal será 1. Ahora de acuerdo con el algoritmo hay que dividir este resultado por <span class="math notranslate nohighlight">\(2^3=8\)</span>, y en consecuencia el resultado obtenido para la fase es <span class="math notranslate nohighlight">\(\theta=1/8\)</span>.</p>
+<p>En lugar de una puerta T, vamos a utilizar una puerta con <span class="math notranslate nohighlight">\(\theta=1/3\)</span>, en este caso el circuito será el siguiente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos el ciruito</span>
+<span class="n">qpe2</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Aplicamos puerta H a los tres primeros qubits</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe2</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Ponemos el último qubit a 1</span>
+<span class="n">qpe2</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Aplicamos control-U sobre los tres primeros qubits</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">counting_qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">qpe2</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">counting_qubit</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+    <span class="n">repetitions</span> <span class="o">*=</span> <span class="mi">2</span>
+
+<span class="c1"># Aplicamos QFT inversa</span>
+<span class="n">qft_dagger</span><span class="p">(</span><span class="n">qpe2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Hacemos la medición</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">qpe2</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">qpe2</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6fa490df848bd4c93f3b6af6df3b997ed7f15a9f6a993b8cccbd42d4d9387226.png" src="../../_images/6fa490df848bd4c93f3b6af6df3b997ed7f15a9f6a993b8cccbd42d4d9387226.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#obtenemos los resultados</span>
+
+<span class="n">aer_sim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="n">t_qpe2</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qpe2</span><span class="p">,</span> <span class="n">aer_sim</span><span class="p">)</span>
+<span class="c1">#qobj = assemble(t_qpe2, shots=shots)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">aer_sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">t_qpe2</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0733c64f9bc2624ca7854bcfe5ccd776a752691d1c8b38b7d7e56b17982a8dfc.png" src="../../_images/0733c64f9bc2624ca7854bcfe5ccd776a752691d1c8b38b7d7e56b17982a8dfc.png" />
+</div>
+</div>
+<p>Obtenemos como primer resultado el 3 ( el 011 den binario), lo que implica un valor de <span class="math notranslate nohighlight">\(\theta\)</span>=3/8=0.375 (recordar que estamos intentado aproximar <span class="math notranslate nohighlight">\(\theta=0.3333\)</span>). Con el segundo valor obtenido(010 = 2 en decimal)se obtiene como estimación <span class="math notranslate nohighlight">\(\theta=2/8=0.25\)</span>.</p>
+<p>Incrementemos el número de qubits para comprobar que nos acercamos más al verdadero valor de <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creamos el circuito con 5 qubits y 5 bits de medición</span>
+<span class="n">qpe3</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># aplicamos puerta H</span>
+<span class="k">for</span> <span class="n">qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">qpe3</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">qubit</span><span class="p">)</span>
+
+<span class="c1"># Pasamos a 1 el qubit 5</span>
+<span class="n">qpe3</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Ejecutamos las puerta U controladas:</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">counting_qubit</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">repetitions</span><span class="p">):</span>
+        <span class="n">qpe3</span><span class="o">.</span><span class="n">cp</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">counting_qubit</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+    <span class="n">repetitions</span> <span class="o">*=</span> <span class="mi">2</span>
+
+<span class="c1">#  Aplicamos la inversa QFT:</span>
+<span class="n">qft_dagger</span><span class="p">(</span><span class="n">qpe3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Ahora medimos</span>
+<span class="n">qpe3</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">qpe3</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">qpe3</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e75313f6a9d151b36fecf98c035befa0253790e6af37d429ed3d0fe0f8c59a1f.png" src="../../_images/e75313f6a9d151b36fecf98c035befa0253790e6af37d429ed3d0fe0f8c59a1f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Obtengamos los resultados</span>
+<span class="n">aer_sim</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">shots</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="n">t_qpe3</span> <span class="o">=</span> <span class="n">transpile</span><span class="p">(</span><span class="n">qpe3</span><span class="p">,</span> <span class="n">aer_sim</span><span class="p">)</span>
+<span class="c1">#qobj = assemble(t_qpe3, shots=shots)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">aer_sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">t_qpe3</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+<span class="n">plot_histogram</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8da665022ecada9b22ed4b902410547253e95ed8da97a85fcf4939fbe1141953.png" src="../../_images/8da665022ecada9b22ed4b902410547253e95ed8da97a85fcf4939fbe1141953.png" />
+</div>
+</div>
+<p>el valor que obtenemos es 01011 ( en decimal 11) y 01010 ( en decimal 10). Por lo tanto los valores que obtenemos serían los siguientes:</p>
+<p><span class="math notranslate nohighlight">\(\theta==\frac{11}{2^5}=0.3444\)</span> o <span class="math notranslate nohighlight">\(\theta =\frac{10}{2^5}=0.313\)</span></p>
+<p><strong>NOTA FINAL</strong>. Si se quiere ver una implementación de este algoritmo en PennyLine, se puede ver <a href="https://www.youtube.com/watch?v=Z6OCaqQGIWY" target="_blank"> en este vídeo </a>, del cual se ha obtenido <a href="../documentos/QuantumPhaseEstimation.ipynb" target="_blank"> este jupyter </a> que se puede descargar con el anterior enlace.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit.tools.jupyter</span>
+
+<span class="o">%</span><span class="k">qiskit_version_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_25752\358704368.py:1: DeprecationWarning: qiskit.tools.jupyter is deprecated and will be removed in Qiskit 1.0.0
+  import qiskit.tools.jupyter
+</pre></div>
+</div>
+<div class="output text_html"><h3>Version Information</h3><table><tr><th>Software</th><th>Version</th></tr><tr><td><code>qiskit</code></td><td>0.46.0</td></tr><tr><td><code>qiskit_aer</code></td><td>0.13.2</td></tr><tr><th colspan='2'>System information</th></tr><tr><td>Python version</td><td>3.11.4</td></tr><tr><td>Python compiler</td><td>MSC v.1916 64 bit (AMD64)</td></tr><tr><td>Python build</td><td>main, Jul  5 2023 13:38:37</td></tr><tr><td>OS</td><td>Windows</td></tr><tr><td>CPUs</td><td>4</td></tr><tr><td>Memory (Gb)</td><td>11.799663543701172</td></tr><tr><td colspan='2'>Sat Feb 03 21:23:53 2024 Hora estándar romance</td></tr></table></div></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters\algoritmos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Algoritmo_Grover.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Introducción</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../genindex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">21. </span>Índice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
