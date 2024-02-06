@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>21. Hadamard test y swap test &#8212; Programación Cuántica</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'jupyters/otras/hadamard_swap_test';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="22. Índice" href="../../genindex.html" />
+    <link rel="prev" title="20. Quantum Phase Estimation (QPE)" href="../algoritmos/qpe.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../introduccion.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Programación Cuántica</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../introduccion.html">
+                    Introducción
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Base teórica de la programación cuántica</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_I.html">1. Los qubits en la programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numeros_complejos.html">2. Introducción a los números complejos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_II.html">3. Otros aspectos de los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ParteTeorica_III_puertasCuanticas.html">4. Puertas cuánticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_IV_algebra.html">5. Álgebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Parte_teorica_V_qubitMultiple.html">6. Múltiples qubits</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Estados quanticos y qubits</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Tema0_Introducci%C3%B3n.html">7. Introducción a programación cuántica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema1_atoms-computation.html">8. Los qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema2_representing-qubit-states.html">9. Representación de los estados del qubit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema3_single-qubit-gates.html">10. Puertas cuánticas para un qubit</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Qubits múltiples y Entanglement</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Tema4_multiple-qubits-entangled-states.html">11. Múltiples qubits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema5_phase-kickback.html">12. Explorando la puerta CNOT-Gate <a id="exploring-cnot"></a></a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../Tema6_more-circuit-identities.html">14. Otros circuitos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema7_proving-universality.html">15. Universalidad</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Tema8_QFT.html">16. Transformada cuántica de Fourier</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Algoritmos cuánticos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../algoritmos/deutsch_Jozsa.html">18. Algoritmo Deutsch_Jozsa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algoritmos/Algoritmo_Grover.html">19. Algoritmo de Grover</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../algoritmos/qpe.html">20. quantum phase estimation(QPE)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">21. Hadamard y Swap tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">22. Índice de términos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="anexo1_Algebralineal.html">Resumen Algebra lineal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../anexo_simpy.html">Matemática simbólica</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../paquetequtip.html">Paquete Qutib: Representación esfera Bloch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../videos_anexo.html">Vídeos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apendice.html">Apendice.</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/jupyters/otras/hadamard_swap_test.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Hadamard test y swap test</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadamard-test">21.1. Hadamard test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swap-test">21.2. Swap test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">21.3. Apéndice</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hadamard-test-y-swap-test">
+<span id="hadamrd-test"></span><h1><span class="section-number">21. </span>Hadamard test y swap test<a class="headerlink" href="#hadamard-test-y-swap-test" title="Permalink to this heading">#</a></h1>
+<p id="index-0">En este apartado vamos a ver dos cuestiones muy útiles en el mundo de la programación cuántica</p>
+<ul class="simple">
+<li><p>El Hadamard test que no permite calcular la parte real imaginaria del valor esperado de un qubit vía una puerta unitaria U</p></li>
+<li><p>El swap test, que nos permite ver si dos qubits son los mimos o son ortogonales</p></li>
+</ul>
+<section id="hadamard-test">
+<h2><span class="section-number">21.1. </span>Hadamard test<a class="headerlink" href="#hadamard-test" title="Permalink to this heading">#</a></h2>
+<p id="index-1">Con este test lo que se pretende es encontrar una expresión que aparece muchas veces en los problemas de computación cuántica, y este valor sería el siguiente:</p>
+<div class="math notranslate nohighlight">
+\[\langle\psi|U|\psi\rangle\]</div>
+<p>Es decir, con esa expresión lo que calculamos es valor esperado de <span class="math notranslate nohighlight">\(|\psi\rangle\)</span> a través de U.</p>
+<p>Para calcular estos valores deberemos montar el siguiente circuito</p>
+<p><img alt="" src="../../_images/HadamardTest.PNG" /></p>
+<p>Es decir, hacemos pasar nuestro estado <span class="math notranslate nohighlight">\(|\psi \rangle\)</span> por nuestra puerta U , y además creamos otro qubit auxiliar (ancilla qubit ) en estado <span class="math notranslate nohighlight">\(|0\rangle\)</span> al que aplicamos una puerta H y después una puerta control sobre dicha puerta U y además en el qubit auxiliar se vuelve a aplicar una puerta H y medimos ese circuito auxiliar. Pues bien el resultado que obtenemos con esta medición es <span class="math notranslate nohighlight">\(Re(\)</span>\langle\psi|U|\psi\rangle$). La demostración de que esto es así se <a href="../documentos/Quantum_Tests.pdf" target="_blank"> puede encontrar en este documento </a> que se ha entresacado <a href="https://www.youtube.com/watch?v=V43R-26NtUU" target="_blank"> de este vídeo </a>.</p>
+<p>Al hacer la medición tenemos que :</p>
+<div class="math notranslate nohighlight">
+\[Re(\langle\psi|U|\psi\rangle)=P(|0\rangle)-P(|1\rangle)\]</div>
+<p>Para obtener la parte imaginaría tendremos que añadir al circuito anterior un puerta <span class="math notranslate nohighlight">\(R_{Z}\left(\frac{-\pi}{2}\right)\)</span> en el primer qubit auxiliar justo después de la primera puerta H,</p>
+<p><img alt="" src="../../_images/HadamardTest_2.PNG" /></p>
+<p>El resultado anterior tiene su mérito, pues es muy utilizado en computación cuántica, pero se puede extender su resultado para que podamos podamos obtener por ejemplo el valor de un producto interno como <span class="math notranslate nohighlight">\(&lt;\varphi|\psi&gt;\)</span>. Como vemos aquí entran en juego dos estados quánticos, mientras que en el test de Hadamard sólo se trabaja con un qubit. LA idea es que de alguna forma se pueda poner lo anterior en la forma <span class="math notranslate nohighlight">\(\langle0|U|0\rangle\)</span>, y después de construir la puerta U (como se verá a continuación) entonces  aplicando el test de Hadamard se podrá obtener <span class="math notranslate nohighlight">\(Re(&lt;\varphi|\psi&gt;)\)</span>. La forma de conseguir esto lo vemos en el siguiente gráfico:</p>
+<p><img alt="" src="../../_images/TestHadamard_3.PNG" /></p>
+<p>La puerta U que conseguimos con este enfoque sigue siendo una puerta unitaria, por lo que podremos aplicar el test de Hadamard al qubit <span class="math notranslate nohighlight">\(|0\rangle\)</span> y a esta puerta U. La situación en la que nos encontraremos ahora, se muestra en el siguiente gráfico:</p>
+<p><img alt="" src="../../_images/TestHadamard_4.PNG" /></p>
+<p>Y la parte imaginaria la conseguimos siguiendo el siguiente esquema:</p>
+<p><img alt="" src="../../_images/TestHadamerd_5.PNG" /></p>
+<p>A continuación implementamos el código en qiskit que utiliza toda esta teoría para obtener el producto interno de dos estados cuánticos</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">qiskit</span>
+<span class="n">qiskit</span><span class="o">.</span><span class="n">__qiskit_version__</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;qiskit&#39;: &#39;0.46.0&#39;, &#39;qiskit-aer&#39;: &#39;0.13.2&#39;, &#39;qiskit-ignis&#39;: None, &#39;qiskit-ibmq-provider&#39;: None, &#39;qiskit-nature&#39;: None, &#39;qiskit-finance&#39;: None, &#39;qiskit-optimization&#39;: None, &#39;qiskit-machine-learning&#39;: None}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">transpile</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">execute</span><span class="p">,</span> <span class="n">Aer</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.visualization</span> <span class="kn">import</span> <span class="n">circuit_drawer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A continuación creamos una función que sirve para crear un circuito cuántico parametrizado y que servirá para crear los estados</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_circ</span><span class="p">(</span><span class="n">_circuit</span><span class="p">,</span> <span class="n">_register</span><span class="p">,</span> <span class="n">_params</span><span class="p">,</span> <span class="n">_n_qubits</span><span class="p">,</span> <span class="n">_barrier</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implementación de un circuito parametrizado</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_n_qubits</span><span class="p">):</span>
+        <span class="c1"># Añadimos una puerta de Hadamrd</span>
+        <span class="n">_circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+        <span class="c1"># Implementamos una rotación sobre el je x</span>
+        <span class="n">_circuit</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">_params</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">_register</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+    <span class="c1"># Añadimo puertas CNOT</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">_n_qubits</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># .cnot está deprecated desde la versión 0.45.0 de qiskit</span>
+        <span class="c1">#_circuit.cnot(_register[k], _register[k+1])</span>
+        <span class="n">_circuit</span><span class="o">.</span><span class="n">cx</span><span class="p">(</span><span class="n">_register</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">_register</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">_barrier</span><span class="p">:</span>
+        <span class="n">_circuit</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">_circuit</span>
+
+<span class="c1"># Ahora construimos los circuitos para |psi&gt; and |phi&gt;</span>
+<span class="n">nqubits</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">nb_params</span> <span class="o">=</span> <span class="n">nqubits</span>
+
+<span class="c1"># circuito para  |psi&gt;</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="s1">&#39;qubit&#39;</span><span class="p">)</span>
+<span class="n">circ_psi</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+<span class="n">params_psi</span> <span class="o">=</span> <span class="p">[</span><span class="n">el</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">nb_params</span> <span class="p">)]</span>
+<span class="n">circ_psi</span> <span class="o">=</span> <span class="n">build_circ</span><span class="p">(</span><span class="n">circ_psi</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">params_psi</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)</span>
+
+<span class="c1"># circuito para |phi&gt;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="s1">&#39;qubit&#39;</span><span class="p">)</span>
+<span class="n">circ_phi</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">params_phi</span> <span class="o">=</span> <span class="p">[</span><span class="n">el</span> <span class="k">for</span> <span class="n">el</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="n">nb_params</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">nb_params</span><span class="p">)]</span>
+<span class="n">circ_phi</span> <span class="o">=</span> <span class="n">build_circ</span><span class="p">(</span><span class="n">circ_phi</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">params_phi</span><span class="p">,</span> <span class="n">nqubits</span><span class="p">)</span>
+
+<span class="c1"># Comentar esta línea si no se quiere dibujar el circuito</span>
+<span class="n">circuit_drawer</span><span class="p">(</span><span class="n">circ_phi</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;#EEEEEE&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b1652eaa40bd94c588939f4736bd9c72496a2d4ad8993e77496dda67c40c6196.png" src="../../_images/b1652eaa40bd94c588939f4736bd9c72496a2d4ad8993e77496dda67c40c6196.png" />
+</div>
+</div>
+<p>A continuación, construimos una función que medirá el qubit auxiliar 1000 veces y los promediará como se describe anteriormente (NOTA: Se ha tenido que hacer transpile inicialmente para eliminar error de ejecución):</p>
+<div class="cell docutils container" id="index-2">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sigma_z</span><span class="p">(</span><span class="n">_circuit</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes in a circuit with an ancilla;</span>
+<span class="sd">    returns the &lt;sigma_z&gt; of the measurements on the ancilla alone.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">circuit_copy</span> <span class="o">=</span> <span class="n">_circuit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">c_reg</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;c_bit&quot;</span><span class="p">)</span>
+    <span class="n">circuit_copy</span><span class="o">.</span><span class="n">add_register</span><span class="p">(</span><span class="n">c_reg</span><span class="p">)</span>
+
+    <span class="n">circuit_copy</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">c_reg</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">nb_shots</span> <span class="o">=</span> <span class="mi">10000</span>
+
+    <span class="n">simulator</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s2">&quot;qasm_simulator&quot;</span><span class="p">)</span>
+    <span class="c1"># esta instrucción está deprecated</span>
+    <span class="c1">#job = execute(circuit_copy, backend=simulator, shots = nb_shots)</span>
+    <span class="n">transpiled</span> <span class="o">=</span><span class="n">transpile</span><span class="p">(</span><span class="n">circuit_copy</span><span class="p">,</span><span class="n">simulator</span><span class="p">)</span>
+    <span class="n">job</span><span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">transpiled</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="n">nb_shots</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">counts</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">nb_shots</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ahora podemos construir el operador U (la composición de <span class="math notranslate nohighlight">\(U_{\varphi}^{\dagger}U_{\Psi}\)</span> que se muestra en los diagramas de circuito anteriores):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># para el circuito phi obtenemos U_phi^dagger</span>
+<span class="n">U_phi_dagger</span> <span class="o">=</span> <span class="n">circ_phi</span><span class="o">.</span><span class="n">to_gate</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;U_phi^dagger&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>
+<span class="n">definition</span> <span class="o">=</span> <span class="p">[</span> <span class="n">q</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)</span> <span class="p">]</span>
+<span class="c1"># para el circuito psi</span>
+<span class="n">U_circ</span> <span class="o">=</span> <span class="n">circ_psi</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># Añado ahora los dos circuitos</span>
+<span class="n">U_circ</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">U_phi_dagger</span><span class="p">,</span> <span class="n">definition</span><span class="p">)</span>
+
+<span class="c1"># Ahora construyo un control U</span>
+<span class="n">U_controlled_gate</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_circ</span><span class="o">.</span><span class="n">to_gate</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;U&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">control</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U_controlled_gate</span> <span class="o">=</span> <span class="p">(</span><span class="n">U_circ</span><span class="o">.</span><span class="n">to_gate</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;U&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">control</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">anc</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;ancilla&#39;</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="n">nqubits</span><span class="p">,</span> <span class="s1">&#39;qubit&#39;</span><span class="p">)</span>
+<span class="n">circ_Hadamard</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">anc</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+<span class="n">definition</span> <span class="o">=</span> <span class="p">[</span><span class="n">anc</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">+</span> <span class="p">[</span><span class="n">q</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nqubits</span><span class="p">)]</span>
+
+
+<span class="n">evaluate_complex_part</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># cambiar a True si se quiere evaluar la parte imaginaria</span>
+
+<span class="n">circ_Hadamard</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">anc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">evaluate_complex_part</span><span class="p">:</span>
+    <span class="n">circ_Hadamard</span><span class="o">.</span><span class="n">sdg</span><span class="p">(</span><span class="n">anc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">circ_Hadamard</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">U_controlled_gate</span><span class="p">,</span> <span class="n">definition</span><span class="p">)</span>
+<span class="n">circ_Hadamard</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">anc</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># visualizo el circuito</span>
+<span class="n">circuit_drawer</span><span class="p">(</span><span class="n">circ_Hadamard</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;backgroundcolor&#39;</span><span class="p">:</span> <span class="s1">&#39;#EEEEEE&#39;</span><span class="p">})</span>
+
+<span class="c1"># mido el circuito auxiliar (anzila)</span>
+<span class="n">avg_Z</span> <span class="o">=</span> <span class="n">sigma_z</span><span class="p">(</span><span class="n">circ_Hadamard</span><span class="p">)</span>
+<span class="n">avg_Z</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_10948\2805378112.py:13: DeprecationWarning: The &#39;qiskit.Aer&#39; entry point is deprecated and will be removed in Qiskit 1.0. You should use &#39;qiskit_aer.Aer&#39; directly instead.
+  simulator = Aer.get_backend(&quot;qasm_simulator&quot;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.2182
+</pre></div>
+</div>
+</div>
+</div>
+<p>NOTA: el valor anterior puede cambiar pero estar cerca del mismo, ya que existe un factor de aleatoriedad que hay que tener en cuenta.</p>
+<p>A continuación se muestra el ´código que sirve para evaluar de una forma analítica esta superposición</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simulator</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">circ_psi</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>
+<span class="c1">#job = execute(circ_psi, simulator)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">transpile</span><span class="p">(</span><span class="n">circ_psi</span><span class="p">,</span> <span class="n">simulator</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">psi_state</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="n">psi_vector</span> <span class="o">=</span> <span class="n">psi_state</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">circ_phi</span><span class="o">.</span><span class="n">save_statevector</span><span class="p">()</span>
+<span class="c1">#job = execute(circ_phi, simulator)</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">transpile</span><span class="p">(</span><span class="n">circ_phi</span><span class="p">,</span> <span class="n">simulator</span><span class="p">))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+<span class="n">phi_state</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_statevector</span><span class="p">()</span>
+<span class="n">phi_vector</span> <span class="o">=</span> <span class="n">phi_state</span><span class="o">.</span><span class="n">data</span>
+
+
+<span class="n">phi_vector_dagger</span> <span class="o">=</span> <span class="n">phi_state</span><span class="o">.</span><span class="n">conjugate</span><span class="p">()</span>
+<span class="n">overlap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">phi_vector_dagger</span><span class="p">,</span> <span class="n">psi_vector</span><span class="p">)</span>
+<span class="n">overlap</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-0.2107957994307797-0.9775301176650976j)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="swap-test">
+<h2><span class="section-number">21.2. </span>Swap test<a class="headerlink" href="#swap-test" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumRegister</span><span class="p">,</span> <span class="n">ClassicalRegister</span><span class="p">,</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="n">Aer</span>
+<span class="kn">from</span> <span class="nn">qiskit.visualization</span> <span class="kn">import</span> <span class="n">plot_histogram</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">QuantumRegister</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">ClassicalRegister</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)</span>
+
+<span class="n">circuit</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#comentar para hacer ambos estados no ortogonales</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">cswap</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">q</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1">#puerta controlada swap</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">circuit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">circuit</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="s1">&#39;mpl&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;iqp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/483dd98fba0ddf05ac3da5d03a09dcf1378572a164214785a55ba014125e6578.png" src="../../_images/483dd98fba0ddf05ac3da5d03a09dcf1378572a164214785a55ba014125e6578.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">backend</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">)</span>
+<span class="n">nShots</span> <span class="o">=</span> <span class="mi">8192</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuit</span><span class="p">,</span><span class="n">shots</span><span class="o">=</span><span class="n">nShots</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+<span class="n">counts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;0&#39;: 4081, &#39;1&#39;: 4111}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_histogram</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b9ca6870ea287eab8a537f962f3b9c0bc3292bdcf4c6f12e808e0b995f67e2ff.png" src="../../_images/b9ca6870ea287eab8a537f962f3b9c0bc3292bdcf4c6f12e808e0b995f67e2ff.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;1&#39;</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">nShots</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;módulo producto interno al cuadrado:&quot;</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Conteo: &quot;</span><span class="p">,</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>módulo producto interno al cuadrado: -0.003662109375
+Conteo:  {&#39;0&#39;: 4081, &#39;1&#39;: 4111}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="apendice">
+<h2><span class="section-number">21.3. </span>Apéndice<a class="headerlink" href="#apendice" title="Permalink to this heading">#</a></h2>
+<ul class="simple" id="index-3">
+<li><p><a href="https://www.youtube.com/watch?v=fDSqkt3cJvs" target="_blank"> Matriz de densidad </a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./jupyters\otras"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../algoritmos/qpe.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">20. </span>Quantum Phase Estimation (QPE)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../genindex.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">22. </span>Índice</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hadamard-test">21.1. Hadamard test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#swap-test">21.2. Swap test</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apendice">21.3. Apéndice</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Francisco Rodríguez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

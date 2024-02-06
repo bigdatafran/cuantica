@@ -183,10 +183,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="deutsch_Jozsa.html">18. Algoritmo Deutsch_Jozsa</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">19. Algoritmo de Grover</a></li>
 <li class="toctree-l1"><a class="reference internal" href="qpe.html">20. quantum phase estimation(QPE)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../otras/hadamard_swap_test.html">21. Hadamard y Swap tests</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Índice de términos</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">21. Índice de términos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">22. Índice de términos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Apéndice</span></p>
 <ul class="nav bd-sidenav">
@@ -556,13 +557,15 @@ U_{w} &amp; =\left(I-2|w\rangle\langle w|\right)=\left(\begin{array}{cccc}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\3259579902.py:1: DeprecationWarning: The &#39;qiskit.Aer&#39; entry point is deprecated and will be removed in Qiskit 1.0. You should use &#39;qiskit_aer.Aer&#39; directly instead.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_14212\3259579902.py:1: DeprecationWarning: The &#39;qiskit.Aer&#39; entry point is deprecated and will be removed in Qiskit 1.0. You should use &#39;qiskit_aer.Aer&#39; directly instead.
   backend = Aer.get_backend(&quot;qasm_simulator&quot;)
-C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\3259579902.py:2: DeprecationWarning: The function ``qiskit.execute_function.execute()`` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function combines ``transpile`` and ``backend.run``, which is covered by ``Sampler`` :mod:`~qiskit.primitives`. Alternatively, you can also run :func:`.transpile` followed by ``backend.run()``.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_14212\3259579902.py:2: DeprecationWarning: The function ``qiskit.execute_function.execute()`` is deprecated as of qiskit 0.46.0. It will be removed in the Qiskit 1.0 release. This function combines ``transpile`` and ``backend.run``, which is covered by ``Sampler`` :mod:`~qiskit.primitives`. Alternatively, you can also run :func:`.transpile` followed by ``backend.run()``.
   job = execute(circ, backend, shots = 1000)
 </pre></div>
 </div>
-<img alt="../../_images/790f03e61b0ced8941a6a2d22e2e962d29fc8a7b3d753391256b54f71317e183.png" src="../../_images/790f03e61b0ced8941a6a2d22e2e962d29fc8a7b3d753391256b54f71317e183.png" />
+<img alt="../../_images/dbad48320c4e3e1a48d9d8d6b4404bae37516f962e7f3d60e4b8f3c972224353.png" src="../../_images/dbad48320c4e3e1a48d9d8d6b4404bae37516f962e7f3d60e4b8f3c972224353.png" />
 </div>
 </div>
 <p>Implementemos a continuación otro ejmeplo para un total de dos qubits y suponiendo que <span class="math notranslate nohighlight">\(|w\rangle = |11\rangle\)</span>.</p>
@@ -755,7 +758,7 @@ C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\3259579902.py:2: Deprecati
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\1836156100.py:11: DeprecationWarning: The method ``qiskit.circuit.quantumcircuit.QuantumCircuit.mct()`` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.mcx as direct replacement.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\Francisco\AppData\Local\Temp\ipykernel_14212\1836156100.py:11: DeprecationWarning: The method ``qiskit.circuit.quantumcircuit.QuantumCircuit.mct()`` is deprecated as of qiskit 0.45.0. It will be removed in the Qiskit 1.0.0 release. Use QuantumCircuit.mcx as direct replacement.
   qc.mct(list(range(nqubits-1)), nqubits-1)  # multi-controlled-toffoli
 </pre></div>
 </div>
@@ -773,7 +776,7 @@ C:\Users\Francisco\AppData\Local\Temp\ipykernel_24372\3259579902.py:2: Deprecati
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f5a806fb022fe2742ff2ab9eab9b80415a72acc64d346cd2e95746baa560f80a.png" src="../../_images/f5a806fb022fe2742ff2ab9eab9b80415a72acc64d346cd2e95746baa560f80a.png" />
+<img alt="../../_images/74a66a5e0e3a71347b9ba3c721fba4df30c7a3ca50e1c52a7e46e49264c2ce6d.png" src="../../_images/74a66a5e0e3a71347b9ba3c721fba4df30c7a3ca50e1c52a7e46e49264c2ce6d.png" />
 </div>
 </div>
 </section>
